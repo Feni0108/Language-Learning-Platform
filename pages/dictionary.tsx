@@ -7,14 +7,18 @@ export default function Dictionary() {
     const [words, setWords] = useState([]);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [count, setCount] = useState(0);
+    const [isButton, setIsButton] = useState(false);
 
 
     useEffect(() => {
         setWords(getOptions())
     },[]);
+
     useEffect(() => {
-        //Todo: If count = 4 "Next Button" Revealed;
-    })
+        if (count === 4){
+            setIsButton(true);
+        }
+    },[count])
 
     const handleClick = () => {
         //Todo: If Click one of the divs, first checks whether you were previously selected
@@ -27,9 +31,6 @@ export default function Dictionary() {
     }
 
     const [originalWords, translatedWords] = words;
-
-    console.log(originalWords);
-    console.log(translatedWords);
 
     return (
         <>
@@ -50,6 +51,7 @@ export default function Dictionary() {
                     ))}
                 </p>
         </div>
+            {isButton && <button>Next task</button>}
         </>
     )
 }
