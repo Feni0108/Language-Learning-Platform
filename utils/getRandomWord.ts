@@ -3,15 +3,14 @@ import {DummyDatabase} from "@/DummyDatabase";
 
 //Creation of necessary variables
 const MAX_ID = DummyDatabase.length
-const notThisOne: number[] = new Array();
 const originalWord: { id: number; original_word: string}[] = new Array();
 const translatedWord: { id: number; translated_word: string}[] = new Array();
 
 const getRandomWord = () => {
     const randomId = (Math.floor(Math.random() * (MAX_ID))+1)
     let newId = true;
-    for(let i:number = 0; i<notThisOne.length; i++) {
-        if (notThisOne[i] === randomId){
+    for(let i:number = 0; i<originalWord.length; i++) {
+        if (originalWord[i].id === randomId){
             //This line only works if a larger database is available
             //With a small database infinite recursion may occur
             //In this case there is no need for newId-validation
@@ -20,7 +19,6 @@ const getRandomWord = () => {
         }
     }
     if (newId){
-        notThisOne.push(randomId);
         originalWord.push({id:DummyDatabase[randomId-1].id, original_word:DummyDatabase[randomId-1].original_word})
         translatedWord.push({id:DummyDatabase[randomId-1].id, translated_word:DummyDatabase[randomId-1].translated_word})
     }
@@ -31,7 +29,7 @@ const getRandomWord = () => {
 export const getOptions = () => {
     do {
         getRandomWord();
-    } while (notThisOne.length!==4)
+    } while (originalWord.length!==4)
     return [originalWord,getRandom(translatedWord)];
 
 
