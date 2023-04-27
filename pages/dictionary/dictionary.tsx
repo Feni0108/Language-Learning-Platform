@@ -73,15 +73,6 @@ export default function Dictionary() {
             setChoose(newChoose);
         }
 
-
-        //Use Context API at the end
-        //Todo: If Click one of the divs, first checks whether you were previously selected - completed
-        //Todo: If it was selected and the same: nothing happens  -  completed
-        //Todo: If it was selected and is not the same: switch to the other word   -   completed
-        //Todo: If it was selected and paired with another word, Tests whether the selection is good: - completed
-            //Todo: If it's good, then the count increment by one, and empty the choose - competed
-            //Todo: If it is wrong, it just empties the choose
-        //Todo: Feedback on UI with CSS formatting
     }
 
 
