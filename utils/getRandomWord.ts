@@ -3,8 +3,8 @@ import {DummyDatabase} from "@/DummyDatabase";
 
 //Creation of necessary variables
 const MAX_ID = DummyDatabase.length
-const originalWord: { id: number; original_word: string}[] = new Array();
-const translatedWord: { id: number; translated_word: string}[] = new Array();
+const originalWord: { id: number; original_word: string; isVisible: boolean}[] = new Array();
+const translatedWord: { id: number; translated_word: string, isVisible: boolean}[] = new Array();
 
 const getRandomWord = () => {
     const randomId = (Math.floor(Math.random() * (MAX_ID))+1)
@@ -19,8 +19,8 @@ const getRandomWord = () => {
         }
     }
     if (newId){
-        originalWord.push({id:DummyDatabase[randomId-1].id, original_word:DummyDatabase[randomId-1].original_word})
-        translatedWord.push({id:DummyDatabase[randomId-1].id, translated_word:DummyDatabase[randomId-1].translated_word})
+        originalWord.push({id:DummyDatabase[randomId-1].id, original_word:DummyDatabase[randomId-1].original_word, isVisible:true})
+        translatedWord.push({id:DummyDatabase[randomId-1].id, translated_word:DummyDatabase[randomId-1].translated_word, isVisible:true})
     }
 
 }
