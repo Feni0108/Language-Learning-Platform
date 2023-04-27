@@ -1,13 +1,16 @@
 import {getOptions} from "@/utils/getRandomWord";
 import {useContext, useEffect, useState} from "react";
-import styles from '../styles/Dictionary.module.css'
+import styles from '../../styles/Dictionary.module.css'
+import Word from './Word';
+import word from "./Word";
 
 
 
 export default function Dictionary() {
     const [words, setWords] = useState([]);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
-    const [count, setCount] = useState(0);
+    const [solvedWrong, setSolvedWrong] = useState([]);
+    const [solvedCorrect, setSolvedCorrect] = useState([]);
     //const [isButton, setIsButton] = useState(false);
     const [originalWords, setOriginalWords] = useState([]);
     const [translatedWords, setTranslatedWords] = useState([]);
@@ -23,14 +26,22 @@ export default function Dictionary() {
     },[words]);
 
     useEffect(() => {
-        /*if (count === 4){
-            setIsButton(true);
-        }*/
+        console.log(choose)
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
-            setCount(count+1);
+            const newCorrect = solvedCorrect;
+            newCorrect.push(choose.or_id);
+            setSolvedCorrect(newCorrect);
             setInactive(choose);
             setChoose({or_id: null, tr_id: null});
             }
+        if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
+            const newWrong = solvedWrong;
+            newWrong.push(choose.or_id);
+            setSolvedWrong(newWrong);
+            setInactive(choose);
+            setChoose({or_id: null, tr_id: null});
+        }
+
 
     },[choose]);
 
@@ -67,7 +78,7 @@ export default function Dictionary() {
         //Todo: If Click one of the divs, first checks whether you were previously selected - completed
         //Todo: If it was selected and the same: nothing happens  -  completed
         //Todo: If it was selected and is not the same: switch to the other word   -   completed
-        //Todo: If it was selected and paired with another word, Tests whether the selection is good:
+        //Todo: If it was selected and paired with another word, Tests whether the selection is good: - completed
             //Todo: If it's good, then the count increment by one, and empty the choose - competed
             //Todo: If it is wrong, it just empties the choose
         //Todo: Feedback on UI with CSS formatting
@@ -82,14 +93,17 @@ export default function Dictionary() {
             <div>
                 <div>
                 {originalWords && originalWords.map((value, index) => (
-                    <div
-                        className={value.isVisible ?  (value.id === choose.or_id ? styles.choose : '') : styles.invisible}
-                        id={'orig_'+value.id.toString()}
-                         key={index}
-                         onClick={value.isVisible ? () => handleClick(value.id, "original") : null}
-
-                    >
-                        {value.original_word}
+                    <div key={"or"+index}>
+                    <Word
+                    word={value.original_word}
+                    choose={choose}
+                    wordType="original"
+                    setChoose={setChoose}
+                    id={value.id}
+                    isVisible={value.isVisible}
+                    solvedCorrect={solvedCorrect}
+                    solvedWrong={solvedWrong}
+                    />
                     </div>
                 ))}
                 </div>
@@ -107,7 +121,7 @@ export default function Dictionary() {
 
                 </div>
         </div>
-            {count===4 && <button>Next task</button>}
+            {solvedWrong.length+solvedCorrect.length === 4 && <button>Next task</button>}
 
         </>
     )
@@ -115,5 +129,13 @@ export default function Dictionary() {
 
 /*
 
+<div
+                        className={value.isVisible ?  (value.id === choose.or_id ? styles.choose : '') : styles.invisible}
+                        id={'orig_'+value.id.toString()}
+                         key={index}
+                         onClick={value.isVisible ? () => handleClick(value.id, "original") : null}
 
+                    >
+                        {value.original_word}
+                    </div>
  */

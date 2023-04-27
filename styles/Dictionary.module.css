@@ -13,6 +13,7 @@
     color: green;
 }
 
-.wrong-answer {
-
+.wrongAnswer {
+    text-decoration-line: line-through;
+    color: red;
 }
