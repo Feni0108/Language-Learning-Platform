@@ -1,5 +1,5 @@
 import {getOptions} from "@/utils/getRandomWord";
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import styles from '../../styles/Dictionary.module.css'
 import Word from './Word';
 

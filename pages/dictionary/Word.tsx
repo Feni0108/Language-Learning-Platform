@@ -1,6 +1,5 @@
 import styles from "@/styles/Dictionary.module.css";
-import React, { useEffect, useState} from "react";
-import {render} from "react-dom";
+import React, { useState} from "react";
 
 type Props = {
     choose: object;
