@@ -1,8 +1,8 @@
 import {getOptions} from "@/utils/getRandomWord";
-import {useContext, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import styles from '../../styles/Dictionary.module.css'
 import Word from './Word';
-import word from "./Word";
+
 
 
 
@@ -11,7 +11,6 @@ export default function Dictionary() {
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedWrong, setSolvedWrong] = useState([]);
     const [solvedCorrect, setSolvedCorrect] = useState([]);
-    //const [isButton, setIsButton] = useState(false);
     const [originalWords, setOriginalWords] = useState([]);
     const [translatedWords, setTranslatedWords] = useState([]);
 
@@ -25,15 +24,15 @@ export default function Dictionary() {
         setTranslatedWords(words[1]);
     },[words]);
 
-    useEffect(() => {
-        console.log(choose)
+    /*useEffect(() => {
+        console.log("In the effect: "+choose.tr_id+choose.or_id)
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
             const newCorrect = solvedCorrect;
             newCorrect.push(choose.or_id);
             setSolvedCorrect(newCorrect);
             setInactive(choose);
             setChoose({or_id: null, tr_id: null});
-            }
+        }
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
             const newWrong = solvedWrong;
             newWrong.push(choose.or_id);
@@ -41,10 +40,28 @@ export default function Dictionary() {
             setInactive(choose);
             setChoose({or_id: null, tr_id: null});
         }
+    },[choose])*/
 
-
-    },[choose]);
-
+    let fetchData =(() => {
+        console.log("In the callback: "+choose.tr_id+choose.or_id)
+        if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
+            const newCorrect = solvedCorrect;
+            newCorrect.push(choose.or_id);
+            setSolvedCorrect(newCorrect);
+            setInactive(choose);
+            setChoose({or_id: null, tr_id: null});
+        }
+        if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
+            const newWrong = solvedWrong;
+            newWrong.push(choose.or_id);
+            setSolvedWrong(newWrong);
+            setInactive(choose);
+            setChoose({or_id: null, tr_id: null});
+        }
+    })
+    useEffect(() => {
+        fetchData();
+    },[fetchData]);
 
     const setInactive = (choose) => {
         const newOriginalWords = originalWords;
@@ -76,7 +93,6 @@ export default function Dictionary() {
     }
 
 
-
     return (
         <>
 
@@ -94,6 +110,7 @@ export default function Dictionary() {
                     isVisible={value.isVisible}
                     solvedCorrect={solvedCorrect}
                     solvedWrong={solvedWrong}
+                    fetchData={fetchData}
                     />
                     </div>
                 ))}
@@ -108,6 +125,7 @@ export default function Dictionary() {
                         >
                             {translated.translated_word}
                         </div>
+
                     ))}
 
                 </div>
@@ -119,14 +137,12 @@ export default function Dictionary() {
 }
 
 /*
-
 <div
-                        className={value.isVisible ?  (value.id === choose.or_id ? styles.choose : '') : styles.invisible}
-                        id={'orig_'+value.id.toString()}
-                         key={index}
-                         onClick={value.isVisible ? () => handleClick(value.id, "original") : null}
-
-                    >
-                        {value.original_word}
-                    </div>
+                            className={translated.isVisible ?  (translated.id === choose.tr_id ? styles.choose : '') : styles.invisible}
+                            id={'orig_'+translated.id.toString()}
+                            key={index}
+                            onClick={translated.isVisible ? () => handleClick(translated.id, "translated") : null}
+                        >
+                            {translated.translated_word}
+                        </div>
  */

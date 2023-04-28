@@ -1,5 +1,6 @@
 import styles from "@/styles/Dictionary.module.css";
-import React, {ReactNode, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
+import {render} from "react-dom";
 
 type Props = {
     choose: object;
@@ -11,6 +12,9 @@ type Props = {
     solvedCorrect: Array<number>;
     solvedWrong: Array<number>;
 
+    fetchData: () => void;
+
+
 }
 
 const Word = ({
@@ -21,19 +25,44 @@ const Word = ({
     isVisible,
     id,
     solvedCorrect,
-    solvedWrong
+    solvedWrong,
+    fetchData
+
+
 
               }: Props) => {
     const [style, setStyle] = useState(null);
 
-    useEffect(() => {
+    /*useEffect(() => {
+        if (choose.or_id === id && wordType==="original"){
+            setStyle(styles.choose)
+        }
+        if (choose.tr_id === id && wordType==="translated"){
+            setStyle(styles.choose)
+        }
         if(solvedCorrect.some((e) => e===id)) {
             setStyle(styles.invisible)
         }
         if (solvedWrong.some((e)=> e===id)) {
             setStyle(styles.wrongAnswer)
         }
-    },[isVisible]);
+    },[isVisible, choose]);
+     */
+
+    const changeStyle = () => {
+        if ((choose.or_id === id && wordType==="original") || (choose.tr_id === id && wordType==="translated")){
+            setStyle(styles.choose)
+        }
+        if (choose.or_id !== id && wordType==="original"){
+            setStyle(null)
+        }
+        if(solvedCorrect.some((e) => e===id)) {
+            setStyle(styles.invisible)
+        }
+        if (solvedWrong.some((e)=> e===id)) {
+            setStyle(styles.wrongAnswer)
+        }
+    }
     const handleClick = (id, wordType: string) => {
         if (wordType === "original") {
             const newChoose = choose;
@@ -43,10 +72,14 @@ const Word = ({
             const newChoose = choose
             newChoose.tr_id = id
             setChoose(newChoose);
-        }}
+        }
+        changeStyle()
+        fetchData();
+        console.log("In the child component: "+choose.or_id+" "+choose.tr_id)
+
+    }
 
         return (
-
             <div
                 className={style}
                 id={'orig_' + id.toString()}
@@ -55,6 +88,7 @@ const Word = ({
                 {word}
             </div>
         )
+
 
 
 }
