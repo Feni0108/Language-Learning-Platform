@@ -7,13 +7,19 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  //You have to add a .env file in the project. This file have to conatins the Database_URL like:
-  //DATABASE_URL="mysql://username:password@localhost:3306/LLPDatabase"
+  // You have to add a .env file in the project. This file have to conatins the Database_URL like:
+  // DATABASE_URL="mysql://username:password@localhost:3306/LLPDatabase"
   url      = env("DATABASE_URL")
 }
 
 model Dictionary {
-  id        Int     @id @default(autoincrement())
-  original_word     String
-  translated_word   String
+  id              Int    @id @default(autoincrement())
+  original_word   String
+  translated_word String
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
 }
