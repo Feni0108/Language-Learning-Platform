@@ -29,9 +29,6 @@ const SignIn: NextPage = (props): JSX.Element => {
                 setMessage("Invalid password or username");
             }
         });
-
-        console.log(res);
-
     };
 
     return (
