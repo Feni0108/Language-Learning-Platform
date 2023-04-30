@@ -13,50 +13,56 @@ const SignIn: NextPage = (props): JSX.Element => {
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-        // validate your userinfo
-        e.preventDefault();
+    if (session) {
+        router.push("http://localhost:3000")
+    } else {
+        const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+            // validate your userinfo
+            e.preventDefault();
 
-        const res = await signIn("credentials", {
-            username: userInfo.username,
-            password: userInfo.password,
-            redirect: false
+            const res = await signIn("credentials", {
+                username: userInfo.username,
+                password: userInfo.password,
+                redirect: false
 
-        }) .then((res) => {
-            if (res.ok) {
-                router.push("http://localhost:3000");
-            } else {
-                setMessage("Invalid password or username");
-            }
-        });
-    };
+            }) .then((res) => {
+                if (res.ok) {
+                    router.push("http://localhost:3000");
+                } else {
+                    setMessage("Invalid password or username");
+                }
+            });
+        };
 
-    return (
-        <div className="sign-in-form">
-            <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
+        return (
+            <div className="sign-in-form">
+                <form onSubmit={handleSubmit}>
+                    <h1>Login</h1>
 
-                <p>{message}</p>
-                <input
-                    value={userInfo.username}
-                    onChange={({ target }) =>
-                        setUserInfo({ ...userInfo, username: target.value })
-                    }
-                    type="text"
-                    placeholder="John Doe"
-                />
-                <input
-                    value={userInfo.password}
-                    onChange={({ target }) =>
-                        setUserInfo({ ...userInfo, password: target.value })
-                    }
-                    type="password"
-                    placeholder="********"
-                />
-                <input type="submit" value="Login" />
-            </form>
-        </div>
-    );
+                    <p>{message}</p>
+                    <input
+                        value={userInfo.username}
+                        onChange={({ target }) =>
+                            setUserInfo({ ...userInfo, username: target.value })
+                        }
+                        type="text"
+                        placeholder="John Doe"
+                    />
+                    <input
+                        value={userInfo.password}
+                        onChange={({ target }) =>
+                            setUserInfo({ ...userInfo, password: target.value })
+                        }
+                        type="password"
+                        placeholder="********"
+                    />
+                    <input type="submit" value="Login" />
+                </form>
+            </div>
+        );
+    }
+
+
 };
 
 export default SignIn;

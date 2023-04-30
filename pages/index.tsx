@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.css'
 import { useSession } from "next-auth/react";
 import SignOutButton from "@/components/SignOutButton";
 import AccessDenied from "@/components/AccessDenied";
-
+import SignUpButton from "@/components/SignUpButton";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +17,7 @@ export default function Home() {
       {!session && (
           <>
             <AccessDenied />
+            <SignUpButton />
           </>
       )}
       {session && (
