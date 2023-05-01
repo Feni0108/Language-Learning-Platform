@@ -1,11 +1,8 @@
 import styles from "@/styles/Dictionary.module.css";
-import React, {useEffect, useRef, useState} from "react";
-import {Simulate} from "react-dom/test-utils";
+import React, {useEffect, useState} from "react";
 
 
 type Props = {
-    choose: object;
-    setChoose: (val: object) => void;
     word: string;
     isVisible: boolean
 
@@ -27,8 +24,6 @@ type Props = {
 }
 
 const Word = ({
-    choose,
-    setChoose,
     word,
     wordType,
     isVisible,
@@ -36,9 +31,6 @@ const Word = ({
     fetchData,
     isSelected,
     handleClick,
-
-
-
     isWrong,
     setIsWrong
 
@@ -57,15 +49,8 @@ const Word = ({
         }
     },[isVisible, isSelected, isWrong]);
 
-    //const isInitialMount = useRef(true);
-
     useEffect(() => {
-        //console.log(isInitialMount);
-        /*if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {*/
             if ((isWrong.or_id === id && wordType === "original") || (isWrong.tr_id === id && wordType === "translated")) {
-                //console.log("In the else" + isInitialMount.current);
                 setStyle(styles.wrongAnswer);
                 const interval = setInterval(() => {
                     setIsWrong({or_id:null, tr_id:null})
@@ -73,14 +58,12 @@ const Word = ({
                 }, 1500);
                 return () => clearInterval(interval)
             }
-        //}
     }, [isWrong])
 
 
         return (
             <div
                 className={style}
-
                 id={'orig_' + id.toString()}
                 onClick={isVisible ? () => handleClick(id, wordType) : null}
             >

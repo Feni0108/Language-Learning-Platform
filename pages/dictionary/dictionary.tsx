@@ -1,9 +1,6 @@
 import {getOptions} from "@/utils/getRandomWord";
-import React, { useEffect, useState} from "react";
-import styles from '../../styles/Dictionary.module.css'
+import React, {useEffect, useState} from "react";
 import Word from './Word';
-
-
 
 
 export default function Dictionary() {
@@ -27,28 +24,15 @@ export default function Dictionary() {
 
     let fetchData =(() => {
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
-            /*const newCorrect = solvedCorrect;
-            newCorrect.push(choose.or_id);
-            setSolvedCorrect(newCorrect);*/
             setSolvedCorrect(solvedCorrect+1);
             setInactive(choose);
             setChoose({or_id: null, tr_id: null});
         }
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
-            //const newWrong = solvedWrong;
-            //newWrong.push(choose.or_id);
-            //setSolvedWrong(newWrong);
-
-
             setIsWrong({or_id: choose.or_id, tr_id: choose.tr_id});
-
-
-            //setInactive(choose);
             setWrong(choose);
             setChoose({or_id: null, tr_id: null});
         }
-
-
     })
     const setWrong = (choose) => {
         const newOriginalWords = originalWords;
@@ -58,6 +42,7 @@ export default function Dictionary() {
             }
         })
         setOriginalWords(newOriginalWords);
+
         const newTranslatedWords = translatedWords;
         newTranslatedWords.map(word => {
             if (word.id === choose.tr_id){
@@ -132,18 +117,12 @@ export default function Dictionary() {
                     <div key={"or"+index}>
                     <Word
                     word={value.original_word}
-                    choose={choose}
                     wordType="original"
-                    setChoose={setChoose}
                     id={value.id}
                     isVisible={value.isVisible}
                     isSelected={value.isSelected}
                     fetchData={fetchData}
                     handleClick={handleClick}
-
-
-
-
                     isWrong={isWrong}
                     setIsWrong={setIsWrong}
                     />
@@ -155,18 +134,12 @@ export default function Dictionary() {
                         <div key={"tr"+index}>
                             <Word
                                 word={value.translated_word}
-                                choose={choose}
                                 wordType="translated"
-                                setChoose={setChoose}
                                 id={value.id}
                                 isVisible={value.isVisible}
                                 isSelected={value.isSelected}
                                 fetchData={fetchData}
                                 handleClick={handleClick}
-
-
-
-
                                 isWrong={isWrong}
                                 setIsWrong={setIsWrong}
                             />
@@ -180,14 +153,3 @@ export default function Dictionary() {
         </>
     )
 }
-
-/*
-<div
-                            className={translated.isVisible ?  (translated.id === choose.tr_id ? styles.choose : '') : styles.invisible}
-                            id={'orig_'+translated.id.toString()}
-                            key={index}
-                            onClick={translated.isVisible ? () => handleClick(translated.id, "translated") : null}
-                        >
-                            {translated.translated_word}
-                        </div>
- */
