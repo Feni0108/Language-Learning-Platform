@@ -1,17 +1,23 @@
 import styles from "@/styles/Dictionary.module.css";
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Simulate} from "react-dom/test-utils";
+
 
 type Props = {
     choose: object;
     setChoose: (val: object) => void;
     word: string;
     isVisible: boolean
+
+    isSelected: boolean
     id:number;
     wordType:string;
     solvedCorrect: Array<number>;
     solvedWrong: Array<number>;
 
     fetchData: () => void;
+    handleClick: (id:number, wordType:string) => void;
+
 
 
 }
@@ -25,19 +31,19 @@ const Word = ({
     id,
     solvedCorrect,
     solvedWrong,
-    fetchData
+    fetchData,
+    isSelected,
+    handleClick
 
+}: Props) => {
+    const [style, setStyle] = useState<string>(null);
 
+    useEffect(() => {
 
-              }: Props) => {
-    const [style, setStyle] = useState(null);
-
-    /*useEffect(() => {
-        if (choose.or_id === id && wordType==="original"){
+        if (isSelected){
             setStyle(styles.choose)
-        }
-        if (choose.tr_id === id && wordType==="translated"){
-            setStyle(styles.choose)
+        } else {
+            setStyle(styles.visible)
         }
         if(solvedCorrect.some((e) => e===id)) {
             setStyle(styles.invisible)
@@ -45,50 +51,21 @@ const Word = ({
         if (solvedWrong.some((e)=> e===id)) {
             setStyle(styles.wrongAnswer)
         }
-    },[isVisible, choose]);
-     */
+    },[isVisible, isSelected]);
 
-    const changeStyle = () => {
-        if ((choose.or_id === id && wordType==="original") || (choose.tr_id === id && wordType==="translated")){
-            setStyle(styles.choose)
-        }
-        if (choose.or_id !== id && wordType==="original"){
-            setStyle(null)
-        }
-        if(solvedCorrect.some((e) => e===id)) {
-            setStyle(styles.invisible)
-        }
-        if (solvedWrong.some((e)=> e===id)) {
-            setStyle(styles.wrongAnswer)
-        }
-    }
-    const handleClick = (id, wordType: string) => {
-        if (wordType === "original") {
-            const newChoose = choose;
-            newChoose.or_id = id
-            setChoose(newChoose);
-        } else if (wordType === "translated") {
-            const newChoose = choose
-            newChoose.tr_id = id
-            setChoose(newChoose);
-        }
-        changeStyle()
-        fetchData();
-        console.log("In the child component: "+choose.or_id+" "+choose.tr_id)
 
-    }
 
         return (
             <div
                 className={style}
+
                 id={'orig_' + id.toString()}
                 onClick={isVisible ? () => handleClick(id, wordType) : null}
             >
+                {console.log(style)}
                 {word}
             </div>
         )
-
-
 
 }
 

@@ -15,6 +15,7 @@ export default function Dictionary() {
     const [translatedWords, setTranslatedWords] = useState([]);
 
 
+
     useEffect(() => {
         setWords(getOptions())
     },[]);
@@ -24,26 +25,8 @@ export default function Dictionary() {
         setTranslatedWords(words[1]);
     },[words]);
 
-    /*useEffect(() => {
-        console.log("In the effect: "+choose.tr_id+choose.or_id)
-        if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
-            const newCorrect = solvedCorrect;
-            newCorrect.push(choose.or_id);
-            setSolvedCorrect(newCorrect);
-            setInactive(choose);
-            setChoose({or_id: null, tr_id: null});
-        }
-        if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
-            const newWrong = solvedWrong;
-            newWrong.push(choose.or_id);
-            setSolvedWrong(newWrong);
-            setInactive(choose);
-            setChoose({or_id: null, tr_id: null});
-        }
-    },[choose])*/
 
     let fetchData =(() => {
-        console.log("In the callback: "+choose.tr_id+choose.or_id)
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
             const newCorrect = solvedCorrect;
             newCorrect.push(choose.or_id);
@@ -58,10 +41,10 @@ export default function Dictionary() {
             setInactive(choose);
             setChoose({or_id: null, tr_id: null});
         }
+
     })
-    useEffect(() => {
-        fetchData();
-    },[fetchData]);
+
+
 
     const setInactive = (choose) => {
         const newOriginalWords = originalWords;
@@ -79,19 +62,43 @@ export default function Dictionary() {
         })
         setTranslatedWords(newTranslatedWords);
     }
-    const handleClick = (id, wordType: string) => {
+
+    const handleClick = ((id, wordType: string) => {
         if (wordType === "original"){
+            const newOriginalWords = originalWords;
+            newOriginalWords.map(word => {
+                if (word.id === choose.or_id) {
+                    word.isSelected = false;
+                }
+                if (word.id === id){
+                    word.isSelected = true;
+                }
+            })
+            setOriginalWords(newOriginalWords);
             const newChoose = {...choose}
             newChoose.or_id = id
             setChoose(newChoose);
         } else if (wordType === "translated"){
+            const newTranslatedWords = translatedWords;
+            newTranslatedWords.map(word => {
+                if (word.id === choose.tr_id) {
+                    word.isSelected = false;
+                }
+                if (word.id === id){
+                    word.isSelected = true;
+                }
+            })
+            setTranslatedWords(newTranslatedWords);
             const newChoose = {...choose}
             newChoose.tr_id = id
             setChoose(newChoose);
         }
+        fetchData();
 
-    }
-
+    })
+    useEffect(() => {
+        fetchData();
+    },[fetchData]);
 
     return (
         <>
@@ -108,9 +115,11 @@ export default function Dictionary() {
                     setChoose={setChoose}
                     id={value.id}
                     isVisible={value.isVisible}
+                    isSelected={value.isSelected}
                     solvedCorrect={solvedCorrect}
                     solvedWrong={solvedWrong}
                     fetchData={fetchData}
+                    handleClick={handleClick}
                     />
                     </div>
                 ))}
@@ -125,7 +134,6 @@ export default function Dictionary() {
                         >
                             {translated.translated_word}
                         </div>
-
                     ))}
 
                 </div>
