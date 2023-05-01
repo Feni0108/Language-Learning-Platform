@@ -12,8 +12,6 @@ type Props = {
     isSelected: boolean
     id:number;
     wordType:string;
-    solvedCorrect: Array<number>;
-    solvedWrong: Array<number>;
 
     fetchData: () => void;
     handleClick: (id:number, wordType:string) => void;
@@ -35,8 +33,6 @@ const Word = ({
     wordType,
     isVisible,
     id,
-    solvedCorrect,
-    solvedWrong,
     fetchData,
     isSelected,
     handleClick,
@@ -56,11 +52,8 @@ const Word = ({
         } else {
             setStyle(styles.visible)
         }
-        if(solvedCorrect.some((e) => e===id)) {
+        if(!isVisible){
             setStyle(styles.invisible)
-        }
-        if (solvedWrong.some((e)=> e===id)) {
-            setStyle(styles.wrongAnswer)
         }
     },[isVisible, isSelected, isWrong]);
 
@@ -71,13 +64,13 @@ const Word = ({
         /*if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {*/
-            if ((isWrong.or_id === id && wordType === "original")) {
+            if ((isWrong.or_id === id && wordType === "original") || (isWrong.tr_id === id && wordType === "translated")) {
                 //console.log("In the else" + isInitialMount.current);
                 setStyle(styles.wrongAnswer);
                 const interval = setInterval(() => {
                     setIsWrong({or_id:null, tr_id:null})
                     fetchData();
-                }, 3000);
+                }, 1500);
                 return () => clearInterval(interval)
             }
         //}

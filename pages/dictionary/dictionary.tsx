@@ -9,12 +9,9 @@ import Word from './Word';
 export default function Dictionary() {
     const [words, setWords] = useState([]);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
-    const [solvedWrong, setSolvedWrong] = useState([]);
-    const [solvedCorrect, setSolvedCorrect] = useState([]);
+    const [solvedCorrect, setSolvedCorrect] = useState(0);
     const [originalWords, setOriginalWords] = useState([]);
     const [translatedWords, setTranslatedWords] = useState([]);
-
-
     const [isWrong, setIsWrong] = useState({or_id:null,tr_id:null});
 
 
@@ -30,9 +27,10 @@ export default function Dictionary() {
 
     let fetchData =(() => {
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id===choose.tr_id){
-            const newCorrect = solvedCorrect;
+            /*const newCorrect = solvedCorrect;
             newCorrect.push(choose.or_id);
-            setSolvedCorrect(newCorrect);
+            setSolvedCorrect(newCorrect);*/
+            setSolvedCorrect(solvedCorrect+1);
             setInactive(choose);
             setChoose({or_id: null, tr_id: null});
         }
@@ -140,8 +138,6 @@ export default function Dictionary() {
                     id={value.id}
                     isVisible={value.isVisible}
                     isSelected={value.isSelected}
-                    solvedCorrect={solvedCorrect}
-                    solvedWrong={solvedWrong}
                     fetchData={fetchData}
                     handleClick={handleClick}
 
@@ -155,20 +151,31 @@ export default function Dictionary() {
                 ))}
                 </div>
                 <div>
-                    {translatedWords && translatedWords.map((translated, index) => (
-                        <div
-                            className={translated.isVisible ?  (translated.id === choose.tr_id ? styles.choose : '') : styles.invisible}
-                            id={'orig_'+translated.id.toString()}
-                            key={index}
-                            onClick={translated.isVisible ? () => handleClick(translated.id, "translated") : null}
-                        >
-                            {translated.translated_word}
+                    {translatedWords && translatedWords.map((value, index) => (
+                        <div key={"tr"+index}>
+                            <Word
+                                word={value.translated_word}
+                                choose={choose}
+                                wordType="translated"
+                                setChoose={setChoose}
+                                id={value.id}
+                                isVisible={value.isVisible}
+                                isSelected={value.isSelected}
+                                fetchData={fetchData}
+                                handleClick={handleClick}
+
+
+
+
+                                isWrong={isWrong}
+                                setIsWrong={setIsWrong}
+                            />
                         </div>
                     ))}
 
                 </div>
         </div>
-            {solvedCorrect.length === 4 && <button>Next task</button>}
+            {solvedCorrect === 4 && <button>Next task</button>}
 
         </>
     )
