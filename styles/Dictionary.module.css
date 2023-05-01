@@ -14,6 +14,5 @@
 }
 
 .wrongAnswer {
-    text-decoration-line: line-through;
     color: red;
 }

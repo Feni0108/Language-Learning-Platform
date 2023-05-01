@@ -15,6 +15,8 @@ export default function Dictionary() {
     const [translatedWords, setTranslatedWords] = useState([]);
 
 
+    const [isWrong, setIsWrong] = useState({or_id:null,tr_id:null});
+
 
     useEffect(() => {
         setWords(getOptions())
@@ -35,15 +37,37 @@ export default function Dictionary() {
             setChoose({or_id: null, tr_id: null});
         }
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
-            const newWrong = solvedWrong;
-            newWrong.push(choose.or_id);
-            setSolvedWrong(newWrong);
-            setInactive(choose);
+            //const newWrong = solvedWrong;
+            //newWrong.push(choose.or_id);
+            //setSolvedWrong(newWrong);
+
+
+            setIsWrong({or_id: choose.or_id, tr_id: choose.tr_id});
+
+
+            //setInactive(choose);
+            setWrong(choose);
             setChoose({or_id: null, tr_id: null});
         }
 
-    })
 
+    })
+    const setWrong = (choose) => {
+        const newOriginalWords = originalWords;
+        newOriginalWords.map(word => {
+            if (word.id === choose.or_id){
+                word.isSelected = false;
+            }
+        })
+        setOriginalWords(newOriginalWords);
+        const newTranslatedWords = translatedWords;
+        newTranslatedWords.map(word => {
+            if (word.id === choose.tr_id){
+                word.isSelected = false;
+            }
+        })
+        setTranslatedWords(newTranslatedWords);
+    }
 
 
     const setInactive = (choose) => {
@@ -120,6 +144,12 @@ export default function Dictionary() {
                     solvedWrong={solvedWrong}
                     fetchData={fetchData}
                     handleClick={handleClick}
+
+
+
+
+                    isWrong={isWrong}
+                    setIsWrong={setIsWrong}
                     />
                     </div>
                 ))}
@@ -138,7 +168,7 @@ export default function Dictionary() {
 
                 </div>
         </div>
-            {solvedWrong.length+solvedCorrect.length === 4 && <button>Next task</button>}
+            {solvedCorrect.length === 4 && <button>Next task</button>}
 
         </>
     )

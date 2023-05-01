@@ -1,5 +1,5 @@
 import styles from "@/styles/Dictionary.module.css";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Simulate} from "react-dom/test-utils";
 
 
@@ -20,6 +20,12 @@ type Props = {
 
 
 
+    isWrong: object;
+
+    setIsWrong: (val: object) => void;
+
+
+
 }
 
 const Word = ({
@@ -33,13 +39,18 @@ const Word = ({
     solvedWrong,
     fetchData,
     isSelected,
-    handleClick
+    handleClick,
+
+
+
+    isWrong,
+    setIsWrong
 
 }: Props) => {
     const [style, setStyle] = useState<string>(null);
 
     useEffect(() => {
-
+        console.log("setStyle");
         if (isSelected){
             setStyle(styles.choose)
         } else {
@@ -51,8 +62,26 @@ const Word = ({
         if (solvedWrong.some((e)=> e===id)) {
             setStyle(styles.wrongAnswer)
         }
-    },[isVisible, isSelected]);
+    },[isVisible, isSelected, isWrong]);
 
+    //const isInitialMount = useRef(true);
+
+    useEffect(() => {
+        //console.log(isInitialMount);
+        /*if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {*/
+            if ((isWrong.or_id === id && wordType === "original")) {
+                //console.log("In the else" + isInitialMount.current);
+                setStyle(styles.wrongAnswer);
+                const interval = setInterval(() => {
+                    setIsWrong({or_id:null, tr_id:null})
+                    fetchData();
+                }, 3000);
+                return () => clearInterval(interval)
+            }
+        //}
+    }, [isWrong])
 
 
         return (
@@ -62,7 +91,6 @@ const Word = ({
                 id={'orig_' + id.toString()}
                 onClick={isVisible ? () => handleClick(id, wordType) : null}
             >
-                {console.log(style)}
                 {word}
             </div>
         )
