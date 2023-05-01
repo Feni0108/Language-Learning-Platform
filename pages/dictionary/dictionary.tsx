@@ -1,4 +1,4 @@
-import {getOptions} from "@/utils/getRandomWord";
+import {getOptions} from "@/components/getRandomWord";
 import React, {useEffect, useState} from "react";
 import Word from './Word';
 

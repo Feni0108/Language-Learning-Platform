@@ -38,7 +38,6 @@ const Word = ({
     const [style, setStyle] = useState<string>(null);
 
     useEffect(() => {
-        console.log("setStyle");
         if (isSelected){
             setStyle(styles.choose)
         } else {
