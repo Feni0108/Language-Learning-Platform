@@ -110,7 +110,7 @@ export default function Dictionary() {
     return (
         <>
 
-            <h1>Hello World</h1>
+            <h3>Pair the right words</h3>
             <div>
                 <div>
                 {originalWords && originalWords.map((value, index) => (
