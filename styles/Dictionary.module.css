@@ -1,0 +1,18 @@
+
+
+.invisible {
+    text-decoration-line: line-through;
+    color: green;
+}
+
+.visible {
+
+}
+
+.choose {
+    color: green;
+}
+
+.wrongAnswer {
+    color: red;
+}
