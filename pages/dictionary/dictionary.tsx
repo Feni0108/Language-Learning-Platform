@@ -1,20 +1,25 @@
 import {getOptions} from "@/components/getRandomWord";
 import React, {useEffect, useState} from "react";
 import Word from './Word';
+import {GetServerSideProps} from "next";
+import prisma from '../../lib/prisma';
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const words = await prisma.dictionary.findMany();
+    const fourWords = getOptions(words);
+    return {
+        props: {allWords: fourWords},
+    }
+}
 
 
-export default function Dictionary() {
-    const [words, setWords] = useState([]);
+export default function Dictionary({allWords}) {
+    const [words, setWords] = useState(allWords);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
     const [originalWords, setOriginalWords] = useState([]);
     const [translatedWords, setTranslatedWords] = useState([]);
     const [isWrong, setIsWrong] = useState({or_id:null,tr_id:null});
-
-
-    useEffect(() => {
-        setWords(getOptions())
-    },[]);
 
     useEffect(() => {
         setOriginalWords(words[0]);
