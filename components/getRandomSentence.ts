@@ -1,13 +1,13 @@
 
 const words: {id: number, word: string}[] = [];
 const solutionOrder: number[] = [];
-let word: string = "";
+let sentence: string = "";
 
 
 export const getRandomSentence = (sentences) => {
     const MAX_ID = sentences.length;
     createData(sentences, MAX_ID);
-    return [words,solutionOrder,word];
+    return {words:words, solutionOrder:solutionOrder, original:sentence};
 }
 const createData = (sentences, MAX_ID) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
@@ -15,11 +15,11 @@ const createData = (sentences, MAX_ID) => {
     if (randomTranslate === 0){
         const preWords = sentences[randomId].german_sentence.split(" ");
         splitSentence(preWords);
-        word = sentences[randomId].english_sentence;
+        sentence = sentences[randomId].english_sentence;
     } else {
         const preWords = sentences[randomId].english_sentence.split(" ");
         splitSentence(preWords);
-        word = sentences[randomId].german_sentence;
+        sentence = sentences[randomId].german_sentence;
     }
 }
 
