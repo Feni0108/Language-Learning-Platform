@@ -9,14 +9,14 @@ const solutionOrder: number[] = new Array();
 let word: string = "";
 
 
-export const getRandomSentence = () => {
-    createData();
+export const getRandomSentence = (sentences) => {
+    createData(sentences);
     return [words,solutionOrder,word];
 }
-const createData = () => {
+const createData = (sentences) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
     //if (randomTranslate === 0){
-        const preWords = DummyDatabaseSentence[randomId].german_sentence.split(" ");
+        const preWords = sentences[randomId].german_sentence.split(" ");
         const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
         for (let i = 0; i<preWords.length; i++ ){
             preWords[i] = preWords[i].replace("/", " ");
@@ -26,7 +26,7 @@ const createData = () => {
         do {
             words.push({id:words.length+1, word: "dummy word"})
         } while (words.length < randomWords);
-        word = DummyDatabaseSentence[randomId].english_sentence;
+        word = sentences[randomId].english_sentence;
     /*} else {
         const preWords = DummyDatabaseSentence[randomId].english_sentence.split(" ");
         const randowWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
