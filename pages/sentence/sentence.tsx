@@ -17,6 +17,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default function Sentence(sentence) {
     const task = sentence;
     const [isSolved, setIsSolved] = useState(false);
+    const [answer, setAnswer] = useState([]);
+
+    const handleSolved = () => {
+
+    }
+
+
 
     return (
         <>
@@ -35,6 +42,7 @@ export default function Sentence(sentence) {
                 ))}
             </div>
             {isSolved && <button>Next task</button>}
+            {!isSolved && <button onClick={() => handleSolved}>Check</button>}
         </>
     )
 }
