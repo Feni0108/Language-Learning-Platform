@@ -1,19 +1,15 @@
-import {DummyDatabaseSentence} from "@/DummyDatabaseSentence";
-import {useState} from "react";
-;
 
-
-const MAX_ID = DummyDatabaseSentence.length;
 const words: {id: number, word: string}[] = new Array();
 const solutionOrder: number[] = new Array();
 let word: string = "";
 
 
 export const getRandomSentence = (sentences) => {
-    createData(sentences);
+    const MAX_ID = sentences.length;
+    createData(sentences, MAX_ID);
     return [words,solutionOrder,word];
 }
-const createData = (sentences) => {
+const createData = (sentences, MAX_ID) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
     //if (randomTranslate === 0){
         const preWords = sentences[randomId].german_sentence.split(" ");
@@ -26,7 +22,7 @@ const createData = (sentences) => {
         do {
             words.push({id:words.length+1, word: "dummy word"})
         } while (words.length < randomWords);
-        word = sentences[randomId].english_sentence;
+        word = sentences[randomId].english_sentence.replace("/", " ");
     /*} else {
         const preWords = DummyDatabaseSentence[randomId].english_sentence.split(" ");
         const randowWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
