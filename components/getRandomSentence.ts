@@ -1,5 +1,5 @@
 
-const words: {id: number, word: string}[] = [];
+const words: {id: number, word: string, isVisible: boolean}[] = [];
 const solutionOrder: number[] = [];
 let sentence: string = "";
 
@@ -26,10 +26,10 @@ const createData = (sentences, MAX_ID) => {
 const splitSentence = (preWords) => {
     const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
     for (let i = 0; i<preWords.length; i++ ){
-        words.push({id:(i+1), word: preWords[i]});
+        words.push({id:(i+1), word: preWords[i], isVisible:true});
         solutionOrder.push(i+1);
     }
     do {
-        words.push({id:words.length+1, word: "dummy word"})
+        words.push({id:words.length+1, word: "dummy word", isVisible:true})
     } while (words.length < randomWords);
 }
