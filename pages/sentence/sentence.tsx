@@ -1,5 +1,5 @@
 import {getRandomSentence} from "@/components/getRandomSentence";
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import styles from "@/styles/Senctence.module.css";
@@ -79,16 +79,12 @@ export default function Sentence(sentence) {
                 ))}
             </div>
             <div>
-                {task.sentence.words.map((value, index) => (
+                {task.sentence.words.map((value) => (
                     <Word
                         word={value.word}
                         id={value.id}
                         isVisible={value.isVisible}
                         handleClick={handleClick}
-                        answer={answer}
-                        setAnswer={setAnswer}
-                        setTask={setTask}
-                        task={task}
                         isSolved={isSolved}
                     />
                     ))}
@@ -104,18 +100,3 @@ export default function Sentence(sentence) {
         </>
     )
 }
-
-
-/*Incorrect
-Correct Answer:
-Answer
-
-
-
-
-<div className={value.isVisible ? styles.word : styles.invisible}
-                         id={index.toString()}
-                         onClick={value.isVisible ? () => handleClick(value.id, false) : null }>
-                        {value.word}
-                    </div>
- */

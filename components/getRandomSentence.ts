@@ -1,5 +1,3 @@
-import {DummyDatabase} from "@/DummyDatabase";
-
 let words: {id: number, word: string, isVisible: boolean}[] = [];
 let sentence: string = "";
 let solution: string = "";

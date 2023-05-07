@@ -8,12 +8,7 @@ type Props = {
 
     id:number;
     handleClick: (id:number, nextVisible:boolean) => void;
-
-    task: object;
-    setTask: (val: object) => void;
-    answer: object;
-    setAnswer: (val: object) => void;
-    isSolved: boolean
+    isSolved: boolean;
 
 
 
@@ -24,10 +19,6 @@ const Word = ({
                   isVisible,
                   id,
                   handleClick,
-                   task,
-                setTask,
-                setAnswer,
-                  answer,
     isSolved
 
 
