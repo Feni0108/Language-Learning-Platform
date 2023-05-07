@@ -8,7 +8,8 @@ import Word from "@/pages/sentence/Word";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const sentences = await prisma.sentence.findMany();
-    const sentence = getRandomSentence(sentences);
+    const dummyWords = await prisma.dictionary.findMany();
+    const sentence = getRandomSentence(sentences, dummyWords);
     return {
         props: {sentence: sentence},
     }
