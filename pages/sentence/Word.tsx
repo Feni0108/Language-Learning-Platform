@@ -7,7 +7,6 @@ type Props = {
     isVisible: boolean;
 
     id:number;
-    fetchData: () => void;
     handleClick: (id:number, nextVisible:boolean) => void;
 
     task: object;
@@ -23,7 +22,6 @@ const Word = ({
                   word,
                   isVisible,
                   id,
-                  fetchData,
                   handleClick,
                    task,
                 setTask,

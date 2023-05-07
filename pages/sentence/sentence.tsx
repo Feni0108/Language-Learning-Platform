@@ -22,6 +22,18 @@ export default function Sentence(sentence) {
 
 
     const handleSolved = () => {
+        let finalAnswer:string = "";
+        answer.map((word) => {
+            finalAnswer = finalAnswer.concat(word.word+" ");
+        });
+        finalAnswer = finalAnswer.trimEnd();
+        if (finalAnswer === task.sentence.solution){
+            console.log("This is the solution")
+            setIsSolved(true);
+        } else {
+            console.log("Wrong solution");
+            setIsSolved(true);
+        }
 
     }
     const handleClick = (id, nextVisible:boolean) => {
@@ -47,19 +59,8 @@ export default function Sentence(sentence) {
         });
 
         setTask(newTask);
-        //console.log(task);
-        //console.log(answer);
-        fetchData();
     }
-    let fetchData =(() => {
-        console.log("In    feh")
-        console.log(answer);
-    })
 
-
-    useEffect(() => {
-        fetchData();
-    },[fetchData]);
 
     return (
         <>
@@ -82,7 +83,6 @@ export default function Sentence(sentence) {
                         word={value.word}
                         id={value.id}
                         isVisible={value.isVisible}
-                        fetchData={fetchData}
                         handleClick={handleClick}
                         answer={answer}
                         setAnswer={setAnswer}
@@ -92,7 +92,7 @@ export default function Sentence(sentence) {
                     ))}
             </div>
             {isSolved && <button>Next task</button>}
-            {!isSolved && <button onClick={() => handleSolved}>Check</button>}
+            {!isSolved && <button onClick={() => handleSolved()}>Check</button>}
         </>
     )
 }
