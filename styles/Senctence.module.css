@@ -23,3 +23,9 @@
     width: 200px;
     height: 50px;
 }
+.goodAnswer {
+    background-color: green;
+}
+.wrongAnswer {
+    background-color: red;
+}

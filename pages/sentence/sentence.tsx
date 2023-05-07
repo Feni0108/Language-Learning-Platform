@@ -19,6 +19,7 @@ export default function Sentence(sentence) {
     const [task, setTask] = useState(sentence);
     const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
+    const [isGood, setIsGood] = useState(false);
 
 
     const handleSolved = () => {
@@ -28,10 +29,9 @@ export default function Sentence(sentence) {
         });
         finalAnswer = finalAnswer.trimEnd();
         if (finalAnswer === task.sentence.solution){
-            console.log("This is the solution")
+            setIsGood(true);
             setIsSolved(true);
         } else {
-            console.log("Wrong solution");
             setIsSolved(true);
         }
 
@@ -72,7 +72,7 @@ export default function Sentence(sentence) {
                 {answer.map((value, index) => (
                     <div className={styles.word}
                          id={index.toString()}
-                         onClick={() => handleClick(value.id, true)}>
+                        onClick={ isSolved? null :  () => handleClick(value.id, true)}>
                         {value.word}
                     </div>
                 ))}
@@ -88,10 +88,17 @@ export default function Sentence(sentence) {
                         setAnswer={setAnswer}
                         setTask={setTask}
                         task={task}
+                        isSolved={isSolved}
                     />
                     ))}
             </div>
-            {isSolved && <button>Next task</button>}
+            {isSolved && <div className={isGood? styles.goodAnswer : styles.wrongAnswer}>
+                {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
+                {isGood? null : <h4>Correct Answer:</h4>}
+                {isGood? null : task.sentence.solution}
+                <br/>
+                <button>Next task</button>
+            </div>}
             {!isSolved && <button onClick={() => handleSolved()}>Check</button>}
         </>
     )

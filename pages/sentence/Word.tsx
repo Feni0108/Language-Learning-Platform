@@ -13,6 +13,7 @@ type Props = {
     setTask: (val: object) => void;
     answer: object;
     setAnswer: (val: object) => void;
+    isSolved: boolean
 
 
 
@@ -27,6 +28,7 @@ const Word = ({
                 setTask,
                 setAnswer,
                   answer,
+    isSolved
 
 
               }: Props) => {
@@ -38,14 +40,14 @@ const Word = ({
         } else {
             setStyle(styles.invisible)
         }
-    },[isVisible]);
+    },[isVisible,isSolved]);
 
 
     return (
         <div
             className={style}
             id={'orig_' + id.toString()}
-            onClick={isVisible ? () => handleClick(id, false) : null}
+            onClick={(isVisible && !isSolved) ? () => handleClick(id, false) : null}
         >
             {word}
         </div>
