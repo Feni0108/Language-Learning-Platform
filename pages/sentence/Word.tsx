@@ -35,8 +35,6 @@ const Word = ({
     const [style, setStyle] = useState<string>(null);
 
     useEffect(() => {
-        console.log("Invoke useEffect")
-        console.log(isVisible)
         if (isVisible){
             setStyle(styles.word)
         } else {

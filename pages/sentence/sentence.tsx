@@ -20,11 +20,12 @@ export default function Sentence(sentence) {
     const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
 
+
     const handleSolved = () => {
 
     }
     const handleClick = (id, nextVisible:boolean) => {
-        const newTask = task;
+        let newTask = {...task};
         newTask.sentence.words.map(word => {
             if (word.id === id && !nextVisible) {
                 word.isVisible = nextVisible;
@@ -32,14 +33,26 @@ export default function Sentence(sentence) {
                 nextAnswer.push(word);
                 setAnswer(nextAnswer);
             }
+            if (word.id === id && nextVisible) {
+                word.isVisible = nextVisible;
+                if (answer.length === 1){
+                    setAnswer([]);
+                } else {
+                    const remItem = answer.indexOf(word);
+                    let nextAnswer = answer;
+                    nextAnswer.splice(remItem,1);
+                    setAnswer(nextAnswer);
+                }
+            }
         });
+
         setTask(newTask);
-        console.log(task);
-        console.log(answer);
+        //console.log(task);
+        //console.log(answer);
         fetchData();
     }
     let fetchData =(() => {
-        console.log("Invdoke fetch")
+        console.log("In    feh")
         console.log(answer);
     })
 
@@ -56,7 +69,7 @@ export default function Sentence(sentence) {
             </div>
             <div className={styles.answer}>
                 {answer.map((value, index) => (
-                    <div className={value.isVisible ? styles.word : styles.invisible}
+                    <div className={styles.word}
                          id={index.toString()}
                          onClick={() => handleClick(value.id, true)}>
                         {value.word}
@@ -65,17 +78,17 @@ export default function Sentence(sentence) {
             </div>
             <div>
                 {task.sentence.words.map((value, index) => (
-                        <Word
+                    <Word
                         word={value.word}
-                          id={value.id}
+                        id={value.id}
                         isVisible={value.isVisible}
-                          fetchData={fetchData}
-                          handleClick={handleClick}
-                          answer={answer}
-                          setAnswer={setAnswer}
-                          setTask={setTask}
-                          task={task}
-                        />
+                        fetchData={fetchData}
+                        handleClick={handleClick}
+                        answer={answer}
+                        setAnswer={setAnswer}
+                        setTask={setTask}
+                        task={task}
+                    />
                     ))}
             </div>
             {isSolved && <button>Next task</button>}
@@ -90,9 +103,11 @@ Correct Answer:
 Answer
 
 
- <div className={value.isVisible ? styles.word : styles.invisible}
+
+
+<div className={value.isVisible ? styles.word : styles.invisible}
                          id={index.toString()}
-                        onClick={() => handleClick(value.id, false)}>
+                         onClick={value.isVisible ? () => handleClick(value.id, false) : null }>
                         {value.word}
                     </div>
  */
