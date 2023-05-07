@@ -8,7 +8,7 @@ let solution: string = "";
 export const getRandomSentence = (sentences, dummyWords) => {
     const MAX_ID = sentences.length;
     createData(sentences, MAX_ID, dummyWords);
-    return {words:words, original:sentence, solution:solution};
+    return {words:getRandom(words), original:sentence, solution:solution};
 }
 const createData = (sentences, MAX_ID, dummyWords) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
@@ -54,4 +54,13 @@ const getRandomWord = (length: number, dummyWords, type:string) => {
             }
         }
     }
+}
+const getRandom = (wordArray: { id: number; word: string; isVisible: boolean }[]) => {
+    for(let i = wordArray.length-1; i>0; i--) {
+        const j = Math.floor(Math.random() * (i+1))
+        const temp = wordArray[i];
+        wordArray[i] = wordArray[j];
+        wordArray[j] = temp;
+    }
+    return wordArray;
 }
