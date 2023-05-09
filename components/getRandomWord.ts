@@ -1,38 +1,30 @@
-import {DummyDatabase} from "@/DummyDatabase";
-
-
 //Creation of necessary variables
-const MAX_ID = DummyDatabase.length
+
 const originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = new Array();
 const translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = new Array();
 
-const getRandomWord = () => {
-    const randomId = (Math.floor(Math.random() * (MAX_ID))+1)
+
+
+const getRandomWord = (allWords, maxId) => {
+    const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     for(let i:number = 0; i<originalWord.length; i++) {
-        if (originalWord[i].id === randomId){
-            //This line only works if a larger database is available
-            //With a small database infinite recursion may occur
-            //In this case there is no need for newId-validation
-            /*getRandomWord()*/
-            newId = false;
-        }
+        if (originalWord[i].id === randomId) newId = false;
     }
     if (newId){
-        originalWord.push({id:DummyDatabase[randomId-1].id, original_word:DummyDatabase[randomId-1].original_word, isVisible:true, isSelected:false})
-        translatedWord.push({id:DummyDatabase[randomId-1].id, translated_word:DummyDatabase[randomId-1].translated_word, isVisible:true, isSelected:false})
+        originalWord.push({id:allWords[randomId-1].id, original_word:allWords[randomId-1].original_word, isVisible:true, isSelected:false})
+        translatedWord.push({id:allWords[randomId-1].id, translated_word:allWords[randomId-1].translated_word, isVisible:true, isSelected:false})
     }
 
 }
 
 //Main function for retrieving the necessary variables
-export const getOptions = () => {
+export const getOptions = (allWords) => {
+    const maxId = allWords.length;
     do {
-        getRandomWord();
-    } while (originalWord.length!==4)
-    return [originalWord,getRandom(translatedWord)];
-
-
+        getRandomWord(allWords, maxId);
+    } while (originalWord.length !== 4)
+    return [originalWord, getRandom(translatedWord)];
 
 }
 
