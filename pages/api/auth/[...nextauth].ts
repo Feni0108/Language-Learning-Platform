@@ -4,6 +4,8 @@ import {PrismaClient} from "@prisma/client";
 import {string} from "prop-types";
 
 const authOptions: NextAuthOptions = {
+    // set up 32 character long secret key in .env.local:
+    secret: process.env.NEXTAUTH_SECRET,
     session: {
         strategy: "jwt",
     },
