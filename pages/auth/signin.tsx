@@ -19,6 +19,8 @@ const SignIn: NextPage = (props): JSX.Element => {
         const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
             // validate your userinfo
             e.preventDefault();
+            console.log(userInfo.username);
+            console.log(userInfo.password);
 
             const res = await signIn("credentials", {
                 username: userInfo.username,
@@ -58,6 +60,11 @@ const SignIn: NextPage = (props): JSX.Element => {
                     />
                     <input type="submit" value="Login" />
                 </form>
+
+                <div>
+                    <h1>Sign in with github</h1>
+                    <button onClick={() => signIn("github")}>Here</button>
+                </div>
             </div>
         );
     }
