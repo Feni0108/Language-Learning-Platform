@@ -31,6 +31,7 @@ const authOptions: NextAuthOptions = {
                 const user = await prisma.user.findUnique({
                     where: {username: username},
                     select: {
+                        id: true,
                         username: true,
                         password: true,
                         leaderBoard: true} });
@@ -65,14 +66,41 @@ const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             /* Step 1: update the token based on the user object */
             if (user) {
-                console.log("In the token");
-                console.log(user)
+                console.log(user);
                 if (user.username){
                     token.username = user.username;
                 } else {token.username = user.name}
-
-                if (user.leaderBoard?.totalPoints !== undefined){
+                if (user.leaderBoard !== undefined){
                     token.totalPoints =  user.leaderBoard.totalPoints;
+                } else {
+                    const findUser = await prisma.user.findUnique({
+                        where: {
+                            id: user.id
+                        },
+                        select: {
+                            leaderBoard: true
+                        }
+                    });
+                    if (findUser.leaderBoard === null){
+                        const leaderBoard = await prisma.user.update({
+                            where: {
+                                id: user.id,
+                            },
+                            data: {
+                                leaderBoard: {
+                                    create: {}
+                                }
+                            }
+                        });}
+                    const totalPoints = await prisma.leaderboard.findUnique({
+                        where: {
+                            userId: user.id
+                        },
+                        select: {
+                            totalPoints: true
+                        }
+                    });
+                    token.totalPoints = totalPoints.totalPoints;
                 }
                 token.id=user.id;
             }
@@ -89,7 +117,6 @@ const authOptions: NextAuthOptions = {
                 }
                 session.user.id = token.id;
             }
-
             return session;
         },
     },
