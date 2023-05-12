@@ -33,8 +33,8 @@ const authOptions: NextAuthOptions = {
                     select: {
                         id: true,
                         username: true,
-                        password: true,
-                        leaderBoard: true} });
+                        password: true
+                        } });
                 console.log(user);
 
                 // perform you login logic
@@ -66,42 +66,40 @@ const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             /* Step 1: update the token based on the user object */
             if (user) {
-                console.log(user);
+                //Usernames
                 if (user.username){
                     token.username = user.username;
                 } else {token.username = user.name}
-                if (user.leaderBoard !== undefined){
-                    token.totalPoints =  user.leaderBoard.totalPoints;
-                } else {
-                    const findUser = await prisma.user.findUnique({
+
+                //Totalpoints
+                const findLeaderBoard = await prisma.user.findUnique({
+                    where: {
+                        id: user.id
+                    },
+                    select: {
+                        leaderBoard: true
+                    }
+                });
+                if (findLeaderBoard.leaderBoard === null){
+                    const leaderBoard = await prisma.user.update({
                         where: {
-                            id: user.id
+                            id: user.id,
                         },
-                        select: {
-                            leaderBoard: true
-                        }
-                    });
-                    if (findUser.leaderBoard === null){
-                        const leaderBoard = await prisma.user.update({
-                            where: {
-                                id: user.id,
-                            },
-                            data: {
-                                leaderBoard: {
-                                    create: {}
-                                }
+                        data: {
+                            leaderBoard: {
+                                create: {}
                             }
-                        });}
-                    const totalPoints = await prisma.leaderboard.findUnique({
-                        where: {
-                            userId: user.id
-                        },
-                        select: {
-                            totalPoints: true
                         }
-                    });
-                    token.totalPoints = totalPoints.totalPoints;
-                }
+                    });}
+                const totalPoints = await prisma.leaderboard.findUnique({
+                    where: {
+                        userId: user.id
+                    },
+                    select: {
+                        totalPoints: true
+                    }
+                });
+                token.totalPoints = totalPoints.totalPoints;
                 token.id=user.id;
             }
             return token;
