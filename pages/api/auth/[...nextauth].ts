@@ -26,7 +26,12 @@ const authOptions: NextAuthOptions = {
 
 
                 // @ts-ignore
-                const user = await prisma.user.findUnique({where: {username: username}, select: {username: true, password: true} });
+                const user = await prisma.user.findUnique({
+                    where: {username: username},
+                    select: {
+                        username: true,
+                        password: true,
+                        leaderBoard: true} });
                 console.log(user);
 
                 // perform you login logic
@@ -63,24 +68,26 @@ const authOptions: NextAuthOptions = {
                 console.log(user)
                 if (user.username){
                     token.username = user.username;
-                } else
-                {token.username = user.name}
-                if (user.leaderboard?.totalPoints){
-                    token.totalPoints =  user.leaderboard.totalPoints;
+                } else {token.username = user.name}
+
+                if (user.leaderBoard?.totalPoints !== undefined){
+                    token.totalPoints =  user.leaderBoard.totalPoints;
                 }
             }
             return token;
         },
-        session({ session, token }) {
+        session: function ({session, token}) {
             /* Step 2: update the session.user based on the token object */
             if (token && session.user) {
                 if (token.username) {
                     session.user.username = token.username
                 }
-                if (token.totalPoints) {
+                console.log(typeof  token.totalPoints);
+                if (typeof token.totalPoints === "number") {
                     session.user.totalPoints = token.totalPoints
                 }
             }
+            console.log(session.user.totalPoints);
             return session;
         },
     },

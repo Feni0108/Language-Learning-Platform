@@ -12,7 +12,14 @@ export default async function handler(
         const username = req.body.username;
         const password = req.body.password;
         try {
-            const newUser = await prisma.user.create({data: {username, password}});
+            const newUser = await prisma.user.create({
+                data: {
+                    username,
+                    password,
+                    leaderBoard: {
+                        create: {}
+                    }
+                }});
             return res.status(200).send(newUser);
         } catch (e) {
             message = "Username already exists"
