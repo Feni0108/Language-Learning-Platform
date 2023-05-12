@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import GithubProvider from "next-auth/providers/github"
 import {string} from "prop-types";
@@ -10,6 +11,7 @@ const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt",
     },
+    adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID,
@@ -63,8 +65,7 @@ const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             /* Step 1: update the token based on the user object */
             if (user) {
-                console.log(user.username)
-                //console.log(user.leaderboard.totalPoints)
+                console.log("In the token");
                 console.log(user)
                 if (user.username){
                     token.username = user.username;
@@ -73,6 +74,7 @@ const authOptions: NextAuthOptions = {
                 if (user.leaderBoard?.totalPoints !== undefined){
                     token.totalPoints =  user.leaderBoard.totalPoints;
                 }
+                token.id=user.id;
             }
             return token;
         },
@@ -82,12 +84,12 @@ const authOptions: NextAuthOptions = {
                 if (token.username) {
                     session.user.username = token.username
                 }
-                console.log(typeof  token.totalPoints);
                 if (typeof token.totalPoints === "number") {
                     session.user.totalPoints = token.totalPoints
                 }
+                session.user.id = token.id;
             }
-            console.log(session.user.totalPoints);
+
             return session;
         },
     },
