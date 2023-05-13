@@ -63,8 +63,20 @@ const authOptions: NextAuthOptions = {
             // return final_token
             return params.token;
         },*/
-        async jwt({ token, user }) {
+        async jwt({ token, trigger, user , session}) {
             /* Step 1: update the token based on the user object */
+            //Update points
+            if (trigger === "update" && session?.id){
+                const totalPoints = await prisma.leaderboard.findUnique({
+                    where: {
+                        userId: session.id
+                    },
+                    select: {
+                        totalPoints: true
+                    }
+                });
+                token.totalPoints = totalPoints.totalPoints;
+            }
             if (user) {
                 //Usernames
                 if (user.username){
