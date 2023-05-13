@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import GithubProvider from "next-auth/providers/github"
-import {string} from "prop-types";
 
 const authOptions: NextAuthOptions = {
     // set up 32 character long secret key in .env.local:
@@ -93,7 +92,7 @@ const authOptions: NextAuthOptions = {
                     }
                 });
                 if (findLeaderBoard.leaderBoard === null){
-                    const leaderBoard = await prisma.user.update({
+                    await prisma.user.update({
                         where: {
                             id: user.id,
                         },
@@ -116,8 +115,9 @@ const authOptions: NextAuthOptions = {
             }
             return token;
         },
-        session: function ({session, token}) {
+        async session({session, token}) {
             /* Step 2: update the session.user based on the token object */
+
             if (token && session.user) {
                 if (token.username) {
                     session.user.username = token.username
