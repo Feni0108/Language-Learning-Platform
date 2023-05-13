@@ -12,7 +12,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
             user: {
                 select: {
                     username: true,
-                    name: true
+                    name: true,
+                    image: true
                 }
             }
         }
@@ -40,6 +41,9 @@ export default function Leaderboard({leaderBoard}) {
                     <div>
                         {leaderBoard.map((value, index) => (
                             <div key={"or"+index}>
+                            <session>
+                                {index+1+" "}
+                            </session>
                             <session>
                                 {value.user.username ? value.user.username : value.user.name}
                             </session>
