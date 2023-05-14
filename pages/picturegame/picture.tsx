@@ -1,7 +1,7 @@
 import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import {getWordWithPictures} from "@/components/getRandomPictures";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const words = await prisma.dictionary.findMany();
@@ -13,5 +13,32 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 export default function Picture({allWords}) {
     const [task, setTask] = useState(allWords);
-    console.log(task);
+    const [word, setWord] = useState({});
+    const [pictures, setPictures] = useState([]);
+
+    useEffect(() => {
+        setWord(task[0]);
+        setPictures(task[1]);
+    },[task]);
+
+    console.log(word);
+    console.log(pictures);
+
+    return (
+        <div>
+            <h2> Which one of these is "{word.word}"?</h2>
+            <div>
+                {pictures && pictures.map((value, index) => (
+                    <div key={"picture"+index}>
+                        <section>
+                            {value.image}
+                        </section>
+                        <section>
+                            {value.word}
+                        </section>
+                    </div>
+                    ))}
+            </div>
+        </div>
+    )
 }
