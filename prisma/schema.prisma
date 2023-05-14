@@ -33,6 +33,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  leaderBoard Leaderboard?
   //leaderId Int @unique
 }
 model Session {
@@ -70,3 +71,11 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Leaderboard {
+  id Int @id @default(autoincrement())
+  //id String @id @default(cuid())
+  user User  @relation(fields: [userId], references: [id])
+  //user User  @relation(fields: [userId], references: [id])
+  userId String @unique
+  totalPoints Int @default(0)
+}

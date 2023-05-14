@@ -1,7 +1,10 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GithubProvider from "next-auth/providers/github";
+
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import GithubProvider from "next-auth/providers/github"
+
 
 const authOptions: NextAuthOptions = {
     // set up 32 character long secret key in .env.local:
@@ -9,6 +12,7 @@ const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt",
     },
+    adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID,
@@ -30,11 +34,22 @@ const authOptions: NextAuthOptions = {
         });
         console.log(user);
 
-        // perform you login logic
-        // find out user from db
-        if (!user) {
-          throw new Error("User doesn't exists");
-        }
+                // @ts-ignore
+                const user = await prisma.user.findUnique({
+                    where: {username: username},
+                    select: {
+                        id: true,
+                        username: true,
+                        password: true
+                        } });
+                console.log(user);
+
+                // perform you login logic
+                // find out user from db
+                if (!user) {
+                    throw new Error("User doesn't exists");
+                }
+
                 if (password == user.password) {
                     return user;
                 }
@@ -55,31 +70,70 @@ const authOptions: NextAuthOptions = {
             // return final_token
             return params.token;
         },*/
-        async jwt({ token, user }) {
+        async jwt({ token, trigger, user , session}) {
             /* Step 1: update the token based on the user object */
+            //Update points
+            if (trigger === "update" && session?.id){
+                const totalPoints = await prisma.leaderboard.findUnique({
+                    where: {
+                        userId: session.id
+                    },
+                    select: {
+                        totalPoints: true
+                    }
+                });
+                token.totalPoints = totalPoints.totalPoints;
+            }
             if (user) {
-                console.log(user.username)
-                //console.log(user.leaderboard.totalPoints)
-                console.log(user)
+                //Usernames
                 if (user.username){
                     token.username = user.username;
-                } else
-                {token.username = user.name}
-                if (user.leaderboard?.totalPoints){
-                    token.totalPoints =  user.leaderboard.totalPoints;
-                }
+                } else {token.username = user.name}
+
+                //Totalpoints
+                const findLeaderBoard = await prisma.user.findUnique({
+                    where: {
+                        id: user.id
+                    },
+                    select: {
+                        leaderBoard: true
+                    }
+                });
+                if (findLeaderBoard.leaderBoard === null){
+                    await prisma.user.update({
+                        where: {
+                            id: user.id,
+                        },
+                        data: {
+                            leaderBoard: {
+                                create: {}
+                            }
+                        }
+                    });}
+                const totalPoints = await prisma.leaderboard.findUnique({
+                    where: {
+                        userId: user.id
+                    },
+                    select: {
+                        totalPoints: true
+                    }
+                });
+                token.totalPoints = totalPoints.totalPoints;
+                token.id=user.id;
             }
             return token;
         },
-        session({ session, token }) {
+        async session({session, token}) {
             /* Step 2: update the session.user based on the token object */
+
             if (token && session.user) {
                 if (token.username) {
                     session.user.username = token.username
                 }
-                if (token.totalPoints) {
+                if (typeof token.totalPoints === "number") {
                     session.user.totalPoints = token.totalPoints
                 }
+                session.user.id = token.id;
             }
             return session;
         },
