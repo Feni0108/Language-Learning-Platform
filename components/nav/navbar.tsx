@@ -29,19 +29,19 @@ export default function NavBar() {
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <XMarkIcon className="block h-12 w-12" aria-hidden="true" />
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <Bars3Icon className="block h-12 w-12" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <SiDuolingo className="block h-8 w-auto lg:hidden" />
-                  <SiDuolingo className="hidden h-8 w-auto lg:block" />
+                <div className="flex flex-shrink-0 align-middle">
+                  <SiDuolingo className="block h-12 w-auto lg:hidden" />
+                  <SiDuolingo className="hidden h-12 w-auto lg:block" />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 pt-1">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
@@ -50,7 +50,7 @@ export default function NavBar() {
                           item.current
                             ? "bg-teal-800 text-white"
                             : "text-gray-800 hover:bg-teal-500 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
+                          "rounded-md px-3 py-2 text-sm font-medium "
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -69,7 +69,7 @@ export default function NavBar() {
                       <div>
                         {session && (
                           <img
-                            className="h-8 w-8 rounded-full"
+                            className="h-12 w-12 rounded-full"
                             src={
                               session.user?.image
                                 ? session.user?.image
@@ -79,7 +79,7 @@ export default function NavBar() {
                           />
                         )}
                         {!session && (
-                          <FaUserCircle className="h-8 w-8 rounded-full" />
+                          <FaUserCircle className="h-12 w-12 rounded-full" />
                         )}
                       </div>
                     </Menu.Button>
