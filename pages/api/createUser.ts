@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   let message;
 
-    const prisma = new PrismaClient();
+
     if (req.method === "POST") {
         const username = req.body.username;
         const password = req.body.password;
@@ -28,4 +28,4 @@ export default async function handler(
 
     }
   }
-}
+
