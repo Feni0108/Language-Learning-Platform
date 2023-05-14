@@ -1,10 +1,11 @@
 import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
-import SignOutButton from "@/components/SignOutButton";
 import React from "react";
 import prisma from "@/lib/prisma";
 import {GetServerSideProps} from "next";
+import {FaUserGraduate} from 'react-icons/fa'
+import SignOutButton from "@/components/SignOutButton";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const leaderBoard = await prisma.leaderboard.findMany({
@@ -45,6 +46,13 @@ export default function Leaderboard({leaderBoard}) {
                                 {index+1+" "}
                             </session>
                             <session>
+                                {value.user.image && <img
+                                 alt="Sorry, we couldn't load this picture"
+                                 src={value.user.image}
+                                />}
+                                {!value.user.image && <FaUserGraduate />}
+                            </session>
+                            <session>
                                 {value.user.username ? value.user.username : value.user.name}
                             </session>
                             <session>
@@ -53,7 +61,7 @@ export default function Leaderboard({leaderBoard}) {
                             </div>
                         ))}
                     </div>
-                    <SignOutButton/>
+                    <SignOutButton />
                 </>
             )}
         </div>
