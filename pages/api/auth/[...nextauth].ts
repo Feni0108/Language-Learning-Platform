@@ -1,8 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GithubProvider from "next-auth/providers/github";
 import prisma from "@/lib/prisma";
-import GithubProvider from "next-auth/providers/github"
-import {string} from "prop-types";
 
 const authOptions: NextAuthOptions = {
     // set up 32 character long secret key in .env.local:
@@ -23,18 +22,19 @@ const authOptions: NextAuthOptions = {
                     username: string;
                     password: string;
                 };
+              
+        // @ts-ignore
+        const user = await prisma.user.findUnique({
+          where: { username: username },
+          select: { username: true, password: true },
+        });
+        console.log(user);
 
-
-                // @ts-ignore
-                const user = await prisma.user.findUnique({where: {username: username}, select: {username: true, password: true} });
-                console.log(user);
-
-                // perform you login logic
-                // find out user from db
-                if (!user) {
-                    throw new Error("User doesn't exists");
-                }
-
+        // perform you login logic
+        // find out user from db
+        if (!user) {
+          throw new Error("User doesn't exists");
+        }
                 if (password == user.password) {
                     return user;
                 }
@@ -84,7 +84,7 @@ const authOptions: NextAuthOptions = {
             return session;
         },
     },
+  },
 };
 
 export default NextAuth(authOptions);
-
