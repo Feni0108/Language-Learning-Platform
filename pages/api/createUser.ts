@@ -1,11 +1,11 @@
-import {PrismaClient} from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { prisma } from "../../lib/prisma";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
+  req: NextApiRequest,
+  res: NextApiResponse
 ) {
-    let message;
+  let message;
 
     const prisma = new PrismaClient();
     if (req.method === "POST") {
@@ -25,5 +25,7 @@ export default async function handler(
             message = "Username already exists"
             return res.status(404).json({response: {message:  message}});
         }
+
     }
+  }
 }
