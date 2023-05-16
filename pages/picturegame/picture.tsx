@@ -31,7 +31,7 @@ export default function Picture({allWords}) {
                 {pictures && pictures.map((value, index) => (
                     <div key={"picture"+index}>
                         <section>
-                            {value.image}
+
                         </section>
                         <section>
                             {value.word}

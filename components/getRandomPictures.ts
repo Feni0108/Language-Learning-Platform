@@ -28,6 +28,8 @@ export const getWordWithPictures = (allWords) => {
     do {
         getRandomWord(allWords, maxId);
     } while (wordsWithPictures.length !== 4)
+    console.log(allWords);
+    console.log(wordsWithPictures);
     return [originalWord, getRandom(wordsWithPictures)];
 
 }
