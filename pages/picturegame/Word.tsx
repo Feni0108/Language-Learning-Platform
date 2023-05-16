@@ -1,6 +1,5 @@
 import {FormatLessons} from "@/components/FormatLessons";
 import React, {useEffect, useState} from "react";
-import {set} from "yaml/dist/schema/yaml-1.1/set";
 
 
 type Props = {
@@ -41,24 +40,13 @@ const Word = ({
         } else {
             setStyle(FormatLessons.visible)
         }
-        if (isSolved && isGood){
+        if (isSolved && isGood && answer === id){
             setStyle(FormatLessons.goodAnswer)
         }
         if (isSolved && !isGood && answer === id){
             setStyle(FormatLessons.wrongAnswer)
         }
     },[isSolved, isSelected, isGood]);
-
-    /*useEffect(() => {
-        if ((isWrong.or_id === id && wordType === "original") || (isWrong.tr_id === id && wordType === "translated")) {
-            setStyle(FormatLessons.wrongAnswer);
-            const interval = setInterval(() => {
-                setIsWrong({or_id:null, tr_id:null})
-                fetchData();
-            }, 1500);
-            return () => clearInterval(interval)
-        }
-    }, [isWrong])*/
 
 
     return (
