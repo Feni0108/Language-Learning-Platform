@@ -1,7 +1,8 @@
 import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import {getWordWithPictures} from "@/components/getRandomPictures";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import styles from "@/styles/Senctence.module.css";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const words = await prisma.dictionary.findMany();
@@ -16,6 +17,9 @@ export default function Picture({allWords}) {
     const [task, setTask] = useState(allWords);
     const [word, setWord] = useState({});
     const [pictures, setPictures] = useState([]);
+    const [isSolved, setIsSolved] = useState(false);
+    const [answer, setAnswer] = useState<number>(null);
+    const [isGood, setIsGood] = useState(false);
 
     useEffect(() => {
         setWord(task[0]);
@@ -40,6 +44,14 @@ export default function Picture({allWords}) {
                     </div>
                     ))}
             </div>
+            {isSolved && <div className={isGood? styles.goodAnswer : styles.wrongAnswer}>
+                {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
+                {isGood? null : <h4>Correct Answer:</h4>}
+                {isGood? null : task.sentence.solution}
+                <br/>
+                <button>Next task</button>
+            </div>}
+            {!isSolved && <button onClick={() => handleSolved()}>Check</button>}
         </div>
     )
 }
