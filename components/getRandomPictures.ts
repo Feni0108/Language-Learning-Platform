@@ -13,7 +13,7 @@ const getRandomWord = (allWords, maxId) => {
         if (wordsWithPictures[i].id === randomId) newId = false;
     }
     if (newId){
-        wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].translated_word, image:allWords[randomId-1].image, isSelected:false})
+        wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].translated_word, image:allWords[randomId-1].image.toString(), isSelected:false})
         if (originalWord === undefined){
             originalWord = {id: allWords[randomId-1].id, word:allWords[randomId-1].original_word};
         }
@@ -28,8 +28,6 @@ export const getWordWithPictures = (allWords) => {
     do {
         getRandomWord(allWords, maxId);
     } while (wordsWithPictures.length !== 4)
-    console.log(allWords);
-    console.log(wordsWithPictures);
     return [originalWord, getRandom(wordsWithPictures)];
 
 }

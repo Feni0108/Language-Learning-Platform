@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const words = await prisma.dictionary.findMany();
+    console.log(words);
     const fourWords = getWordWithPictures(words);
     return {
         props: {allWords: fourWords},
@@ -31,7 +32,7 @@ export default function Picture({allWords}) {
                 {pictures && pictures.map((value, index) => (
                     <div key={"picture"+index}>
                         <section>
-
+                            <img src={`data:image/jpeg;base64,${value.image}`} />
                         </section>
                         <section>
                             {value.word}
