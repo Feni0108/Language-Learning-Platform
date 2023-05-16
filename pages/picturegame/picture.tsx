@@ -59,6 +59,7 @@ export default function Picture({allWords}) {
                     <Word
                         word={value.word}
                         id={value.id}
+                        isSelected={value.isSelected}
                         handleClick={handleClick}
                         isSolved={isSolved}
                         image={value.image}
