@@ -4,6 +4,8 @@ import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import styles from "@/styles/Senctence.module.css";
 import Word from "@/pages/sentence/Word";
+import Hover from "@/pages/sentence/Hover";
+
 
 
 
@@ -22,9 +24,9 @@ export default function Sentence(sentence) {
     const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
     const [isGood, setIsGood] = useState(false);
-    const [isShown, setIsShown] = useState(false);
 
-    console.log(task);
+
+    console.log(task.sentence.original);
 
     const handleSolved = () => {
         let finalAnswer:string = "";
@@ -70,14 +72,12 @@ export default function Sentence(sentence) {
         <>
         <h3>Translate this sentence</h3>
             <div className="sentence">
-                <div
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}>
-                    random
-                </div>
-                {isShown && <div>
-                    I'm a hover function!
-                </div>}
+                {task.sentence.original.map((value, number) => (
+                    <Hover
+                        word={value.word}
+                        id={number}
+                    />
+                ))}
             </div>
             <div className={styles.answer}>
                 {answer.map((value, index) => (
