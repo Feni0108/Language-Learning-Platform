@@ -4,6 +4,7 @@ import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import styles from "@/styles/Senctence.module.css";
 import Word from "@/pages/sentence/Word";
+import {set} from "yaml/dist/schema/yaml-1.1/set";
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -21,7 +22,7 @@ export default function Sentence(sentence) {
     const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
     const [isGood, setIsGood] = useState(false);
-
+    const [isShown, setIsShown] = useState(false);
 
     const handleSolved = () => {
         let finalAnswer:string = "";
@@ -67,7 +68,14 @@ export default function Sentence(sentence) {
         <>
         <h3>Translate this sentence</h3>
             <div className="sentence">
+                <div
+                onMouseEnter={() => setIsShown(true)}
+                onMouseLeave={() => setIsShown(false)}>
                 {task.sentence.original}
+                </div>
+                {isShown && <div>
+                    I'm a hover function!
+                </div>}
             </div>
             <div className={styles.answer}>
                 {answer.map((value, index) => (
@@ -100,3 +108,4 @@ export default function Sentence(sentence) {
         </>
     )
 }
+
