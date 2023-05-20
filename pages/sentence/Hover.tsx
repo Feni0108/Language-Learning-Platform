@@ -1,30 +1,32 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 
 type Props = {
     word: string
+    hover: string[]
 
 }
 
 const Hover = ({
-    word
-
+    word,
+    hover
 
               }: Props) => {
     const [isShown, setIsShown] = useState(false);
-    console.log("In the hower");
-    console.log(word);
-
 
     return (
         <>
-        <p
+        <p style={{display: "inline-block", margin:5}}
             onMouseEnter={() => setIsShown(true)}
             onMouseLeave={() => setIsShown(false)}>
             {word}
         </p>
     {isShown && <div>
-        I'm a hover function!
+        {hover.map((value) => (
+            <p>
+                {value}
+            </p>
+        ))}
     </div>}
         </>
     )

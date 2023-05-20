@@ -76,6 +76,7 @@ export default function Sentence(sentence) {
                     <Hover
                         word={value.word}
                         id={number}
+                        hover={value.hover}
                     />
                 ))}
             </div>
