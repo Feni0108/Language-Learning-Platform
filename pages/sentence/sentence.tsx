@@ -4,13 +4,13 @@ import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import styles from "@/styles/Senctence.module.css";
 import Word from "@/pages/sentence/Word";
-import {set} from "yaml/dist/schema/yaml-1.1/set";
+
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const sentences = await prisma.sentence.findMany();
-    const dummyWords = await prisma.dictionary.findMany();
-    const sentence = getRandomSentence(sentences, dummyWords);
+    const dictionary = await prisma.dictionary.findMany();
+    const sentence = getRandomSentence(sentences, dictionary);
     return {
         props: {sentence: sentence},
     }
@@ -23,6 +23,8 @@ export default function Sentence(sentence) {
     const [answer, setAnswer] = useState([]);
     const [isGood, setIsGood] = useState(false);
     const [isShown, setIsShown] = useState(false);
+
+    console.log(task);
 
     const handleSolved = () => {
         let finalAnswer:string = "";
@@ -71,7 +73,7 @@ export default function Sentence(sentence) {
                 <div
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}>
-                {task.sentence.original}
+                    random
                 </div>
                 {isShown && <div>
                     I'm a hover function!
