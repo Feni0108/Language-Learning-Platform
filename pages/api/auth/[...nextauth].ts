@@ -27,12 +27,7 @@ const authOptions: NextAuthOptions = {
                     password: string;
                 };
               
-        // @ts-ignore
-        const user = await prisma.user.findUnique({
-          where: { username: username },
-          select: { username: true, password: true },
-        });
-        console.log(user);
+       
 
                 // @ts-ignore
                 const user = await prisma.user.findUnique({
@@ -138,7 +133,7 @@ const authOptions: NextAuthOptions = {
             return session;
         },
     },
-  },
-};
+  }
+;
 
 export default NextAuth(authOptions);
