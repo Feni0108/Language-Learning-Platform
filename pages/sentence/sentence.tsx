@@ -26,7 +26,6 @@ export default function Sentence(sentence) {
     const [isGood, setIsGood] = useState(false);
 
 
-    console.log(task.sentence.original);
 
     const handleSolved = () => {
         let finalAnswer:string = "";
