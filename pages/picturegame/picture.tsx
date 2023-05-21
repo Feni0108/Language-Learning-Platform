@@ -72,7 +72,7 @@ export default function Picture({allWords}) {
             {isSolved && <div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer}>
                 {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
                 {isGood? null : <h4>Correct Answer:</h4>}
-                {isGood? null : pictures[word.id].word}
+                {isGood? null : pictures.find((picture) => picture.id===word.id).word}
                 <br/>
                 <button>Next task</button>
             </div>}
