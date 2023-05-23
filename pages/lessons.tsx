@@ -1,5 +1,6 @@
 import React, {Component, useEffect, useState} from "react";
 import Dictionary from "@/components/games/dictionary/dictionary";
+import Picture from "@/components/games/picturegame/picture";
 
 
 export default function Lessons({allWords}) {
@@ -14,25 +15,44 @@ export default function Lessons({allWords}) {
     const [word, setWord] = useState();
 
 
-
     const getRandomGames = () => {
-        //const randomId = (Math.floor(Math.random() * (games.length)))
-       //setRandomId(randomId);
+        const randomId = (Math.floor(Math.random() * 2))
+       setRandomId(randomId);
     }
 
     useEffect(() => {
-        //getRandomGames()
-            fetch('api/getGamesData/dictionary')
-                .then((res) => res.json())
-                .then((data) =>
-                setWord(data.fourWords));
-            console.log(word);
-
+        getRandomGames();
     });
+
+    useEffect(() => {
+        console.log("THis is the randomId after setup: "+randomId);
+        importData();
+    }, [getRandomGames]);
+    const importData = () => {
+        console.log("This is the id in import data"+randomId);
+        switch (randomId){
+            case 0: {
+                fetch('api/getGamesData/dictionary')
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setWord(data.fourWords));
+
+                break;
+            }
+            case 1: {
+                fetch('api/getGamesData/picture')
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setWord(data.fourWords));
+                break;
+            }
+            }
+        }
+
+
 
     const handleSolved = () => {
         setGameCount(gameCount => gameCount+1);
-        //setIsGood(true);
         if (isGood){
             setPoint(point => point+1);
             setIsInRow(true);
@@ -53,7 +73,8 @@ export default function Lessons({allWords}) {
             <div>
                 This is your process: {gameCount}/10
                 {isInRow && row > 1 && <p>{row} in a row!</p>}
-                {word && <Dictionary allWords={word} />}
+                {word && randomId === 0 && <Dictionary allWords={word} />}
+                {word && randomId === 1 && <Picture allWords={word} />}
                 {isSolved && <div>
                     <button
                         onClick={() => handleSolved()}
@@ -71,7 +92,3 @@ export default function Lessons({allWords}) {
         </div>
     )
 }
-/*
-{games.content.body.map(block => Components(block))}
-
- */
