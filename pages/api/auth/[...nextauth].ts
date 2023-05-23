@@ -36,7 +36,6 @@ const authOptions: NextAuthOptions = {
           },
         });
 
-
         // perform you login logic
         // find out user from db
         if (!user) {
