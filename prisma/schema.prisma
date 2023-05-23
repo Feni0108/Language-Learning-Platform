@@ -16,6 +16,7 @@ model Dictionary {
   id              Int    @id @default(autoincrement())
   original_word   String
   translated_word String
+  image Bytes?
   category        Category
 }
 

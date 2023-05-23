@@ -1,4 +1,4 @@
-import styles from "@/styles/Dictionary.module.css";
+import {FormatLessons} from "@/components/FormatLessons";
 import React, {useEffect, useState} from "react";
 
 
@@ -39,18 +39,18 @@ const Word = ({
 
     useEffect(() => {
         if (isSelected){
-            setStyle(styles.choose)
+            setStyle(FormatLessons.choose)
         } else {
-            setStyle(styles.visible)
+            setStyle(FormatLessons.visible)
         }
         if(!isVisible){
-            setStyle(styles.invisible)
+            setStyle(FormatLessons.invisible)
         }
     },[isVisible, isSelected, isWrong]);
 
     useEffect(() => {
             if ((isWrong.or_id === id && wordType === "original") || (isWrong.tr_id === id && wordType === "translated")) {
-                setStyle(styles.wrongAnswer);
+                setStyle(FormatLessons.wrongAnswer);
                 const interval = setInterval(() => {
                     setIsWrong({or_id:null, tr_id:null})
                     fetchData();
