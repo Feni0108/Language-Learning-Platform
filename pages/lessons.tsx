@@ -1,14 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
+import Dictionary from "@/components/games/dictionary/dictionary";
 
 
-const games = [
-    <div>This is the test first</div>,
-    <div>This is the second test</div>,
-    <div>This is the third test</div>
-]
-
-export default function Lessons() {
-    const [game, setGame] = useState<object>(null);
+export default function Lessons({allWords}) {
     const [solved, isSolved] = useState(true);
     const [gameCount, setGameCount] = useState(0);
     const [isGood, setIsGood] = useState(false);
@@ -16,18 +10,29 @@ export default function Lessons() {
     const [isFinished, setIsFinished] = useState(false);
     const [row, setRow] = useState(0);
     const [isInRow, setIsInRow] = useState(true);
+    const [randomId, setRandomId] = useState<number>(null);
+    const [word, setWord] = useState();
+
+
 
     const getRandomGames = () => {
-        const randomId = (Math.floor(Math.random() * (games.length)))
-        setGame(games[randomId]);
+        //const randomId = (Math.floor(Math.random() * (games.length)))
+       //setRandomId(randomId);
     }
 
     useEffect(() => {
-        getRandomGames();
+        //getRandomGames()
+            fetch('api/getGamesData/dictionary')
+                .then((res) => res.json())
+                .then((data) =>
+                setWord(data.fourWords));
+            console.log(word);
+
     });
 
     const handleSolved = () => {
         setGameCount(gameCount => gameCount+1);
+        //setIsGood(true);
         if (isGood){
             setPoint(point => point+1);
             setIsInRow(true);
@@ -48,7 +53,7 @@ export default function Lessons() {
             <div>
                 This is your process: {gameCount}/10
                 {isInRow && row > 1 && <p>{row} in a row!</p>}
-                {game}
+                {word && <Dictionary allWords={word} />}
                 {isSolved && <div>
                     <button
                         onClick={() => handleSolved()}
@@ -66,3 +71,7 @@ export default function Lessons() {
         </div>
     )
 }
+/*
+{games.content.body.map(block => Components(block))}
+
+ */
