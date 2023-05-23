@@ -16,6 +16,8 @@ model Dictionary {
   id              Int    @id @default(autoincrement())
   original_word   String
   translated_word String
+  image Bytes?
+  category        Category
 }
 
 model Sentence {
@@ -78,4 +80,15 @@ model Leaderboard {
   //user User  @relation(fields: [userId], references: [id])
   userId String @unique
   totalPoints Int @default(0)
+}
+
+enum Category {
+  GREETINGS
+  FAMILY
+  ANIMALS
+  CALENDAR
+  FRIENDS
+  HOBBY
+  LIVING
+  SHOPPING
 }
