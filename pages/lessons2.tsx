@@ -15,7 +15,7 @@ export default function Lessons({allWords}) {
     const [isInRow, setIsInRow] = useState(true);
     const [randomId, setRandomId] = useState<number>(null);
     const [word, setWord] = useState();
-    const [endpoint, setEndpoint] = useState('api/getGamesData/dictionary')
+    const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 1))
