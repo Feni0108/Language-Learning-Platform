@@ -77,6 +77,12 @@ model Leaderboard {
   user        User   @relation(fields: [userId], references: [id])
 }
 
+model Storyline {
+  id          Int       @id @default(autoincrement())
+  sentences   String
+  words       String
+}
+
 enum Category {
   GREETINGS
   FAMILY
