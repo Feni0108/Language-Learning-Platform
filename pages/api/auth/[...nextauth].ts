@@ -132,6 +132,7 @@ const authOptions: NextAuthOptions = {
       }
       return session;
     },
+  },
 };
 
 export default NextAuth(authOptions);
