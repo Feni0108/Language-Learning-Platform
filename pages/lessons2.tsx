@@ -13,17 +13,20 @@ export default function Lessons({allWords}) {
     const [isFinished, setIsFinished] = useState(false);
     const [row, setRow] = useState(0);
     const [isInRow, setIsInRow] = useState(true);
-    const [randomId, setRandomId] = useState<number>(null);
+    const [id, setId] = useState<number>(null);
     const [word, setWord] = useState();
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const getRandomGames = () => {
-        const randomId = (Math.floor(Math.random() * 1))
-       setRandomId(randomId);
+        const randomId = (Math.floor(Math.random() * 2));
+        if (randomId !== id) {
+            setId(randomId);
+        } else getRandomGames();
     }
 
     useEffect(() => {
         console.log("Just for fun")
+        getRandomGames();
         if(gameCount>3){
             setEndpoint('api/getGamesData/picture')
         }
@@ -46,7 +49,7 @@ export default function Lessons({allWords}) {
         }
         if (gameCount === 10) {
             setIsFinished(true);
-        } else getRandomGames();
+        }
     }
 
     return (
@@ -56,10 +59,10 @@ export default function Lessons({allWords}) {
                 This is your process: {gameCount}/10
                 {isInRow && row > 1 && <p>{row} in a row!</p>}
                 <br/>
-                {randomId}
+                {id}
                 {console.log(word)}
-                {word && randomId === 1 && <Picture allWords={word} />}
-                {word && randomId === 0 && <Dictionary allWords={word} />}
+                {word && id === 1 && <Picture allWords={word} />}
+                {word && id === 0 && <Dictionary allWords={word} />}
                 {isSolved && <div>
                     <button
                         onClick={() => handleSolved()}
