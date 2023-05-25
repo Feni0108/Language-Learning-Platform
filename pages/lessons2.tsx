@@ -14,9 +14,10 @@ export default function Lessons({allWords}) {
     const [row, setRow] = useState(0);
     const [isInRow, setIsInRow] = useState(true);
     const [id, setId] = useState<number>(null);
-    const [word, setWord] = useState();
+    const [word, setWord] = useState<any>();
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
+    const [game, setGame] = useState();
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 2));
         if (randomId !== id) {
@@ -25,15 +26,33 @@ export default function Lessons({allWords}) {
     }
 
     useEffect(() => {
-        console.log("Just for fun")
         getRandomGames();
-        if(gameCount>3){
-            setEndpoint('api/getGamesData/picture')
-        }
-        if(gameCount>7){
-            setEndpoint('api/getGamesData/dictionary')
-        }
     },[gameCount])
+
+    useEffect(() => {
+        switch (id) {
+            case 0: {
+                setEndpoint('api/getGamesData/dictionary');
+                break;
+            }
+            case 1: {
+                setEndpoint('api/getGamesData/picture');
+                break;
+            }
+        }
+    }, [id])
+
+    useEffect(() => {
+        console.log(pics);
+        if (pics.length !== 0){
+            //setWord(pics);
+            if (id === 0){
+                setWord(<Dictionary allWords={pics} /> )
+            } else if (id === 1) {
+                setWord(<Picture allWords={pics} />)
+            }
+        }
+    }, [pics])
 
 
     const handleSolved = () => {
@@ -59,10 +78,9 @@ export default function Lessons({allWords}) {
                 This is your process: {gameCount}/10
                 {isInRow && row > 1 && <p>{row} in a row!</p>}
                 <br/>
-                {id}
+                This is the id: {id}
                 {console.log(word)}
-                {word && id === 1 && <Picture allWords={word} />}
-                {word && id === 0 && <Dictionary allWords={word} />}
+                {word}
                 {isSolved && <div>
                     <button
                         onClick={() => handleSolved()}
