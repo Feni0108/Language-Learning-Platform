@@ -3,6 +3,7 @@ import Dictionary from "@/components/games/dictionary/dictionary";
 import Picture from "@/components/games/picturegame/picture";
 import useFetch from "@/components/games/useFetch";
 import Sentence from "@/components/games/sentence/sentence";
+import Pelmanism from "@/components/games/pelmanism/pelmanism";
 
 
 
@@ -20,7 +21,7 @@ export default function Lessons({allWords}) {
     const {loading , pics}  = useFetch(endpoint);
     const [game, setGame] = useState();
     const getRandomGames = () => {
-        const randomId = (Math.floor(Math.random() * 3));
+        const randomId = (Math.floor(Math.random() * 4));
         if (randomId !== id) {
             setId(randomId);
         } else getRandomGames();
@@ -42,6 +43,11 @@ export default function Lessons({allWords}) {
             }
             case 2: {
                 setEndpoint('api/getGamesData/sentence');
+                break;
+            }
+            case 3: {
+                setEndpoint('api/getGamesData/pelmanism')
+                break;
             }
         }
     }, [id])
@@ -53,6 +59,7 @@ export default function Lessons({allWords}) {
                 case 0: setWord(<Dictionary allWords={pics} /> ); break;
                 case 1: setWord(<Picture allWords={pics} />) ; break;
                 case 2: setWord(<Sentence sentence={pics} />); break;
+                case 3: setWord(<Pelmanism allWords={pics} />); break;
             }
         }
     }, [pics])

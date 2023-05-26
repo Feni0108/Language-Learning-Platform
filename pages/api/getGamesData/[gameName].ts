@@ -9,7 +9,36 @@ export default async function handler(req, res) {
     switch (gameName) {
         case "dictionary" : {
             const words = await prisma.dictionary.findMany();
-            /*let randomWords : number[] = [];
+            const fourWordsFinally = getOptions(words);
+            return res.status(200).json({fourWordsFinally});
+        }
+        case "picture" : {
+            const words = await prisma.dictionary.findMany();
+            const fourWordsFinally = getWordWithPictures(words);
+            console.log("invoke picture");
+            return res.status(200).json({fourWordsFinally});
+        }
+        case "sentence" : {
+            const sentences = await prisma.sentence.findMany();
+            const dictionary = await prisma.dictionary.findMany();
+            const fourWordsFinally = getRandomSentence(sentences, dictionary);
+            return res.status(200).json({fourWordsFinally});
+        }
+        case "pelmanism" : {
+            const words = await prisma.dictionary.findMany();
+            const fourWordsFinally = getOptions(words);
+            return res.status(200).json({fourWordsFinally});
+        }
+
+        default : return null
+    }
+
+
+
+}
+
+
+/*let randomWords : number[] = [];
             while (randomWords.length < 4) {
                 let card = Math.floor(Math.random() * words.length)+1;
                 if (!randomWords.includes(card)) randomWords.push(card);
@@ -22,28 +51,3 @@ export default async function handler(req, res) {
                 },
             })
             console.log(fourWords);*/
-            const fourWordsFinally = getOptions(words);
-            console.log(fourWordsFinally);
-            console.log("invoke dictionary");
-            return res.status(200).json({fourWordsFinally});
-            break;
-        }
-        case "picture" : {
-            const words = await prisma.dictionary.findMany();
-            const fourWordsFinally = getWordWithPictures(words);
-            console.log("invoke picture");
-            return res.status(200).json({fourWordsFinally});
-            break;
-        }
-        case "sentence" : {
-            const sentences = await prisma.sentence.findMany();
-            const dictionary = await prisma.dictionary.findMany();
-            const fourWordsFinally = getRandomSentence(sentences, dictionary);
-            return res.status(200).json({fourWordsFinally});
-        }
-        default : return null
-    }
-
-
-
-}
