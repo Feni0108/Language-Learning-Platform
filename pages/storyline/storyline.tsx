@@ -3,31 +3,13 @@ import { useState, useEffect } from 'react';
 import prisma from "@/lib/prisma";
 import { GetServerSideProps } from "next";
 
-const getData = (storyline: any) => {
-    const getSentences = storyline[0].sentences.split(";");
-    const getWords = storyline[0].words.split(";");
-
-    const sentences: any[] = [];
-    for (let i = 0; i < getSentences.length; i++ ){
-        sentences.push(getSentences[i]);
-    }
-
-    const words = [];
-    for (let i = 0; i < getWords.length; i++ ){
-        words.push(getWords[i]);
-    }
-
-    return {sentences, words};
-}
-
-
-
 export const getServerSideProps: GetServerSideProps = async () => {
     const storyline = await prisma.storyline.findMany();
-    const data = getData(storyline)
+    const sentences = storyline[0].sentences.split(";");
+    const words = storyline[0].words.split(";");
     return {
         props: {
-            data: data,
+            data: {sentences, words},
         }
     }
 }
@@ -35,7 +17,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default function Story(props: any) {
     const [currentSentence, setCurrentSentence] = useState(0);
     const [displayedSentence, setDisplayedSentence] = useState<string[]>([]);
-
 
     const sentences = props.data.sentences;
     console.log(sentences)
