@@ -5,13 +5,16 @@ import Hover from "@/pages/sentence/Hover";
 
 
 
-export default function Sentence({sentence}) {
+export default function Sentence({sentence, isSolved, setIsSolved}) {
+    console.log(isSolved);
     const [task, setTask] = useState(sentence);
-    const [isSolved, setIsSolved] = useState(false);
+    //const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
     const [isGood, setIsGood] = useState(false);
+    //Only work with this, but i dont understand, why?
+    const [isSolvedInThis, setIsSolvedInThis] = useState(false);
 
-    const handleSolved = () => {
+    const handleCheck = () => {
         let finalAnswer:string = "";
         answer.map((word) => {
             finalAnswer = finalAnswer.concat(word.word+" ");
@@ -20,8 +23,10 @@ export default function Sentence({sentence}) {
         if (finalAnswer === task.solution){
             setIsGood(true);
             setIsSolved(true);
+            setIsSolvedInThis(true);
         } else {
             setIsSolved(true);
+            setIsSolvedInThis(true);
         }
 
     }
@@ -67,7 +72,8 @@ export default function Sentence({sentence}) {
                 {answer.map((value, index) => (
                     <div className={styles.word}
                          id={index.toString()}
-                        onClick={ isSolved? null :  () => handleClick(value.id, true)}>
+                        onClick={ isSolvedInThis? null :  () => handleClick(value.id, true)}>
+                        {console.log(isSolved)}
                         {value.word}
                     </div>
                 ))}
@@ -79,7 +85,7 @@ export default function Sentence({sentence}) {
                         id={value.id}
                         isVisible={value.isVisible}
                         handleClick={handleClick}
-                        isSolved={isSolved}
+                        isSolved={isSolvedInThis}
                     />
                     ))}
             </div>
@@ -90,7 +96,7 @@ export default function Sentence({sentence}) {
                 <br/>
                 <button>Next task</button>
             </div>}
-            {!isSolved && <button onClick={() => handleSolved()}>Check</button>}
+            {!isSolved && <button onClick={() => handleCheck()}>Check</button>}
         </>
     )
 }

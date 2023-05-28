@@ -3,7 +3,7 @@ import Card from "@/components/games/pelmanism/Card";
 
 
 
-const Pelmanism = ({ allWords }) => {
+const Pelmanism = ({ allWords, isSolved, setIsSolved }) => {
 
     const [originalWords, setOriginalWords] = useState(allWords[0]);
     const [translatedWords, setTranslatedWords] = useState(allWords[1]);
@@ -13,9 +13,9 @@ const Pelmanism = ({ allWords }) => {
 
 
     useEffect(() => {
-        if (matchedCards.length === originalWords.length) {
+        if ((matchedCards.length/2) === originalWords.length) {
             // All cards have been matched, game over logic
-            console.log("Game over");
+            setIsSolved(true);
         }
     }, [matchedCards, originalWords]);
 

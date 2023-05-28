@@ -13,7 +13,7 @@ import {GetServerSideProps} from "next";
 } */
 
 
-const Dictionary = ({allWords}) => {
+const Dictionary = ({allWords, isSolved, setIsSolved}) => {
     const [words, setWords] = useState(allWords);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
@@ -25,6 +25,10 @@ const Dictionary = ({allWords}) => {
         setOriginalWords(words[0]);
         setTranslatedWords(words[1]);
     },[words]);
+
+    useEffect(() => {
+        if (solvedCorrect ===4) setIsSolved(true);
+    }, [solvedCorrect])
 
 
     let fetchData =(() => {
@@ -153,8 +157,6 @@ const Dictionary = ({allWords}) => {
 
                 </div>
         </div>
-            {solvedCorrect === 4 && <button>Next task</button>}
-
         </>
     )
 }

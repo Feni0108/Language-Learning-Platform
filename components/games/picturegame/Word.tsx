@@ -57,6 +57,7 @@ const Word = ({
                 <img src={`data:image/jpeg;base64,${image}`} />
             </section>
             <section>
+                {console.log(isSolved)}
                 {word}
             </section>
         </div>

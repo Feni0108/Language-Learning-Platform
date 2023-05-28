@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Dictionary from "@/components/games/dictionary/dictionary";
 import Picture from "@/components/games/picturegame/picture";
 import useFetch from "@/components/games/useFetch";
@@ -7,8 +7,8 @@ import Pelmanism from "@/components/games/pelmanism/pelmanism";
 
 
 
-export default function Lessons({allWords}) {
-    const [solved, isSolved] = useState(true);
+export default function Lessons() {
+    const [isSolved, setIsSolved] = useState(false);
     const [gameCount, setGameCount] = useState(0);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
@@ -56,10 +56,10 @@ export default function Lessons({allWords}) {
         console.log(pics);
         if (pics.length !== 0){
             switch (id) {
-                case 0: setWord(<Dictionary allWords={pics} /> ); break;
-                case 1: setWord(<Picture allWords={pics} />) ; break;
-                case 2: setWord(<Sentence sentence={pics} />); break;
-                case 3: setWord(<Pelmanism allWords={pics} />); break;
+                case 0: setWord(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved}/>); break;
+                case 1: setWord(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved}/>) ; break;
+                case 2: setWord(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} handleSolved={handleSolved}/>); break;
+                case 3: setWord(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved}/>); break;
             }
         }
     }, [pics])
@@ -76,6 +76,7 @@ export default function Lessons({allWords}) {
             setIsInRow(false);
             setRow(0);
         }
+        setIsSolved(false);
         if (gameCount === 10) {
             setIsFinished(true);
         }
@@ -89,7 +90,6 @@ export default function Lessons({allWords}) {
                 {isInRow && row > 1 && <p>{row} in a row!</p>}
                 <br/>
                 This is the id: {id}
-                {console.log(word)}
                 {word}
                 {isSolved && <div>
                     <button
