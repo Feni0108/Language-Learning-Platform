@@ -4,12 +4,17 @@ import Picture from "@/components/games/picturegame/picture";
 import useFetch from "@/components/games/useFetch";
 import Sentence from "@/components/games/sentence/sentence";
 import Pelmanism from "@/components/games/pelmanism/pelmanism";
+import {updatePoints} from "@/components/updatePoints";
+import {useSession} from "next-auth/react";
+import AccessDenied from "@/components/AccessDenied";
+import SignUpButton from "@/components/SignUpButton";
+import {redirect} from "next/navigation";
 
 
 
 export default function Lessons() {
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(0);
+    const [gameCount, setGameCount] = useState(8);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
@@ -20,6 +25,11 @@ export default function Lessons() {
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const [game, setGame] = useState();
+    const { data: session, status, update } = useSession();
+
+
+
+
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 4));
         if (randomId !== id) {
@@ -56,10 +66,10 @@ export default function Lessons() {
         console.log(pics);
         if (pics.length !== 0){
             switch (id) {
-                case 0: setWord(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/>); break;
+                case 0: setWord(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
                 case 1: setWord(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/> ) ; break;
-                case 2: setWord(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/>); break;
-                case 3: setWord(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/>); break;
+                case 2: setWord(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 3: setWord(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
             }
         }
     }, [pics])
@@ -82,9 +92,22 @@ export default function Lessons() {
         }
     }
 
+
+    const handleFinished = () => {
+        updatePoints(session.user?.totalPoints+point, session.user?.id);
+        update({id : session.user.id});
+
+    }
+
     return (
         <div>
-            {!isFinished &&
+            {!session && (
+                <>
+                    <AccessDenied />
+                    <SignUpButton />
+                </>
+            )}
+            {session && !isFinished &&
             <div>
                 This is your process: {gameCount}/10
                 {isInRow && row > 1 && <p>{row} in a row!</p>}
@@ -94,7 +117,7 @@ export default function Lessons() {
                 {isSolved && <div>
                     <button
                         onClick={() => handleSolved()}
-                    >Continue</button>
+                    >Continue in the Main Component</button>
                 </div>}
             </div>}
             {isFinished &&
@@ -103,7 +126,7 @@ export default function Lessons() {
                     Congratulations! YOu finished the lesson!
                     Your points: {point}
                 </div>
-                <button>Continue</button>
+                <button onClick={handleFinished}>Continue</button>
             </div>}
         </div>
     )

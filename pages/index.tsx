@@ -27,7 +27,6 @@ export default function Home() {
               {console.log(session.user)}
               <h4>Your points: {session.user.totalPoints}</h4>
               {session.user?.username} <br />
-              <button onClick={() => {updatePoints(session.user?.totalPoints+5, session.user?.id); update({id : session.user.id})}}>Add 5 points just for test</button>
             <SignOutButton />
           </>
       )}

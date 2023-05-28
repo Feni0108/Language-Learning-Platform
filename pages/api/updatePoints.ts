@@ -1,5 +1,6 @@
 import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
+import {redirect} from "next/navigation";
 
 export default async function handler(
     req: NextApiRequest,
@@ -24,7 +25,6 @@ export default async function handler(
             );
             return res.status(200).send(updatePoints);
         } catch (e) {
-            console.log("Here but not workng");
             return res.status(404).json({response: {message:  message}});
         }
     }
