@@ -56,10 +56,10 @@ export default function Lessons() {
         console.log(pics);
         if (pics.length !== 0){
             switch (id) {
-                case 0: setWord(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved}/>); break;
-                case 1: setWord(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved}/>) ; break;
-                case 2: setWord(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} handleSolved={handleSolved}/>); break;
-                case 3: setWord(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved}/>); break;
+                case 0: setWord(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/>); break;
+                case 1: setWord(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/> ) ; break;
+                case 2: setWord(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/>); break;
+                case 3: setWord(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/>); break;
             }
         }
     }, [pics])

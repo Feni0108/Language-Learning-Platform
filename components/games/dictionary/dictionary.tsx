@@ -13,7 +13,7 @@ import {GetServerSideProps} from "next";
 } */
 
 
-const Dictionary = ({allWords, isSolved, setIsSolved}) => {
+const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood}) => {
     const [words, setWords] = useState(allWords);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
@@ -24,6 +24,7 @@ const Dictionary = ({allWords, isSolved, setIsSolved}) => {
     useEffect(() => {
         setOriginalWords(words[0]);
         setTranslatedWords(words[1]);
+        setIsGood(true);
     },[words]);
 
     useEffect(() => {
@@ -38,6 +39,7 @@ const Dictionary = ({allWords, isSolved, setIsSolved}) => {
             setChoose({or_id: null, tr_id: null});
         }
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
+            setIsGood(false);
             setIsWrong({or_id: choose.or_id, tr_id: choose.tr_id});
             setWrong(choose);
             setChoose({or_id: null, tr_id: null});

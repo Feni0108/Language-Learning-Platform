@@ -4,13 +4,13 @@ import Word from "@/pages/picturegame/Word";
 import {number, string} from "prop-types";
 
 
-export default function Picture({allWords, isSolved, setIsSolved}) {
+export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsGood}) {
     const [task, setTask] = useState(allWords);
     const [word, setWord] = useState({id:number,word:string});
     const [pictures, setPictures] = useState([]);
     //const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState<number>(null);
-    const [isGood, setIsGood] = useState(false);
+    //const [isGood, setIsGood] = useState(false);
 
     useEffect(() => {
         setWord(task[0]);

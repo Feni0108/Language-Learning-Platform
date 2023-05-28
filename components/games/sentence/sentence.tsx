@@ -5,12 +5,12 @@ import Hover from "@/pages/sentence/Hover";
 
 
 
-export default function Sentence({sentence, isSolved, setIsSolved}) {
+export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIsGood}) {
     console.log(isSolved);
     const [task, setTask] = useState(sentence);
     //const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
-    const [isGood, setIsGood] = useState(false);
+    //const [isGood, setIsGood] = useState(false);
     //Only work with this, but i dont understand, why?
     const [isSolvedInThis, setIsSolvedInThis] = useState(false);
 

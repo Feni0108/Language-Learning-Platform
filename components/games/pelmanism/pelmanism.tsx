@@ -3,7 +3,7 @@ import Card from "@/components/games/pelmanism/Card";
 
 
 
-const Pelmanism = ({ allWords, isSolved, setIsSolved }) => {
+const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood }) => {
 
     const [originalWords, setOriginalWords] = useState(allWords[0]);
     const [translatedWords, setTranslatedWords] = useState(allWords[1]);
@@ -16,6 +16,7 @@ const Pelmanism = ({ allWords, isSolved, setIsSolved }) => {
         if ((matchedCards.length/2) === originalWords.length) {
             // All cards have been matched, game over logic
             setIsSolved(true);
+            setIsGood(true);
         }
     }, [matchedCards, originalWords]);
 
