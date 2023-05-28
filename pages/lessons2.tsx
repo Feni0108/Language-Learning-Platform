@@ -8,8 +8,7 @@ import {updatePoints} from "@/components/updatePoints";
 import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
-import {redirect} from "next/navigation";
-
+import Link from "next/link";
 
 
 export default function Lessons() {
@@ -126,7 +125,7 @@ export default function Lessons() {
                     Congratulations! YOu finished the lesson!
                     Your points: {point}
                 </div>
-                <button onClick={handleFinished}>Continue</button>
+                <Link onClick={handleFinished} href="/">Continue</Link>
             </div>}
         </div>
     )
