@@ -1,19 +1,9 @@
 import {getOptions} from "@/components/getRandomWord";
 import React, {useEffect, useState} from "react";
 import Word from './Word';
-import {GetServerSideProps} from "next";
-//import prisma from '../../../lib/prisma';
-
-/*export const getServerSideProps: GetServerSideProps = async () => {
-    const words = await prisma.dictionary.findMany();
-    const fourWords = getOptions(words);
-    return {
-        props: {allWords: fourWords},
-    }
-} */
 
 
-const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood}) => {
+const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) => {
     const [words, setWords] = useState(allWords);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
@@ -22,6 +12,7 @@ const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood}) => {
     const [isWrong, setIsWrong] = useState({or_id:null,tr_id:null});
 
     useEffect(() => {
+        console.log(words);
         setOriginalWords(words[0]);
         setTranslatedWords(words[1]);
         setIsGood(true);
@@ -158,6 +149,11 @@ const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood}) => {
                     ))}
 
                 </div>
+                {isSolved && <div>
+                    <button
+                        onClick={() => handleSolved()}
+                    >Continue</button>
+                </div>}
         </div>
         </>
     )

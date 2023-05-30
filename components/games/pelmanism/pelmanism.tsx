@@ -3,7 +3,7 @@ import Card from "@/components/games/pelmanism/Card";
 
 
 
-const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood }) => {
+const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved }) => {
 
     const [originalWords, setOriginalWords] = useState(allWords[0]);
     const [translatedWords, setTranslatedWords] = useState(allWords[1]);
@@ -97,6 +97,11 @@ const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood }) => {
                     />
                 ))}
             </div>
+            {isSolved && <div>
+                <button
+                    onClick={() => handleSolved()}
+                >Continue</button>
+            </div>}
         </div>
     );
 };

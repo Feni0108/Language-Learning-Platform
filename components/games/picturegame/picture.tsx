@@ -4,7 +4,7 @@ import Word from "@/pages/picturegame/Word";
 import {number, string} from "prop-types";
 
 
-export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsGood}) {
+export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
     const [task, setTask] = useState(allWords);
     const [word, setWord] = useState({id:number,word:string});
     const [pictures, setPictures] = useState([]);
@@ -13,6 +13,7 @@ export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsG
     //const [isGood, setIsGood] = useState(false);
 
     useEffect(() => {
+        console.log(task);
         setWord(task[0]);
         setPictures(task[1]);
     },[task]);
@@ -41,6 +42,7 @@ export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsG
         console.log(answer);
     }
 
+
     return (
         <div>
             <h2> Which one of these is "{word.word}"?</h2>
@@ -58,13 +60,17 @@ export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsG
                     />
                     ))}
             </div>
-            {isSolved && <div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer}>
+            {isSolved && (<div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer}>
                 {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
                 {isGood? null : <h4>Correct Answer:</h4>}
                 {isGood? null : pictures[word.id].word}
                 <br/>
-                <button>Next task</button>
-            </div>}
+                {isSolved && <div>
+                    <button
+                        onClick={() => handleSolved()}
+                    >Continue</button>
+                </div>}
+            </div>)}
             {!isSolved && answer != null && <button onClick={() => handleCheck()}>Check</button>}
         </div>
     )

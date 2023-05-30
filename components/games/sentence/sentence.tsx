@@ -5,7 +5,7 @@ import Hover from "@/pages/sentence/Hover";
 
 
 
-export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIsGood}) {
+export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
     console.log(isSolved);
     const [task, setTask] = useState(sentence);
     //const [isSolved, setIsSolved] = useState(false);
@@ -94,7 +94,11 @@ export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIs
                 {isGood? null : <h4>Correct Answer:</h4>}
                 {isGood? null : task.solution}
                 <br/>
-                <button>Next task</button>
+                {isSolved && <div>
+                    <button
+                        onClick={() => handleSolved()}
+                    >Continue</button>
+                </div>}
             </div>}
             {!isSolved && <button onClick={() => handleCheck()}>Check</button>}
         </>
