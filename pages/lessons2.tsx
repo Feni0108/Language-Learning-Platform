@@ -66,12 +66,12 @@ export default function Lessons() {
         if (pics.length !== 0){
             switch (id) {
                 case 0: setWord(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
-                case 1: setWord(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood}/> ) ; break;
+                case 1: setWord(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
                 case 2: setWord(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
                 case 3: setWord(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
             }
         }
-    }, [pics])
+    }, [pics, isSolved])
 
 
     const handleSolved = () => {
@@ -113,11 +113,6 @@ export default function Lessons() {
                 <br/>
                 This is the id: {id}
                 {word}
-                {isSolved && <div>
-                    <button
-                        onClick={() => handleSolved()}
-                    >Continue in the Main Component</button>
-                </div>}
             </div>}
             {isFinished &&
             <div>
