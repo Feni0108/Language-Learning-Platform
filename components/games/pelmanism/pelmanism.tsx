@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "@/components/games/pelmanism/Card";
+import {FormatLessons} from "@/components/FormatLessons";
 
 
 
@@ -97,7 +98,8 @@ const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood, handleS
                     />
                 ))}
             </div>
-            {isSolved && <div>
+            {isSolved && <div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer} >
+                {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
                 <button
                     onClick={() => handleSolved()}
                 >Continue</button>

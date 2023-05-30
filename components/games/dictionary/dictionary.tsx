@@ -1,6 +1,7 @@
 import {getOptions} from "@/components/getRandomWord";
 import React, {useEffect, useState} from "react";
 import Word from './Word';
+import {FormatLessons} from "@/components/FormatLessons";
 
 
 const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) => {
@@ -149,7 +150,8 @@ const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleS
                     ))}
 
                 </div>
-                {isSolved && <div>
+                {isSolved && <div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer} >
+                    {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
                     <button
                         onClick={() => handleSolved()}
                     >Continue</button>
