@@ -1,18 +1,14 @@
 import React, { useState} from "react";
 import styles from "@/styles/Senctence.module.css";
-import Word from "@/pages/sentence/Word";
-import Hover from "@/pages/sentence/Hover";
+import Word from "@/components/games/sentence/Word";
+import Hover from "@/components/games/sentence/Hover";
 
 
 
 export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
-    console.log(isSolved);
     const [task, setTask] = useState(sentence);
-    //const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
-    //const [isGood, setIsGood] = useState(false);
-    //Only work with this, but i dont understand, why?
-    const [isSolvedInThis, setIsSolvedInThis] = useState(false);
+
 
     const handleCheck = () => {
         let finalAnswer:string = "";
@@ -23,10 +19,8 @@ export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIs
         if (finalAnswer === task.solution){
             setIsGood(true);
             setIsSolved(true);
-            setIsSolvedInThis(true);
         } else {
             setIsSolved(true);
-            setIsSolvedInThis(true);
         }
 
     }
@@ -72,8 +66,8 @@ export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIs
                 {answer.map((value, index) => (
                     <div className={styles.word}
                          id={index.toString()}
-                        onClick={ isSolvedInThis? null :  () => handleClick(value.id, true)}>
-                        {console.log(isSolved)}
+                        onClick={ isSolved? null :  () => handleClick(value.id, true)}>
+
                         {value.word}
                     </div>
                 ))}
@@ -85,7 +79,7 @@ export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIs
                         id={value.id}
                         isVisible={value.isVisible}
                         handleClick={handleClick}
-                        isSolved={isSolvedInThis}
+                        isSolved={isSolved}
                     />
                     ))}
             </div>

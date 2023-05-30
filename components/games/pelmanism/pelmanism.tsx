@@ -27,7 +27,6 @@ const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood, handleS
             !flippedCards.includes(index) &&
             !matchedCards.includes(index)
         ) {
-            console.log("Card clicked:", index);
             setFlippedCards([...flippedCards, index]);
             setClicks(clicks + 1);
         }
@@ -52,8 +51,6 @@ const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood, handleS
             };
         }
     );
-    console.log(visibleCards);
-    console.log(flippedCards);
     useEffect(() => {
         if (flippedCards.length === 2) {
             const [cardIndex1, cardIndex2] = flippedCards;
@@ -79,7 +76,6 @@ const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood, handleS
                 }, 1000);
             }
         }
-        console.log(matchedCards);
     }, [flippedCards, visibleCards]);
 
 

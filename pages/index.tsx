@@ -31,7 +31,7 @@ export default function Home() {
               <h4>Your points: {session.user.totalPoints}</h4>
               {session.user?.username} <br />
 
-              <Link href="lessons2">Start game</Link>
+              <Link href="lessons">Start game</Link>
             <SignOutButton />
           </>
       )}
