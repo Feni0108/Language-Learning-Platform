@@ -78,9 +78,10 @@ model Leaderboard {
 }
 
 model Storyline {
-  id          Int       @id @default(autoincrement())
-  sentences   String
-  options       String
+  id        Int    @id @default(autoincrement())
+  sentences String
+  options   String
+  solutions String
 }
 
 enum Category {
