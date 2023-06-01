@@ -3,73 +3,126 @@ import { useState, useEffect } from "react";
 import prisma from "@/lib/prisma";
 import { GetServerSideProps } from "next";
 
-let words: { id: number; word: string; isVisible: boolean }[] = [];
-
-const createWords = (story: any) => {
-  const getWords = story.words.split(" ");
-
-  words = [];
-  for (let i = 0; i < getWords.length; i++) {
-    words.push({ id: i + 1, word: getWords[i], isVisible: true });
-  }
-
-  return words;
-};
-
 export const getServerSideProps: GetServerSideProps = async () => {
   const storyline = await prisma.storyline.findMany();
 
-  const MAX_ID = storyline.length;
-  const randomId = Math.floor(Math.random() * MAX_ID);
+  const randomId = Math.floor(Math.random() * storyline.length);
 
   const story = storyline[randomId];
 
-  const words = createWords(story);
+  const options = story.options.split(";");
   const sentences = story.sentences.split(";");
+  const solutions = story.solutions.split(";");
 
   return {
     props: {
-      data: { sentences, words },
+      data: { sentences, options, solutions },
     },
   };
 };
 
 export default function Story(props: any) {
-  const [currentSentence, setCurrentSentence] = useState(0);
-  const [displayedSentence, setDisplayedSentence] = useState<string[]>([]);
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
+
+  const [showOptions, setShowOptions] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const [currentOptionsIndex, setCurrenOptionsIndex] = useState(0);
+  const [currentOptions, setCurrenOptions] = useState<string[]>([]);
+
+  const [currentSolutionIndex, setCurrentSolutionIndex] = useState(0);
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const sentences = props.data.sentences;
-  console.log(sentences);
-
-  const words = props.data.words;
-  console.log(words)
+  const options: string[] = props.data.options;
+  const solutions = props.data.solutions;
 
   useEffect(() => {
-    if (currentSentence < sentences.length) {
-      // if sentence contains ___ () {
-
-      //if handleCheckButtoon() {
-
-      //}
-      //}
-
+    if (currentSentenceIndex < sentences.length) {
       const timer = setTimeout(() => {
-        setDisplayedSentence((prevSentence) => [
+        setDisplayedSentences((prevSentence) => [
           ...prevSentence,
-          sentences[currentSentence],
+          sentences[currentSentenceIndex],
         ]);
-        setCurrentSentence((prevIndex) => prevIndex + 1);
+        if (sentences[currentSentenceIndex].includes("__________")) {
+          setShowOptions(true);
+          const getOptions = options[currentOptionsIndex].split("_");
+          setCurrenOptions(getOptions);
+          setCurrenOptionsIndex((prevIndex) => prevIndex + 1);
+        } else {
+          setErrorMessage("");
+          setSuccessMessage("");
+          setCurrentSentenceIndex((prevIndex) => prevIndex + 1);
+        }
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [currentSentence]);
+  }, [currentSentenceIndex]);
+
+  useEffect(() => {
+    const solution = solutions[currentSolutionIndex];
+
+    if (selectedOption) {
+      if (solution === selectedOption) {
+        setSuccessMessage("That is correct!");
+      } else {
+        setErrorMessage("That is not right the right answer is: " + solution);
+      }
+
+      const updatedSentence = sentences[currentSentenceIndex].replace(
+        "___________",
+        solution
+      );
+      setDisplayedSentences((prevSentences) => {
+        const updatedSentences = [...prevSentences];
+        updatedSentences.pop(); // Remove the sentence with "___"
+        return [...updatedSentences, updatedSentence];
+      });
+      setShowOptions(false);
+      setSelectedOption("");
+      setCurrentSolutionIndex((prevIndex) => prevIndex + 1);
+      setCurrentSentenceIndex((prevIndex) => prevIndex + 1);
+    }
+  }, [selectedOption]);
+
+  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleOptionSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
 
   return (
     <div>
-      {displayedSentence.map((sentence, index) => (
+      {displayedSentences.map((sentence, index) => (
         <div key={index}>{sentence}</div>
       ))}
+      {showOptions && (
+        <form onSubmit={handleOptionSubmit}>
+          {currentOptions.map((option, index) => (
+            <div key={index}>
+              <label>
+                <input
+                  type="checkbox"
+                  value={option}
+                  checked={selectedOption === option}
+                  onChange={handleOptionChange}
+                />
+                {option}
+              </label>
+            </div>
+          ))}
+        </form>
+      )}
+      <div className="mt-10">
+        <p className="text-green-800 font-bold">{successMessage}</p>
+        <p className="text-red-800 font-bold">{errorMessage}</p>
+      </div>
     </div>
   );
 }
