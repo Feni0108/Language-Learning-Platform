@@ -1,0 +1,127 @@
+import {Word} from "@prisma/client";
+
+/*
+Usage:
+- update the database schema: npx prisma migrate dev
+- regenerate the Prisma client: npx prisma generate
+- In the terminal navigate to the root directory of the project
+- Run the following command: npx ts-node --compiler-options '{"module":"commonjs"}' db/seed.ts
+*/
+
+const prisma = require('../lib/prisma').default;
+
+async function seed() {
+  try {
+    await prisma.$connect();
+    const wordList: { english: string, hungarian: string }[] = [
+      {english: 'hello', hungarian: 'szia'},
+      {english: 'goodbye', hungarian: 'viszlát'},
+      {english: 'yes', hungarian: 'igen'},
+      {english: 'no', hungarian: 'nem'},
+      {english: 'thank you', hungarian: 'köszönöm'},
+      {english: 'please', hungarian: 'kérlek'},
+      {english: 'sorry', hungarian: 'bocsánat'},
+      {english: 'excuse me', hungarian: 'elnézést'},
+      {english: 'today', hungarian: 'ma'},
+      {english: 'tomorrow', hungarian: 'holnap'},
+      {english: 'yesterday', hungarian: 'tegnap'},
+      {english: 'morning', hungarian: 'reggel'},
+      {english: 'evening', hungarian: 'este'},
+      {english: 'night', hungarian: 'éjszaka'},
+      {english: 'week', hungarian: 'hét'},
+      {english: 'month', hungarian: 'hónap'},
+      {english: 'year', hungarian: 'év'},
+      {english: 'day', hungarian: 'nap'},
+      {english: 'hour', hungarian: 'óra'},
+      {english: 'minute', hungarian: 'perc'},
+      {english: 'second', hungarian: 'másodperc'},
+      {english: 'money', hungarian: 'pénz'},
+      {english: 'book', hungarian: 'könyv'},
+      {english: 'school', hungarian: 'iskola'},
+      {english: 'car', hungarian: 'autó'},
+      {english: 'house', hungarian: 'ház'},
+      {english: 'dog', hungarian: 'kutya'},
+      {english: 'cat', hungarian: 'macska'},
+      {english: 'tree', hungarian: 'fa'},
+      {english: 'flower', hungarian: 'virág'},
+      {english: 'river', hungarian: 'folyó'},
+      {english: 'mountain', hungarian: 'hegy'},
+      {english: 'sun', hungarian: 'nap'},
+      {english: 'moon', hungarian: 'hold'},
+      {english: 'star', hungarian: 'csillag'},
+      {english: 'water', hungarian: 'víz'},
+      {english: 'fire', hungarian: 'tűz'},
+      {english: 'earth', hungarian: 'föld'},
+      {english: 'air', hungarian: 'levegő'},
+      {english: 'food', hungarian: 'étel'},
+      {english: 'drink', hungarian: 'ital'},
+      {english: 'friend', hungarian: 'barát'},
+      {english: 'family', hungarian: 'család'},
+      {english: 'love', hungarian: 'szeretet'},
+      {english: 'pen', hungarian: 'toll'},
+      {english: 'pencil', hungarian: 'ceruza'},
+      {english: 'table', hungarian: 'asztal'},
+      {english: 'chair', hungarian: 'szék'},
+      {english: 'computer', hungarian: 'számítógép'},
+      {english: 'phone', hungarian: 'telefon'},
+      {english: 'music', hungarian: 'zene'},
+      {english: 'art', hungarian: 'művészet'},
+      {english: 'sport', hungarian: 'sport'},
+      {english: 'work', hungarian: 'munka'},
+      {english: 'study', hungarian: 'tanulás'},
+      {english: 'play', hungarian: 'játék'},
+      {english: 'sleep', hungarian: 'alvás'},
+      {english: 'eat', hungarian: 'enni'},
+      {english: 'drink', hungarian: 'inni'},
+      {english: 'run', hungarian: 'futni'},
+      {english: 'swim', hungarian: 'úszni'},
+      {english: 'jump', hungarian: 'ugrani'},
+      {english: 'laugh', hungarian: 'nevetni'},
+      {english: 'cry', hungarian: 'sírni'},
+      {english: 'happy', hungarian: 'boldog'},
+      {english: 'sad', hungarian: 'szomorú'},
+      {english: 'big', hungarian: 'nagy'},
+      {english: 'small', hungarian: 'kicsi'},
+      {english: 'good', hungarian: 'jó'},
+      {english: 'bad', hungarian: 'rossz'},
+      {english: 'hot', hungarian: 'meleg'},
+      {english: 'cold', hungarian: 'hideg'},
+      {english: 'new', hungarian: 'új'},
+      {english: 'old', hungarian: 'öreg'},
+      {english: 'beautiful', hungarian: 'szép'},
+      {english: 'ugly', hungarian: 'csúnya'},
+      {english: 'interesting', hungarian: 'érdekes'},
+      {english: 'boring', hungarian: 'unalmas'},
+      {english: 'easy', hungarian: 'könnyű'},
+      {english: 'difficult', hungarian: 'nehéz'},
+      {english: 'happy', hungarian: 'boldog'},
+      {english: 'sad', hungarian: 'szomorú'},
+      {english: 'fast', hungarian: 'gyors'},
+      {english: 'slow', hungarian: 'lassú'},
+      {english: 'near', hungarian: 'közel'},
+      {english: 'far', hungarian: 'távol'},
+    ];
+
+    const existingWords: Word[] = await prisma.word.findMany();
+
+    // prevent copying the same word pairs to the database
+    const newWords = wordList.filter((word) => {
+      const exists = existingWords.some(
+          (existingWord) =>
+              existingWord.hungarian === word.hungarian &&
+              existingWord.english === word.english
+      );
+      return !exists;
+    });
+
+    await prisma.word.createMany({data: newWords});
+
+    console.log('Database seeded successfully!');
+  } catch (error) {
+    console.error('Error seeding the database:', error);
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+seed();
