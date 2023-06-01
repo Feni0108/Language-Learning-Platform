@@ -4,12 +4,15 @@ import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import styles from "@/styles/Senctence.module.css";
 import Word from "@/pages/sentence/Word";
+import Hover from "@/pages/sentence/Hover";
+
+
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const sentences = await prisma.sentence.findMany();
-    const dummyWords = await prisma.dictionary.findMany();
-    const sentence = getRandomSentence(sentences, dummyWords);
+    const dictionary = await prisma.dictionary.findMany();
+    const sentence = getRandomSentence(sentences, dictionary);
     return {
         props: {sentence: sentence},
     }
@@ -22,6 +25,8 @@ export default function Sentence(sentence) {
     const [answer, setAnswer] = useState([]);
     const [isGood, setIsGood] = useState(false);
 
+
+    console.log(task.sentence.original);
 
     const handleSolved = () => {
         let finalAnswer:string = "";
@@ -67,7 +72,13 @@ export default function Sentence(sentence) {
         <>
         <h3>Translate this sentence</h3>
             <div className="sentence">
-                {task.sentence.original}
+                {task.sentence.original.map((value, number) => (
+                    <Hover
+                        word={value.word}
+                        id={number}
+                        hover={value.hover}
+                    />
+                ))}
             </div>
             <div className={styles.answer}>
                 {answer.map((value, index) => (
@@ -100,3 +111,4 @@ export default function Sentence(sentence) {
         </>
     )
 }
+
