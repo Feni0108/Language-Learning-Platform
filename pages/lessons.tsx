@@ -9,6 +9,7 @@ import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 
 export default function Lessons() {
@@ -24,6 +25,7 @@ export default function Lessons() {
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
+    const router = useRouter();
 
 
 
@@ -95,7 +97,11 @@ export default function Lessons() {
         updatePoints(session.user?.totalPoints+point, session.user?.id).then(
             (response) => {
                 if (response){
-                    update({id : session.user.id});
+                    update({id : session.user.id}).then(
+                        (response) => {
+                            router.push("/");
+                        }
+                    );
                 }
             }
         );
@@ -123,8 +129,13 @@ export default function Lessons() {
                         Congratulations! You finished the lesson!
                         Your points: {point}
                     </div>
-                    <Link onClick={handleFinished} href="/">Continue</Link>
+                    <button onClick={handleFinished}>Continue</button>
                 </div>}
         </div>
     )
 }
+
+/*
+<Link onClick={handleFinished} href="/">Continue</Link>
+
+ */
