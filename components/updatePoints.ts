@@ -1,11 +1,12 @@
-import {router} from "next/client";
-import {EventHandler, useState} from "react";
 
 export const updatePoints = async (totalPoints: number, userId:string) => {
     const endpoint = "http://localhost:3000/api/updatePoints";
     console.log("In apiy");
     console.log(userId);
     console.log(totalPoints);
+
+
+
     try {
         const postData = {
             method: "POST",
@@ -17,8 +18,6 @@ export const updatePoints = async (totalPoints: number, userId:string) => {
         }
         const res = await fetch(endpoint, postData);
         const response = await res.json();
-        console.log(response);
-        console.log(typeof response);
         /*if (typeof response === "object") {
             await router.push("http://localhost:3000/");
         }*/
