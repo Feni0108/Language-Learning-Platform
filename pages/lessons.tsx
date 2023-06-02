@@ -92,8 +92,13 @@ export default function Lessons() {
 
 
     const handleFinished = () => {
-        updatePoints(session.user?.totalPoints+point, session.user?.id);
-        update({id : session.user.id});
+        updatePoints(session.user?.totalPoints+point, session.user?.id).then(
+            (response) => {
+                if (response){
+                    update({id : session.user.id});
+                }
+            }
+        );
 
     }
 

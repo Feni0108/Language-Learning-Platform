@@ -1,6 +1,7 @@
 import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {now} from "next-auth/client/_utils";
+import {DateTime} from "next-auth/providers/kakao";
 
 
 export default async function handler(
@@ -27,16 +28,18 @@ export default async function handler(
                 }
             }
         );
-        if (lastGame.lastGame === null) {
+        const date: Date = lastGame.lastGame;
+        if (date.getMinutes() < new Date().getMinutes()) {
             try {
-                const updateLastGame = await prisma.user.update({
+                const updateLastGame =
+                    await prisma.user.update({
                     where : {
                         id: userId,
                     },
                     data: {
                         lastGame: new Date()
                     }
-                })
+                });
                 console.log(updateLastGame);
                 const updatePoints = await prisma.leaderboard.update(
                     {
@@ -45,10 +48,12 @@ export default async function handler(
                         },
                         data: {
                             totalPoints: points,
+                            strike: lastGame.leaderBoard.strike+1
                         }
                     }
                 );
-                return res.status(200);
+                console.log(updatePoints);
+                return res.status(200).send(updatePoints);
             } catch (e) {
                 return res.status(404).json({response: {message: message}});
             }
@@ -64,7 +69,7 @@ export default async function handler(
                         }
                     }
                 );
-                return res.status(200);
+                return res.status(200).send(updatePoints);
             } catch (e) {
                 return res.status(404).json({response: {message: message}});
             }

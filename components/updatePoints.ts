@@ -18,6 +18,7 @@ export const updatePoints = async (totalPoints: number, userId:string) => {
         }
         const res = await fetch(endpoint, postData);
         const response = await res.json();
+        return response;
         /*if (typeof response === "object") {
             await router.push("http://localhost:3000/");
         }*/
