@@ -75,9 +75,11 @@ const authOptions: NextAuthOptions = {
                         userId: session.id
                     },
                     select: {
-                        totalPoints: true
+                        totalPoints: true,
+                        strike: true
                     }
                 });
+                token.strike = totalPoints.strike;
                 token.totalPoints = totalPoints.totalPoints;
             }
             if (user) {

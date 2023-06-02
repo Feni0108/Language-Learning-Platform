@@ -28,8 +28,13 @@ export default async function handler(
                 }
             }
         );
-        const date: Date = lastGame.lastGame;
-        if (date.getMinutes() < new Date().getMinutes()) {
+        let date: Date = new Date();
+        if (lastGame.lastGame !== null){
+            date = lastGame.lastGame;
+        } else {
+            date.setMinutes(date.getMinutes()-1);
+        }
+        if (date.getMinutes() < new Date().getMinutes() ) {
             try {
                 const updateLastGame =
                     await prisma.user.update({

@@ -134,8 +134,3 @@ export default function Lessons() {
         </div>
     )
 }
-
-/*
-<Link onClick={handleFinished} href="/">Continue</Link>
-
- */
