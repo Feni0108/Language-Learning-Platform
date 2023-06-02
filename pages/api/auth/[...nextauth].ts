@@ -111,10 +111,12 @@ const authOptions: NextAuthOptions = {
                         userId: user.id
                     },
                     select: {
-                        totalPoints: true
+                        totalPoints: true,
+                        strike: true
                     }
                 });
                 token.totalPoints = totalPoints.totalPoints;
+                token.strike = totalPoints.strike;
                 token.id=user.id;
             }
             return token;
@@ -128,8 +130,10 @@ const authOptions: NextAuthOptions = {
                 }
                 if (typeof token.totalPoints === "number") {
                     session.user.totalPoints = token.totalPoints
+                    session.user.strike = token.strike
                 }
                 session.user.id = token.id;
+
             }
             return session;
         },

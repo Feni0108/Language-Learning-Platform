@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <div>
-      Hello
       {!session && (
           <>
             <AccessDenied />
@@ -30,7 +29,8 @@ export default function Home() {
               {console.log(session.user)}
               <h4>Your points: {session.user.totalPoints}</h4>
               {session.user?.username} <br />
-
+              <br/>
+                         {session.user.strike > 0 && <h2>Ohh, yes! You are in {session.user.strike} strike!</h2>}
               <Link href="lessons">Start game</Link>
             <SignOutButton />
           </>
