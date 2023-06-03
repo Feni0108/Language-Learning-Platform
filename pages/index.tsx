@@ -1,18 +1,31 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Inter } from 'next/font/google'
 import { useSession } from "next-auth/react";
 import SignOutButton from "@/components/SignOutButton";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
-import {Routes, Route, useNavigate} from 'react-router-dom';
-import Lessons from "@/pages/lessons2";
 import Link from "next/link";
+import {lastGame} from "@/components/lastGame";
+
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const { data: session, status, update } = useSession();
+  const [isPlayToday, setIsPlayToday] = useState<boolean>();
+
+  useEffect(() => {
+    if (session) {
+      lastGame(session.user?.id).then((res) => {
+        setIsPlayToday(res);
+      });
+    }
+  }, [session])
+
+  useEffect(() => {
+    console.log(isPlayToday);
+  }, [isPlayToday])
 
 
   return (

@@ -1,7 +1,5 @@
 import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {now} from "next-auth/client/_utils";
-import {DateTime} from "next-auth/providers/kakao";
 
 
 export default async function handler(
@@ -14,8 +12,6 @@ export default async function handler(
     if (req.method === "POST") {
         const userId = req.body.userId;
         const points = req.body.points;
-        console.log(userId);
-        console.log(points);
 
         const lastGame = await prisma.user.findUnique(
             {
@@ -34,6 +30,9 @@ export default async function handler(
         } else {
             date.setMinutes(date.getMinutes()-1);
         }
+
+
+
         if (date.getMinutes() < new Date().getMinutes() ) {
             try {
                 const updateLastGame =
@@ -45,7 +44,7 @@ export default async function handler(
                         lastGame: new Date()
                     }
                 });
-                console.log(updateLastGame);
+
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {
@@ -64,6 +63,16 @@ export default async function handler(
             }
         } else {
             try {
+                const updateLastGame =
+                    await prisma.user.update({
+                        where : {
+                            id: userId,
+                        },
+                        data: {
+                            lastGame: new Date()
+                        }
+                    });
+
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {
