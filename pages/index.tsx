@@ -24,7 +24,9 @@ export default function Home() {
   }, [session])
 
   useEffect(() => {
-    console.log(isPlayToday);
+    if (session) {
+      update({id: session.user.id})
+    }
   }, [isPlayToday])
 
 

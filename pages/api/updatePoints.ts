@@ -13,6 +13,7 @@ export default async function handler(
         const userId = req.body.userId;
         const points = req.body.points;
 
+
         const lastGame = await prisma.user.findUnique(
             {
                 where: {

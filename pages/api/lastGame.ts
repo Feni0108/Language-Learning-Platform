@@ -23,6 +23,6 @@ export default async function handler(
                         }
                     }
                 );
-                return res.status(200).send(testDate(lastGame.lastGame));
+                return res.status(200).send(testDate(lastGame.lastGame, id));
     }
 }
