@@ -1,7 +1,7 @@
 import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import prisma from "@/lib/prisma";
 import {GetServerSideProps} from "next";
 import {FaUserGraduate} from 'react-icons/fa'
@@ -19,14 +19,35 @@ export const getServerSideProps: GetServerSideProps = async () => {
             }
         }
         });
-    leaderBoard.sort(function (a, b){return a.totalPoints-b.totalPoints}).reverse();
     return {
         props: {leaderBoard: leaderBoard},
     }
 }
 export default function Leaderboard({leaderBoard}) {
     const {data: session} = useSession();
-    console.log(leaderBoard);
+    const [isPoint, setIsPoint] = useState<boolean>(true);
+    const [sortLeaderBoard, setSortLeaderBoard] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        async function setNewLeaderBoard() {
+            if (isPoint) {
+                setSortLeaderBoard(leaderBoard.sort(function (a, b) {
+                    return a.totalPoints - b.totalPoints
+                }).reverse());
+            } else {
+                setSortLeaderBoard(leaderBoard.sort(function (a, b) {
+                    return a.strike - b.strike
+                }).reverse());
+            }
+        }
+        setNewLeaderBoard().then(
+            (res) => {
+                setIsLoading(false);
+            }
+        )
+    }, [isPoint])
+
 
     return (
         <div>
@@ -37,11 +58,19 @@ export default function Leaderboard({leaderBoard}) {
                     <SignUpButton/>
                 </>
             )}
-            {session && (
+            {!isLoading && session && (
                 <>Signed in as {session.user?.email ? session.user.email : session.user.username} <br/>
                     <div>
-                        {leaderBoard.map((value, index) => (
+                        <button
+                            onClick={isPoint? null : () => {setIsPoint(true), setIsLoading(true)}}
+                        >Points</button>
+                        <button
+                            onClick={!isPoint? null : () => {setIsPoint(false), setIsLoading(true)}}
+                        >Strike</button>
+                        {console.log(sortLeaderBoard)}
+                        {sortLeaderBoard.map((value, index) => (
                             <div key={"or"+index}>
+                                {console.log(value)}
                             <session>
                                 {index+1+" "}
                             </session>
@@ -56,7 +85,8 @@ export default function Leaderboard({leaderBoard}) {
                                 {value.user.username ? value.user.username : value.user.name}
                             </session>
                             <session>
-                                {" "+value.totalPoints}
+                                {isPoint &&" "+value.totalPoints}
+                                {!isPoint &&" "+value.strike}
                             </session>
                             </div>
                         ))}
