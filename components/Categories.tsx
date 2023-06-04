@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
-const Greetings = ({progress}) => {
+const Greetings = ({progress, progressLimit, type}) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isShown, setIsShown] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
-        if (progress >= 0){
+        if (progress >= progressLimit){
             setIsVisible(true);
         }
     }, [progress])
@@ -19,8 +19,9 @@ const Greetings = ({progress}) => {
     return (
         <div >
             {isShown && <div>
-                Family
+                {type}
             </div>}
+            {!isShown && <br/>}
             <button
                 className={isVisible ? "text-green-600" : "line-through text-grey-200"}
                 onClick={isVisible? () => handleClick() : null}
