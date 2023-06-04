@@ -1,5 +1,7 @@
 import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
+import {testDate} from "@/components/testDate";
+
 
 
 export default async function handler(
@@ -29,12 +31,10 @@ export default async function handler(
         if (lastGame.lastGame !== null){
             date = lastGame.lastGame;
         } else {
-            date.setMinutes(date.getMinutes()-1);
+            date.setFullYear(date.getFullYear()-2);
         }
-
-
-
-        if (date.getMinutes() < new Date().getMinutes() ) {
+        console.log(testDate(date,userId))
+        if (!testDate(date, userId)) {
             try {
                 const updateLastGame =
                     await prisma.user.update({
