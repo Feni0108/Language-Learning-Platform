@@ -1,11 +1,15 @@
 //Creation of necessary variables
 
-const originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = new Array();
-const translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = new Array();
+let originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = new Array();
+let translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = new Array();
 
 
 
 const getRandomWord = (allWords, maxId) => {
+    /*for(let i:number = 0; i<allWords.length; i++) {
+        originalWord.push({id:allWords[i].id, original_word:allWords[i].original_word, isVisible:true, isSelected:false})
+        translatedWord.push({id:allWords[i].id, translated_word:allWords[i].translated_word, isVisible:true, isSelected:false})
+    }*/
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     for(let i:number = 0; i<originalWord.length; i++) {
@@ -20,6 +24,8 @@ const getRandomWord = (allWords, maxId) => {
 
 //Main function for retrieving the necessary variables
 export const getOptions = (allWords) => {
+    originalWord = [];
+    translatedWord = [];
     const maxId = allWords.length;
     do {
         getRandomWord(allWords, maxId);

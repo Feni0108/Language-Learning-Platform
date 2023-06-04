@@ -2,7 +2,7 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { useSession } from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
-import { updatePoints } from "@/components/updatePoints";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,14 +43,7 @@ export default function Home() {
           <div>
             <h4>Your points: {session.user.totalPoints}</h4>
             {session.user?.username} <br />
-            <button
-              onClick={() => {
-                updatePoints(session.user?.totalPoints + 5, session.user?.id);
-                update({ id: session.user.id });
-              }}
-            >
-              Add 5 points just for test
-            </button>
+            <Link href="lessons">Start game</Link>
           </div>
         </div>
       )}

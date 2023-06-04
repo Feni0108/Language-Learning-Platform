@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+
 import GithubProvider from "next-auth/providers/github";
 
 const authOptions: NextAuthOptions = {
@@ -131,7 +132,6 @@ const authOptions: NextAuthOptions = {
       }
       return session;
     },
-  },
 };
 
 export default NextAuth(authOptions);

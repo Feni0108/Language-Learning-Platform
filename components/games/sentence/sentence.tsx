@@ -1,35 +1,22 @@
-import {getRandomSentence} from "@/components/getRandomSentence";
 import React, { useState} from "react";
-import {GetServerSideProps} from "next";
-import prisma from "@/lib/prisma";
 import styles from "@/styles/Senctence.module.css";
-import Word from "@/pages/sentence/Word";
+import Word from "@/components/games/sentence/Word";
+import Hover from "@/components/games/sentence/Hover";
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const sentences = await prisma.sentence.findMany();
-    const dummyWords = await prisma.dictionary.findMany();
-    const sentence = getRandomSentence(sentences, dummyWords);
-    return {
-        props: {sentence: sentence},
-    }
-}
 
-
-export default function Sentence(sentence) {
+export default function Sentence({sentence, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
     const [task, setTask] = useState(sentence);
-    const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState([]);
-    const [isGood, setIsGood] = useState(false);
 
 
-    const handleSolved = () => {
+    const handleCheck = () => {
         let finalAnswer:string = "";
         answer.map((word) => {
             finalAnswer = finalAnswer.concat(word.word+" ");
         });
         finalAnswer = finalAnswer.trimEnd();
-        if (finalAnswer === task.sentence.solution){
+        if (finalAnswer === task.solution){
             setIsGood(true);
             setIsSolved(true);
         } else {
@@ -39,7 +26,7 @@ export default function Sentence(sentence) {
     }
     const handleClick = (id, nextVisible:boolean) => {
         let newTask = {...task};
-        newTask.sentence.words.map(word => {
+        newTask.words.map(word => {
             if (word.id === id && !nextVisible) {
                 word.isVisible = nextVisible;
                 const nextAnswer = answer;
@@ -67,19 +54,26 @@ export default function Sentence(sentence) {
         <>
         <h3>Translate this sentence</h3>
             <div className="sentence">
-                {task.sentence.original}
+                {task.original.map((value, number) => (
+                    <Hover
+                        word={value.word}
+                        id={number}
+                        hover={value.hover}
+                    />
+                ))}
             </div>
             <div className={styles.answer}>
                 {answer.map((value, index) => (
                     <div className={styles.word}
                          id={index.toString()}
                         onClick={ isSolved? null :  () => handleClick(value.id, true)}>
+
                         {value.word}
                     </div>
                 ))}
             </div>
             <div>
-                {task.sentence.words.map((value) => (
+                {task.words.map((value) => (
                     <Word
                         word={value.word}
                         id={value.id}
@@ -92,11 +86,16 @@ export default function Sentence(sentence) {
             {isSolved && <div className={isGood? styles.goodAnswer : styles.wrongAnswer}>
                 {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
                 {isGood? null : <h4>Correct Answer:</h4>}
-                {isGood? null : task.sentence.solution}
+                {isGood? null : task.solution}
                 <br/>
-                <button>Next task</button>
+                {isSolved && <div>
+                    <button
+                        onClick={() => handleSolved()}
+                    >Continue</button>
+                </div>}
             </div>}
-            {!isSolved && <button onClick={() => handleSolved()}>Check</button>}
+            {!isSolved && <button onClick={() => handleCheck()}>Check</button>}
         </>
     )
 }
+
