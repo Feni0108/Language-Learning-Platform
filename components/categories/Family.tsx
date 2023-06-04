@@ -6,7 +6,7 @@ const Greetings = ({progress}) => {
     const router = useRouter();
 
     useEffect(() => {
-        if (progress >= 0){
+        if (progress >= 5){
             setIsVisible(true);
         }
     }, [progress])
@@ -18,7 +18,7 @@ const Greetings = ({progress}) => {
     return (
         <div >
             <button
-                className={isVisible ? "text-green-600" : "line-through text-grey-200"}
+                className={isVisible ? "text-green-600 " : "line-through text-grey-200"}
                 onClick={isVisible? () => handleClick() : null}
             >Start Game</button>
         </div>
