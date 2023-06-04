@@ -1,7 +1,7 @@
 //Creation of necessary variables
 
 let originalWord: {id: number, word: string}
-const wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
+let wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
 
 
 
@@ -25,6 +25,8 @@ const getRandomWord = (allWords, maxId) => {
 //Main function for retrieving the necessary variables
 export const getWordWithPictures = (allWords) => {
     const maxId = allWords.length;
+    wordsWithPictures = [];
+    originalWord = undefined;
     do {
         getRandomWord(allWords, maxId);
     } while (wordsWithPictures.length !== 4)
