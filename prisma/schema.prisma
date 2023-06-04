@@ -32,6 +32,9 @@ model User {
   accounts      Account[]
   leaderBoard   Leaderboard?
   sessions      Session[]
+  leaderBoard Leaderboard?
+  isFirstLogin Boolean @default(true)
+  //leaderId Int @unique
 }
 
 model Session {
