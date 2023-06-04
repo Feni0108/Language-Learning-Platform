@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 
 const SignUp = () => {
-  const [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  const [userInfo, setUserInfo] = useState({ username: "", password: "", passwordAgain: "" });
   const [message, setMessage] = useState("");
   const router = useRouter();
   const endpoint = "http://localhost:3000/api/createUser";
@@ -21,8 +21,27 @@ const SignUp = () => {
         body: JSON.stringify({
           username: userInfo.username,
           password: userInfo.password,
+          passwordAgain: userInfo.passwordAgain
         }),
       };
+
+      if (userInfo.password !== userInfo.passwordAgain) {
+        setMessage("Passwords do not match")
+        return false;
+      } else if (userInfo.password.length < 8 && !userInfo.password.match(/[A-Z]/)) {
+        setMessage("Password needs to be at least 8 character, contain an uppercase letter and a digit")
+        return false;
+      } else if (userInfo.password.length < 8) {
+        setMessage("Password needs to be at least 8 characters")
+        return false;
+      } else if (!userInfo.password.match(/[A-Z]/)) {
+        setMessage("Password needs to contain an uppercase letter")
+        return false;
+      } else if (!userInfo.password.match(/^(?=.*[0-9])/)) {
+        setMessage("Password needs to contain a digit");
+        return false;
+      }
+
       const res = await fetch(endpoint, postData);
       const response = await res.json();
 
@@ -105,7 +124,7 @@ const SignUp = () => {
               htmlFor="password"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Password Again
+              Confirm Password
             </label>
             <div className="mt-2">
               <input
@@ -117,9 +136,9 @@ const SignUp = () => {
                 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
                 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
                 focus:ring-indigo-600 sm:text-sm sm:leading-6 ps-5"
-                value={userInfo.password}
+                value={userInfo.passwordAgain}
                 onChange={({ target }) =>
-                  setUserInfo({ ...userInfo, password: target.value })
+                  setUserInfo({ ...userInfo, passwordAgain: target.value })
                 }
                 type="password"
                 placeholder="********"
