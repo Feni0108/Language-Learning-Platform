@@ -1,11 +1,9 @@
 import prisma from "@/lib/prisma";
-import {getServerSession} from "next-auth";
-
 
 export const testDate = (prevDate: Date, id: string) : boolean => {
-    console.log("DateTestComponent")
-    console.log(prevDate);
-
+    if (prevDate == null){
+        return false;
+    }
     const prevDay = prevDate.getDate();
     const day = new Date().getDate();
     const prevYear = prevDate.getFullYear();

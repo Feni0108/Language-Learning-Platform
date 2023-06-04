@@ -33,7 +33,6 @@ export default async function handler(
         } else {
             date.setFullYear(date.getFullYear()-2);
         }
-        console.log(testDate(date,userId))
         if (!testDate(date, userId)) {
             try {
                 const updateLastGame =
@@ -57,7 +56,6 @@ export default async function handler(
                         }
                     }
                 );
-                console.log(updatePoints);
                 return res.status(200).send(updatePoints);
             } catch (e) {
                 return res.status(404).json({response: {message: message}});

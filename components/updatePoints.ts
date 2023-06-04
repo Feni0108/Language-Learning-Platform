@@ -1,9 +1,6 @@
 
 export const updatePoints = async (totalPoints: number, userId:string) => {
     const endpoint = "http://localhost:3000/api/updatePoints";
-    console.log("In apiy");
-    console.log(userId);
-    console.log(totalPoints);
 
 
 
