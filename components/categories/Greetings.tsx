@@ -3,6 +3,7 @@ import {useRouter} from "next/router";
 
 const Greetings = ({progress}) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [isShown, setIsShown] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -17,9 +18,14 @@ const Greetings = ({progress}) => {
 
     return (
         <div >
+            {isShown && <div>
+                Greetings
+            </div>}
             <button
                 className={isVisible ? "text-green-600" : "line-through text-grey-200"}
                 onClick={isVisible? () => handleClick() : null}
+                onMouseEnter={() => setIsShown(true)}
+                onMouseLeave={() => setIsShown(false)}
             >Start Game</button>
         </div>
     );
