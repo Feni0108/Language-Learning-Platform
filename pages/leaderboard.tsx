@@ -67,10 +67,8 @@ export default function Leaderboard({leaderBoard}) {
                         <button
                             onClick={!isPoint? null : () => {setIsPoint(false), setIsLoading(true)}}
                         >Strike</button>
-                        {console.log(sortLeaderBoard)}
                         {sortLeaderBoard.map((value, index) => (
                             <div key={"or"+index}>
-                                {console.log(value)}
                             <session>
                                 {index+1+" "}
                             </session>

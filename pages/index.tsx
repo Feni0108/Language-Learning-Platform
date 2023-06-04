@@ -41,7 +41,6 @@ export default function Home() {
       {session && (
           <>Signed in as {session.user?.email ? session.user.email : session.user.username} <br />
               <img src={session.user?.image}/> <br />
-              {console.log(session.user)}
               <h4>Your points: {session.user.totalPoints}</h4>
               {session.user?.username} <br />
               <br/>
