@@ -13,7 +13,8 @@ const getRandomWord = (allWords, maxId) => {
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     for(let i:number = 0; i<originalWord.length; i++) {
-        if (originalWord[i].id === randomId) newId = false;
+        console.log(originalWord[i].id);
+        if (originalWord[i].id === allWords[randomId-1].id) newId = false;
     }
     if (newId){
         originalWord.push({id:allWords[randomId-1].id, original_word:allWords[randomId-1].original_word, isVisible:true, isSelected:false})
