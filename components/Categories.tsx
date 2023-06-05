@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
+
 const Greetings = ({progress, progressLimit, type}) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isShown, setIsShown] = useState(false);
@@ -13,8 +14,9 @@ const Greetings = ({progress, progressLimit, type}) => {
     }, [progress])
 
     const handleClick = () => {
-        router.push("http://localhost:3000/lessons")
+        router.push({pathname:"http://localhost:3000/lessons", query: {type: type}}, 'http://localhost:3000/lessons/'+type)
     }
+
 
     return (
         <div >

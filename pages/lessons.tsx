@@ -9,9 +9,16 @@ import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 
 export default function Lessons() {
+    const router = useRouter();
+    const { type } = router.query;
+
+
+
+
     const [isSolved, setIsSolved] = useState(false);
     const [gameCount, setGameCount] = useState(0);
     const [isGood, setIsGood] = useState(false);
@@ -42,19 +49,19 @@ export default function Lessons() {
     useEffect(() => {
         switch (id) {
             case 0: {
-                setEndpoint('api/getGamesData/family/dictionary');
+                setEndpoint('api/getGamesData/'+type+'/dictionary');
                 break;
             }
             case 1: {
-                setEndpoint('api/getGamesData/family/picture');
+                setEndpoint('api/getGamesData/'+type+'/picture');
                 break;
             }
             case 2: {
-                setEndpoint('api/getGamesData/family/sentence');
+                setEndpoint('api/getGamesData/'+type+'/sentence');
                 break;
             }
             case 3: {
-                setEndpoint('api/getGamesData/family/pelmanism')
+                setEndpoint('api/getGamesData/'+type+'/pelmanism')
                 break;
             }
         }
