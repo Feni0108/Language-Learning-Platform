@@ -14,7 +14,7 @@ const Greetings = ({progress, progressLimit, type}) => {
     }, [progress])
 
     const handleClick = () => {
-        router.push({pathname:"http://localhost:3000/lessons", query: {type: type}}, 'http://localhost:3000/lessons/'+type)
+        router.push({pathname:"http://localhost:3000/lessons", query: {type: type}}, 'http://localhost:3000/lessons')
     }
 
 

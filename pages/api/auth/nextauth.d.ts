@@ -7,6 +7,8 @@ interface IUser extends DefaultUser {
     username?: string;
     totalPoints?: bigint;
 
+    progress?: bigint;
+
 
 }
 declare module "next-auth" {

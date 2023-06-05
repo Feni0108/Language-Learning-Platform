@@ -21,18 +21,19 @@ const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {},
       authorize: async (credentials, req) => {
-        const { username, password } = credentials as {
+        const {username, password} = credentials as {
           username: string;
           password: string;
         };
 
         // @ts-ignore
         const user = await prisma.user.findUnique({
-          where: { username: username },
+          where: {username: username},
           select: {
             id: true,
             username: true,
             password: true,
+            progress: true
           },
         });
 
@@ -62,7 +63,7 @@ const authOptions: NextAuthOptions = {
             // return final_token
             return params.token;
         },*/
-    async jwt({ token, trigger, user, session }) {
+    async jwt({token, trigger, user, session}) {
       /* Step 1: update the token based on the user object */
       //Update points
       if (trigger === "update" && session?.id) {
@@ -83,6 +84,9 @@ const authOptions: NextAuthOptions = {
         } else {
           token.username = user.name;
         }
+
+        //progress
+        token.progress = user.progress
 
         //Totalpoints
         const findLeaderBoard = await prisma.user.findUnique({
@@ -118,7 +122,7 @@ const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({session, token}) {
       /* Step 2: update the session.user based on the token object */
 
       if (token && session.user) {
@@ -129,9 +133,11 @@ const authOptions: NextAuthOptions = {
           session.user.totalPoints = token.totalPoints;
         }
         session.user.id = token.id;
+        session.user.progress = token.progress
       }
       return session;
     },
+  }
 };
 
 export default NextAuth(authOptions);
