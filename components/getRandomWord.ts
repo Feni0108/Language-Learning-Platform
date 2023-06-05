@@ -14,7 +14,9 @@ const getRandomWord = (allWords, maxId) => {
     let newId = true;
     for(let i:number = 0; i<originalWord.length; i++) {
         console.log(originalWord[i].id);
-        if (originalWord[i].id === allWords[randomId-1].id) newId = false;
+        if (originalWord[i].id === allWords[randomId-1].id ||
+        originalWord[i].original_word === allWords[randomId-1].original_word ||
+        translatedWord[i].translated_word === allWords[randomId-1].translated_word) newId = false;
     }
     if (newId){
         originalWord.push({id:allWords[randomId-1].id, original_word:allWords[randomId-1].original_word, isVisible:true, isSelected:false})
