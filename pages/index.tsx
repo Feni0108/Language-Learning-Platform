@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import { useSession } from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
+import Greetings from "@/components/categories/Greetings";
+import Family from "@/components/categories/Family";
+import Categories from "@/components/Categories";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +47,8 @@ export default function Home() {
             <h4>Your points: {session.user.totalPoints}</h4>
             {session.user?.username} <br />
             <Link href="lessons">Start game</Link>
+            <Categories progress={0} progressLimit={0} type={"Greetings"} />
+            <Categories progress={0} progressLimit={5} type={"Family"} />
           </div>
         </div>
       )}

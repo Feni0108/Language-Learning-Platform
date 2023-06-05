@@ -42,19 +42,19 @@ export default function Lessons() {
     useEffect(() => {
         switch (id) {
             case 0: {
-                setEndpoint('api/getGamesData/dictionary');
+                setEndpoint('api/getGamesData/family/dictionary');
                 break;
             }
             case 1: {
-                setEndpoint('api/getGamesData/picture');
+                setEndpoint('api/getGamesData/family/picture');
                 break;
             }
             case 2: {
-                setEndpoint('api/getGamesData/sentence');
+                setEndpoint('api/getGamesData/family/sentence');
                 break;
             }
             case 3: {
-                setEndpoint('api/getGamesData/pelmanism')
+                setEndpoint('api/getGamesData/family/pelmanism')
                 break;
             }
         }
