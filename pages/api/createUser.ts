@@ -23,7 +23,7 @@ export default async function handler(
       return res.status(200).send(newUser);
     } catch (e) {
       message = "Username already exists";
-      return res.status(404).json({ response: { message: message } });
+      return res.status(404).json({response: {message: message}});
     }
   }
-
+}

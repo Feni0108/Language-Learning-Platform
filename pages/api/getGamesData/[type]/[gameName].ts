@@ -3,10 +3,7 @@ import {getWordWithPictures} from "@/components/getRandomPictures";
 import prisma from "@/lib/prisma";
 import {getRandomSentence} from "@/components/getRandomSentence";
 export default async function handler(req, res) {
-    console.log(req.query);
     const {gameName, type} = req.query;
-    console.log(gameName);
-    console.log(type);
     const newType = type.toUpperCase();
     switch (gameName) {
         case "dictionary" : {
@@ -16,7 +13,6 @@ export default async function handler(req, res) {
                 }
                 }
             );
-            console.log(words)
             const fourWordsFinally = getOptions(words);
             return res.status(200).json({fourWordsFinally});
         }
@@ -27,14 +23,12 @@ export default async function handler(req, res) {
                     }
                 }
             );
-            console.log(words)
             const fourWordsFinally = getWordWithPictures(words);
             return res.status(200).json({fourWordsFinally});
         }
         case "sentence" : {
             const sentences = await prisma.sentence.findMany();
             const dictionary = await prisma.dictionary.findMany();
-            console.log(dictionary)
             const fourWordsFinally = getRandomSentence(sentences, dictionary);
             return res.status(200).json({fourWordsFinally});
         }
@@ -45,7 +39,6 @@ export default async function handler(req, res) {
                     }
                 }
             );
-            console.log(words)
             const fourWordsFinally = getOptions(words);
             return res.status(200).json({fourWordsFinally});
         }

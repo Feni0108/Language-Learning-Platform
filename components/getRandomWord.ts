@@ -13,7 +13,6 @@ const getRandomWord = (allWords, maxId) => {
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     for(let i:number = 0; i<originalWord.length; i++) {
-        console.log(originalWord[i].id);
         if (originalWord[i].id === allWords[randomId-1].id ||
         originalWord[i].original_word === allWords[randomId-1].original_word ||
         translatedWord[i].translated_word === allWords[randomId-1].translated_word) newId = false;
