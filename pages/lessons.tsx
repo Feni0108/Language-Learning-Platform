@@ -14,9 +14,7 @@ import {useRouter} from "next/router";
 
 export default function Lessons() {
     const router = useRouter();
-    const { type } = router.query;
-
-
+    const { type, isProgressUpdate } = router.query;
 
 
     const [isSolved, setIsSolved] = useState(false);
