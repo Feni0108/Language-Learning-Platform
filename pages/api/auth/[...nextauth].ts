@@ -62,6 +62,7 @@ const authOptions: NextAuthOptions = {
             // return final_token
             return params.token;
         },*/
+
     async jwt({ token, trigger, user, session }) {
       /* Step 1: update the token based on the user object */
       //Update points
@@ -71,18 +72,35 @@ const authOptions: NextAuthOptions = {
             userId: session.id,
           },
           select: {
-            totalPoints: true,
-          },
+                        totalPoints: true,
+                        strike: true
+                    };
         });
         token.totalPoints = totalPoints.totalPoints;
       }
+
+      // Settings
+      if (trigger === "update" && session?.id && session?.type === "settings"){
+        const findSettings = await prisma.user.findUnique({
+          where: {
+            id: session.id
+          },
+          select: {
+            userSettings: true
+          }
+        });
+        console.log(findSettings);
+        token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
+        token.targetLanguage = findSettings.userSettings.targetLanguage;
+        token.learningGoal = findSettings.userSettings.learningGoal;
+      }
+
       if (user) {
         //Usernames
         if (user.username) {
           token.username = user.username;
-        } else {
-          token.username = user.name;
-        }
+        } else token.username = user.name;
+        
 
         //Totalpoints
         const findLeaderBoard = await prisma.user.findUnique({
@@ -111,11 +129,29 @@ const authOptions: NextAuthOptions = {
           },
           select: {
             totalPoints: true,
+            strike: true
           },
         });
         token.totalPoints = totalPoints.totalPoints;
         token.id = user.id;
+
+        //Settings
+        const findSettings = await prisma.user.findUnique({
+          where: {
+            id: user.id
+          },
+          select: {
+            userSettings: true
+          }
+        });
+
+        if(findSettings.userSettings !== null ) {
+          token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
+          token.targetLanguage = findSettings.userSettings.targetLanguage;
+          token.learningGoal = findSettings.userSettings.learningGoal;
+        }
       }
+
       return token;
     },
     async session({ session, token }) {
@@ -127,11 +163,19 @@ const authOptions: NextAuthOptions = {
         }
         if (typeof token.totalPoints === "number") {
           session.user.totalPoints = token.totalPoints;
+          session.user.strike = token.strike;
+        }
+        // Settings
+        if (typeof token.interfaceLanguage !== "undefined"){
+          session.user.interfaceLanguage = token.interfaceLanguage;
+          session.user.targetLanguage = token.targetLanguage;
+          session.user.learningGoal = token.learningGoal;
         }
         session.user.id = token.id;
       }
       return session;
     },
+  },
 };
 
 export default NextAuth(authOptions);

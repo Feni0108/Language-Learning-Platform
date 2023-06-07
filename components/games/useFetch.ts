@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 function useFetch(url){
-
     const [newUrl, setNewUrl] = useState(null);
     const [loading ,setLoading] = useState(false);
     const [pics,setPics]  = useState([]);
