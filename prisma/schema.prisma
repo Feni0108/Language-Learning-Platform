@@ -22,19 +22,30 @@ model Sentence {
 }
 
 model User {
-  id            String       @id @default(cuid())
-  username      String?      @unique
+  id            String        @id @default(cuid())
+  name          String?
   password      String?
-  email         String?      @unique
+  username      String?       @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
-  name          String?
   accounts      Account[]
-  leaderBoard   Leaderboard?
   sessions      Session[]
-  leaderBoard Leaderboard?
+  leaderBoard   Leaderboard?
   isFirstLogin Boolean @default(true)
   //leaderId Int @unique
+  userSettings  UserSettings?
+}
+
+model UserSettings {
+  id                Int      @id @default(autoincrement())
+  interfaceLanguage String?
+  targetLanguage    String?
+  learningGoal      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id])
+  userId            String   @unique
 }
 
 model Session {
@@ -46,20 +57,6 @@ model Session {
 
   @@index([userId], map: "Session_userId_fkey")
 }
-
-model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
 
 model Account {
   id                String  @id @default(cuid())

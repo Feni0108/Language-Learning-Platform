@@ -76,6 +76,23 @@ const authOptions: NextAuthOptions = {
         });
         token.totalPoints = totalPoints.totalPoints;
       }
+
+      // Settings
+      if (trigger === "update" && session?.id && session?.type === "settings"){
+        const findSettings = await prisma.user.findUnique({
+          where: {
+            id: session.id
+          },
+          select: {
+            userSettings: true
+          }
+        });
+        console.log(findSettings);
+        token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
+        token.targetLanguage = findSettings.userSettings.targetLanguage;
+        token.learningGoal = findSettings.userSettings.learningGoal;
+      }
+
       if (user) {
         //Usernames
         if (user.username) {
@@ -115,7 +132,24 @@ const authOptions: NextAuthOptions = {
         });
         token.totalPoints = totalPoints.totalPoints;
         token.id = user.id;
+
+        //Settings
+        const findSettings = await prisma.user.findUnique({
+          where: {
+            id: user.id
+          },
+          select: {
+            userSettings: true
+          }
+        });
+
+        if(findSettings.userSettings !== null ) {
+          token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
+          token.targetLanguage = findSettings.userSettings.targetLanguage;
+          token.learningGoal = findSettings.userSettings.learningGoal;
+        }
       }
+
       return token;
     },
     async session({ session, token }) {
@@ -127,6 +161,12 @@ const authOptions: NextAuthOptions = {
         }
         if (typeof token.totalPoints === "number") {
           session.user.totalPoints = token.totalPoints;
+        }
+        // Settings
+        if (typeof token.interfaceLanguage !== "undefined"){
+          session.user.interfaceLanguage = token.interfaceLanguage;
+          session.user.targetLanguage = token.targetLanguage;
+          session.user.learningGoal = token.learningGoal;
         }
         session.user.id = token.id;
       }
