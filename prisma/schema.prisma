@@ -31,6 +31,7 @@ model User {
   name          String?
   accounts      Account[]
   leaderBoard   Leaderboard?
+  lastGame      DateTime?
   sessions      Session[]
   progress  Int @default(0)
 }
@@ -77,6 +78,7 @@ model Leaderboard {
   id          Int    @id @default(autoincrement())
   userId      String @unique
   totalPoints Int    @default(0)
+  strike      Int   @default(0)
   user        User   @relation(fields: [userId], references: [id])
 }
 
