@@ -45,10 +45,15 @@ export default function Home() {
           <div>
             <h4>Your points: {session.user.totalPoints}</h4>
             {session.user?.username} <br />
-            <Link href="lessons">Start game</Link>
-            {session.user?.progress} <br />
+            <h2>Part 1: Basics</h2>
             <Categories progress={session.user?.progress} progressLimit={0} type={"Greetings"} />
             <Categories progress={session.user?.progress} progressLimit={5} type={"Family"} />
+            <Categories progress={session.user?.progress} progressLimit={10} type={"Animals"} />
+            <Categories progress={session.user?.progress} progressLimit={15} type={"Friends"} />
+            <Categories progress={session.user?.progress} progressLimit={20} type={"Hobby"} />
+            <Categories progress={session.user?.progress} progressLimit={25} type={"Shopping"} />
+            <h2>Part 2: Advanced</h2>
+            <h4 className="font-style: italic">This part is under development. Check later!</h4>
           </div>
         </div>
       )}

@@ -33,7 +33,7 @@ const Greetings = ({progress, progressLimit, type}) => {
                 onClick={isVisible? () => handleClick() : null}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
-            >Start Game</button>
+            >{type}-icon</button>
         </div>
     );
 };
