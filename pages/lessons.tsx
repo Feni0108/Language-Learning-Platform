@@ -18,7 +18,7 @@ export default function Lessons() {
 
 
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(0);
+    const [gameCount, setGameCount] = useState(8);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
@@ -97,8 +97,8 @@ export default function Lessons() {
 
 
     const handleFinished = () => {
-        updatePoints(session.user?.totalPoints+point, session.user?.id);
-        update({id : session.user.id});
+        updatePoints(session.user?.totalPoints+point, session.user?.id, isProgressUpdate);
+        update({id : session.user.id, type : "updatePoints"});
 
     }
 
