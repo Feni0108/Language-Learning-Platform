@@ -17,8 +17,9 @@ export default function Lessons() {
     const { type, isProgressUpdate } = router.query;
 
 
+
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(8);
+    const [gameCount, setGameCount] = useState(10);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
@@ -29,7 +30,6 @@ export default function Lessons() {
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
-
 
 
 

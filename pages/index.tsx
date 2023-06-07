@@ -46,6 +46,7 @@ export default function Home() {
             <h4>Your points: {session.user.totalPoints}</h4>
             {session.user?.username} <br />
             <Link href="lessons">Start game</Link>
+            {session.user?.progress} <br />
             <Categories progress={session.user?.progress} progressLimit={0} type={"Greetings"} />
             <Categories progress={session.user?.progress} progressLimit={5} type={"Family"} />
           </div>

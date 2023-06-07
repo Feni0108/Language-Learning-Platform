@@ -1,7 +1,7 @@
 import {router} from "next/client";
 import {EventHandler, useState} from "react";
 
-export const updatePoints = async (totalPoints: number, userId:string, isProgressUpdate:boolean) => {
+export const updatePoints = async (totalPoints: number, userId: string, isProgressUpdate: boolean) => {
     const endpoint = "http://localhost:3000/api/updatePoints";
     console.log("In apiy");
     console.log(userId);
