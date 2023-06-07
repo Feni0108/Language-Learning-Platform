@@ -31,6 +31,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  lastGame DateTime?
   leaderBoard   Leaderboard?
   isFirstLogin Boolean @default(true)
   //leaderId Int @unique
@@ -86,9 +87,11 @@ model VerificationToken {
 }
 
 model Leaderboard {
+
   id          Int    @id @default(autoincrement())
   userId      String @unique
   totalPoints Int    @default(0)
+  strike      Int @default(0)
   user        User   @relation(fields: [userId], references: [id])
 }
 
