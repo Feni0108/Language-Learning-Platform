@@ -1,10 +1,10 @@
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
 import React, {useEffect, useState} from "react";
 import prisma from "@/lib/prisma";
-import {GetServerSideProps} from "next";
-import {FaUserGraduate} from 'react-icons/fa'
+import { GetServerSideProps } from "next";
+import { FaUserGraduate } from "react-icons/fa";
 import SignOutButton from "@/components/SignOutButton";
 
 export const getServerSideProps: GetServerSideProps = async () => {
