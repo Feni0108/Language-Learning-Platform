@@ -72,22 +72,22 @@ const authOptions: NextAuthOptions = {
             userId: session.id,
           },
           select: {
-                        totalPoints: true,
-                        strike: true
-                    };
+            totalPoints: true,
+            strike: true,
+          },
         });
         token.totalPoints = totalPoints.totalPoints;
       }
 
       // Settings
-      if (trigger === "update" && session?.id && session?.type === "settings"){
+      if (trigger === "update" && session?.id && session?.type === "settings") {
         const findSettings = await prisma.user.findUnique({
           where: {
-            id: session.id
+            id: session.id,
           },
           select: {
-            userSettings: true
-          }
+            userSettings: true,
+          },
         });
         console.log(findSettings);
         token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
@@ -100,7 +100,6 @@ const authOptions: NextAuthOptions = {
         if (user.username) {
           token.username = user.username;
         } else token.username = user.name;
-        
 
         //Totalpoints
         const findLeaderBoard = await prisma.user.findUnique({
@@ -129,7 +128,7 @@ const authOptions: NextAuthOptions = {
           },
           select: {
             totalPoints: true,
-            strike: true
+            strike: true,
           },
         });
         token.totalPoints = totalPoints.totalPoints;
@@ -138,14 +137,14 @@ const authOptions: NextAuthOptions = {
         //Settings
         const findSettings = await prisma.user.findUnique({
           where: {
-            id: user.id
+            id: user.id,
           },
           select: {
-            userSettings: true
-          }
+            userSettings: true,
+          },
         });
 
-        if(findSettings.userSettings !== null ) {
+        if (findSettings.userSettings !== null) {
           token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
           token.targetLanguage = findSettings.userSettings.targetLanguage;
           token.learningGoal = findSettings.userSettings.learningGoal;
@@ -166,7 +165,7 @@ const authOptions: NextAuthOptions = {
           session.user.strike = token.strike;
         }
         // Settings
-        if (typeof token.interfaceLanguage !== "undefined"){
+        if (typeof token.interfaceLanguage !== "undefined") {
           session.user.interfaceLanguage = token.interfaceLanguage;
           session.user.targetLanguage = token.targetLanguage;
           session.user.learningGoal = token.learningGoal;
