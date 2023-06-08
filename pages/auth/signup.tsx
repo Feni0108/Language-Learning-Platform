@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const SignUp = () => {
-  const [userInfo, setUserInfo] = useState({ username: "", password: "", isFirstLogin: true });
+  const [userInfo, setUserInfo] = useState({ username: "", password: "", passwordAgain: "", isFirstLogin: true });
   const [message, setMessage] = useState("");
   const router = useRouter();
   const endpoint = "http://localhost:3000/api/createUser";
@@ -18,9 +18,27 @@ const SignUp = () => {
         body: JSON.stringify({
           username: userInfo.username,
           password: userInfo.password,
-          isFirstLogin: userInfo.isFirstLogin,
+          passwordAgain: userInfo.passwordAgain,
+          isFirstLogin: userInfo.isFirstLogin
         }),
       };
+
+      if (userInfo.password !== userInfo.passwordAgain) {
+        setMessage("Passwords do not match")
+        return false;
+      } else if (userInfo.password.length < 8 && !userInfo.password.match(/[A-Z]/)) {
+        setMessage("Password needs to be at least 8 character, contain an uppercase letter and a digit")
+        return false;
+      } else if (userInfo.password.length < 8) {
+        setMessage("Password needs to be at least 8 characters")
+        return false;
+      } else if (!userInfo.password.match(/[A-Z]/)) {
+        setMessage("Password needs to contain an uppercase letter")
+        return false;
+      } else if (!userInfo.password.match(/^(?=.*[0-9])/)) {
+        setMessage("Password needs to contain a digit");
+        return false;
+      }
 
       const res = await fetch(endpoint, postData);
       const response = await res.json();
@@ -113,6 +131,32 @@ const SignUp = () => {
                 value={userInfo.password}
                 onChange={({ target }) =>
                   setUserInfo({ ...userInfo, password: target.value })
+                }
+                type="password"
+                placeholder="********"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Confirm Password
+            </label>
+            <div className="mt-2">
+              <input
+                id="password"
+                name="password"
+                autoComplete="current-password"
+                required
+                className="block w-full rounded-md border-0 py-1.5 
+                text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+                placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+                focus:ring-indigo-600 sm:text-sm sm:leading-6 ps-5"
+                value={userInfo.passwordAgain}
+                onChange={({ target }) =>
+                  setUserInfo({ ...userInfo, passwordAgain: target.value })
                 }
                 type="password"
                 placeholder="********"
