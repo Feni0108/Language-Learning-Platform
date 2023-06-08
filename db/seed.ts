@@ -1,4 +1,4 @@
-import { Word, Dictionary, Category } from "@prisma/client";
+import { Word, Dictionary, Category, Sentence } from "@prisma/client";
 
 /*
 Usage:
@@ -177,6 +177,54 @@ async function seed() {
     await prisma.Dictionary.createMany({ data: newDictionary });
 
     /*--------------------------------------------------------------------------*/
+
+    /*--------- Seeding the Sentence table ---------*/
+
+    const sentenceList: {
+      english_sentence: string;
+      german_sentence: string;
+    }[] = [
+      {
+        english_sentence: "How are you?",
+        german_sentence: "Wie geht es dir?",
+      },
+      {
+        english_sentence: "What is your name?",
+        german_sentence: "Wie is dein Name?",
+      },
+      {
+        english_sentence: "My name is Fanni",
+        german_sentence: "Mein Name ist Fanni.",
+      },
+      {
+        english_sentence: "Where are you from?",
+        german_sentence: "Woher kommst du?",
+      },
+      {
+        english_sentence: "I came from Hungary.",
+        german_sentence: "Ich komme aus Ungarn.",
+      },
+      {
+        english_sentence: "I am hungry.",
+        german_sentence: "Ich habe hunger.",
+      },
+      {
+        english_sentence: "I am afraid.",
+        german_sentence: "Ich habe Angst.",
+      },
+    ];
+
+    const existingSentences: Sentence[] = await prisma.Sentence.findMany();
+
+    const newSentence = sentenceList.filter((sentence) => {
+      const exists = existingSentences.some(
+        (existingSentences) =>
+          existingSentences.english_sentence === sentence.english_sentence
+      );
+      return !exists;
+    });
+
+    await prisma.Sentence.createMany({ data: newSentence });
   } catch (error) {
     console.error("Error seeding the database:", error);
   } finally {
