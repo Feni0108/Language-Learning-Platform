@@ -225,6 +225,8 @@ async function seed() {
     });
 
     await prisma.Sentence.createMany({ data: newSentence });
+
+    /*--------------------------------------------------------------------------*/
   } catch (error) {
     console.error("Error seeding the database:", error);
   } finally {
