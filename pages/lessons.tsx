@@ -19,7 +19,7 @@ export default function Lessons() {
 
 
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(10);
+    const [gameCount, setGameCount] = useState(1);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
