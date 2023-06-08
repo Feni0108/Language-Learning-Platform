@@ -15,7 +15,7 @@ type Props = {
 
 
 
-    isWrong: object;
+    isWrong : {or_id:number, tr_id: number};
 
     setIsWrong: (val: object) => void;
 
