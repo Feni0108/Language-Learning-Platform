@@ -8,15 +8,18 @@ interface IUser extends DefaultUser {
     totalPoints?: bigint;
 
     progress?: bigint;
-
-
+    interfaceLanguage?: string;
+    targetLanguage?: string;
+    learningGoal?: string;
 }
+
 declare module "next-auth" {
     interface User extends IUser {}
     interface Session {
         user?: User;
     }
 }
+
 declare module "next-auth/jwt" {
     interface JWT extends IUser {}
 }

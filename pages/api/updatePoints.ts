@@ -16,7 +16,6 @@ export default async function handler(
         const points = req.body.points;
         const isProgressUpdate = req.body.isProgressUpdate;
 
-
         const lastGame = await prisma.user.findUnique(
             {
                 where: {
@@ -94,7 +93,6 @@ export default async function handler(
                             }
                         });
                 }
-
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {

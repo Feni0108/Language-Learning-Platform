@@ -49,18 +49,3 @@ export default async function handler(req, res) {
 
 
 }
-
-
-/*let randomWords : number[] = [];
-            while (randomWords.length < 4) {
-                let card = Math.floor(Math.random() * words.length)+1;
-                if (!randomWords.includes(card)) randomWords.push(card);
-            }
-            console.log("RANDOMWORDS")
-            console.log(randomWords);
-            const fourWords = await prisma.dictionary.findMany({
-                where: {
-                    id: { in: randomWords },
-                },
-            })
-            console.log(fourWords);*/

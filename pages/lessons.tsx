@@ -16,8 +16,6 @@ export default function Lessons() {
     const router = useRouter();
     const { type, isProgressUpdate } = router.query;
 
-
-
     const [isSolved, setIsSolved] = useState(false);
     const [gameCount, setGameCount] = useState(1);
     const [isGood, setIsGood] = useState(false);
@@ -30,8 +28,7 @@ export default function Lessons() {
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
-
-
+    const router = useRouter();
 
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 4));
@@ -95,11 +92,18 @@ export default function Lessons() {
         }
     }
 
-
     const handleFinished = () => {
-        updatePoints(session.user?.totalPoints+point, session.user?.id, isProgressUpdate);
-        update({id : session.user.id, type : "updatePoints"});
-
+        updatePoints(session.user?.totalPoints+point, session.user?.id, isProgressUpdate).then(
+            (response) => {
+                if (response){
+                    update({id : session.user.id, type : "updatePoints"}).then(
+                        (response) => {
+                            router.push("/");
+                        }
+                    );
+                }
+            }
+        );
     }
 
     return (
@@ -123,7 +127,7 @@ export default function Lessons() {
                         Congratulations! You finished the lesson!
                         Your points: {point}
                     </div>
-                    <Link onClick={handleFinished} href="/">Continue</Link>
+                    <button onClick={handleFinished}>Continue</button>
                 </div>}
         </div>
     )

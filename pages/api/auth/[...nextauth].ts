@@ -111,8 +111,6 @@ const authOptions: NextAuthOptions = {
         if (user.username) {
           token.username = user.username;
         } else token.username = user.name;
-
-
         //Totalpoints
         const findLeaderBoard = await prisma.user.findUnique({
           where: {
@@ -146,11 +144,8 @@ const authOptions: NextAuthOptions = {
         token.totalPoints = totalPoints.totalPoints;
         token.strike = totalPoints.strike
         token.id = user.id;
-
         //Progress
         token.progress=user.progress;
-
-
         //Settings
         const findSettings = await prisma.user.findUnique({
           where: {
