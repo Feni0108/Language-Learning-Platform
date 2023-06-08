@@ -74,7 +74,7 @@ const authOptions: NextAuthOptions = {
           select: {
                         totalPoints: true,
                         strike: true
-                    };
+                    },
         });
         token.totalPoints = totalPoints.totalPoints;
       }
