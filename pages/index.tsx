@@ -1,15 +1,47 @@
-import React from "react";
-import { Inter } from "next/font/google";
+
+import React, {useEffect, useState} from "react";
+import { Inter } from 'next/font/google'
 import { useSession } from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
-import { updatePoints } from "@/components/updatePoints";
+import Link from "next/link";
+import {lastGame} from "@/components/lastGame";
+import {useRouter} from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { data: session, status, update } = useSession();
 
+  const [isPlayToday, setIsPlayToday] = useState<boolean>();
+
+  useEffect(() => {
+    if (session) {
+      lastGame(session.user?.id).then((res) => {
+        setIsPlayToday(res);
+      });
+    }
+  }, [session])
+
+  useEffect(() => {
+    if (session) {
+      update({id: session.user.id})
+    }
+  }, [isPlayToday])
+
+  const router = useRouter();
+
+
+  if (session) {
+    console.log(session);
+    if (session?.user?.interfaceLanguage === undefined &&
+        session.user?.learningGoal === undefined &&
+        session.user?.targetLanguage === undefined) {
+      router.push("http://localhost:3000/settings");
+    }
+  }
+
   return (
+
     <>
       {!session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
@@ -30,7 +62,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
       {session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
@@ -41,18 +72,16 @@ export default function Home() {
             </span>
           </h1>
           <div>
+           
             <h4>Your points: {session.user.totalPoints}</h4>
             {session.user?.username} <br />
-            <button
-              onClick={() => {
-                updatePoints(session.user?.totalPoints + 5, session.user?.id);
-                update({ id: session.user.id });
-              }}
-            >
-              Add 5 points just for test
-            </button>
+            <br/>
+            {session.user.strike > 0 && <h2>Ohh, yes! You are in {session.user.strike} strike!</h2>}
+            {session.user.strike > 0 && !isPlayToday && <h3>Duo sees a {session.user.strike+1}-day streak in your future. Will there be that many?</h3>}
+            <Link href="lessons">Start game</Link>
           </div>
         </div>
+
       )}
     </>
   );

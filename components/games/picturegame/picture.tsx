@@ -1,34 +1,22 @@
-import {GetServerSideProps} from "next";
-import prisma from "@/lib/prisma";
-import {getWordWithPictures} from "@/components/getRandomPictures";
 import React, {useEffect, useState} from "react";
 import {FormatLessons} from "@/components/FormatLessons";
-import Word from "@/pages/picturegame/Word";
 import {number, string} from "prop-types";
+import Word from "@/components/games/picturegame/Word";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const words = await prisma.dictionary.findMany();
-    console.log(words);
-    const fourWords = getWordWithPictures(words);
-    return {
-        props: {allWords: fourWords},
-    }
-}
 
-export default function Picture({allWords}) {
+export default function Picture({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
     const [task, setTask] = useState(allWords);
     const [word, setWord] = useState({id:number,word:string});
     const [pictures, setPictures] = useState([]);
-    const [isSolved, setIsSolved] = useState(false);
     const [answer, setAnswer] = useState<number>(null);
-    const [isGood, setIsGood] = useState(false);
 
     useEffect(() => {
+        console.log(task);
         setWord(task[0]);
         setPictures(task[1]);
     },[task]);
 
-    const handleSolved = () => {
+    const handleCheck = () => {
         if (answer === word.id){
             setIsGood(true);
             setIsSolved(true);
@@ -49,8 +37,8 @@ export default function Picture({allWords}) {
         })
         setPictures(newPictures);
         setAnswer(id);
-        console.log(answer)
     }
+
 
     return (
         <div>
@@ -69,14 +57,18 @@ export default function Picture({allWords}) {
                     />
                     ))}
             </div>
-            {isSolved && <div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer}>
+            {isSolved && (<div className={isGood? FormatLessons.goodAnswer : FormatLessons.wrongAnswer}>
                 {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
                 {isGood? null : <h4>Correct Answer:</h4>}
                 {isGood? null : pictures.find((picture) => picture.id===word.id).word}
                 <br/>
-                <button>Next task</button>
-            </div>}
-            {!isSolved && answer != null && <button onClick={() => handleSolved()}>Check</button>}
+                {isSolved && <div>
+                    <button
+                        onClick={() => handleSolved()}
+                    >Continue</button>
+                </div>}
+            </div>)}
+            {!isSolved && answer != null && <button onClick={() => handleCheck()}>Check</button>}
         </div>
     )
 }

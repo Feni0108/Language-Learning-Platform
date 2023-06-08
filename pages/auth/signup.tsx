@@ -1,17 +1,14 @@
-import React from "react";
-import { FormEventHandler, useState } from "react";
+import React, { FormEventHandler, useState } from "react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-
 const SignUp = () => {
-  const [userInfo, setUserInfo] = useState({ username: "", password: "", passwordAgain: "" });
+  const [userInfo, setUserInfo] = useState({ username: "", password: "", passwordAgain: "", isFirstLogin: true });
   const [message, setMessage] = useState("");
   const router = useRouter();
   const endpoint = "http://localhost:3000/api/createUser";
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    // validate your userinfo
     e.preventDefault();
 
     try {
@@ -21,7 +18,8 @@ const SignUp = () => {
         body: JSON.stringify({
           username: userInfo.username,
           password: userInfo.password,
-          passwordAgain: userInfo.passwordAgain
+          passwordAgain: userInfo.passwordAgain,
+          isFirstLogin: userInfo.isFirstLogin
         }),
       };
 
@@ -47,12 +45,32 @@ const SignUp = () => {
 
       if (typeof response.response === "undefined") {
         setMessage("");
-        await router.push("/auth/signin");
+        const updatedUserInfo = { ...userInfo, isFirstLogin: true }; // Create a separate variable with updated values
+        setUserInfo(updatedUserInfo); // Update the state if needed (optional)
+
+        // Perform automatic login after registration
+        const result = await signIn("credentials", {
+          username: userInfo.username,
+          password: userInfo.password,
+          redirect: false,
+        });
+
+        if (result.ok) {
+          const updatedUserInfo = { ...userInfo, isFirstLogin: false }; // Update isFirstLogin to false
+          setUserInfo(updatedUserInfo); // Update the state if needed (optional)
+
+          await router.push({
+            pathname: "/registrationSuccess",
+            query: { user: JSON.stringify(updatedUserInfo) },
+          });
+        } else {
+          console.error("Failed to log in after registration.");
+        }
       } else {
         setMessage(response.response.message);
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

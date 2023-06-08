@@ -1,19 +1,9 @@
-import {getOptions} from "@/components/getRandomWord";
 import React, {useEffect, useState} from "react";
 import Word from './Word';
-import {GetServerSideProps} from "next";
-import prisma from '../../lib/prisma';
-
-export const getServerSideProps: GetServerSideProps = async () => {
-    const words = await prisma.dictionary.findMany();
-    const fourWords = getOptions(words);
-    return {
-        props: {allWords: fourWords},
-    }
-}
+import {FormatLessons} from "@/components/FormatLessons";
 
 
-export default function Dictionary({allWords}) {
+const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) => {
     const [words, setWords] = useState(allWords);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
@@ -24,7 +14,12 @@ export default function Dictionary({allWords}) {
     useEffect(() => {
         setOriginalWords(words[0]);
         setTranslatedWords(words[1]);
+        setIsGood(true);
     },[words]);
+
+    useEffect(() => {
+        if (solvedCorrect ===4) setIsSolved(true);
+    }, [solvedCorrect])
 
 
     let fetchData =(() => {
@@ -34,6 +29,7 @@ export default function Dictionary({allWords}) {
             setChoose({or_id: null, tr_id: null});
         }
         if (choose.or_id!= null && choose.tr_id!= null && choose.or_id!==choose.tr_id){
+            setIsGood(false);
             setIsWrong({or_id: choose.or_id, tr_id: choose.tr_id});
             setWrong(choose);
             setChoose({or_id: null, tr_id: null});
@@ -152,9 +148,15 @@ export default function Dictionary({allWords}) {
                     ))}
 
                 </div>
+                {isSolved && <div className={FormatLessons.goodAnswer} >
+                    {<h3>Correct Answer</h3>}
+                    <button
+                        onClick={() => handleSolved()}
+                    >Continue</button>
+                </div>}
         </div>
-            {solvedCorrect === 4 && <button>Next task</button>}
-
         </>
     )
 }
+
+export default Dictionary;
