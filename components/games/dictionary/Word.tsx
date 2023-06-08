@@ -35,7 +35,7 @@ const Word = ({
     setIsWrong
 
 }: Props) => {
-    const [style, setStyle] = useState<string>(null);
+    const [style, setStyle] = useState<string | null>(null);
 
     useEffect(() => {
         if (isSelected){
