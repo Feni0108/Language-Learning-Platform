@@ -42,7 +42,9 @@ const getRandomWord = (length: number, dictionary, type:string) => {
         const randomId = (Math.floor(Math.random() * (dictionary.length))+1)
         let newId = true;
         for(let i:number = 0; i<words.length; i++) {
-            if (words[i].id === randomId){
+            if (words[i].id === randomId ||
+            words[i].word === dictionary[randomId - 1].translated_word ||
+            words[i].word === dictionary[randomId - 1].original_word){
                 newId = false;
             }
         }

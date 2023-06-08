@@ -10,7 +10,8 @@ const getRandomWord = (allWords, maxId) => {
     let newId = true;
     if (allWords[randomId-1].image === null) newId = false;
     for(let i:number = 0; i<wordsWithPictures.length; i++) {
-        if (wordsWithPictures[i].id === randomId) newId = false;
+        if (wordsWithPictures[i].id === allWords[randomId-1].id)
+            newId = false;
     }
     if (newId){
         wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].translated_word, image:allWords[randomId-1].image.toString(), isSelected:false})
