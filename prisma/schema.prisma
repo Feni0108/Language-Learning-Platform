@@ -114,8 +114,19 @@ enum Category {
   SHOPPING
 }
 
-model Word {
-  id        Int    @id @default(autoincrement())
-  english   String
-  hungarian String
+model Words {
+  id          Int
+  word        String
+  language    Language
+  description String
+
+  @@unique([id, language])
+}
+
+enum Language {
+  eng
+  hu
+  sk
+  cz
+  is
 }
