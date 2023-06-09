@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import {FormatLessons} from "@/components/FormatLessons";
 
 
-export default function Story(props: any) {
-  console.log(props);
+export default function Story({data, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
 
@@ -18,9 +18,9 @@ export default function Story(props: any) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const sentences = props.data.sentences;
-  const options: string[] = props.data.options;
-  const solutions = props.data.solutions;
+  const sentences = data.sentences;
+  const options: string[] = data.options;
+  const solutions = data.solutions;
 
   useEffect(() => {
     if (currentSentenceIndex < sentences.length) {
@@ -42,6 +42,9 @@ export default function Story(props: any) {
       }, 2000);
 
       return () => clearTimeout(timer);
+    }
+    if(currentSentenceIndex === sentences.length){
+      setIsSolved(true);
     }
   }, [currentSentenceIndex]);
 
@@ -105,6 +108,13 @@ export default function Story(props: any) {
         <p className="text-green-800 font-bold">{successMessage}</p>
         <p className="text-red-800 font-bold">{errorMessage}</p>
       </div>
+
+      {isSolved && <div className={FormatLessons.goodAnswer} >
+        {<h3>Correct Answer</h3>}
+        <button
+            onClick={() => handleSolved()}
+        >Continue</button>
+      </div>}
     </div>
   );
 }
