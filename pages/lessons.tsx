@@ -28,7 +28,6 @@ export default function Lessons() {
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
-    const router = useRouter();
 
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 4));
