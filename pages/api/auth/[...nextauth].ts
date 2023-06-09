@@ -33,6 +33,7 @@ const authOptions: NextAuthOptions = {
             id: true,
             username: true,
             password: true,
+            progress: true,
           },
         });
 
@@ -66,17 +67,27 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, trigger, user, session }) {
       /* Step 1: update the token based on the user object */
       //Update points
-      if (trigger === "update" && session?.id) {
+      if (trigger === "update" && session?.id && session?.type === "updatePoints") {
         const totalPoints = await prisma.leaderboard.findUnique({
           where: {
             userId: session.id,
           },
           select: {
-                        totalPoints: true,
-                        strike: true
-                    };
+            totalPoints: true,
+            strike: true
+          },
         });
         token.totalPoints = totalPoints.totalPoints;
+        token.strike = totalPoints.strike;
+        const findProgress = await prisma.user.findUnique({
+          where: {
+            id: session.id
+          },
+          select: {
+            progress: true
+          }
+        });
+        token.progress = findProgress.progress;
       }
 
       // Settings
@@ -100,8 +111,6 @@ const authOptions: NextAuthOptions = {
         if (user.username) {
           token.username = user.username;
         } else token.username = user.name;
-        
-
         //Totalpoints
         const findLeaderBoard = await prisma.user.findUnique({
           where: {
@@ -133,8 +142,10 @@ const authOptions: NextAuthOptions = {
           },
         });
         token.totalPoints = totalPoints.totalPoints;
+        token.strike = totalPoints.strike
         token.id = user.id;
-
+        //Progress
+        token.progress=user.progress;
         //Settings
         const findSettings = await prisma.user.findUnique({
           where: {
@@ -172,6 +183,7 @@ const authOptions: NextAuthOptions = {
           session.user.learningGoal = token.learningGoal;
         }
         session.user.id = token.id;
+        session.user.progress = token.progress;
       }
       return session;
     },
