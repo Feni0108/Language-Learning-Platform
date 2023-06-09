@@ -3,27 +3,27 @@ import { useState, useEffect } from "react";
 function useFetch(url){
     const [newUrl, setNewUrl] = useState(null);
     const [loading ,setLoading] = useState(false);
-    const [pics,setPics]  = useState([]);
+    const [task,setTask]  = useState([]);
 
     if (newUrl !== url){
         setNewUrl(url);
     }
 
-    const getPics = async()=>{
+    const getTask = async()=>{
         setLoading(true)
         const response = await fetch(
             newUrl
         );
         const result = await response.json();
-        setPics(result.result);
+        setTask(result.result);
         setLoading(false);
     }
 
 
     useEffect(()=>{
-        getPics();
+        getTask();
     },[newUrl]);
-    return {pics};
+    return {task};
 
 }
 

@@ -3,8 +3,8 @@ import Word from './Word';
 import {FormatLessons} from "@/components/FormatLessons";
 
 
-const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) => {
-    const [words, setWords] = useState(allWords);
+const Dictionary = ({task, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) => {
+    const [words, setWords] = useState(task);
     const [choose, setChoose] = useState({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
     const [originalWords, setOriginalWords] = useState([]);
