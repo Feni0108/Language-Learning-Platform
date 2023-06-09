@@ -15,7 +15,7 @@ type Props = {
 
 
 
-    isWrong: object;
+    isWrong : {or_id:number, tr_id: number};
 
     setIsWrong: (val: object) => void;
 
@@ -35,7 +35,7 @@ const Word = ({
     setIsWrong
 
 }: Props) => {
-    const [style, setStyle] = useState<string>(null);
+    const [style, setStyle] = useState<string | null>(null);
 
     useEffect(() => {
         if (isSelected){

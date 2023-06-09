@@ -9,11 +9,15 @@ import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 
 export default function Lessons() {
+    const router = useRouter();
+    const { type, isProgressUpdate } = router.query;
+
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(0);
+    const [gameCount, setGameCount] = useState(1);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
@@ -24,9 +28,7 @@ export default function Lessons() {
     const [endpoint, setEndpoint] = useState("")
     const {loading , pics}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
-
-
-
+    const router = useRouter();
 
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 4));
@@ -42,19 +44,19 @@ export default function Lessons() {
     useEffect(() => {
         switch (id) {
             case 0: {
-                setEndpoint('api/getGamesData/dictionary');
+                setEndpoint('api/getGamesData/'+type+'/dictionary');
                 break;
             }
             case 1: {
-                setEndpoint('api/getGamesData/picture');
+                setEndpoint('api/getGamesData/'+type+'/picture');
                 break;
             }
             case 2: {
-                setEndpoint('api/getGamesData/sentence');
+                setEndpoint('api/getGamesData/'+type+'/sentence');
                 break;
             }
             case 3: {
-                setEndpoint('api/getGamesData/pelmanism')
+                setEndpoint('api/getGamesData/'+type+'/pelmanism')
                 break;
             }
         }
@@ -90,11 +92,18 @@ export default function Lessons() {
         }
     }
 
-
     const handleFinished = () => {
-        updatePoints(session.user?.totalPoints+point, session.user?.id);
-        update({id : session.user.id});
-
+        updatePoints(session.user?.totalPoints+point, session.user?.id, isProgressUpdate).then(
+            (response) => {
+                if (response){
+                    update({id : session.user.id, type : "updatePoints"}).then(
+                        (response) => {
+                            router.push("/");
+                        }
+                    );
+                }
+            }
+        );
     }
 
     return (
@@ -118,7 +127,7 @@ export default function Lessons() {
                         Congratulations! You finished the lesson!
                         Your points: {point}
                     </div>
-                    <Link onClick={handleFinished} href="/">Continue</Link>
+                    <button onClick={handleFinished}>Continue</button>
                 </div>}
         </div>
     )
