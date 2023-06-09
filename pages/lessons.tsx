@@ -68,7 +68,7 @@ export default function Lessons() {
         if (task.length !== 0){
             switch (id) {
                 case 0: setGame(<Dictionary task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
-                case 1: setGame(<Picture task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
+                case 1: setGame(<Picture allWords={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
                 case 2: setGame(<Sentence sentence={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
                 case 3: setGame(<Pelmanism task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
                 case 4: setIsGood(true);
