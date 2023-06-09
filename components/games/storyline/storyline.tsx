@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {FormatLessons} from "@/components/FormatLessons";
+import styles from "@/styles/Senctence.module.css";
 
 
 export default function Story({data, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
@@ -21,6 +22,7 @@ export default function Story({data, isSolved, setIsSolved, isGood, setIsGood, h
   const sentences = data.sentences;
   const options: string[] = data.options;
   const solutions = data.solutions;
+
 
   useEffect(() => {
     if (currentSentenceIndex < sentences.length) {
@@ -56,6 +58,7 @@ export default function Story({data, isSolved, setIsSolved, isGood, setIsGood, h
         setSuccessMessage("That is correct!");
       } else {
         setErrorMessage("That is not right the right answer is: " + solution);
+        setIsGood(false);
       }
 
       const updatedSentence = sentences[currentSentenceIndex].replace(
@@ -109,8 +112,7 @@ export default function Story({data, isSolved, setIsSolved, isGood, setIsGood, h
         <p className="text-red-800 font-bold">{errorMessage}</p>
       </div>
 
-      {isSolved && <div className={FormatLessons.goodAnswer} >
-        {<h3>Correct Answer</h3>}
+      {isSolved && <div>
         <button
             onClick={() => handleSolved()}
         >Continue</button>

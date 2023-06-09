@@ -8,7 +8,6 @@ import {updatePoints} from "@/components/updatePoints";
 import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
-import Link from "next/link";
 import {useRouter} from "next/router";
 import Story from "@/components/games/storyline/storyline";
 
@@ -74,7 +73,8 @@ export default function Lessons() {
                 case 1: setGame(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
                 case 2: setGame(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
                 case 3: setGame(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
-                case 4: setGame(<Story data={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 4: setIsGood(true);
+                    setGame(<Story data={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
             }
         }
     }, [pics, isSolved])
