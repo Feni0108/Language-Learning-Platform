@@ -15,7 +15,7 @@ function useFetch(url){
             newUrl
         );
         const result = await response.json();
-        setPics(result.fourWordsFinally);
+        setPics(result.result);
         setLoading(false);
     }
 
