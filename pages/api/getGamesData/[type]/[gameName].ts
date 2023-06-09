@@ -42,7 +42,17 @@ export default async function handler(req, res) {
             const fourWordsFinally = getOptions(words);
             return res.status(200).json({fourWordsFinally});
         }
+        case "storyline" : {
+            const storyline = await prisma.storyline.findMany();
+            const randomId = Math.floor(Math.random() * storyline.length);
+            const story = storyline[randomId];
 
+            const options = story.options.split(";");
+            const sentences = story.sentences.split(";");
+            const solutions = story.solutions.split(";");
+            const fourWordsFinally = { sentences, options, solutions };
+            return res.status(200).json({fourWordsFinally});
+        };
         default : return null
     }
 

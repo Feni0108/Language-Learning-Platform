@@ -10,6 +10,7 @@ import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
 import {useRouter} from "next/router";
+import Story from "@/components/games/storyline/storyline";
 
 
 export default function Lessons() {
@@ -30,9 +31,10 @@ export default function Lessons() {
     const { data: session, status, update } = useSession();
 
     const getRandomGames = () => {
-        const randomId = (Math.floor(Math.random() * 4));
+        const randomId = (Math.floor(Math.random() * 5));
         if (randomId !== id) {
-            setId(randomId);
+            //setId(randomId);
+            setId(4);
         } else getRandomGames();
     }
 
@@ -58,6 +60,9 @@ export default function Lessons() {
                 setEndpoint('api/getGamesData/'+type+'/pelmanism')
                 break;
             }
+            case 4: {
+                setEndpoint('api/getGamesData/'+type+'/storyline')
+            }
         }
     }, [id])
 
@@ -69,6 +74,7 @@ export default function Lessons() {
                 case 1: setGame(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
                 case 2: setGame(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
                 case 3: setGame(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 4: setGame(<Story data={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
             }
         }
     }, [pics, isSolved])

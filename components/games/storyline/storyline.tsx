@@ -1,27 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import prisma from "@/lib/prisma";
-import { GetServerSideProps } from "next";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const storyline = await prisma.storyline.findMany();
-
-  const randomId = Math.floor(Math.random() * storyline.length);
-
-  const story = storyline[randomId];
-
-  const options = story.options.split(";");
-  const sentences = story.sentences.split(";");
-  const solutions = story.solutions.split(";");
-
-  return {
-    props: {
-      data: { sentences, options, solutions },
-    },
-  };
-};
 
 export default function Story(props: any) {
+  console.log(props);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
 
