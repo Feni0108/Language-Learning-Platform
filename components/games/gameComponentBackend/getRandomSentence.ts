@@ -4,7 +4,7 @@ let words: {id: number, word: string, isVisible: boolean}[] = [];
 let sentence: { word:string, hover: string[] }[] = [];
 let solution: string = "";
 
-type Sentence = [
+export type Sentence = [
     {
         id: number,
         english_sentence: string,
