@@ -16,10 +16,7 @@ export const updatePoints = async (totalPoints: number, userId: string, isProgre
         }
         const res = await fetch(endpoint, postData);
         const response = await res.json();
-<<<<<<< HEAD
-=======
         return response;
->>>>>>> master
 
     } catch (e) {
         console.log(e);

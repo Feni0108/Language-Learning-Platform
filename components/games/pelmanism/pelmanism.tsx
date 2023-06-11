@@ -4,10 +4,10 @@ import {FormatLessons} from "@/components/FormatLessons";
 
 
 
-const Pelmanism = ({ allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved }) => {
+const Pelmanism = ({task, isSolved, setIsSolved, isGood, setIsGood, handleSolved }) => {
 
-    const [originalWords, setOriginalWords] = useState(allWords[0]);
-    const [translatedWords, setTranslatedWords] = useState(allWords[1]);
+    const [originalWords, setOriginalWords] = useState(task[0]);
+    const [translatedWords, setTranslatedWords] = useState(task[1]);
     const [flippedCards, setFlippedCards] = useState([]);
     const [matchedCards, setMatchedCards] = useState([]);
     const [clicks, setClicks] = useState(0);

@@ -8,8 +8,8 @@ import {updatePoints} from "@/components/updatePoints";
 import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
-import Link from "next/link";
 import {useRouter} from "next/router";
+import Story from "@/components/games/storyline/storyline";
 
 
 export default function Lessons() {
@@ -26,12 +26,11 @@ export default function Lessons() {
     const [id, setId] = useState<number>(null);
     const [game, setGame] = useState<any>();
     const [endpoint, setEndpoint] = useState("")
-    const {loading , pics}  = useFetch(endpoint);
+    const {loading , task}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
-    const router = useRouter();
 
     const getRandomGames = () => {
-        const randomId = (Math.floor(Math.random() * 4));
+        const randomId = (Math.floor(Math.random() * 5));
         if (randomId !== id) {
             setId(randomId);
         } else getRandomGames();
@@ -59,20 +58,24 @@ export default function Lessons() {
                 setEndpoint('api/getGamesData/'+type+'/pelmanism')
                 break;
             }
+            case 4: {
+                setEndpoint('api/getGamesData/'+type+'/storyline')
+            }
         }
     }, [id])
 
     useEffect(() => {
-        console.log(pics);
-        if (pics.length !== 0){
+        if (task.length !== 0){
             switch (id) {
-                case 0: setGame(<Dictionary allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
-                case 1: setGame(<Picture allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
-                case 2: setGame(<Sentence sentence={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
-                case 3: setGame(<Pelmanism allWords={pics} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 0: setGame(<Dictionary task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
+                case 1: setGame(<Picture allWords={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
+                case 2: setGame(<Sentence sentence={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 3: setGame(<Pelmanism task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 4: setIsGood(true);
+                    setGame(<Story data={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
             }
         }
-    }, [pics, isSolved])
+    }, [task, isSolved])
 
 
     const handleSolved = () => {
