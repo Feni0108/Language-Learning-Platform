@@ -4,22 +4,24 @@ interface IUser extends DefaultUser {
     /**
      * Role of user
      */
-    username?: string;
-    totalPoints?: bigint;
+    username?: string | null;
+    totalPoints?: number;
 
-    progress?: bigint;
-    interfaceLanguage?: string;
-    targetLanguage?: string;
-    learningGoal?: string;
+    progress?: number;
+    interfaceLanguage?: string | null;
+    targetLanguage?: string | null;
+    learningGoal?: string | null;
+
+    strike?: number;
 }
 
 declare module "next-auth" {
     interface User extends IUser {}
-    /*interface Session {
+    interface Session {
         user?: User;
-    }*/
+    }
 }
 
 declare module "next-auth/jwt" {
-    //interface JWT extends IUser {}
+    interface JWT extends IUser {}
 }
