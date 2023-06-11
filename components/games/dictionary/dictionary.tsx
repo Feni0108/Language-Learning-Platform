@@ -2,14 +2,35 @@ import React, {useEffect, useState} from "react";
 import Word from './Word';
 import {FormatLessons} from "@/components/FormatLessons";
 
+type WordData = {
+    original_word: string;
+    translated_word: string;
+    id: number;
+    isVisible: boolean;
+    isSelected: boolean;
+  };
+  
+  type DictionaryProps = {
+    allWords: [WordData[], WordData[]];
+    isSolved: boolean;
+    setIsSolved: (isSolved: boolean) => void;
+    isGood: boolean;
+    setIsGood: (isGood: boolean) => void;
+    handleSolved: () => void;
+  };
 
-const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) => {
+  export type ChooseType = {
+    or_id: number | null
+    tr_id: number | null}
+
+
+const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleSolved} : DictionaryProps ) => {
     const [words, setWords] = useState(allWords);
-    const [choose, setChoose] = useState({or_id:null,tr_id:null});
+    const [choose, setChoose] = useState<ChooseType>({or_id:null,tr_id:null});
     const [solvedCorrect, setSolvedCorrect] = useState(0);
-    const [originalWords, setOriginalWords] = useState([]);
-    const [translatedWords, setTranslatedWords] = useState([]);
-    const [isWrong, setIsWrong] = useState({or_id:null,tr_id:null});
+    const [originalWords, setOriginalWords] = useState<WordData[]>([]);
+    const [translatedWords, setTranslatedWords] = useState<WordData[]>([]);
+    const [isWrong, setIsWrong] = useState<ChooseType>({or_id:null,tr_id:null});
 
     useEffect(() => {
         setOriginalWords(words[0]);
@@ -35,43 +56,44 @@ const Dictionary = ({allWords, isSolved, setIsSolved, isGood, setIsGood, handleS
             setChoose({or_id: null, tr_id: null});
         }
     })
-    const setWrong = (choose) => {
+    const setWrong = (choose: { or_id: number | null; tr_id: number | null }) => {
         const newOriginalWords = originalWords;
-        newOriginalWords.map(word => {
-            if (word.id === choose.or_id){
-                word.isSelected = false;
-            }
-        })
+        newOriginalWords.map((word) => {
+          if (word.id === choose.or_id) {
+            word.isSelected = false;
+          }
+        });
         setOriginalWords(newOriginalWords);
-
+      
         const newTranslatedWords = translatedWords;
-        newTranslatedWords.map(word => {
-            if (word.id === choose.tr_id){
-                word.isSelected = false;
-            }
-        })
+        newTranslatedWords.map((word) => {
+          if (word.id === choose.tr_id) {
+            word.isSelected = false;
+          }
+        });
         setTranslatedWords(newTranslatedWords);
-    }
+      };
 
 
-    const setInactive = (choose) => {
+      const setInactive = (choose: { or_id: number | null; tr_id: number | null }) => {
         const newOriginalWords = originalWords;
-        newOriginalWords.map(word => {
-            if (word.id === choose.or_id){
-                word.isVisible = false;
-            }
-        })
+        newOriginalWords.map((word) => {
+          if (word.id === choose.or_id) {
+            word.isVisible = false;
+          }
+        });
         setOriginalWords(newOriginalWords);
+      
         const newTranslatedWords = translatedWords;
-        newTranslatedWords.map(word => {
-            if (word.id === choose.tr_id){
-                word.isVisible = false;
-            }
-        })
+        newTranslatedWords.map((word) => {
+          if (word.id === choose.tr_id) {
+            word.isVisible = false;
+          }
+        });
         setTranslatedWords(newTranslatedWords);
-    }
+      };
 
-    const handleClick = ((id, wordType: string) => {
+    const handleClick = ((id:number, wordType: string) => {
         if (wordType === "original"){
             const newOriginalWords = originalWords;
             newOriginalWords.map(word => {

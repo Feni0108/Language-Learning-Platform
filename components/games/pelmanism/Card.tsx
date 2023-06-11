@@ -1,9 +1,16 @@
 import React from "react";
 import styles from "../../../styles/Card.module.css";
 
-const Card = ({ word, isFlipped, isMatched, onClick }) => {
+type CardProps = {
+    word: string;
+    isFlipped: boolean;
+    isMatched: boolean;
+    onClick: () => void;
+  };
+  
+  const Card = ({ word, isFlipped, isMatched, onClick }: CardProps) => {
     const handleClick = () => {
-        onClick();
+      onClick();
     };
 
     return (
