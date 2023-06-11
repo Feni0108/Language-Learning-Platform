@@ -27,6 +27,7 @@ const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
     }
 
 
+
     return (
         <div >
             {isShown && <div>
@@ -35,7 +36,7 @@ const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
             {!isShown && <br/>}
             <button
                 className={isVisible ? "text-green-600" : "line-through text-grey-200"}
-                onClick={isVisible? () => handleClick() : null}
+                onClick={isVisible? () => handleClick() : undefined}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
             >{type}-icon</button>

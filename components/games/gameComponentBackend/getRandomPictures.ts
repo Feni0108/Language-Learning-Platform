@@ -2,7 +2,7 @@ let originalWord: {id: number, word: string} | undefined
 let wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
 
 
-type allWords = [
+export type Dictionary = [
     {
         id: number,
         original_word: string,
@@ -13,7 +13,7 @@ type allWords = [
 ]
 
 
-const getRandomWord = (allWords: allWords, maxId: number) => {
+const getRandomWord = (allWords: Dictionary, maxId: number) => {
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     if (allWords[randomId-1].image === null) newId = false;
@@ -32,7 +32,7 @@ const getRandomWord = (allWords: allWords, maxId: number) => {
 }
 
 //Main function for retrieving the necessary variables
-export const getWordWithPictures = (allWords:allWords) => {
+export const getWordWithPictures = (allWords:Dictionary) => {
     const maxId = allWords.length;
     wordsWithPictures = [];
     originalWord = undefined;

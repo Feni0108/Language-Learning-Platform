@@ -1,26 +1,34 @@
+import {Dictionary} from "@/components/games/gameComponentBackend/getRandomPictures";
 
 let words: {id: number, word: string, isVisible: boolean}[] = [];
 let sentence: { word:string, hover: string[] }[] = [];
 let solution: string = "";
 
-
-export const getRandomSentence = (sentences, dictionary) => {
+type Sentence = [
+    {
+        id: number,
+        english_sentence: string,
+        german_sentence: string,
+    }
+]
+export const getRandomSentence = (sentences:Sentence, dictionary:Dictionary) => {
     const MAX_ID = sentences.length;
     createData(sentences, MAX_ID, dictionary);
     return {words:getRandom(words), original:sentence, solution:solution};
 }
-const createData = (sentences, MAX_ID, dictionary) => {
+const createData = (sentences: Sentence, MAX_ID:number, dictionary:Dictionary) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
     const randomTranslate = (Math.floor(Math.random() * 2));
     if (randomTranslate === 0){
-        const preWords = sentences[randomId].german_sentence.split(" ");
+        const preWords:string[] = sentences[randomId].german_sentence.split(" ");
+        console.log(preWords)
         const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
         splitSentence(preWords);
         getRandomWord(randomWords, dictionary, "german");
         fillHover(sentences[randomId].english_sentence, "english", dictionary);
         solution = sentences[randomId].german_sentence;
     } else {
-        const preWords = sentences[randomId].english_sentence.split(" ");
+        const preWords:string[] = sentences[randomId].english_sentence.split(" ");
         const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
         splitSentence(preWords);
         getRandomWord(randomWords, dictionary, "english");
@@ -29,13 +37,13 @@ const createData = (sentences, MAX_ID, dictionary) => {
     }
 }
 
-const splitSentence = (preWords) => {
+const splitSentence = (preWords:string[]) => {
     words = [];
     for (let i = 0; i<preWords.length; i++ ){
         words.push({id:(i+1), word: preWords[i], isVisible:true});
     }
 }
-const getRandomWord = (length: number, dictionary, type:string) => {
+const getRandomWord = (length: number, dictionary:Dictionary, type:string) => {
 
     while (words.length < length) {
         const randomId = (Math.floor(Math.random() * (dictionary.length))+1)
@@ -57,7 +65,7 @@ const getRandomWord = (length: number, dictionary, type:string) => {
     }
 }
 
-const fillHover = (originalSentence: string, type: string, dictionary) => {
+const fillHover = (originalSentence: string, type: string, dictionary:Dictionary) => {
     sentence = [];
     const originalWords = originalSentence.split(" ");
     originalWords.map((word) => {
