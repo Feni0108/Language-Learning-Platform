@@ -5,8 +5,10 @@ export const testDate = (prevDate: Date | null, id: string) : boolean => {
     if (prevDate == null){
         return false;
     }
-    const prevDay = moment(prevDate).startOf('day');
-    const day = moment().startOf('day');
+    const prevDay: any = moment(prevDate).startOf('day');
+    const day: any = moment().startOf('day');
+
+    console.log(prevDay);
 
     if (day - prevDay == 0){
         return true;
@@ -15,6 +17,7 @@ export const testDate = (prevDate: Date | null, id: string) : boolean => {
             return false;
         } else deleteStrike(id).then(() => {return false})
     }
+    return false;
 }
 
 export const deleteStrike = async (id: string) => {
