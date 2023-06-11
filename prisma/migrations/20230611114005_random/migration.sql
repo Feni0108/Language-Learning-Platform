@@ -1,24 +1,13 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE `Dictionary` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `original_word` VARCHAR(191) NOT NULL,
+    `translated_word` VARCHAR(191) NOT NULL,
+    `image` LONGBLOB NULL,
+    `category` ENUM('GREETINGS', 'FAMILY', 'ANIMALS', 'CALENDAR', 'FRIENDS', 'HOBBY', 'LIVING', 'SHOPPING') NOT NULL,
 
-  - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - A unique constraint covering the columns `[email]` on the table `User` will be added. If there are existing duplicate values, this will fail.
-  - Added the required column `category` to the `Dictionary` table without a default value. This is not possible if the table is not empty.
-
-*/
--- AlterTable
-ALTER TABLE `Dictionary` ADD COLUMN `category` ENUM('GREETINGS', 'FAMILY', 'ANIMALS', 'CALENDAR', 'FRIENDS', 'HOBBY', 'LIVING', 'SHOPPING') NOT NULL;
-
--- AlterTable
-ALTER TABLE `User` DROP PRIMARY KEY,
-    ADD COLUMN `email` VARCHAR(191) NULL,
-    ADD COLUMN `emailVerified` DATETIME(3) NULL,
-    ADD COLUMN `image` VARCHAR(191) NULL,
-    ADD COLUMN `name` VARCHAR(191) NULL,
-    MODIFY `id` VARCHAR(191) NOT NULL,
-    MODIFY `username` VARCHAR(191) NULL,
-    MODIFY `password` VARCHAR(191) NULL,
-    ADD PRIMARY KEY (`id`);
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Sentence` (
@@ -26,6 +15,37 @@ CREATE TABLE `Sentence` (
     `english_sentence` VARCHAR(191) NOT NULL,
     `german_sentence` VARCHAR(191) NOT NULL,
 
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `User` (
+    `id` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NULL,
+    `password` VARCHAR(191) NULL,
+    `username` VARCHAR(191) NULL,
+    `email` VARCHAR(191) NULL,
+    `emailVerified` DATETIME(3) NULL,
+    `image` VARCHAR(191) NULL,
+    `lastGame` DATETIME(3) NULL,
+    `isFirstLogin` BOOLEAN NOT NULL DEFAULT true,
+
+    UNIQUE INDEX `User_username_key`(`username`),
+    UNIQUE INDEX `User_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `UserSettings` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `interfaceLanguage` VARCHAR(191) NULL,
+    `targetLanguage` VARCHAR(191) NULL,
+    `learningGoal` VARCHAR(191) NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `userId` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `UserSettings_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -76,6 +96,7 @@ CREATE TABLE `Leaderboard` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` VARCHAR(191) NOT NULL,
     `totalPoints` INTEGER NOT NULL DEFAULT 0,
+    `strike` INTEGER NOT NULL DEFAULT 0,
 
     UNIQUE INDEX `Leaderboard_userId_key`(`userId`),
     PRIMARY KEY (`id`)
@@ -85,13 +106,23 @@ CREATE TABLE `Leaderboard` (
 CREATE TABLE `Storyline` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `sentences` VARCHAR(191) NOT NULL,
-    `words` VARCHAR(191) NOT NULL,
+    `options` VARCHAR(191) NOT NULL,
+    `solutions` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- CreateIndex
-CREATE UNIQUE INDEX `User_email_key` ON `User`(`email`);
+-- CreateTable
+CREATE TABLE `Word` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `english` VARCHAR(191) NOT NULL,
+    `hungarian` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `UserSettings` ADD CONSTRAINT `UserSettings_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Session` ADD CONSTRAINT `Session_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
