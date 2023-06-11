@@ -1,7 +1,7 @@
 //Creation of necessary variables
 
-let originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = new Array();
-let translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = new Array();
+let originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = [];
+let translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = [];
 
 
 

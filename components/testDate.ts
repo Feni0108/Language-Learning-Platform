@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import moment from "moment";
 
-export const testDate = (prevDate: Date, id: string) : boolean => {
+export const testDate = (prevDate: Date | null, id: string) : boolean => {
     if (prevDate == null){
         return false;
     }
@@ -13,12 +13,12 @@ export const testDate = (prevDate: Date, id: string) : boolean => {
     } else {
         if (day-prevDay == 86400000){
             return false;
-        } else deleteStrike(id).then((res) => {return false})
+        } else deleteStrike(id).then(() => {return false})
     }
 }
 
 export const deleteStrike = async (id: string) => {
-    const updatePoints = await prisma.leaderboard.update(
+    await prisma.leaderboard.update(
         {
             where: {
                 userId: id,

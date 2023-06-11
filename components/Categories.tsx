@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
+type CategoriesProps = {
+    progress: number;
+    progressLimit: number;
+    type: string;
+}
 
-const Greetings = ({progress, progressLimit, type}) => {
+const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isShown, setIsShown] = useState(false);
     const [isProgressUpdate, setIsProgressUpdate] = useState(false);
@@ -38,4 +43,4 @@ const Greetings = ({progress, progressLimit, type}) => {
     );
 };
 
-export default Greetings;
+export default Categories;

@@ -1,6 +1,6 @@
 //Creation of necessary variables
 
-let originalWord: {id: number, word: string}
+let originalWord: {id: number, word: string} | undefined
 let wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
 
 

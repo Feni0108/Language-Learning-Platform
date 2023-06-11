@@ -1,4 +1,3 @@
-import prisma from "@/lib/prisma";
 
 let words: {id: number, word: string, isVisible: boolean}[] = [];
 let sentence: { word:string, hover: string[] }[] = [];
