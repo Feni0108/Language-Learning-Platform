@@ -2,9 +2,13 @@ import {getOptions} from "@/components/games/gameComponentBackend/getRandomWord"
 import {getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
 import prisma from "@/lib/prisma";
 import {getRandomSentence} from "@/components/games/gameComponentBackend/getRandomSentence";
-export default async function handler(req, res) {
+import {NextApiRequest, NextApiResponse} from "next";
+
+export default async function handler(req: NextApiRequest,
+                                      res: NextApiResponse) {
+
     const {gameName, type} = req.query;
-    const newType = type.toUpperCase();
+    const newType = type!.toString().toUpperCase();
     switch (gameName) {
         case "dictionary" : {
             const words = await prisma.dictionary.findMany({
@@ -52,7 +56,7 @@ export default async function handler(req, res) {
             const solutions = story.solutions.split(";");
             const result = { sentences, options, solutions };
             return res.status(200).json({result});
-        };
+        }
         default : return null
     }
 

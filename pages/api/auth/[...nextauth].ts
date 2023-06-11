@@ -79,8 +79,8 @@ const authOptions: NextAuthOptions = {
             strike: true
           },
         });
-        token.totalPoints = totalPoints?.totalPoints;
-        token.strike = totalPoints?.strike;
+        token.totalPoints = totalPoints!.totalPoints;
+        token.strike = totalPoints!.strike;
         const findProgress = await prisma.user.findUnique({
           where: {
             id: session.id
@@ -89,7 +89,7 @@ const authOptions: NextAuthOptions = {
             progress: true
           }
         });
-        token.progress = findProgress?.progress;
+        token.progress = findProgress!.progress;
       }
 
       // Settings
@@ -103,9 +103,9 @@ const authOptions: NextAuthOptions = {
           }
         });
         console.log(findSettings);
-        token.interfaceLanguage = findSettings?.userSettings?.interfaceLanguage;
-        token.targetLanguage = findSettings?.userSettings?.targetLanguage;
-        token.learningGoal = findSettings?.userSettings?.learningGoal;
+        token.interfaceLanguage = findSettings!.userSettings!.interfaceLanguage;
+        token.targetLanguage = findSettings!.userSettings!.targetLanguage;
+        token.learningGoal = findSettings!.userSettings!.learningGoal;
       }
 
       if (user) {
@@ -143,8 +143,8 @@ const authOptions: NextAuthOptions = {
             strike: true
           },
         });
-        token.totalPoints = totalPoints?.totalPoints;
-        token.strike = totalPoints?.strike
+        token.totalPoints = totalPoints!.totalPoints;
+        token.strike = totalPoints!.strike
         token.id = user.id;
         //Progress
         token.progress=user.progress;
