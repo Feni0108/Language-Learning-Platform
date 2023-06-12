@@ -1,10 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {FormatLessons} from "@/components/FormatLessons";
-import styles from "@/styles/Senctence.module.css";
 
 
-export default function Story({data, isSolved, setIsSolved, isGood, setIsGood, handleSolved}) {
+
+type Sentence = {
+  options: string[],
+  sentences: string[],
+  solutions: string[]
+}
+type StoryProps = {
+  data: Sentence;
+  isSolved: boolean;
+  setIsSolved: (isSolved: boolean) => void;
+  isGood: boolean;
+  setIsGood: (isGood: boolean) => void;
+  handleSolved: () => void;
+}
+
+
+export default function Story({data, isSolved, setIsSolved, setIsGood, handleSolved}: StoryProps) {
+
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
 

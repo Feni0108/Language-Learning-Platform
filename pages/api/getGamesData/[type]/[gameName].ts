@@ -1,10 +1,16 @@
 import {getOptions} from "@/components/games/gameComponentBackend/getRandomWord";
-import {getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
+import {Dictionary, getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
 import prisma from "@/lib/prisma";
-import {getRandomSentence} from "@/components/games/gameComponentBackend/getRandomSentence";
-export default async function handler(req, res) {
+import {getRandomSentence, Sentence} from "@/components/games/gameComponentBackend/getRandomSentence";
+import {NextApiRequest, NextApiResponse} from "next";
+import {Prisma} from ".prisma/client";
+import EnumCategoryFilter = Prisma.EnumCategoryFilter;
+
+export default async function handler(req: NextApiRequest,
+                                      res: NextApiResponse) {
+
     const {gameName, type} = req.query;
-    const newType = type.toUpperCase();
+    const newType = type!.toString().toUpperCase() as EnumCategoryFilter;
     switch (gameName) {
         case "dictionary" : {
             const words = await prisma.dictionary.findMany({
@@ -12,7 +18,7 @@ export default async function handler(req, res) {
                     category: newType
                 }
                 }
-            );
+            ) as Dictionary;
             const result = getOptions(words);
             return res.status(200).json({result});
         }
@@ -22,13 +28,13 @@ export default async function handler(req, res) {
                         category: newType
                     }
                 }
-            );
+            ) as Dictionary;
             const result = getWordWithPictures(words);
             return res.status(200).json({result});
         }
         case "sentence" : {
-            const sentences = await prisma.sentence.findMany();
-            const dictionary = await prisma.dictionary.findMany();
+            const sentences = await prisma.sentence.findMany() as Sentence;
+            const dictionary = await prisma.dictionary.findMany() as Dictionary;
             const result = getRandomSentence(sentences, dictionary);
             return res.status(200).json({result});
         }
@@ -38,7 +44,7 @@ export default async function handler(req, res) {
                         category: newType
                     }
                 }
-            );
+            ) as Dictionary;
             const result = getOptions(words);
             return res.status(200).json({result});
         }
@@ -52,7 +58,7 @@ export default async function handler(req, res) {
             const solutions = story.solutions.split(";");
             const result = { sentences, options, solutions };
             return res.status(200).json({result});
-        };
+        }
         default : return null
     }
 

@@ -1,15 +1,13 @@
 //Creation of necessary variables
 
-let originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = new Array();
-let translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = new Array();
+import {Dictionary} from "@/components/games/gameComponentBackend/getRandomPictures";
+
+let originalWord: { id: number; original_word: string; isVisible: boolean; isSelected: boolean}[] = [];
+let translatedWord: { id: number; translated_word: string, isVisible: boolean, isSelected: boolean}[] = [];
 
 
 
-const getRandomWord = (allWords, maxId) => {
-    /*for(let i:number = 0; i<allWords.length; i++) {
-        originalWord.push({id:allWords[i].id, original_word:allWords[i].original_word, isVisible:true, isSelected:false})
-        translatedWord.push({id:allWords[i].id, translated_word:allWords[i].translated_word, isVisible:true, isSelected:false})
-    }*/
+const getRandomWord = (allWords:Dictionary, maxId:number) => {
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     for(let i:number = 0; i<originalWord.length; i++) {
@@ -25,7 +23,7 @@ const getRandomWord = (allWords, maxId) => {
 }
 
 //Main function for retrieving the necessary variables
-export const getOptions = (allWords) => {
+export const getOptions = (allWords:Dictionary) => {
     originalWord = [];
     translatedWord = [];
     const maxId = allWords.length;
