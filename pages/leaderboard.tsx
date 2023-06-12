@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 import { GetServerSideProps } from "next";
 import { FaUserGraduate } from "react-icons/fa";
 import SignOutButton from "@/components/SignOutButton";
+import {number} from "prop-types";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const leaderBoard = await prisma.leaderboard.findMany({
@@ -23,20 +24,36 @@ export const getServerSideProps: GetServerSideProps = async () => {
         props: {leaderBoard: leaderBoard},
     }
 }
-export default function Leaderboard({leaderBoard}) {
+
+type LeaderBoardType = { leaderBoard: LeaderBoardUser[]};
+
+type LeaderBoardUser = {
+    id: number,
+    userId: string,
+    totalPoints: number,
+    strike: number,
+    user: {
+        username: string | null,
+        name: string | null
+        image: string | null
+    }
+}
+
+export default function Leaderboard({leaderBoard} : LeaderBoardType) {
+    console.log(leaderBoard);
     const {data: session} = useSession();
     const [isPoint, setIsPoint] = useState<boolean>(true);
-    const [sortLeaderBoard, setSortLeaderBoard] = useState();
+    const [sortLeaderBoard, setSortLeaderBoard] = useState<LeaderBoardUser[] | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function setNewLeaderBoard() {
             if (isPoint) {
-                setSortLeaderBoard(leaderBoard.sort(function (a, b) {
+                setSortLeaderBoard(leaderBoard.sort(function (a:LeaderBoardUser, b:LeaderBoardUser) {
                     return a.totalPoints - b.totalPoints
                 }).reverse());
             } else {
-                setSortLeaderBoard(leaderBoard.sort(function (a, b) {
+                setSortLeaderBoard(leaderBoard.sort(function (a:LeaderBoardUser, b: LeaderBoardUser) {
                     return a.strike - b.strike
                 }).reverse());
             }
@@ -59,33 +76,33 @@ export default function Leaderboard({leaderBoard}) {
                 </>
             )}
             {!isLoading && session && (
-                <>Signed in as {session.user?.email ? session.user.email : session.user.username} <br/>
+                <>Signed in as {session.user?.email ? session.user.email : session.user!.username} <br/>
                     <div>
                         <button
-                            onClick={isPoint? null : () => {setIsPoint(true), setIsLoading(true)}}
+                            onClick={isPoint? undefined : () => {setIsPoint(true), setIsLoading(true)}}
                         >Points</button>
                         <button
-                            onClick={!isPoint? null : () => {setIsPoint(false), setIsLoading(true)}}
+                            onClick={!isPoint? undefined : () => {setIsPoint(false), setIsLoading(true)}}
                         >Strike</button>
-                        {sortLeaderBoard.map((value, index) => (
+                        {sortLeaderBoard !== undefined && sortLeaderBoard.map((value:LeaderBoardUser, index:number) => (
                             <div key={"or"+index}>
-                            <session>
+                            <section>
                                 {index+1+" "}
-                            </session>
-                            <session>
+                            </section>
+                            <section>
                                 {value.user.image && <img
                                  alt="Sorry, we couldn't load this picture"
                                  src={value.user.image}
                                 />}
                                 {!value.user.image && <FaUserGraduate />}
-                            </session>
-                            <session>
+                            </section>
+                            <section>
                                 {value.user.username ? value.user.username : value.user.name}
-                            </session>
-                            <session>
+                            </section>
+                            <section>
                                 {isPoint &&" "+value.totalPoints}
                                 {!isPoint &&" "+value.strike}
-                            </session>
+                            </section>
                             </div>
                         ))}
                     </div>
