@@ -14,7 +14,7 @@ export default async function handler(
     if (req.method === "POST") {
         const userId = req.body.userId;
         const points = req.body.points;
-
+        const isProgressUpdate = req.body.isProgressUpdate;
 
         const lastGame = await prisma.user.findUnique(
             {
@@ -23,7 +23,8 @@ export default async function handler(
                 },
                 select: {
                     lastGame: true,
-                    leaderBoard: true
+                    leaderBoard: true,
+                    progress: true
                 }
             }
         );
@@ -37,14 +38,24 @@ export default async function handler(
             try {
                 const updateLastGame =
                     await prisma.user.update({
-                    where : {
-                        id: userId,
-                    },
-                    data: {
-                        lastGame: new Date()
-                    }
-                });
-
+                        where : {
+                            id: userId,
+                        },
+                        data: {
+                            lastGame: new Date()
+                        }
+                    });
+                if (isProgressUpdate) {
+                    const updateLastGame =
+                        await prisma.user.update({
+                            where : {
+                                id: userId,
+                            },
+                            data: {
+                                progress: lastGame.progress+1
+                            }
+                        });
+                }
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {
@@ -71,7 +82,17 @@ export default async function handler(
                             lastGame: new Date()
                         }
                     });
-
+                if (isProgressUpdate) {
+                    const updateLastGame =
+                        await prisma.user.update({
+                            where : {
+                                id: userId,
+                            },
+                            data: {
+                                progress: lastGame.progress+1
+                            }
+                        });
+                }
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {

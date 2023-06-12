@@ -30,6 +30,7 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
+  progress  Int @default(0)
   sessions      Session[]
   lastGame DateTime?
   leaderBoard   Leaderboard?
@@ -91,7 +92,7 @@ model Leaderboard {
   id          Int    @id @default(autoincrement())
   userId      String @unique
   totalPoints Int    @default(0)
-  strike      Int @default(0)
+  strike      Int   @default(0)
   user        User   @relation(fields: [userId], references: [id])
 }
 
@@ -113,8 +114,19 @@ enum Category {
   SHOPPING
 }
 
-model Word {
-  id        Int    @id @default(autoincrement())
-  english   String
-  hungarian String
+model Words {
+  id          Int
+  word        String
+  language    Language
+  description String
+
+  @@unique([id, language])
+}
+
+enum Language {
+  eng
+  hu
+  sk
+  cz
+  is
 }

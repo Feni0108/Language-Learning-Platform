@@ -1,5 +1,5 @@
 
-export const updatePoints = async (totalPoints: number, userId:string) => {
+export const updatePoints = async (totalPoints: number, userId: string, isProgressUpdate: boolean) => {
     const endpoint = "http://localhost:3000/api/updatePoints";
 
 
@@ -10,7 +10,8 @@ export const updatePoints = async (totalPoints: number, userId:string) => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 userId: userId,
-                points: totalPoints
+                points: totalPoints,
+                isProgressUpdate: isProgressUpdate
             })
         }
         const res = await fetch(endpoint, postData);

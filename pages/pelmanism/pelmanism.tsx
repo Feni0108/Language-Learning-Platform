@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import prisma from "../../lib/prisma";
-import { getOptions } from "@/components/getRandomWord";
+import { getOptions } from "@/components/games/gameComponentBackend/getRandomWord";
 import Card from "@/components/Card";
 
 export const getServerSideProps: GetServerSideProps = async () => {
