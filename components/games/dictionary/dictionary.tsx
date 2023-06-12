@@ -125,8 +125,8 @@ const Dictionary = ({
       <h3 className="mt-10 text-xl font-medium grid justify-items-center">
         Pair the right words
       </h3>
-      <div className="mt-10 grid justify-items-center grid-cols-6">
-        <div className="col-start-3 col-end-4">
+      <div className="mt-10 flex flex-row">
+        <div className="w-64 m-auto">
           {originalWords &&
             originalWords.map((value, index) => (
               <div key={"or" + index}>
@@ -144,7 +144,7 @@ const Dictionary = ({
               </div>
             ))}
         </div>
-        <div className="col-end-4 col-end-5">
+        <div className="w-64 m-auto">
           {translatedWords &&
             translatedWords.map((value, index) => (
               <div key={"tr" + index}>
