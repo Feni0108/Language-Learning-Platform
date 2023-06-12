@@ -123,7 +123,7 @@ const Dictionary = ({
     <>
       <div />
       <h3 className="mt-10 text-xl font-medium grid justify-items-center">
-        Pair the right words
+        Pair the right words!
       </h3>
       <div className="mt-10 flex flex-row">
         <div className="w-64 m-auto">
