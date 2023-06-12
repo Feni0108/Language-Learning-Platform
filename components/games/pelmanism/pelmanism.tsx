@@ -83,6 +83,9 @@ const Pelmanism = ({
 
   return (
     <div>
+      <p className="mt-10 text-l font-medium grid justify-items-center">
+        Find the mathcing pairs!
+      </p>
       <div className="flex justify-center m-10">
         <div className="grid grid-cols-4 gap-5">
           {visibleCards.map((word, index) => (
