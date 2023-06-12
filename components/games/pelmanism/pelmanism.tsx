@@ -11,7 +11,7 @@ type WordData = {
 };
 
 type PelmanismProps = {
-  allWords: [WordData[], WordData[]];
+  task: [WordData[], WordData[]];
   isSolved: boolean;
   setIsSolved: (isSolved: boolean) => void;
   isGood: boolean;
