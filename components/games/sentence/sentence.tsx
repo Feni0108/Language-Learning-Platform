@@ -3,24 +3,24 @@ import styles from "@/styles/Senctence.module.css";
 import Word from "@/components/games/sentence/Word";
 import Hover from "@/components/games/sentence/Hover";
 
-type Original = {
+export type Original = {
     word: string;
     hover: string[];
 };
-type Words = {
+export type Words = {
     id: number;
     word: string;
     isVisible: boolean;
 };
 
-type Sentence = {
+export type SentenceTask = {
     original: Original[];
     solution: string;
     words: Words[];
 };
 
 type SentenceProps = {
-    sentence: Sentence;
+    sentence: SentenceTask;
     isSolved: boolean;
     setIsSolved: (isSolved: boolean) => void;
     isGood: boolean;

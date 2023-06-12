@@ -2,37 +2,45 @@ import React, {useEffect, useState} from "react";
 import Dictionary from "@/components/games/dictionary/dictionary";
 import Picture from "@/components/games/picturegame/picture";
 import useFetch from "@/components/games/useFetch";
-import Sentence from "@/components/games/sentence/sentence";
+import Sentence, {Original, SentenceTask, Words} from "@/components/games/sentence/sentence";
 import Pelmanism from "@/components/games/pelmanism/pelmanism";
 import {updatePoints} from "@/components/updatePoints";
 import {useSession} from "next-auth/react";
 import AccessDenied from "@/components/AccessDenied";
 import SignUpButton from "@/components/SignUpButton";
 import {useRouter} from "next/router";
-import Story from "@/components/games/storyline/storyline";
+import Story, {SentenceStoryLine} from "@/components/games/storyline/storyline";
 
 
 export default function Lessons() {
     const router = useRouter();
     const { type, isProgressUpdate } = router.query;
 
+    const [isProgressUpdateBoolean, setIsProgressUpdateBoolean] = useState<boolean | undefined>(undefined);
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(1);
+    const [gameCount, setGameCount] = useState(10);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [row, setRow] = useState(0);
     const [isInRow, setIsInRow] = useState(true);
-    const [id, setId] = useState<number>(null);
+    const [id, setId] = useState<number | null>(null);
     const [game, setGame] = useState<any>();
     const [endpoint, setEndpoint] = useState("")
-    const {loading , task}  = useFetch(endpoint);
+    const {task}  = useFetch(endpoint);
     const { data: session, status, update } = useSession();
+
+    useEffect(() => {
+        if (isProgressUpdate === 'false'){
+            setIsProgressUpdateBoolean(false);
+        } else setIsProgressUpdateBoolean(true);
+    }, [isProgressUpdate])
 
     const getRandomGames = () => {
         const randomId = (Math.floor(Math.random() * 5));
         if (randomId !== id) {
-            setId(randomId);
+            //setId(randomId);
+            setId(4);
         } else getRandomGames();
     }
 
@@ -66,13 +74,14 @@ export default function Lessons() {
 
     useEffect(() => {
         if (task.length !== 0){
+            console.log(task);
             switch (id) {
-                case 0: setGame(<Dictionary task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
-                case 1: setGame(<Picture allWords={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
-                case 2: setGame(<Sentence sentence={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
-                case 3: setGame(<Pelmanism task={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 0: setGame(<Dictionary task={[task[0],task[1]]} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved} />); break;
+                case 1: setGame(<Picture allWords={[task[0], task[1]]} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/> ) ; break;
+                case 2: setGame(<Sentence sentence={task as unknown as SentenceTask} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                case 3: setGame(<Pelmanism task={[task[0],task[1]]}  isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
                 case 4: setIsGood(true);
-                    setGame(<Story data={task} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
+                    setGame(<Story data={task as unknown as SentenceStoryLine} isSolved={isSolved} setIsSolved={setIsSolved} isGood={isGood} setIsGood={setIsGood} handleSolved={handleSolved}/>); break;
             }
         }
     }, [task, isSolved])
@@ -96,10 +105,10 @@ export default function Lessons() {
     }
 
     const handleFinished = () => {
-        updatePoints(session.user?.totalPoints+point, session.user?.id, isProgressUpdate).then(
+        updatePoints(session!.user!.totalPoints!+point, session!.user!.id!, isProgressUpdateBoolean!).then(
             (response) => {
                 if (response){
-                    update({id : session.user.id, type : "updatePoints"}).then(
+                    update({id : session!.user!.id, type : "updatePoints"}).then(
                         (response) => {
                             router.push("/");
                         }
