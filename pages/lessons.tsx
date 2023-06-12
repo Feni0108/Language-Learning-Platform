@@ -152,8 +152,10 @@ export default function Lessons() {
         </>
       )}
       {session && !isFinished && (
-        <div className="">
-          Task {gameCount}/5 {isInRow && row > 1 && <p>{row} in a row!</p>}
+        <div>
+          <p className="flex justify-center">
+            Task {gameCount}/5 {isInRow && row > 1 && <p>{row} in a row!</p>}
+          </p>
           <br />
           {game}
         </div>
