@@ -12,9 +12,10 @@ const navigation = [
   { name: "Friends", href: "#", current: false },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+
 
 export default function NavBar() {
   const { data: session, status } = useSession();

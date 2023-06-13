@@ -1,4 +1,4 @@
-import {Words, Language} from "@prisma/client";
+import {Words, Language} from ".prisma/client";
 
 /*
 Usage:
