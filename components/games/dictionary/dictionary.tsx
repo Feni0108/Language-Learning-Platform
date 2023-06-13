@@ -165,7 +165,7 @@ const Dictionary = ({
       </div>
       <div>
         {isSolved && (
-          <div className={FormatLessons.goodAnswer}>
+          <div className="m-10 grid justify-items-center">
             <button
               className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
               onClick={() => handleSolved()}
