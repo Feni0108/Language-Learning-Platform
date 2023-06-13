@@ -70,7 +70,9 @@ export default function Picture({
       {isSolved && (
         <div
           className={
-            isGood ? FormatLessons.goodAnswer : FormatLessons.wrongAnswer
+            isGood
+              ? FormatLessons.pictureGameGoodAnswer
+              : FormatLessons.pictureGameWrongAnswer
           }
         >
           {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
@@ -80,8 +82,13 @@ export default function Picture({
             : pictures.find((picture) => picture.id === word.id).word}
           <br />
           {isSolved && (
-            <div>
-              <button onClick={() => handleSolved()}>Continue</button>
+            <div className="flex justify-center m-10">
+              <button
+                className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+                onClick={() => handleSolved()}
+              >
+                Continue
+              </button>
             </div>
           )}
         </div>
@@ -90,7 +97,7 @@ export default function Picture({
         <div className="flex justify-center m-10">
           <button
             className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
-            onClick={() => handleSolved()}
+            onClick={() => handleCheck()}
           >
             Continue
           </button>

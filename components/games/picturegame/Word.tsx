@@ -1,68 +1,62 @@
-import {FormatLessons} from "@/components/FormatLessons";
-import React, {useEffect, useState} from "react";
-
+import { FormatLessons } from "@/components/FormatLessons";
+import React, { useEffect, useState } from "react";
 
 type Props = {
-    word: string;
+  word: string;
 
-    isSelected: boolean
-    id:number;
+  isSelected: boolean;
+  id: number;
 
-    handleClick: (id:number) => void;
+  handleClick: (id: number) => void;
 
-    image: string;
+  image: string;
 
-    isGood: boolean;
+  isGood: boolean;
 
-    answer: number;
-
-
-
-
-
-}
+  answer: number;
+};
 
 const Word = ({
-                  word,
-                  isSolved,
-                  id,
-                  isSelected,
-                  handleClick,
-                image,
-    isGood,
-    answer
-              }: Props) => {
-    const [style, setStyle] = useState<string>(null);
+  word,
+  isSolved,
+  id,
+  isSelected,
+  handleClick,
+  image,
+  isGood,
+  answer,
+}: Props) => {
+  const [style, setStyle] = useState<string>(null);
 
-    useEffect(() => {
-        if (isSelected){
-            setStyle(FormatLessons.choose)
-        } else {
-            setStyle(FormatLessons.visible)
-        }
-        if (isSolved && isGood && answer === id){
-            setStyle(FormatLessons.goodAnswer)
-        }
-        if (isSolved && !isGood && answer === id){
-            setStyle(FormatLessons.wrongAnswer)
-        }
-    },[isSolved, isSelected, isGood]);
+  useEffect(() => {
+    if (isSelected) {
+      setStyle(FormatLessons.pictureGameChoose);
+    } else {
+      setStyle(FormatLessons.pictureGameVisible);
+    }
+    if (isSolved && isGood && answer === id) {
+      setStyle(FormatLessons.pictureGameGoodAnswer);
+    }
+    if (isSolved && !isGood && answer === id) {
+      setStyle(FormatLessons.pictureGameWrongAnswer);
+    }
+  }, [isSolved, isSelected, isGood]);
 
-
-    return (
-        <div key={"picture"+id}
-             onClick={!isSolved ? () => handleClick(id) : null}
-            className={style}>
-            <section>
-                <img src={`data:image/jpeg;base64,${image}`} />
-            </section>
-            <section>
-                {word}
-            </section>
-        </div>
-    )
-
-}
-
+  return (
+    <div
+      key={"picture" + id}
+      onClick={!isSolved ? () => handleClick(id) : null}
+      className={style}
+    >
+      <div className={FormatLessons.pictureGameImage}>
+        <img
+          className="object-center"
+          src={`data:image/jpeg;base64,${image}`}
+        />
+      </div>
+      <div className="m-1 flex flex-inline justify-center">{word}</div>
+    </div>
+  );
+};
 
 export default Word;
