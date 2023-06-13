@@ -34,14 +34,20 @@ const RegistrationSuccess = () => {
 
   return (
     <div>
-      <h1>Registration Successful!</h1>
+      <div className="text-center text-teal-600 m-10">
+        Registration Successful!
+      </div>
       {/* Access user properties here */}
       {user && (
         <>
-          <p>Username: {user.username}</p>
-          <p>Password: {user.password}</p>
-          <p>isFirstLogin: {user.isFirstLogin.toString()}</p>
-          <button onClick={handleButtonClick}>Update isFirstLogin</button>
+          <div className="flex justify-center m-10">
+            <button
+              className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+              onClick={handleButtonClick}
+            >
+              Log in
+            </button>
+          </div>
         </>
       )}
     </div>
