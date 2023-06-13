@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 
 type User = {
@@ -16,18 +18,16 @@ const RegistrationSuccess = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const { user } = router.query;
-    console.log(user);
+    const {user}  = router.query;
     if (user) {
-      let parsedUser : User= JSON.parse(user,  function (key, value) {
+      let parsedUser : User= JSON.parse(Array.isArray(user)? user[0] : user,  function (key, value) {
        if (key === 'username') return value;
        if (key === 'password') return value;
         if (key === 'passwordAgain') return value;
         if (key === 'isFirstLogin') return value;
         return value;
       })
-      console.log(parsedUser);
-      console.log(typeof  parsedUser);
+
       setUser(parsedUser);
     }
   }, [router.query]);
