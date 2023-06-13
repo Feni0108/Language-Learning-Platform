@@ -4,7 +4,7 @@ import {testDate} from "@/components/testDate";
 
 type LastGame = {lastGame: Date | null};
 
-
+type LastGame = {lastGame : Date | null};
 
 export default async function handler(
     req: NextApiRequest,
