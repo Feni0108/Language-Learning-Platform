@@ -161,11 +161,20 @@ export default function Lessons() {
         </div>
       )}
       {isFinished && (
-        <div>
-          <div>
-            Congratulations! You finished the lesson! Your points: {point}
+        <div className="drop-shadow-2xl">
+          <div className="text-center m-10">Congratulations!</div>
+          <div className="text-center">
+            You finished the lesson! Your points:
           </div>
-          <button onClick={handleFinished}>Continue</button>
+          <div className="text-2xl text-center m-5">{point}</div>
+          <div className="flex justify-center m-10">
+            <button
+              className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+              onClick={handleFinished}
+            >
+              Continue
+            </button>
+          </div>
         </div>
       )}
     </div>
