@@ -27,6 +27,7 @@ CREATE TABLE `User` (
     `email` VARCHAR(191) NULL,
     `emailVerified` DATETIME(3) NULL,
     `image` VARCHAR(191) NULL,
+    `progress` INTEGER NOT NULL DEFAULT 0,
     `lastGame` DATETIME(3) NULL,
     `isFirstLogin` BOOLEAN NOT NULL DEFAULT true,
 
@@ -113,12 +114,13 @@ CREATE TABLE `Storyline` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Word` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `english` VARCHAR(191) NOT NULL,
-    `hungarian` VARCHAR(191) NOT NULL,
+CREATE TABLE `Words` (
+    `id` INTEGER NOT NULL,
+    `word` VARCHAR(191) NOT NULL,
+    `language` ENUM('eng', 'hu', 'sk', 'cz', 'is') NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
 
-    PRIMARY KEY (`id`)
+    UNIQUE INDEX `Words_id_language_key`(`id`, `language`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey

@@ -11,7 +11,7 @@ type WordData = {
 };
 
 type PelmanismProps = {
-  allWords: [WordData[], WordData[]];
+  task: [WordData[], WordData[]];
   isSolved: boolean;
   setIsSolved: (isSolved: boolean) => void;
   isGood: boolean;
@@ -20,15 +20,15 @@ type PelmanismProps = {
 };
 
 const Pelmanism = ({
-  allWords,
+  task,
   isSolved,
   setIsSolved,
   isGood,
   setIsGood,
   handleSolved,
 }: PelmanismProps) => {
-  const [originalWords, setOriginalWords] = useState<WordData[]>(allWords[0]);
-  const [translatedWords, setTranslatedWords] = useState<WordData[]>(allWords[1]);
+  const [originalWords, setOriginalWords] = useState<WordData[]>(task[0]);
+  const [translatedWords, setTranslatedWords] = useState<WordData[]>(task[1]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [clicks, setClicks] = useState(0);
