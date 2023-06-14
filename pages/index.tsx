@@ -18,12 +18,13 @@ export default function Home() {
       lastGame(session.user!.id).then((res) => {
         setIsPlayToday(res);
       });
+      console.log(session);
     }
   }, [session])
 
   useEffect(() => {
     if (session) {
-      update({id: session.user!.id})
+      update({id: session.user!.id, type : "updatePoints"})
     }
   }, [isPlayToday])
 

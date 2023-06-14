@@ -13,6 +13,7 @@ interface IUser extends DefaultUser {
     learningGoal?: string | null;
 
     strike?: number;
+
 }
 
 declare module "next-auth" {

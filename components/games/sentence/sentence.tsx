@@ -37,7 +37,7 @@ export default function Sentence({
                                      setIsGood,
                                      handleSolved,
                                  }: SentenceProps) {
-    const [task, setTask] = useState<Sentence>(sentence);
+    const [task, setTask] = useState<SentenceTask>(sentence);
     const [answer, setAnswer] = useState<Words[]>([]);
 
     const handleCheck = () => {

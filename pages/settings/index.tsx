@@ -25,9 +25,9 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
       if (session?.user?.interfaceLanguage !== undefined &&
           session.user?.learningGoal !== undefined &&
           session.user?.targetLanguage !== undefined) {
-        setInterfaceLanguage(session.user.interfaceLanguage);
-        setTargetLanguage(session.user.targetLanguage);
-        setLearningGoal(session.user.learningGoal);
+        setInterfaceLanguage(session.user.interfaceLanguage!);
+        setTargetLanguage(session.user.targetLanguage!);
+        setLearningGoal(session.user.learningGoal!);
       }
     }
   }, [session]);
@@ -46,7 +46,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
       interfaceLanguage,
       targetLanguage,
       learningGoal,
-      userId: session?.user?.id
+      userId: session!.user!.id
     };
 
     try {
@@ -54,12 +54,12 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user?.token}`,
+          'Authorization': `Bearer ${session?.token}`,
         },
         body: JSON.stringify(settings),
       });
       if (response.ok) {
-        update({id: session.user.id, type: "settings"}).then((response) => {
+        update({id: session!.user!.id, type: "settings"}).then((response) => {
               if (response) {
                 router.push("/");
               }
