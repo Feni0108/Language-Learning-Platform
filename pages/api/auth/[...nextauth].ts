@@ -186,6 +186,7 @@ const authOptions: NextAuthOptions = {
         session.user.id = token.id;
         session.user.progress = token.progress;
       }
+      session.token = token;
       return session;
     },
   },

@@ -54,7 +54,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user?.token}`,
+          'Authorization': `Bearer ${session?.token}`,
         },
         body: JSON.stringify(settings),
       });
