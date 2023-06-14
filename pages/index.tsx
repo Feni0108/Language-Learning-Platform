@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     if (session) {
-      update({id: session.user!.id})
+      update({id: session.user!.id, type : "updatePoints"})
     }
   }, [isPlayToday])
 
