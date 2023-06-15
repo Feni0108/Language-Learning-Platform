@@ -99,26 +99,31 @@ const Pelmanism = ({
   }, [flippedCards, visibleCards]);
 
   return (
-    <div className="cards-container">
-      <div className="card-grid">
-        {visibleCards.map((word, index) => (
-          <Card
-            key={index}
-            word={word.word}
-            isFlipped={flippedCards.includes(index)}
-            isMatched={word.isMatched}
-            onClick={() => handleCardClick(index)}
-          />
-        ))}
+    <div>
+      <p className="mt-10 text-l font-medium grid justify-items-center">
+        Find the mathcing pairs!
+      </p>
+      <div className="flex justify-center m-10">
+        <div className="grid grid-cols-4 gap-5">
+          {visibleCards.map((word, index) => (
+            <Card
+              key={index}
+              word={word.word}
+              isFlipped={flippedCards.includes(index)}
+              isMatched={word.isMatched}
+              onClick={() => handleCardClick(index)}
+            />
+          ))}
+        </div>
       </div>
       {isSolved && (
-        <div
-          className={
-            isGood ? FormatLessons.goodAnswer : FormatLessons.wrongAnswer
-          }
-        >
-          {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
-          <button onClick={() => handleSolved()}>Continue</button>
+        <div className="flex justify-center m-10">
+          <button
+            className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+            onClick={() => handleSolved()}
+          >
+            Continue
+          </button>
         </div>
       )}
     </div>

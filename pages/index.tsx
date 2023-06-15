@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import { Inter } from 'next/font/google'
+import React, { useEffect, useState } from "react";
+import { Inter } from "next/font/google";
 import { useSession } from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
 import Categories from "@/components/Categories";
-import {lastGame} from "@/components/lastGame";
-import {useRouter} from "next/router";
+import { lastGame } from "@/components/lastGame";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,27 +20,27 @@ export default function Home() {
       });
       console.log(session);
     }
-  }, [session])
+  }, [session]);
 
   useEffect(() => {
     if (session) {
-      update({id: session.user!.id, type : "updatePoints"})
+      update({ id: session.user!.id, type: "updatePoints" });
     }
-  }, [isPlayToday])
+  }, [isPlayToday]);
 
   const router = useRouter();
 
-
   if (session) {
     console.log(session);
-    if (session?.user?.interfaceLanguage === undefined &&
-        session.user?.learningGoal === undefined &&
-        session.user?.targetLanguage === undefined) {
+    if (
+      session?.user?.interfaceLanguage === undefined &&
+      session.user?.learningGoal === undefined &&
+      session.user?.targetLanguage === undefined
+    ) {
       router.push("http://localhost:3000/settings");
     }
   }
   return (
-
     <>
       {!session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
@@ -71,24 +71,57 @@ export default function Home() {
             </span>
           </h1>
           <div>
-           
-            <h4>Your points: {session.user!.totalPoints}</h4>
+            <p className="m-5 text-xl">
+              Your points: {session.user!.totalPoints}
+            </p>
             {session.user?.username} <br />
-            <br/>
-            {session.user!.strike! > 0 && <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>}
-            {session.user!.strike! > 0 && !isPlayToday && <h3>Duo sees a {session.user!.strike!+1}-day streak in your future. Will there be that many?</h3>}
+            <br />
+            {session.user!.strike! > 0 && (
+              <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
+            )}
+            {session.user!.strike! > 0 && !isPlayToday && (
+              <h3>
+                Duo sees a {session.user!.strike! + 1}-day streak in your
+                future. Will there be that many?
+              </h3>
+            )}
             <h2>Part 1: Basics</h2>
-            <Categories progress={session.user!.progress!} progressLimit={0} type={"Greetings"} />
-            <Categories progress={session.user!.progress!} progressLimit={5} type={"Family"} />
-            <Categories progress={session.user!.progress!} progressLimit={10} type={"Animals"} />
-            <Categories progress={session.user!.progress!} progressLimit={15} type={"Friends"} />
-            <Categories progress={session.user!.progress!} progressLimit={20} type={"Hobby"} />
-            <Categories progress={session.user!.progress!} progressLimit={25} type={"Shopping"} />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={0}
+              type={"Greetings"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={5}
+              type={"Family"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={10}
+              type={"Animals"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={15}
+              type={"Friends"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={20}
+              type={"Hobby"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={25}
+              type={"Shopping"}
+            />
             <h2>Part 2: Advanced</h2>
-            <h4 className="font-style: italic">This part is under development. Check later!</h4>
+            <h4 className="font-style: italic">
+              This part is under development. Check later!
+            </h4>
           </div>
         </div>
-
       )}
     </>
   );
