@@ -1,4 +1,5 @@
-import { DefaultUser } from "next-auth";
+import { DefaultUser, TokenSet } from "next-auth";
+import {Token} from "acorn";
 
 interface IUser extends DefaultUser {
     /**
@@ -20,6 +21,7 @@ declare module "next-auth" {
     interface User extends IUser {}
     interface Session {
         user?: User;
+
     }
 }
 
