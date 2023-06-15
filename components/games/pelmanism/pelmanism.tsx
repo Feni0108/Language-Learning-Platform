@@ -2,18 +2,35 @@ import React, { useEffect, useState } from "react";
 import Card from "@/components/games/pelmanism/Card";
 import { FormatLessons } from "@/components/FormatLessons";
 
+type WordData = {
+  original_word: string;
+  translated_word: string;
+  id: number;
+  isVisible: boolean;
+  isSelected: boolean;
+};
+
+type PelmanismProps = {
+  task: [WordData[], WordData[]];
+  isSolved: boolean;
+  setIsSolved: (isSolved: boolean) => void;
+  isGood: boolean;
+  setIsGood: (isGood: boolean) => void;
+  handleSolved: () => void;
+};
+
 const Pelmanism = ({
-  allWords,
+  task,
   isSolved,
   setIsSolved,
   isGood,
   setIsGood,
   handleSolved,
-}) => {
-  const [originalWords, setOriginalWords] = useState(allWords[0]);
-  const [translatedWords, setTranslatedWords] = useState(allWords[1]);
-  const [flippedCards, setFlippedCards] = useState([]);
-  const [matchedCards, setMatchedCards] = useState([]);
+}: PelmanismProps) => {
+  const [originalWords, setOriginalWords] = useState<WordData[]>(task[0]);
+  const [translatedWords, setTranslatedWords] = useState<WordData[]>(task[1]);
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+  const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [clicks, setClicks] = useState(0);
 
   useEffect(() => {
@@ -24,7 +41,7 @@ const Pelmanism = ({
     }
   }, [matchedCards, originalWords]);
 
-  const handleCardClick = (index) => {
+  const handleCardClick = (index: number) => {
     if (
       flippedCards.length < 2 &&
       !flippedCards.includes(index) &&

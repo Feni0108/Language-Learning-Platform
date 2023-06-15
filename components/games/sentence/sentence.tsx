@@ -4,6 +4,31 @@ import Word from "@/components/games/sentence/Word";
 import Hover from "@/components/games/sentence/Hover";
 import { FormatLessons } from "@/components/FormatLessons";
 
+export type Original = {
+  word: string;
+  hover: string[];
+};
+export type Words = {
+  id: number;
+  word: string;
+  isVisible: boolean;
+};
+
+export type SentenceTask = {
+  original: Original[];
+  solution: string;
+  words: Words[];
+};
+
+type SentenceProps = {
+  sentence: SentenceTask;
+  isSolved: boolean;
+  setIsSolved: (isSolved: boolean) => void;
+  isGood: boolean;
+  setIsGood: (isGood: boolean) => void;
+  handleSolved: () => void;
+};
+
 export default function Sentence({
   sentence,
   isSolved,
@@ -11,9 +36,9 @@ export default function Sentence({
   isGood,
   setIsGood,
   handleSolved,
-}) {
-  const [task, setTask] = useState(sentence);
-  const [answer, setAnswer] = useState([]);
+}: SentenceProps) {
+  const [task, setTask] = useState<SentenceTask>(sentence);
+  const [answer, setAnswer] = useState<Words[]>([]);
 
   const handleCheck = () => {
     let finalAnswer: string = "";
@@ -28,7 +53,8 @@ export default function Sentence({
       setIsSolved(true);
     }
   };
-  const handleClick = (id, nextVisible: boolean) => {
+
+  const handleClick = (id: number, nextVisible: boolean) => {
     let newTask = { ...task };
     newTask.words.map((word) => {
       if (word.id === id && !nextVisible) {
@@ -49,14 +75,13 @@ export default function Sentence({
         }
       }
     });
-
     setTask(newTask);
   };
 
   return (
     <>
       <h3 className="mt-10 text-l font-medium grid justify-items-center">
-        Translate this sentence!
+        Translate this sentence
       </h3>
       <div className="mt-10 grid justify-items-center">
         <div>
@@ -64,28 +89,28 @@ export default function Sentence({
             <Hover word={value.word} id={number} hover={value.hover} />
           ))}
         </div>
-        <div className={FormatLessons.sentenceAnswer}>
-          {answer.map((value, index) => (
-            <div
-              className={FormatLessons.sentenceWordAfterUsing}
-              id={index.toString()}
-              onClick={isSolved ? null : () => handleClick(value.id, true)}
-            >
-              {value.word}
-            </div>
-          ))}
-        </div>
-        <div>
-          {task.words.map((value) => (
-            <Word
-              word={value.word}
-              id={value.id}
-              isVisible={value.isVisible}
-              handleClick={handleClick}
-              isSolved={isSolved}
-            />
-          ))}
-        </div>
+      </div>
+      <div className={FormatLessons.sentenceAnswer}>
+        {answer.map((value, index) => (
+          <div
+            className={FormatLessons.sentenceWordAfterUsing}
+            id={index.toString()}
+            onClick={isSolved ? undefined : () => handleClick(value.id, true)}
+          >
+            {value.word}
+          </div>
+        ))}
+      </div>
+      <div>
+        {task.words.map((value) => (
+          <Word
+            word={value.word}
+            id={value.id}
+            isVisible={value.isVisible}
+            handleClick={handleClick}
+            isSolved={isSolved}
+          />
+        ))}
       </div>
       {isSolved && (
         <div>

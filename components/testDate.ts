@@ -2,12 +2,14 @@ import prisma from "@/lib/prisma";
 //npm install moment --save
 import moment from "moment";
 
-export const testDate = (prevDate: Date, id: string): boolean => {
+export const testDate = (prevDate: Date | null, id: string): boolean => {
   if (prevDate == null) {
     return false;
   }
-  const prevDay = moment(prevDate).startOf("day");
-  const day = moment().startOf("day");
+  const prevDay: any = moment(prevDate).startOf("day");
+  const day: any = moment().startOf("day");
+
+  console.log(prevDay);
 
   if (day - prevDay == 0) {
     return true;
@@ -15,14 +17,15 @@ export const testDate = (prevDate: Date, id: string): boolean => {
     if (day - prevDay == 86400000) {
       return false;
     } else
-      deleteStrike(id).then((res) => {
+      deleteStrike(id).then(() => {
         return false;
       });
   }
+  return false;
 };
 
 export const deleteStrike = async (id: string) => {
-  const updatePoints = await prisma.leaderboard.update({
+  await prisma.leaderboard.update({
     where: {
       userId: id,
     },

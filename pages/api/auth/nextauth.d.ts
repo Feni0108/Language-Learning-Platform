@@ -1,15 +1,19 @@
-import { DefaultSession, DefaultUser } from "next-auth";
+import { DefaultUser } from "next-auth";
 
 interface IUser extends DefaultUser {
     /**
      * Role of user
      */
-    username?: string;
-    totalPoints?: bigint;
+    username?: string | null;
+    totalPoints?: number;
 
-    interfaceLanguage?: string;
-    targetLanguage?: string;
-    learningGoal?: string;
+    progress?: number;
+    interfaceLanguage?: string | null;
+    targetLanguage?: string | null;
+    learningGoal?: string | null;
+
+    strike?: number;
+
 }
 
 declare module "next-auth" {

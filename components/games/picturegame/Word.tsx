@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 type Props = {
   word: string;
-
+  isSolved: boolean;
   isSelected: boolean;
   id: number;
 
@@ -26,7 +26,7 @@ const Word = ({
   isGood,
   answer,
 }: Props) => {
-  const [style, setStyle] = useState<string>(null);
+  const [style, setStyle] = useState<string>("");
 
   useEffect(() => {
     if (isSelected) {
@@ -45,7 +45,7 @@ const Word = ({
   return (
     <div
       key={"picture" + id}
-      onClick={!isSolved ? () => handleClick(id) : null}
+      onClick={!isSolved ? () => handleClick(id) : undefined}
       className={style}
     >
       <div className={FormatLessons.pictureGameImage}>

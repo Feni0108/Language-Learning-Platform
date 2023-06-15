@@ -55,7 +55,7 @@ const SignUp = () => {
           redirect: false,
         });
 
-        if (result.ok) {
+        if (result!.ok) {
           const updatedUserInfo = { ...userInfo, isFirstLogin: false }; // Update isFirstLogin to false
           setUserInfo(updatedUserInfo); // Update the state if needed (optional)
 

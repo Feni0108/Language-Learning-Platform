@@ -1,16 +1,25 @@
-//Creation of necessary variables
-
-let originalWord: {id: number, word: string}
+let originalWord: {id: number, word: string} | undefined
 let wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
 
 
+export type Dictionary = [
+    {
+        id: number,
+        original_word: string,
+        translated_word: string,
+        image: object,
+        category: string;
+    }
+]
 
-const getRandomWord = (allWords, maxId) => {
+
+const getRandomWord = (allWords: Dictionary, maxId: number) => {
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
     if (allWords[randomId-1].image === null) newId = false;
     for(let i:number = 0; i<wordsWithPictures.length; i++) {
-        if (wordsWithPictures[i].id === randomId) newId = false;
+        if (wordsWithPictures[i].id === allWords[randomId-1].id)
+            newId = false;
     }
     if (newId){
         wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].translated_word, image:allWords[randomId-1].image.toString(), isSelected:false})
@@ -23,7 +32,7 @@ const getRandomWord = (allWords, maxId) => {
 }
 
 //Main function for retrieving the necessary variables
-export const getWordWithPictures = (allWords) => {
+export const getWordWithPictures = (allWords:Dictionary) => {
     const maxId = allWords.length;
     wordsWithPictures = [];
     originalWord = undefined;

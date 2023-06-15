@@ -2,7 +2,15 @@ import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {testDate} from "@/components/testDate";
 
-
+type LastGame = {
+    lastGame : Date | null,
+    leaderBoard: {
+        id: number,
+        userId: string,
+        totalPoints: number,
+        strike: number,
+    },
+    progress: number};
 
 export default async function handler(
     req: NextApiRequest,
@@ -14,7 +22,7 @@ export default async function handler(
     if (req.method === "POST") {
         const userId = req.body.userId;
         const points = req.body.points;
-
+        const isProgressUpdate = req.body.isProgressUpdate;
 
         const lastGame = await prisma.user.findUnique(
             {
@@ -23,10 +31,11 @@ export default async function handler(
                 },
                 select: {
                     lastGame: true,
-                    leaderBoard: true
+                    leaderBoard: true,
+                    progress: true
                 }
             }
-        );
+        ) as LastGame;
         let date: Date = new Date();
         if (lastGame.lastGame !== null){
             date = lastGame.lastGame;
@@ -37,14 +46,24 @@ export default async function handler(
             try {
                 const updateLastGame =
                     await prisma.user.update({
-                    where : {
-                        id: userId,
-                    },
-                    data: {
-                        lastGame: new Date()
-                    }
-                });
-
+                        where : {
+                            id: userId,
+                        },
+                        data: {
+                            lastGame: new Date()
+                        }
+                    });
+                if (isProgressUpdate) {
+                    const updateLastGame =
+                        await prisma.user.update({
+                            where : {
+                                id: userId,
+                            },
+                            data: {
+                                progress: lastGame.progress!+1
+                            }
+                        });
+                }
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {
@@ -71,7 +90,17 @@ export default async function handler(
                             lastGame: new Date()
                         }
                     });
-
+                if (isProgressUpdate) {
+                    const updateLastGame =
+                        await prisma.user.update({
+                            where : {
+                                id: userId,
+                            },
+                            data: {
+                                progress: lastGame.progress+1
+                            }
+                        });
+                }
                 const updatePoints = await prisma.leaderboard.update(
                     {
                         where: {

@@ -1,27 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import prisma from "@/lib/prisma";
-import { GetServerSideProps } from "next";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const storyline = await prisma.storyline.findMany();
 
-  const randomId = Math.floor(Math.random() * storyline.length);
 
-  const story = storyline[randomId];
+export type SentenceStoryLine = {
+  options: string[],
+  sentences: string[],
+  solutions: string[]
+}
+type StoryProps = {
+  data: SentenceStoryLine;
+  isSolved: boolean;
+  setIsSolved: (isSolved: boolean) => void;
+  isGood: boolean;
+  setIsGood: (isGood: boolean) => void;
+  handleSolved: () => void;
+}
 
-  const options = story.options.split(";");
-  const sentences = story.sentences.split(";");
-  const solutions = story.solutions.split(";");
 
-  return {
-    props: {
-      data: { sentences, options, solutions },
-    },
-  };
-};
+export default function Story({data, isSolved, setIsSolved, setIsGood, handleSolved}: StoryProps) {
 
-export default function Story(props: any) {
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
 
@@ -36,9 +34,10 @@ export default function Story(props: any) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const sentences = props.data.sentences;
-  const options: string[] = props.data.options;
-  const solutions = props.data.solutions;
+  const sentences = data.sentences;
+  const options: string[] = data.options;
+  const solutions = data.solutions;
+
 
   useEffect(() => {
     if (currentSentenceIndex < sentences.length) {
@@ -61,6 +60,9 @@ export default function Story(props: any) {
 
       return () => clearTimeout(timer);
     }
+    if(currentSentenceIndex === sentences.length){
+      setIsSolved(true);
+    }
   }, [currentSentenceIndex]);
 
   useEffect(() => {
@@ -71,6 +73,7 @@ export default function Story(props: any) {
         setSuccessMessage("That is correct!");
       } else {
         setErrorMessage("That is not right the right answer is: " + solution);
+        setIsGood(false);
       }
 
       const updatedSentence = sentences[currentSentenceIndex].replace(
@@ -123,6 +126,12 @@ export default function Story(props: any) {
         <p className="text-green-800 font-bold">{successMessage}</p>
         <p className="text-red-800 font-bold">{errorMessage}</p>
       </div>
+
+      {isSolved && <div>
+        <button
+            onClick={() => handleSolved()}
+        >Continue</button>
+      </div>}
     </div>
   );
 }

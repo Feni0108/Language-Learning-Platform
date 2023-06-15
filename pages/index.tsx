@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { useSession } from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
+import Categories from "@/components/Categories";
 import { lastGame } from "@/components/lastGame";
 import { useRouter } from "next/router";
 
@@ -10,20 +11,20 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { data: session, status, update } = useSession();
-
   const [isPlayToday, setIsPlayToday] = useState<boolean>();
 
   useEffect(() => {
     if (session) {
-      lastGame(session.user?.id).then((res) => {
+      lastGame(session.user!.id).then((res) => {
         setIsPlayToday(res);
       });
+      console.log(session);
     }
   }, [session]);
 
   useEffect(() => {
     if (session) {
-      update({ id: session.user.id });
+      update({ id: session.user!.id, type: "updatePoints" });
     }
   }, [isPlayToday]);
 
@@ -39,7 +40,6 @@ export default function Home() {
       router.push("http://localhost:3000/settings");
     }
   }
-
   return (
     <>
       {!session && (
@@ -72,26 +72,54 @@ export default function Home() {
           </h1>
           <div>
             <p className="m-5 text-xl">
-              Your points: {session.user.totalPoints}
+              Your points: {session.user!.totalPoints}
             </p>
+            {session.user?.username} <br />
             <br />
-            {session.user.strike > 0 && (
-              <h2>Ohh, yes! You are in {session.user.strike} strike!</h2>
+            {session.user!.strike! > 0 && (
+              <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
             )}
-            {session.user.strike > 0 && !isPlayToday && (
+            {session.user!.strike! > 0 && !isPlayToday && (
               <h3>
-                Duo sees a {session.user.strike + 1}-day streak in your future.
-                Will there be that many?
+                Duo sees a {session.user!.strike! + 1}-day streak in your
+                future. Will there be that many?
               </h3>
             )}
-            <Link
-              href="lessons"
-              className="bg-teal-500 rounded-3xl py-3 px-8 font-medium inline-block 
-            mr-4 hover:bg-transparent hover:border-teal-500 hover:text-gray-800 
-            duration-300 hover:border border-transparent text-gray-100"
-            >
-              Start game
-            </Link>
+            <h2>Part 1: Basics</h2>
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={0}
+              type={"Greetings"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={5}
+              type={"Family"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={10}
+              type={"Animals"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={15}
+              type={"Friends"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={20}
+              type={"Hobby"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={25}
+              type={"Shopping"}
+            />
+            <h2>Part 2: Advanced</h2>
+            <h4 className="font-style: italic">
+              This part is under development. Check later!
+            </h4>
           </div>
         </div>
       )}

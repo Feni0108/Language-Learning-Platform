@@ -1,27 +1,29 @@
-//Creation of necessary variables
+import { Dictionary } from "@/components/games/gameComponentBackend/getRandomPictures";
 
 let originalWord: {
   id: number;
   original_word: string;
   isVisible: boolean;
   isSelected: boolean;
-}[] = new Array();
+}[] = [];
 let translatedWord: {
   id: number;
   translated_word: string;
   isVisible: boolean;
   isSelected: boolean;
-}[] = new Array();
+}[] = [];
 
-const getRandomWord = (allWords, maxId) => {
-  /*for(let i:number = 0; i<allWords.length; i++) {
-        originalWord.push({id:allWords[i].id, original_word:allWords[i].original_word, isVisible:true, isSelected:false})
-        translatedWord.push({id:allWords[i].id, translated_word:allWords[i].translated_word, isVisible:true, isSelected:false})
-    }*/
+const getRandomWord = (allWords: Dictionary, maxId: number) => {
   const randomId = Math.floor(Math.random() * maxId) + 1;
   let newId = true;
   for (let i: number = 0; i < originalWord.length; i++) {
-    if (originalWord[i].id === allWords[randomId - 1].id) newId = false;
+    if (
+      originalWord[i].id === allWords[randomId - 1].id ||
+      originalWord[i].original_word === allWords[randomId - 1].original_word ||
+      translatedWord[i].translated_word ===
+        allWords[randomId - 1].translated_word
+    )
+      newId = false;
   }
   if (newId) {
     originalWord.push({
@@ -40,7 +42,7 @@ const getRandomWord = (allWords, maxId) => {
 };
 
 //Main function for retrieving the necessary variables
-export const getOptions = (allWords) => {
+export const getOptions = (allWords: Dictionary) => {
   originalWord = [];
   translatedWord = [];
   const maxId = allWords.length;

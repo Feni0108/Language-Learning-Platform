@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Word = ({ word, isVisible, id, handleClick, isSolved }: Props) => {
-  const [style, setStyle] = useState<string>(null);
+  const [style, setStyle] = useState<string>("");
 
   useEffect(() => {
     if (isVisible) {
@@ -27,7 +27,9 @@ const Word = ({ word, isVisible, id, handleClick, isSolved }: Props) => {
     <div
       className={style}
       id={"orig_" + id.toString()}
-      onClick={isVisible && !isSolved ? () => handleClick(id, false) : null}
+      onClick={
+        isVisible && !isSolved ? () => handleClick(id, false) : undefined
+      }
     >
       {word}
     </div>

@@ -2,7 +2,6 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
-
 import GithubProvider from "next-auth/providers/github";
 
 const authOptions: NextAuthOptions = {
@@ -14,12 +13,15 @@ const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
+      // @ts-ignore
       clientId: process.env.GITHUB_ID,
+      // @ts-ignore
       clientSecret: process.env.GITHUB_SECRET,
     }),
     CredentialsProvider({
       type: "credentials",
       credentials: {},
+      // @ts-ignore
       authorize: async (credentials, req) => {
         const { username, password } = credentials as {
           username: string;
@@ -33,6 +35,7 @@ const authOptions: NextAuthOptions = {
             id: true,
             username: true,
             password: true,
+            progress: true,
           },
         });
 
@@ -66,7 +69,11 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, trigger, user, session }) {
       /* Step 1: update the token based on the user object */
       //Update points
-      if (trigger === "update" && session?.id) {
+      if (
+        trigger === "update" &&
+        session?.id &&
+        session?.type === "updatePoints"
+      ) {
         const totalPoints = await prisma.leaderboard.findUnique({
           where: {
             userId: session.id,
@@ -76,7 +83,17 @@ const authOptions: NextAuthOptions = {
             strike: true,
           },
         });
-        token.totalPoints = totalPoints.totalPoints;
+        token.totalPoints = totalPoints!.totalPoints;
+        token.strike = totalPoints!.strike;
+        const findProgress = await prisma.user.findUnique({
+          where: {
+            id: session.id,
+          },
+          select: {
+            progress: true,
+          },
+        });
+        token.progress = findProgress!.progress;
       }
 
       // Settings
@@ -90,9 +107,9 @@ const authOptions: NextAuthOptions = {
           },
         });
         console.log(findSettings);
-        token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
-        token.targetLanguage = findSettings.userSettings.targetLanguage;
-        token.learningGoal = findSettings.userSettings.learningGoal;
+        token.interfaceLanguage = findSettings!.userSettings!.interfaceLanguage;
+        token.targetLanguage = findSettings!.userSettings!.targetLanguage;
+        token.learningGoal = findSettings!.userSettings!.learningGoal;
       }
 
       if (user) {
@@ -100,7 +117,6 @@ const authOptions: NextAuthOptions = {
         if (user.username) {
           token.username = user.username;
         } else token.username = user.name;
-
         //Totalpoints
         const findLeaderBoard = await prisma.user.findUnique({
           where: {
@@ -110,7 +126,7 @@ const authOptions: NextAuthOptions = {
             leaderBoard: true,
           },
         });
-        if (findLeaderBoard.leaderBoard === null) {
+        if (findLeaderBoard?.leaderBoard === null) {
           await prisma.user.update({
             where: {
               id: user.id,
@@ -131,9 +147,11 @@ const authOptions: NextAuthOptions = {
             strike: true,
           },
         });
-        token.totalPoints = totalPoints.totalPoints;
+        token.totalPoints = totalPoints!.totalPoints;
+        token.strike = totalPoints!.strike;
         token.id = user.id;
-
+        //Progress
+        token.progress = user.progress;
         //Settings
         const findSettings = await prisma.user.findUnique({
           where: {
@@ -144,10 +162,11 @@ const authOptions: NextAuthOptions = {
           },
         });
 
-        if (findSettings.userSettings !== null) {
-          token.interfaceLanguage = findSettings.userSettings.interfaceLanguage;
-          token.targetLanguage = findSettings.userSettings.targetLanguage;
-          token.learningGoal = findSettings.userSettings.learningGoal;
+        if (findSettings?.userSettings !== null) {
+          token.interfaceLanguage =
+            findSettings?.userSettings?.interfaceLanguage;
+          token.targetLanguage = findSettings?.userSettings?.targetLanguage;
+          token.learningGoal = findSettings?.userSettings?.learningGoal;
         }
       }
 
@@ -155,7 +174,6 @@ const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       /* Step 2: update the session.user based on the token object */
-
       if (token && session.user) {
         if (token.username) {
           session.user.username = token.username;
@@ -171,7 +189,9 @@ const authOptions: NextAuthOptions = {
           session.user.learningGoal = token.learningGoal;
         }
         session.user.id = token.id;
+        session.user.progress = token.progress;
       }
+      session.token = token;
       return session;
     },
   },

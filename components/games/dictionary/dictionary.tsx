@@ -2,20 +2,48 @@ import React, { useEffect, useState } from "react";
 import Word from "./Word";
 import { FormatLessons } from "@/components/FormatLessons";
 
+type WordData = {
+  original_word: string;
+  translated_word: string;
+  id: number;
+  isVisible: boolean;
+  isSelected: boolean;
+};
+
+type DictionaryProps = {
+  task: [WordData[], WordData[]];
+  isSolved: boolean;
+  setIsSolved: (isSolved: boolean) => void;
+  isGood: boolean;
+  setIsGood: (isGood: boolean) => void;
+  handleSolved: () => void;
+};
+
+export type ChooseType = {
+  or_id: number | null;
+  tr_id: number | null;
+};
+
 const Dictionary = ({
-  allWords,
+  task,
   isSolved,
   setIsSolved,
   isGood,
   setIsGood,
   handleSolved,
-}) => {
-  const [words, setWords] = useState(allWords);
-  const [choose, setChoose] = useState({ or_id: null, tr_id: null });
+}: DictionaryProps) => {
+  const [words, setWords] = useState(task);
+  const [choose, setChoose] = useState<ChooseType>({
+    or_id: null,
+    tr_id: null,
+  });
   const [solvedCorrect, setSolvedCorrect] = useState(0);
-  const [originalWords, setOriginalWords] = useState([]);
-  const [translatedWords, setTranslatedWords] = useState([]);
-  const [isWrong, setIsWrong] = useState({ or_id: null, tr_id: null });
+  const [originalWords, setOriginalWords] = useState<WordData[]>([]);
+  const [translatedWords, setTranslatedWords] = useState<WordData[]>([]);
+  const [isWrong, setIsWrong] = useState<ChooseType>({
+    or_id: null,
+    tr_id: null,
+  });
 
   useEffect(() => {
     setOriginalWords(words[0]);
@@ -48,7 +76,7 @@ const Dictionary = ({
       setChoose({ or_id: null, tr_id: null });
     }
   };
-  const setWrong = (choose) => {
+  const setWrong = (choose: { or_id: number | null; tr_id: number | null }) => {
     const newOriginalWords = originalWords;
     newOriginalWords.map((word) => {
       if (word.id === choose.or_id) {
@@ -66,7 +94,10 @@ const Dictionary = ({
     setTranslatedWords(newTranslatedWords);
   };
 
-  const setInactive = (choose) => {
+  const setInactive = (choose: {
+    or_id: number | null;
+    tr_id: number | null;
+  }) => {
     const newOriginalWords = originalWords;
     newOriginalWords.map((word) => {
       if (word.id === choose.or_id) {
@@ -74,6 +105,7 @@ const Dictionary = ({
       }
     });
     setOriginalWords(newOriginalWords);
+
     const newTranslatedWords = translatedWords;
     newTranslatedWords.map((word) => {
       if (word.id === choose.tr_id) {
@@ -83,7 +115,7 @@ const Dictionary = ({
     setTranslatedWords(newTranslatedWords);
   };
 
-  const handleClick = (id, wordType: string) => {
+  const handleClick = (id: number, wordType: string) => {
     if (wordType === "original") {
       const newOriginalWords = originalWords;
       newOriginalWords.map((word) => {

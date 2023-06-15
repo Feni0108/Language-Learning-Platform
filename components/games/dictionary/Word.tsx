@@ -1,5 +1,6 @@
 import { FormatLessons } from "@/components/FormatLessons";
 import React, { useEffect, useState } from "react";
+import { ChooseType } from "./dictionary";
 
 type Props = {
   word: string;
@@ -9,8 +10,8 @@ type Props = {
   wordType: string;
   fetchData: () => void;
   handleClick: (id: number, wordType: string) => void;
-  isWrong: object;
-  setIsWrong: (val: object) => void;
+  isWrong: { or_id: number | null; tr_id: number | null };
+  setIsWrong: React.Dispatch<React.SetStateAction<ChooseType>>;
 };
 
 const Word = ({
@@ -24,7 +25,7 @@ const Word = ({
   isWrong,
   setIsWrong,
 }: Props) => {
-  const [style, setStyle] = useState<string>(null);
+  const [style, setStyle] = useState<string | null>(null);
 
   useEffect(() => {
     if (isSelected) {
@@ -53,9 +54,9 @@ const Word = ({
 
   return (
     <div
-      className={style}
+      className={style || ""}
       id={"orig_" + id.toString()}
-      onClick={isVisible ? () => handleClick(id, wordType) : null}
+      onClick={isVisible ? () => handleClick(id, wordType) : undefined}
     >
       {word}
     </div>

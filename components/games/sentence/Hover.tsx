@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 
 type Props = {
+    id:number
     word: string
     hover: string[]
 
