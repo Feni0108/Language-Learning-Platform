@@ -1,8 +1,8 @@
-const express = require('express')
-const next = require('next')
+import Express from 'express';
+import Next from 'next';
 
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
+const app = Next({ dev })
 const handle = app.getRequestHandler()
 
 // Your app will get the Azure port from the process.enc.PORT
@@ -11,18 +11,18 @@ const port = process.env.PORT || 3000;
 app
     .prepare()
     .then(() => {
-        const server = express()
+        const server = Express()
 
-        server.get('*', (req, res) => {
+        server.get('*', (req: Express.Request, res: Express.Response) => {
             return handle(req, res)
         })
 
-        server.listen(port, err => {
+        server.listen((_port: any, err: Error) => {
             if (err) throw err
             console.log('> Ready on http://localhost:3000')
         })
     })
-    .catch(ex => {
-        console.error(ex.stack)
+    .catch((err: Error) => {
+        console.error(err.stack)
         process.exit(1)
     })
