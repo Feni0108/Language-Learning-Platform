@@ -6,7 +6,7 @@ const app = Next({ dev })
 const handle = app.getRequestHandler()
 
 // Your app will get the Azure port from the process.enc.PORT
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || "8080";
 
 app
     .prepare()
@@ -17,9 +17,9 @@ app
             return handle(req, res)
         })
 
-        server.listen((_port: any, err: Error) => {
+        server.listen((_port: String, err: Error) => {
             if (err) throw err
-            console.log('> Ready on http://localhost:3000')
+            console.log('> Ready on http://localhost:' + port)
         })
     })
     .catch((err: Error) => {
