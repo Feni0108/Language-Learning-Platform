@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {useSession} from "next-auth/react";
+import SignUpButton from "@/components/SignUpButton";
 
 interface UserSettings {
   interfaceLanguage: string;
@@ -74,7 +75,9 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   };
 
   if (!session) {
-    return <div>Please log in to access this page.</div>;
+    return <div>Please log in to access this page.
+      <SignUpButton/>
+    </div>;
   }
 
   if (userSettings === null) {

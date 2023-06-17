@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "Leaderboard", href: "leaderboard", current: false },
+  { name: "Leaderboard", href: "/leaderboard", current: false },
   { name: "Friends", href: "#", current: false },
 ];
 
