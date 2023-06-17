@@ -1,5 +1,5 @@
 export const lastGame = async (userId:string) => {
-    const endpoint = "http://localhost:3000/api/lastGame";
+    const endpoint = "/api/lastGame";
     try {
         const postData = {
             method: "POST",
