@@ -36,7 +36,7 @@ export default function Home() {
       session.user?.learningGoal === undefined &&
       session.user?.targetLanguage === undefined
     ) {
-      router.push("http://localhost:3000/settings");
+      router.push("/settings");
     }
   }
   return (

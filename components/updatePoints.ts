@@ -1,6 +1,6 @@
 
 export const updatePoints = async (totalPoints: number, userId: string, isProgressUpdate: boolean) => {
-    const endpoint = "http://localhost:3000/api/updatePoints";
+    const endpoint = "/api/updatePoints";
 
 
 

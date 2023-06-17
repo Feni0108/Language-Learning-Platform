@@ -13,7 +13,7 @@ function SignIn() {
   const router = useRouter();
 
   if (session) {
-    router.push("http://localhost:3000");
+    router.push("/");
 
   } else {
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -28,7 +28,7 @@ function SignIn() {
         redirect: false,
       }).then((res) => {
         if (res!.ok) {
-          router.push("http://localhost:3000");
+          router.push("/");
         } else {
           setMessage("Invalid password or username");
         }
