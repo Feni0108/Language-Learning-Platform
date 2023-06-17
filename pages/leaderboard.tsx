@@ -40,11 +40,11 @@ type LeaderBoardUser = {
 }
 
 export default function Leaderboard({leaderBoard} : LeaderBoardType) {
-    console.log(leaderBoard);
     const {data: session} = useSession();
     const [isPoint, setIsPoint] = useState<boolean>(true);
     const [sortLeaderBoard, setSortLeaderBoard] = useState<LeaderBoardUser[] | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(false);
+
 
     useEffect(() => {
         async function setNewLeaderBoard() {
@@ -65,16 +65,16 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType) {
         )
     }, [isPoint])
 
+    if (!session) {
+        return <div>Please log in to access this page.
+            <SignUpButton/>
+        </div>;
+    }
+
 
     return (
+
         <div>
-            Hello
-            {!session && (
-                <>
-                    <AccessDenied/>
-                    <SignUpButton/>
-                </>
-            )}
             {!isLoading && session && (
                 <>Signed in as {session.user?.email ? session.user.email : session.user!.username} <br/>
                     <div>
