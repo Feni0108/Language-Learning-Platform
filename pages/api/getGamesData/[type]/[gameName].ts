@@ -74,18 +74,36 @@ export default async function handler(req: NextApiRequest,
             const dictionary = await prisma.dictionary.findMany() as Dictionary;
             const result = getRandomSentence(sentences, dictionary);
             return res.status(200).json({result});
-        }
+        }*/
         case "pelmanism" : {
-            const words = await prisma.dictionary.findMany({
-                    where: {
-                        category: newType
-                    }
+            const original_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: "eng"
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    category: true,
+                    image: true
                 }
-            ) as Dictionary;
-            const result = getOptions(words);
+            }) as Dictionary;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: "hu"
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    category: true,
+                    image: true
+                }
+            }) as Dictionary;
+            const result = getOptions(original_words, translated_words);
             return res.status(200).json({result});
         }
-        case "storyline" : {
+        /*case "storyline" : {
             const storyline = await prisma.storyline.findMany();
             const randomId = Math.floor(Math.random() * storyline.length);
             const story = storyline[randomId];
