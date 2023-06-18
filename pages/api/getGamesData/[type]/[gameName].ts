@@ -5,6 +5,7 @@ import {getRandomSentence, Sentence} from "@/components/games/gameComponentBacke
 import {NextApiRequest, NextApiResponse} from "next";
 import {Prisma} from ".prisma/client";
 import EnumCategoryFilter = Prisma.EnumCategoryFilter;
+import * as stream from "stream";
 
 export default async function handler(req: NextApiRequest,
                                       res: NextApiResponse) {
@@ -13,16 +14,34 @@ export default async function handler(req: NextApiRequest,
     const newType = type!.toString().toUpperCase() as EnumCategoryFilter;
     switch (gameName) {
         case "dictionary" : {
-            const words = await prisma.dictionary.findMany({
+            const original_words = await prisma.words.findMany({
                 where: {
-                    category: newType
+                    category: newType,
+                    language: "eng"
+                    },
+                select: {
+                    id: true,
+                    word: true,
+                    category: true,
+                    image: true
                 }
+                }) as Dictionary;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: "hu"
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    category: true,
+                    image: true
                 }
-            ) as Dictionary;
-            const result = getOptions(words);
+            }) as Dictionary;
+            const result = getOptions(original_words, translated_words);
             return res.status(200).json({result});
         }
-        case "picture" : {
+        /*case "picture" : {
             const words = await prisma.dictionary.findMany({
                     where: {
                         category: newType
@@ -58,7 +77,7 @@ export default async function handler(req: NextApiRequest,
             const solutions = story.solutions.split(";");
             const result = { sentences, options, solutions };
             return res.status(200).json({result});
-        }
+        }*/
         default : return null
     }
 

@@ -5,8 +5,7 @@ let wordsWithPictures: { id: number; word: string, image: string, isSelected: bo
 export type Dictionary = [
     {
         id: number,
-        original_word: string,
-        translated_word: string,
+        word: string,
         image: object,
         category: string;
     }
@@ -22,9 +21,9 @@ const getRandomWord = (allWords: Dictionary, maxId: number) => {
             newId = false;
     }
     if (newId){
-        wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].translated_word, image:allWords[randomId-1].image.toString(), isSelected:false})
+        wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].word, image:allWords[randomId-1].image.toString(), isSelected:false})
         if (originalWord === undefined){
-            originalWord = {id: allWords[randomId-1].id, word:allWords[randomId-1].original_word};
+            originalWord = {id: allWords[randomId-1].id, word:allWords[randomId-1].word};
         }
     }
 
