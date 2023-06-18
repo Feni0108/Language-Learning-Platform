@@ -101,18 +101,33 @@ export default function Home() {
               type={"Animals"}
             />
             <Categories
-              progress={session.user!.progress!}
-              progressLimit={15}
-              type={"Friends"}
+                progress={session.user!.progress!}
+                progressLimit={15}
+                type={"Numbers"}
             />
             <Categories
-              progress={session.user!.progress!}
-              progressLimit={20}
-              type={"Hobby"}
+                progress={session.user!.progress!}
+                progressLimit={20}
+                type={"Calendar"}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={25}
+              type={"Friends"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={30}
+              type={"Hobby"}
+            />
+            <Categories
+                progress={session.user!.progress!}
+                progressLimit={35}
+                type={"Living"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={40}
               type={"Shopping"}
             />
             <h2>Part 2: Advanced</h2>
