@@ -69,12 +69,33 @@ export default async function handler(req: NextApiRequest,
             const result = getWordWithPictures(original_words, translated_words);
             return res.status(200).json({result});
         }
-        /*case "sentence" : {
-            const sentences = await prisma.sentence.findMany() as Sentence;
-            const dictionary = await prisma.dictionary.findMany() as Dictionary;
-            const result = getRandomSentence(sentences, dictionary);
+        case "sentence" : {
+            const original_sentence = await prisma.sentence.findMany({
+                where: {
+                    category: newType,
+                    language: "eng"
+                },
+                select: {
+                    id: true,
+                    sentence: true
+                }
+                }
+            ) as Sentence;
+            const translated_sentence = await prisma.sentence.findMany({
+                    where: {
+                        category: newType,
+                        language: "hu"
+                    },
+                    select: {
+                        id: true,
+                        sentence: true
+                    }
+                }
+            ) as Sentence;
+            //const dictionary = await prisma.dictionary.findMany() as Dictionary;
+            const result = getRandomSentence(original_sentence, translated_sentence);
             return res.status(200).json({result});
-        }*/
+        }
         case "pelmanism" : {
             const original_words = await prisma.words.findMany({
                 where: {
