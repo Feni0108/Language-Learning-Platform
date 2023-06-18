@@ -107,6 +107,7 @@ enum Category {
   GREETINGS
   FAMILY
   ANIMALS
+  NUMBER
   CALENDAR
   FRIENDS
   HOBBY
@@ -119,6 +120,7 @@ model Words {
   word        String
   language    Language
   description String
+  category Category
 
   @@unique([id, language])
 }
