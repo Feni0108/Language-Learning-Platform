@@ -11,6 +11,7 @@ interface IUser extends DefaultUser {
     interfaceLanguage?: string | null;
     targetLanguage?: string | null;
     learningGoal?: string | null;
+    token?: string;
 
     strike?: number;
 }

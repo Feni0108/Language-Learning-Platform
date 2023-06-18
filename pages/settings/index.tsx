@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {useSession} from "next-auth/react";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import i18n from '../../i18n/i18n';
+import {getLanguageCode} from "@/components/getLanguageCode";
 
 interface UserSettings {
   interfaceLanguage: string;
@@ -10,7 +13,7 @@ interface UserSettings {
 }
 
 interface SettingsProps {
-  userSettings: UserSettings;
+  userSettings: UserSettings | null;
 }
 
 const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
@@ -19,15 +22,16 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
   const [targetLanguage, setTargetLanguage] = useState<string>(userSettings?.targetLanguage || '');
   const [learningGoal, setLearningGoal] = useState<string>(userSettings?.learningGoal || '');
+  const t = (key: string) => i18n.t(key);
 
   useEffect(() => {
     if (session) {
       if (session?.user?.interfaceLanguage !== undefined &&
           session.user?.learningGoal !== undefined &&
           session.user?.targetLanguage !== undefined) {
-        setInterfaceLanguage(session.user.interfaceLanguage);
-        setTargetLanguage(session.user.targetLanguage);
-        setLearningGoal(session.user.learningGoal);
+        setInterfaceLanguage(session.user.interfaceLanguage || '');
+        setTargetLanguage(session.user.targetLanguage || '');
+        setLearningGoal(session.user.learningGoal || '');
       }
     }
   }, [session]);
@@ -40,13 +44,20 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
     }
   }, [userSettings]);
 
+  useEffect(() => {
+    if (interfaceLanguage) {
+      const languageCode = getLanguageCode(interfaceLanguage);
+      i18n.changeLanguage(languageCode);
+    }
+  }, [interfaceLanguage]);
+
   const handleSaveSettings = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const settings: UserSettings = {
       interfaceLanguage,
       targetLanguage,
       learningGoal,
-      userId: session?.user?.id
+      userId: session?.user?.id || ''
     };
 
     try {
@@ -54,14 +65,15 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user?.token}`,
+          'Authorization': `Bearer ${session?.user?.token || ''}`,
         },
         body: JSON.stringify(settings),
       });
       if (response.ok) {
-        update({id: session.user.id, type: "settings"}).then((response) => {
+        update({id: session?.user?.id || '', type: 'settings'}).then((response) => {
               if (response) {
-                router.push("/");
+                session?.user && (session.user.interfaceLanguage = interfaceLanguage);
+                router.push("/settings");
               }
             }
         );
@@ -83,7 +95,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
 
   const renderSettingsText = (value: string, defaultValue: string) => {
     if (value) {
-      return value;
+      return t(value);
     } else {
       return <span className="text-gray-500">{defaultValue}</span>;
     }
@@ -91,61 +103,67 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
 
   return (
       <div className="p-4 bg-gray-100">
-        <h1 className="text-2xl font-bold mb-4">{session && `${session.user?.username}'s settings`}</h1>
+        <h1 className="text-2xl font-bold mb-4">{session && `${session.user?.username} ${t('s_settings')}`}</h1>
         <div className="mb-4">
           <label htmlFor="interface-language" className="mr-2">
-            Interface language:
+            {t('interfaceLanguage')}:
           </label>
           <div className="flex items-center">
-            {renderSettingsText(interfaceLanguage, 'Set up interface language')}
+            {renderSettingsText(interfaceLanguage, t('setInterfaceLanguage'))}
             <select
                 id="interface-language"
                 value={interfaceLanguage}
                 onChange={(e) => setInterfaceLanguage(e.target.value)}
                 className="p-2 border border-gray-300 rounded ml-2"
             >
-              <option value="">Choose an interface language...</option>
-              <option value="english">English</option>
-              <option value="hungarian">Hungarian</option>
+              <option value="">{t('chooseInterfaceLanguage')}</option>
+              <option value="english">{t('english')}</option>
+              <option value="hungarian">{t('hungarian')}</option>
+              <option value="czech">{t('czech')}</option>
+              <option value="slovak">{t('slovak')}</option>
+              <option value="icelandic">{t('icelandic')}</option>
             </select>
           </div>
         </div>
         <div className="mb-4">
           <label htmlFor="target-language" className="mr-2">
-            Target language:
+            {t('targetLanguage')}:
           </label>
           <div className="flex items-center">
-            {renderSettingsText(targetLanguage, 'Set up target language')}
+            {renderSettingsText(targetLanguage, t('setTargetLanguage'))}
             <select
                 id="target-language"
                 value={targetLanguage}
                 onChange={(e) => setTargetLanguage(e.target.value)}
                 className="p-2 border border-gray-300 rounded ml-2"
             >
-              <option value="">Choose a language to learn...</option>
-              <option value="english">English</option>
-              <option value="hungarian">Hungarian</option>
+              <option value="">{t('chooseTargetLanguage')}</option>
+              <option value="english">{t('english')}</option>
+              <option value="hungarian">{t('hungarian')}</option>
+              <option value="czech">{t('czech')}</option>
+              <option value="slovak">{t('slovak')}</option>
+              <option value="icelandic">{t('icelandic')}</option>
             </select>
           </div>
         </div>
         <div className="mb-4">
           <label htmlFor="learning-goal" className="mr-2">
-            Learning goal:
+            {t('learningGoal')}:
           </label>
           <div className="flex items-center">
-            {renderSettingsText(learningGoal, 'Set up learning goal')}
+            {renderSettingsText(learningGoal, t('setLearningGoal'))}
             <select
                 id="learning-goal"
                 value={learningGoal}
                 onChange={(e) => setLearningGoal(e.target.value)}
                 className="p-2 border border-gray-300 rounded ml-2"
             >
-              <option value="">Choose a learning goal...</option>
-              <option value="1">Basic level: 1 point per day</option>
-              <option value="10">Convenient: 10 points per day</option>
-              <option value="20">Normal: 20 points per day</option>
-              <option value="30">Serious: Daily 30 points</option>
-              <option value="50">Intensive: Daily 50 points</option>
+              <option value="">{t('chooseLearningGoal')}</option>
+              <option value="1">{t('basicLevel')}</option>
+              <option value="10">{t('convenientLevel')}</option>
+              <option value="20">{t('normalLevel')}</option>
+              <option value="30">{t('seriousLevel')}</option>
+              <option value="50">{t('intensiveLevel')}</option>
             </select>
           </div>
         </div>
@@ -154,11 +172,20 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 onClick={handleSaveSettings}
                 className="bg-teal-500 text-white py-2 px-4 rounded"
             >
-              Save
+              {t('Save')}
             </button>
         )}
       </div>
   );
 }
+
+export const getServerSideProps = async ({locale = 'en'}: { locale: string }) => {
+  const translations = await serverSideTranslations(locale, ['common']);
+  return {
+    props: {
+      ...translations,
+    },
+  };
+};
 
 export default SettingsPage;
