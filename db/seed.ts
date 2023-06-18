@@ -5,6 +5,7 @@ import {
   Category,
   Sentence,
 } from ".prisma/client";
+import {Blob} from "./blob";
 
 /*
 Usage:
@@ -679,77 +680,88 @@ async function seed() {
         word: "hello",
         language: Language.eng,
         description: "a greeting or expression of goodwill",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 19) {return value.image}})[0]
       },
       {
         id: 19,
         word: "szia",
         language: Language.hu,
         description: "üdvözlés vagy jóakarat kifejezése",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 19) {return value.image}})[0]
       },
       {
         id: 19,
         word: "ahoj",
         language: Language.cz,
         description: "pozdrav nebo vyjádření dobré vůle",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 19) {return value.image}})[0]
       },
       {
         id: 19,
         word: "ahoj",
         language: Language.sk,
         description: "pozdrav alebo vyjadrenie dobrej vôle",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 19) {return value.image}})[0]
       },
       {
         id: 19,
         word: "halló",
         language: Language.is,
         description: "kveðja eða góðvilja yfirlýsing",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 19) {return value.image}})[0]
       },
       {
         id: 20,
         word: "goodbye",
         language: Language.eng,
         description: "a farewell or parting phrase",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 20) {return value.image}})[0]
       },
       {
         id: 20,
         word: "viszlát",
         language: Language.hu,
         description: "búcsú vagy elköszönő kifejezés",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 20) {return value.image}})[0]
       },
       {
         id: 20,
         word: "do videnia",
         language: Language.sk,
         description: "lúčenie alebo rozlúčková fráza",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 20) {return value.image}})[0]
       },
       {
         id: 20,
         word: "sbohem",
         language: Language.cz,
         description: "rozloučení nebo rozloučení fráze",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 20) {return value.image}})[0]
       },
       {
         id: 20,
         word: "bless",
         language: Language.is,
         description: "kveðja eða skilnaðarorð",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 20) {return value.image}})[0]
       },
       {
         id: 21,
         word: "yes",
         language: Language.eng,
         description: "an affirmative response or agreement",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 20) {return value.image}})[0]
       },
       {
         id: 21,
@@ -819,35 +831,40 @@ async function seed() {
         word: "thank you",
         language: Language.eng,
         description: "an expression of gratitude",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 23) {return value.image}})[0]
       },
       {
         id: 23,
         word: "köszönöm",
         language: Language.hu,
         description: "hálás kifejezés",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 23) {return value.image}})[0]
       },
       {
         id: 23,
         word: "prosím",
         language: Language.sk,
         description: "vyjadrenie vďaky",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 23) {return value.image}})[0]
       },
       {
         id: 23,
         word: "děkuji",
         language: Language.cz,
         description: "vyjádření vděčnosti",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 23) {return value.image}})[0]
       },
       {
         id: 23,
         word: "þakka þér",
         language: Language.is,
         description: "tjáning þakklætis",
-        category: Category.GREETINGS
+        category: Category.GREETINGS,
+          image: Blob.map((value) => {if(value.id === 23) {return value.image}})[0]
       },
       {
         id: 24,
@@ -1068,105 +1085,120 @@ async function seed() {
         word: "morning",
         language: Language.eng,
         description: "the early part of the day, from sunrise to noon",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 30) {return value.image}})[0]
       },
       {
         id: 30,
         word: "reggel",
         language: Language.hu,
         description: "a nap korai része, a napkelte és dél között",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 30) {return value.image}})[0]
       },
       {
         id: 30,
         word: "ráno",
         language: Language.sk,
         description: "čas skorého rána, od východu slnka do poludnia",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 30) {return value.image}})[0]
       },
       {
         id: 30,
         word: "ráno",
         language: Language.cz,
         description: "část dne od východu slunce po poledne",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 30) {return value.image}})[0]
       },
       {
         id: 30,
         word: "morgunn",
         language: Language.is,
         description: "byrjun dags, frá sólarupprás til hádegis",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 30) {return value.image}})[0]
       },
       {
         id: 31,
         word: "evening",
         language: Language.eng,
         description: "the later part of the day, from late afternoon to night",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 31) {return value.image}})[0]
       },
       {
         id: 31,
         word: "este",
         language: Language.hu,
         description: "a nap későbbi része, a késő délutántól az éjszakáig",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 31) {return value.image}})[0]
       },
       {
         id: 31,
         word: "večer",
         language: Language.sk,
         description: "čas neskorého popoludnia až do noci",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 31) {return value.image}})[0]
       },
       {
         id: 31,
         word: "večer",
         language: Language.cz,
         description: "část dne od pozdního odpoledne do noci",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 31) {return value.image}})[0]
       },
       {
         id: 31,
         word: "kvöld",
         language: Language.is,
         description: "seinni hluti dags, frá seint síðdegis til næturs",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 31) {return value.image}})[0]
       },
       {
         id: 32,
         word: "night",
         language: Language.eng,
         description: "the period of darkness between sunset and sunrise",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 32) {return value.image}})[0]
       },
       {
         id: 32,
         word: "éjszaka",
         language: Language.hu,
         description: "a naplemente és napfelkelte közötti sötét időszak",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 32) {return value.image}})[0]
       },
       {
         id: 32,
         word: "noc",
         language: Language.sk,
         description: "obdobie tmy medzi západom slnka a východom slnka",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 32) {return value.image}})[0]
       },
       {
         id: 32,
         word: "noc",
         language: Language.cz,
         description: "období tmy mezi západem slunce a východem slunce",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 32) {return value.image}})[0]
       },
       {
         id: 32,
         word: "nótt",
         language: Language.is,
         description: "tíminn milli sólarlags og sólarupprásar",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 32) {return value.image}})[0]
       },
       {
         id: 33,
@@ -1421,7 +1453,8 @@ async function seed() {
         word: "money",
         language: Language.eng,
         description: "a medium of exchange or a financial resource",
-        category: Category.SHOPPING
+        category: Category.SHOPPING,
+          image: Blob.map((value) => {if(value.id === 40) {return value.image}})[0]
       },
       {
         id: 40,
@@ -1429,378 +1462,432 @@ async function seed() {
         language: Language.hu,
         description:
           "az eladásra szolgáló közvetítőeszköz vagy pénzügyi erőforrás",
-        category: Category.SHOPPING
+        category: Category.SHOPPING,
+          image: Blob.map((value) => {if(value.id === 40) {return value.image}})[0]
       },
       {
         id: 40,
         word: "peniaze",
         language: Language.sk,
         description: "prostriedok výmeny alebo finančný zdroj",
-        category: Category.SHOPPING
+        category: Category.SHOPPING,
+          image: Blob.map((value) => {if(value.id === 40) {return value.image}})[0]
       },
       {
         id: 40,
         word: "peníze",
         language: Language.cz,
         description: "prostředek směny nebo finanční zdroj",
-        category: Category.SHOPPING
+        category: Category.SHOPPING,
+          image: Blob.map((value) => {if(value.id === 40) {return value.image}})[0]
       },
       {
         id: 40,
         word: "peningar",
         language: Language.is,
         description: "gjaldeyrisskipti eða fjárhagur",
-        category: Category.SHOPPING
+        category: Category.SHOPPING,
+          image: Blob.map((value) => {if(value.id === 40) {return value.image}})[0]
       },
       {
         id: 41,
         word: "book",
         language: Language.eng,
         description: "a written or printed work consisting of pages",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 41) {return value.image}})[0]
       },
       {
         id: 41,
         word: "könyv",
         language: Language.hu,
         description: "nyomtatott lapokból álló dokumentum",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 41) {return value.image}})[0]
       },
       {
         id: 41,
         word: "kniha",
         language: Language.sk,
         description: "písaná alebo tlačená práca pozostávajúca z strán",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 41) {return value.image}})[0]
       },
       {
         id: 41,
         word: "kniha",
         language: Language.cz,
         description: "psaný nebo tištěný text skládající se z stránek",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 41) {return value.image}})[0]
       },
       {
         id: 41,
         word: "bók",
         language: Language.is,
         description: "ritað eða prentað verk sem samanstendur af síðum",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 41) {return value.image}})[0]
       },
       {
         id: 42,
         word: "school",
         language: Language.eng,
         description: "an institution for education",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 42) {return value.image}})[0]
       },
       {
         id: 42,
         word: "iskola",
         language: Language.hu,
         description: "oktatási intézmény",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 42) {return value.image}})[0]
       },
       {
         id: 42,
         word: "škola",
         language: Language.sk,
         description: "inštitúcia pre vzdelávanie",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 42) {return value.image}})[0]
       },
       {
         id: 42,
         word: "škola",
         language: Language.cz,
         description: "instituce pro vzdělávání",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 42) {return value.image}})[0]
       },
       {
         id: 42,
         word: "skóli",
         language: Language.is,
         description: "menntastofnun",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 42) {return value.image}})[0]
       },
       {
         id: 43,
         word: "car",
         language: Language.eng,
         description: "a road vehicle with four wheels",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 43) {return value.image}})[0]
       },
       {
         id: 43,
         word: "autó",
         language: Language.hu,
         description: "négy keréken közlekedő jármű",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 43) {return value.image}})[0]
       },
       {
         id: 43,
         word: "auto",
         language: Language.sk,
         description: "cestné vozidlo so štyrmi kolesami",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 43) {return value.image}})[0]
       },
       {
         id: 43,
         word: "auto",
         language: Language.cz,
         description: "silniční vozidlo se čtyřmi koly",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 43) {return value.image}})[0]
       },
       {
         id: 43,
         word: "bíll",
         language: Language.is,
         description: "ökutæki með fjórum hjólum",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 43) {return value.image}})[0]
       },
       {
         id: 44,
         word: "house",
         language: Language.eng,
         description: "a building used for dwelling or living in",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 44) {return value.image}})[0]
       },
       {
         id: 44,
         word: "ház",
         language: Language.hu,
         description: "lakó- vagy élőhelyként használt épület",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 44) {return value.image}})[0]
       },
       {
         id: 44,
         word: "dom",
         language: Language.sk,
         description: "budova používaná na bývanie",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 44) {return value.image}})[0]
       },
       {
         id: 44,
         word: "dům",
         language: Language.cz,
         description: "budova používaná k obývání",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 44) {return value.image}})[0]
       },
       {
         id: 44,
         word: "hús",
         language: Language.is,
         description: "bygging notað fyrir búsetu eða bú",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 44) {return value.image}})[0]
       },
       {
         id: 45,
         word: "dog",
         language: Language.eng,
         description: "a domesticated carnivorous mammal",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 45) {return value.image}})[0]
       },
       {
         id: 45,
         word: "kutya",
         language: Language.hu,
         description: "házi ragadozó emlős",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 45) {return value.image}})[0]
       },
       {
         id: 45,
         word: "pes",
         language: Language.sk,
         description: "domestikovaný masožravý cicavec",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 45) {return value.image}})[0]
       },
       {
         id: 45,
         word: "pes",
         language: Language.cz,
         description: "domestikovaný masožravý savec",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 45) {return value.image}})[0]
       },
       {
         id: 45,
         word: "hundur",
         language: Language.is,
         description: "heimilsdýr sem étur kjöt",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 45) {return value.image}})[0]
       },
       {
         id: 46,
         word: "cat",
         language: Language.eng,
         description: "a small domesticated carnivorous mammal",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 46) {return value.image}})[0]
       },
       {
         id: 46,
         word: "macska",
         language: Language.hu,
         description: "kis házi ragadozó emlős",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 46) {return value.image}})[0]
       },
       {
         id: 46,
         word: "mačka",
         language: Language.sk,
         description: "malý domáci masožravý cicavec",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 46) {return value.image}})[0]
       },
       {
         id: 46,
         word: "kočka",
         language: Language.cz,
         description: "malý domácí masožravý savec",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 46) {return value.image}})[0]
       },
       {
         id: 46,
         word: "köttur",
         language: Language.is,
         description: "lítið heimildisdýr sem étur kjöt",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 46) {return value.image}})[0]
       },
       {
         id: 47,
         word: "tree",
         language: Language.eng,
         description: "a woody perennial plant",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 47) {return value.image}})[0]
       },
       {
         id: 47,
         word: "fa",
         language: Language.hu,
         description: "fás évelő növény",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 47) {return value.image}})[0]
       },
       {
         id: 47,
         word: "strom",
         language: Language.sk,
         description: "drevená trvalka",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 47) {return value.image}})[0]
       },
       {
         id: 47,
         word: "strom",
         language: Language.cz,
         description: "dřevitá trvalka",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 47) {return value.image}})[0]
       },
       {
         id: 47,
         word: "tré",
         language: Language.is,
         description: "viðarkennd fjölær planta",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 47) {return value.image}})[0]
       },
       {
         id: 48,
         word: "flower",
         language: Language.eng,
         description: "the reproductive structure of a flowering plant",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 48) {return value.image}})[0]
       },
       {
         id: 48,
         word: "virág",
         language: Language.hu,
         description: "lágy szárú növényfaj",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 48) {return value.image}})[0]
       },
       {
         id: 48,
         word: "kvetina",
         language: Language.sk,
         description: "reprodukčná štruktúra kvetinových rastlín",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 48) {return value.image}})[0]
       },
       {
         id: 48,
         word: "květina",
         language: Language.cz,
         description: "rozmnožovací orgán kvetoucích rostlin",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 48) {return value.image}})[0]
       },
       {
         id: 48,
         word: "blóm",
         language: Language.is,
         description: "æxlunargerð blómplantna",
-        category: Category.ANIMALS
+        category: Category.ANIMALS,
+          image: Blob.map((value) => {if(value.id === 48) {return value.image}})[0]
       },
       {
         id: 49,
         word: "river",
         language: Language.eng,
         description: "a large natural stream of water",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 49) {return value.image}})[0]
       },
       {
         id: 49,
         word: "folyó",
         language: Language.hu,
         description: "nagy természetes vízfolyás",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 49) {return value.image}})[0]
       },
       {
         id: 49,
         word: "rieka",
         language: Language.sk,
         description: "veľký prírodný tok vody",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 49) {return value.image}})[0]
       },
       {
         id: 49,
         word: "řeka",
         language: Language.cz,
         description: "velký přírodní tok vody",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 49) {return value.image}})[0]
       },
       {
         id: 49,
         word: "á",
         language: Language.is,
         description: "stór náttúrulegur straumur af vatni",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 49) {return value.image}})[0]
       },
       {
         id: 50,
         word: "mountain",
         language: Language.eng,
         description: "a large landform that rises above its surroundings",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 50) {return value.image}})[0]
       },
       {
         id: 50,
         word: "hegy",
         language: Language.hu,
         description: "a környezetétől magasabbra emelkedő nagy földalakzat",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 50) {return value.image}})[0]
       },
       {
         id: 50,
         word: "hora",
         language: Language.sk,
         description: "veľký pevninský útvar, ktorý sa vypína nad okolím",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 50) {return value.image}})[0]
       },
       {
         id: 50,
         word: "hora",
         language: Language.cz,
         description: "velký pevninský útvar, který se vypíná nad okolím",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 50) {return value.image}})[0]
       },
       {
         id: 50,
         word: "fjall",
         language: Language.is,
         description: "stórt landslag sem rís yfir umhverfi sitt",
-        category: Category.LIVING
+        category: Category.LIVING,
+          image: Blob.map((value) => {if(value.id === 50) {return value.image}})[0]
       },
       {
         id: 51,
@@ -2053,7 +2140,9 @@ async function seed() {
         language: Language.eng,
         description:
           "a measurable period during which an action, process, or condition exists",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 58) {return value.image}})[0]
+
       },
       {
         id: 58,
@@ -2061,7 +2150,8 @@ async function seed() {
         language: Language.hu,
         description:
           "egy mérhető időszak, amely alatt egy cselekvés, folyamat vagy állapot fennáll",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 58) {return value.image}})[0]
       },
       {
         id: 58,
@@ -2069,7 +2159,8 @@ async function seed() {
         language: Language.sk,
         description:
           "merateľné obdobie, počas ktorého existuje činnosť, proces alebo stav",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 58) {return value.image}})[0]
       },
       {
         id: 58,
@@ -2077,7 +2168,8 @@ async function seed() {
         language: Language.cz,
         description:
           "měřitelné období, během něhož existuje činnost, proces nebo stav",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 58) {return value.image}})[0]
       },
       {
         id: 58,
@@ -2085,7 +2177,8 @@ async function seed() {
         language: Language.is,
         description:
           "mælanlegt tímabil þar sem aðgerð, ferli eða ástand er til staðar",
-        category: Category.CALENDAR
+        category: Category.CALENDAR,
+          image: Blob.map((value) => {if(value.id === 58) {return value.image}})[0]
       },
       {
         id: 59,
@@ -2163,77 +2256,88 @@ async function seed() {
         word: "family",
         language: Language.eng,
         description: "a group of individuals living together",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 61) {return value.image}})[0]
       },
       {
         id: 61,
         word: "család",
         language: Language.hu,
         description: "együtt élő egyének csoportja",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 61) {return value.image}})[0]
       },
       {
         id: 61,
         word: "rodina",
         language: Language.sk,
         description: "skupina jednotlivcov žijúcich spolu",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 61) {return value.image}})[0]
       },
       {
         id: 61,
         word: "rodina",
         language: Language.cz,
         description: "skupina jednotlivců žijících spolu",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 61) {return value.image}})[0]
       },
       {
         id: 61,
         word: "fjölskylda",
         language: Language.is,
         description: "hópur einstaklinga sem búa saman",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 61) {return value.image}})[0]
       },
       {
         id: 62,
         word: "love",
         language: Language.eng,
         description: "an intense feeling of affection or deep attachment",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 62) {return value.image}})[0]
       },
       {
         id: 62,
         word: "szeretet",
         language: Language.hu,
         description: "erős érzelmi kötődés vagy mély ragaszkodás",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 62) {return value.image}})[0]
       },
       {
         id: 62,
         word: "láska",
         language: Language.sk,
         description: "intenzívne pocity náklonnosti alebo hlboké puto",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 62) {return value.image}})[0]
       },
       {
         id: 62,
         word: "láska",
         language: Language.cz,
         description: "intenzivní pocit náklonnosti nebo hluboká připoutanost",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 62) {return value.image}})[0]
       },
       {
         id: 62,
         word: "ást",
         language: Language.is,
         description: "sterk tilfinning um dýpt ástar",
-        category: Category.FAMILY
+        category: Category.FAMILY,
+          image: Blob.map((value) => {if(value.id === 62) {return value.image}})[0]
       },
       {
         id: 63,
         word: "pen",
         language: Language.eng,
         description: "a writing instrument used to apply ink to a surface",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 63) {return value.image}})[0]
       },
       {
         id: 63,
@@ -2241,7 +2345,8 @@ async function seed() {
         language: Language.hu,
         description:
           "íráshoz használt eszköz, amellyel tintát visznek fel egy felületre",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 63) {return value.image}})[0]
       },
       {
         id: 63,
@@ -2249,21 +2354,24 @@ async function seed() {
         language: Language.sk,
         description:
           "písací nástroj používaný na nanášanie atramentu na povrch",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 63) {return value.image}})[0]
       },
       {
         id: 63,
         word: "pero",
         language: Language.cz,
         description: "psací nástroj používaný k nanášení inkoustu na povrch",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 63) {return value.image}})[0]
       },
       {
         id: 63,
         word: "penni",
         language: Language.is,
         description: "skriffæri sem notað er til að setja blek á yfirborð",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 63) {return value.image}})[0]
       },
       {
         id: 64,
@@ -2377,70 +2485,81 @@ async function seed() {
         word: "computer",
         language: Language.eng,
         description: "an electronic device for processing data",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 67) {return value.image}})[0]
       },
       {
         id: 67,
         word: "számítógép",
         language: Language.hu,
         description: "elektronikai eszköz adatfeldolgozásra",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 67) {return value.image}})[0]
       },
       {
         id: 67,
         word: "počítač",
         language: Language.sk,
         description: "elektronické zariadenie na spracovanie údajov",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 67) {return value.image}})[0]
       },
       {
         id: 67,
         word: "počítač",
         language: Language.cz,
         description: "elektronické zařízení pro zpracování dat",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 67) {return value.image}})[0]
       },
       {
         id: 67,
         word: "tölva",
         language: Language.is,
         description: "rafmagnstæki til að vinna með gögn",
-        category: Category.HOBBY
+        category: Category.HOBBY,
+          image: Blob.map((value) => {if(value.id === 67) {return value.image}})[0]
       },
       {
         id: 68,
         word: "phone",
         language: Language.eng,
         description: "a device used for communication",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 68) {return value.image}})[0]
+
       },
       {
         id: 68,
         word: "telefon",
         language: Language.hu,
         description: "kommunikációra használt eszköz",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 68) {return value.image}})[0]
       },
       {
         id: 68,
         word: "telefón",
         language: Language.sk,
         description: "zariadenie používané na komunikáciu",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 68) {return value.image}})[0]
       },
       {
         id: 68,
         word: "telefon",
         language: Language.cz,
         description: "zařízení používané pro komunikaci",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 68) {return value.image}})[0]
       },
       {
         id: 68,
         word: "sími",
         language: Language.is,
         description: "tæki sem notað er til samskipta",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 68) {return value.image}})[0]
       },
       {
         id: 69,
@@ -2869,70 +2988,81 @@ async function seed() {
         word: "laugh",
         language: Language.eng,
         description: "to express amusement or joy with sound",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
+
       },
       {
         id: 81,
         word: "nevetni",
         language: Language.hu,
         description: "szórakozottságot vagy örömöt kifejezni hanggal",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 81,
         word: "smiať sa",
         language: Language.sk,
         description: "vyjadrovať zábavu alebo radosť zvukom",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 81,
         word: "smát se",
         language: Language.cz,
         description: "vyjádřit pobavení nebo radost zvukem",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 81,
         word: "hlæja",
         language: Language.is,
         description: "að tjá gleði eða skemmtun með hljóði",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 82,
         word: "cry",
         language: Language.eng,
         description: "to shed tears as an expression of emotion",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 82) {return value.image}})[0]
       },
       {
         id: 82,
         word: "sírni",
         language: Language.hu,
         description: "könnyeket hullatni érzelem kifejezésére",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 82,
         word: "plakať",
         language: Language.sk,
         description: "prehodiť slzy ako prejav emócií",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 82,
         word: "plakat",
         language: Language.cz,
         description: "prolít slzy jako vyjádření emocí",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 82,
         word: "gráta",
         language: Language.is,
         description: "að fella tár sem tjáningu af tilfinningu",
-        category: Category.FRIENDS
+        category: Category.FRIENDS,
+          image: Blob.map((value) => {if(value.id === 81) {return value.image}})[0]
       },
       {
         id: 83,
@@ -2969,6 +3099,856 @@ async function seed() {
         description: "persónulegt fornafn í eintölu (hvættkyn)",
         category: Category.GREETINGS
       },
+        {
+            id: 84,
+            word: "rain",
+            language: Language.eng,
+                description: "a form of precipitation",
+            category: Category.GREETINGS,
+            image: Blob.map((value) => {if(value.id === 84) {return value.image}})[0]
+
+        },
+        {
+            id: 84,
+            word: "eső",
+            language: Language.hu,
+            description: "a csapadékok egy formája",
+            category: Category.GREETINGS,
+            image: Blob.map((value) => {if(value.id === 84) {return value.image}})[0]
+        },
+        {
+            id: 84,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.GREETINGS,
+            image: Blob.map((value) => {if(value.id === 84) {return value.image}})[0]
+        },
+        {
+            id: 84,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.GREETINGS,
+            image: Blob.map((value) => {if(value.id === 84) {return value.image}})[0]
+        },
+        {
+            id: 84,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.GREETINGS,
+            image: Blob.map((value) => {if(value.id === 84) {return value.image}})[0]
+        },
+        {
+            id: 85,
+            word: "horse",
+            language: Language.eng,
+            description: "odd-toed ungulate",
+            category: Category.ANIMALS
+
+        },
+        {
+            id: 85,
+            word: "ló",
+            language: Language.hu,
+            description: "páratlanujjú patás",
+            category: Category.ANIMALS
+        },
+        {
+            id: 85,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 85,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 85,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 86,
+            word: "bee",
+            language: Language.eng,
+            description: "flying, yellow-black insect",
+            category: Category.ANIMALS
+
+        },
+        {
+            id: 86,
+            word: "méh",
+            language: Language.hu,
+            description: "repülő, sárga-fekete rovar",
+            category: Category.ANIMALS
+        },
+        {
+            id: 86,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 86,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 86,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 87,
+            word: "deer",
+            language: Language.eng,
+            description: "herbivore, ungulate, target of hunters",
+            category: Category.ANIMALS
+
+        },
+        {
+            id: 87,
+            word: "szarvas",
+            language: Language.hu,
+            description: "növényevő, patás állat, vadászok célpontja",
+            category: Category.ANIMALS
+        },
+        {
+            id: 87,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 87,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 87,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 88,
+            word: "wolf",
+            language: Language.eng,
+            description: "canine predator",
+            category: Category.ANIMALS
+
+        },
+        {
+            id: 88,
+            word: "fakras",
+            language: Language.hu,
+            description: "kutyaféle ragadozó",
+            category: Category.ANIMALS
+        },
+        {
+            id: 88,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 88,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 88,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 89,
+            word: "beer",
+            language: Language.eng,
+            description: "Large, stocky furred predatory mammal",
+            category: Category.ANIMALS
+
+        },
+        {
+            id: 89,
+            word: "medve",
+            language: Language.hu,
+            description: "Nagy, zömök testű bundás ragadozó emlős",
+            category: Category.ANIMALS
+        },
+        {
+            id: 89,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 89,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 89,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 90,
+            word: "goldfish",
+            language: Language.eng,
+            description: "popular aquarium fish species",
+            category: Category.ANIMALS
+
+        },
+        {
+            id: 90,
+            word: "aranyhal",
+            language: Language.hu,
+            description: "népszerű akváriumi halfajta",
+            category: Category.ANIMALS
+        },
+        {
+            id: 90,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 90,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 90,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.ANIMALS
+        },
+        {
+            id: 91,
+            word: "grandmother",
+            language: Language.eng,
+            description: "Mother of one parent",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 91) {return value.image}})[0]
+
+        },
+        {
+            id: 91,
+            word: "nagymama",
+            language: Language.hu,
+            description: "Az egyik szülő édesanyja",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 91) {return value.image}})[0]
+        },
+        {
+            id: 91,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 91) {return value.image}})[0]
+        },
+        {
+            id: 91,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 91) {return value.image}})[0]
+        },
+        {
+            id: 91,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 91) {return value.image}})[0]
+        },
+        {
+            id: 92,
+            word: "man",
+            language: Language.eng,
+            description: "male adult boy",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 92) {return value.image}})[0]
+
+        },
+        {
+            id: 92,
+            word: "férfi",
+            language: Language.hu,
+            description: "hímnemű felnőtt ember ",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 92) {return value.image}})[0]
+        },
+        {
+            id: 92,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 92) {return value.image}})[0]
+        },
+        {
+            id: 92,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 92) {return value.image}})[0]
+        },
+        {
+            id: 92,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FAMILY,
+            image: Blob.map((value) => {if(value.id === 92) {return value.image}})[0]
+        },
+        {
+            id: 93,
+            word: "uncle",
+            language: Language.eng,
+            description: "parent's brother",
+            category: Category.FAMILY
+        },
+        {
+            id: 93,
+            word: "nagybácsi",
+            language: Language.hu,
+            description: "Szülő fiútestvére.",
+            category: Category.FAMILY,
+        },
+        {
+            id: 93,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FAMILY,
+        },
+        {
+            id: 93,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FAMILY,
+        },
+        {
+            id: 93,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FAMILY,
+        },
+        {
+            id: 94,
+            word: "twins",
+            language: Language.eng,
+            description: "at the same time, a brother born of a mother.",
+            category: Category.FAMILY
+        },
+        {
+            id: 94,
+            word: "ikertestvérek",
+            language: Language.hu,
+            description: "egyszerre, egy anyától született testvér",
+            category: Category.FAMILY,
+        },
+        {
+            id: 94,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FAMILY,
+        },
+        {
+            id: 94,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FAMILY,
+        },
+        {
+            id: 94,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FAMILY,
+        },
+        {
+            id: 95,
+            word: "cinema",
+            language: Language.eng,
+            description: "a venue for public screenings of films in front of large audiences",
+            category: Category.FRIENDS,
+            image: Blob.map((value) => {if(value.id === 95) {return value.image}})[0]
+        },
+        {
+            id: 95,
+            word: "mozi",
+            language: Language.hu,
+            description: "filmek nyilvános, nagyobb közönség előtti vetítésére alkalmas helyszín",
+            category: Category.FRIENDS,
+            image: Blob.map((value) => {if(value.id === 95) {return value.image}})[0]
+        },
+        {
+            id: 95,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FRIENDS,
+            image: Blob.map((value) => {if(value.id === 95) {return value.image}})[0]
+        },
+        {
+            id: 95,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FRIENDS,
+            image: Blob.map((value) => {if(value.id === 95) {return value.image}})[0]
+        },
+        {
+            id: 95,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FRIENDS,
+            image: Blob.map((value) => {if(value.id === 95) {return value.image}})[0]
+        },
+        {
+            id: 96,
+            word: "concert",
+            language: Language.eng,
+            description: "musical performance",
+            category: Category.FRIENDS
+        },
+        {
+            id: 96,
+            word: "koncert",
+            language: Language.hu,
+            description: "zenei előadás",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 96,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 96,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 96,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 97,
+            word: "museum",
+            language: Language.eng,
+            description: "The institution consisting of scientifically organised collections of cultural goods",
+            category: Category.FRIENDS
+        },
+        {
+            id: 97,
+            word: "múzeum",
+            language: Language.hu,
+            description: "A kulturális javak tudományosan rendszerezett gyűjteményeiből álló intézmény",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 97,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 97,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 97,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 98,
+            word: "class-mate",
+            language: Language.eng,
+            description: "Students who study in the same class",
+            category: Category.FRIENDS
+        },
+        {
+            id: 98,
+            word: "osztálytárs",
+            language: Language.hu,
+            description: "Azon diákok, akik ugyanabban az osztályban tanulnak",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 98,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 98,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 98,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 99,
+            word: "friendship",
+            language: Language.eng,
+            description: "Human contact",
+            category: Category.FRIENDS
+        },
+        {
+            id: 99,
+            word: "barátság",
+            language: Language.hu,
+            description: "Emberi kapcsolat",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 99,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 99,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 99,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.FRIENDS,
+        },
+        {
+            id: 100,
+            word: "shopping centre",
+            language: Language.eng,
+            description: "a centre with additional shops",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 100) {return value.image}})[0]
+        },
+        {
+            id: 100,
+            word: "bevásárlóközpoont",
+            language: Language.hu,
+            description: "egy központ, ahol további üzletek működnek",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 100) {return value.image}})[0]
+        },
+        {
+            id: 100,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 100) {return value.image}})[0]
+        },
+        {
+            id: 100,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 100) {return value.image}})[0]
+        },
+        {
+            id: 100,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 100) {return value.image}})[0]
+        },
+        {
+            id: 101,
+            word: "open",
+            language: Language.eng,
+            description: "free access",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 101) {return value.image}})[0]
+        },
+        {
+            id: 101,
+            word: "nyitva",
+            language: Language.hu,
+            description: "szabad bejárást, elérést, hozzájutást biztosít",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 101) {return value.image}})[0]
+        },
+        {
+            id: 101,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 101) {return value.image}})[0]
+        },
+        {
+            id: 101,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 101) {return value.image}})[0]
+        },
+        {
+            id: 101,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 101) {return value.image}})[0]
+        },
+        {
+            id: 102,
+            word: "closed",
+            language: Language.eng,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 102) {return value.image}})[0]
+        },
+        {
+            id: 102,
+            word: "zárva",
+            language: Language.hu,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 102) {return value.image}})[0]
+        },
+        {
+            id: 102,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 102) {return value.image}})[0]
+        },
+        {
+            id: 102,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 102) {return value.image}})[0]
+        },
+        {
+            id: 102,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+            image: Blob.map((value) => {if(value.id === 102) {return value.image}})[0]
+        },
+        {
+            id: 103,
+            word: "butcher",
+            language: Language.eng,
+            description: "a meat-grinder",
+            category: Category.SHOPPING
+        },
+        {
+            id: 103,
+            word: "hentes",
+            language: Language.hu,
+            description: "hús kimérésével foglalkozó iparos.",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 103,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 103,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 103,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 104,
+            word: "baker",
+            language: Language.eng,
+            description: "premises for the independent production of bakery products",
+            category: Category.SHOPPING
+        },
+        {
+            id: 104,
+            word: "pék",
+            language: Language.hu,
+            description: "sütőipari termékek önálló előállítására alkalmas hely",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 104,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 104,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 104,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 105,
+            word: "quality",
+            language: Language.eng,
+            description: "",
+            category: Category.SHOPPING
+        },
+        {
+            id: 105,
+            word: "minőség",
+            language: Language.hu,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 105,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 105,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 105,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 106,
+            word: "quantity",
+            language: Language.eng,
+            description: "",
+            category: Category.SHOPPING
+        },
+        {
+            id: 106,
+            word: "mennyiség",
+            language: Language.hu,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 106,
+            word: "",
+            language: Language.sk,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 106,
+            word: "",
+            language: Language.cz,
+            description: "",
+            category: Category.SHOPPING,
+        },
+        {
+            id: 106,
+            word: "",
+            language: Language.is,
+            description: "",
+            category: Category.SHOPPING,
+        },
+
     ];
 
     const existingWords = await prisma.words.findMany();
