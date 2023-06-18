@@ -3977,63 +3977,6 @@ async function seed() {
     }
     console.log("Database seeded successfully!");
 
-    /*-------------------------------------------------------*/
-
-    /*--------- Seeding the Dictionary table ---------*/
-
-    const dictionaryList: {
-      original_word: string;
-      translated_word: string;
-      category: string;
-    }[] = [
-      {
-        original_word: "macska",
-        translated_word: "cat",
-        category: Category.ANIMALS,
-      },
-      {
-        original_word: "kutya",
-        translated_word: "dog",
-        category: Category.ANIMALS,
-      },
-      {
-        original_word: "malac",
-        translated_word: "pig",
-        category: Category.ANIMALS,
-      },
-      {
-        original_word: "ló",
-        translated_word: "horse",
-        category: Category.ANIMALS,
-      },
-      {
-        original_word: "mosómedve",
-        translated_word: "racoon",
-        category: Category.ANIMALS,
-      },
-      {
-        original_word: "madár",
-        translated_word: "bird",
-        category: Category.ANIMALS,
-      },
-      {
-        original_word: "denevér",
-        translated_word: "bat",
-        category: Category.ANIMALS,
-      },
-    ];
-
-    const existingDictionary: Dictionary[] = await prisma.Dictionary.findMany();
-
-    const newDictionary = dictionaryList.filter((dictionary) => {
-      const exists = existingDictionary.some(
-        (existingDictionary) =>
-          existingDictionary.original_word === dictionary.original_word
-      );
-      return !exists;
-    });
-
-    await prisma.Dictionary.createMany({ data: newDictionary });
 
     /*--------------------------------------------------------------------------*/
 
@@ -4568,36 +4511,6 @@ async function seed() {
         category: Category.FRIENDS
       },
       {
-        id: 18,
-        sentence: "Going to the cinema with Nora",
-        language: Language.eng,
-        category: Category.FRIENDS
-      },
-      {
-        id: 18,
-        sentence: "Moziba megyek Norával",
-        language: Language.hu,
-        category: Category.FRIENDS
-      },
-      {
-        id: 18,
-        sentence: "",
-        language: Language.cz,
-        category: Category.FRIENDS
-      },
-      {
-        id: 18,
-        sentence: "",
-        language: Language.sk,
-        category: Category.FRIENDS
-      },
-      {
-        id: 18,
-        sentence: "",
-        language: Language.is,
-        category: Category.FRIENDS
-      },
-      {
         id: 19,
         sentence: "I like reading books",
         language: Language.eng,
@@ -4626,36 +4539,6 @@ async function seed() {
         sentence: "",
         language: Language.is,
         category: Category.FRIENDS
-      },
-      {
-        id: 19,
-        sentence: "I like reading books",
-        language: Language.eng,
-        category: Category.HOBBY
-      },
-      {
-        id: 19,
-        sentence: "Szeretek könyveket olvasni",
-        language: Language.hu,
-        category: Category.HOBBY
-      },
-      {
-        id: 19,
-        sentence: "",
-        language: Language.cz,
-        category: Category.HOBBY
-      },
-      {
-        id: 19,
-        sentence: "",
-        language: Language.sk,
-        category: Category.HOBBY
-      },
-      {
-        id: 19,
-        sentence: "",
-        language: Language.is,
-        category: Category.HOBBY
       },
       {
         id: 20,
@@ -4901,29 +4784,17 @@ async function seed() {
 
     ];
 
-    /*const existingSentences: Sentence[] = await prisma.Sentence.findMany();
-
-    const newSentence = sentenceList.filter((sentence) => {
-      const exists = existingSentences.some(
-        (existingSentences) =>
-          existingSentences.english_sentence === sentence.english_sentence
-      );
-      return !exists;
-    });
-
-
-
-    /*for (const word of newWords) {
-      const createdWord = await prisma.words.create({
+    for (const sentence of sentenceList) {
+      const sentenceCreate = await prisma.sentence.create({
         data: {
-          id: word.id,
-          word: word.word,
-          language: word.language,
-          description: word.description,
+          id: sentence.id,
+          sentence: sentence.sentence,
+          language: sentence.language,
+          category: sentence.category
         },
       });
-
-    await prisma.Sentence.createMany({ data: newSentence });*/
+      console.log(`Word created with id: ${sentenceCreate.id}`);
+    }
 
     /*--------------------------------------------------------------------------*/
   } catch (error) {
