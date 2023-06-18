@@ -41,17 +41,35 @@ export default async function handler(req: NextApiRequest,
             const result = getOptions(original_words, translated_words);
             return res.status(200).json({result});
         }
-        /*case "picture" : {
-            const words = await prisma.dictionary.findMany({
-                    where: {
-                        category: newType
-                    }
+        case "picture" : {
+            const original_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: "eng"
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    category: true,
+                    image: true
                 }
-            ) as Dictionary;
-            const result = getWordWithPictures(words);
+            }) as Dictionary;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: "hu"
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    category: true,
+                    image: true
+                }
+            }) as Dictionary;
+            const result = getWordWithPictures(original_words, translated_words);
             return res.status(200).json({result});
         }
-        case "sentence" : {
+        /*case "sentence" : {
             const sentences = await prisma.sentence.findMany() as Sentence;
             const dictionary = await prisma.dictionary.findMany() as Dictionary;
             const result = getRandomSentence(sentences, dictionary);
