@@ -2,32 +2,32 @@ import React, { useState } from "react";
 import styles from "@/styles/Senctence.module.css";
 import Word from "@/components/games/sentence/Word";
 import Hover from "@/components/games/sentence/Hover";
+import { FormatLessons } from "@/components/FormatLessons";
 
-type Original = {
+export type Original = {
   word: string;
   hover: string[];
 };
-type Words = {
+export type Words = {
   id: number;
   word: string;
   isVisible: boolean;
 };
 
-type Sentence = {
+export type SentenceTask = {
   original: Original[];
   solution: string;
   words: Words[];
 };
 
 type SentenceProps = {
-  sentence: Sentence;
+  sentence: SentenceTask;
   isSolved: boolean;
   setIsSolved: (isSolved: boolean) => void;
   isGood: boolean;
   setIsGood: (isGood: boolean) => void;
   handleSolved: () => void;
 };
-
 
 export default function Sentence({
   sentence,
@@ -37,7 +37,7 @@ export default function Sentence({
   setIsGood,
   handleSolved,
 }: SentenceProps) {
-  const [task, setTask] = useState<Sentence>(sentence);
+  const [task, setTask] = useState<SentenceTask>(sentence);
   const [answer, setAnswer] = useState<Words[]>([]);
 
   const handleCheck = () => {
@@ -54,7 +54,7 @@ export default function Sentence({
     }
   };
 
-  const handleClick = (id:number, nextVisible: boolean) => {
+  const handleClick = (id: number, nextVisible: boolean) => {
     let newTask = { ...task };
     newTask.words.map((word) => {
       if (word.id === id && !nextVisible) {
@@ -75,22 +75,25 @@ export default function Sentence({
         }
       }
     });
-
     setTask(newTask);
   };
 
   return (
     <>
-      <h3>Translate this sentence</h3>
-      <div className="sentence">
-        {task.original.map((value, number) => (
-          <Hover word={value.word} id={number} hover={value.hover} />
-        ))}
+      <h3 className="mt-10 text-l font-medium grid justify-items-center">
+        Translate this sentence
+      </h3>
+      <div className="mt-10 grid justify-items-center">
+        <div>
+          {task.original.map((value, number) => (
+            <Hover word={value.word} id={number} hover={value.hover} />
+          ))}
+        </div>
       </div>
-      <div className={styles.answer}>
+      <div className={FormatLessons.sentenceAnswer}>
         {answer.map((value, index) => (
           <div
-            className={styles.word}
+            className={FormatLessons.sentenceWordAfterUsing}
             id={index.toString()}
             onClick={isSolved ? undefined : () => handleClick(value.id, true)}
           >
@@ -110,20 +113,43 @@ export default function Sentence({
         ))}
       </div>
       {isSolved && (
-        <div className={isGood ? styles.goodAnswer : styles.wrongAnswer}>
-          {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
-          {isGood ? null : <h4>Correct Answer:</h4>}
-          {isGood ? null : task.solution}
-          <br />
-          {isSolved && (
-            <div>
-              <button onClick={() => handleSolved()}>Continue</button>
-            </div>
-          )}
+        <div>
+          <div
+            className={
+              isGood
+                ? FormatLessons.sentenceGoodAnswer
+                : FormatLessons.sentenceWrongAnswer
+            }
+          >
+            {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
+            {isGood ? null : <h4>Correct Answer:</h4>}
+            {isGood ? null : task.solution}
+            <br />
+          </div>
+          <div>
+            {isSolved && (
+              <div className="flex justify-center m-10">
+                <button
+                  className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+                  onClick={() => handleSolved()}
+                >
+                  Continue
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
-      {!isSolved && <button onClick={() => handleCheck()}>Check</button>}
+      {!isSolved && (
+        <div className="flex justify-center m-10">
+          <button
+            className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+            onClick={() => handleCheck()}
+          >
+            Continue
+          </button>
+        </div>
+      )}
     </>
   );
 }
-;

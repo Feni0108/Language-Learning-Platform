@@ -4,6 +4,7 @@ import {useSession} from "next-auth/react";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import i18n from '../../i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
+import SignUpButton from "@/components/SignUpButton";
 
 interface UserSettings {
   interfaceLanguage: string;
@@ -29,9 +30,9 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
       if (session?.user?.interfaceLanguage !== undefined &&
           session.user?.learningGoal !== undefined &&
           session.user?.targetLanguage !== undefined) {
-        setInterfaceLanguage(session.user.interfaceLanguage || '');
-        setTargetLanguage(session.user.targetLanguage || '');
-        setLearningGoal(session.user.learningGoal || '');
+        setInterfaceLanguage(session.user.interfaceLanguage!);
+        setTargetLanguage(session.user.targetLanguage!);
+        setLearningGoal(session.user.learningGoal!);
       }
     }
   }, [session]);
@@ -57,7 +58,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
       interfaceLanguage,
       targetLanguage,
       learningGoal,
-      userId: session?.user?.id || ''
+      userId: session!.user!.id
     };
 
     try {
@@ -65,12 +66,12 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user?.token || ''}`,
+          //'Authorization': `Bearer ${session?.token}`,
         },
         body: JSON.stringify(settings),
       });
       if (response.ok) {
-        update({id: session?.user?.id || '', type: 'settings'}).then((response) => {
+        update({id: session!.user!.id, type: "settings"}).then((response) => {
               if (response) {
                 session?.user && (session.user.interfaceLanguage = interfaceLanguage);
                 router.push("/settings");
@@ -86,7 +87,9 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   };
 
   if (!session) {
-    return <div>Please log in to access this page.</div>;
+    return <div>Please log in to access this page.
+      <SignUpButton/>
+    </div>;
   }
 
   if (userSettings === null) {

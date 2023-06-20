@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 
 
 
-type Sentence = {
+export type SentenceStoryLine = {
   options: string[],
   sentences: string[],
   solutions: string[]
 }
 type StoryProps = {
-  data: Sentence;
+  data: SentenceStoryLine;
   isSolved: boolean;
   setIsSolved: (isSolved: boolean) => void;
   isGood: boolean;

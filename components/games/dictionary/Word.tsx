@@ -10,7 +10,7 @@ type Props = {
   wordType: string;
   fetchData: () => void;
   handleClick: (id: number, wordType: string) => void;
-  isWrong: { or_id: number | null; tr_id: number | null }
+  isWrong: { or_id: number | null; tr_id: number | null };
   setIsWrong: React.Dispatch<React.SetStateAction<ChooseType>>;
 };
 

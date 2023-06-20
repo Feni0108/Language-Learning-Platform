@@ -7,12 +7,6 @@ import SignOutButton from "../SignOutButton";
 import {useSession} from "next-auth/react";
 import i18n from '@/i18n/i18n';
 
-const navigation = [
-  {name: "Home", href: "/", current: true},
-  {name: "Leaderboard", href: "/leaderboard", current: false},
-  {name: "Friends", href: "#", current: false},
-];
-
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }

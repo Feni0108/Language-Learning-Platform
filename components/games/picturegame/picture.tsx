@@ -24,7 +24,6 @@ type PictureProps = {
   handleSolved: () => void;
 };
 
-
 export default function Picture({
   allWords,
   isSolved,
@@ -52,7 +51,7 @@ export default function Picture({
       setIsSolved(true);
     }
   };
-  const handleClick = (id:number) => {
+  const handleClick = (id: number) => {
     const newPictures = pictures;
     newPictures.map((word) => {
       if (word.id === answer) {
@@ -67,42 +66,67 @@ export default function Picture({
   };
 
   return (
-  <div>
-    {word && <h2> Which one of these is "{word.word}"?</h2>}
     <div>
-      {pictures &&
-        pictures.map((value) => (
-            <Word
-            key={value.id}
-            word={value.word}
-            id={value.id}
-            isSelected={value.isSelected}
-            handleClick={handleClick}
-            isSolved={isSolved}
-            image={value.image}
-            answer={answer ?? 0}
-            isGood={isGood}
-          />
-        ))}
-    </div>
-    {isSolved && (
-      <div className={isGood ? FormatLessons.goodAnswer : FormatLessons.wrongAnswer}>
-        {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
-        {isGood ? null : <h4>Correct Answer:</h4>}
-        {isGood ? null : pictures.find((picture) => picture.id === word?.id)?.word}
-        <br />
-        {isSolved && (
-          <div>
-            <button onClick={() => handleSolved()}>Continue</button>
-          </div>
-        )}
+      {word && (
+        <h2 className="mt-10 text-l font-medium grid justify-items-center">
+          {" "}
+          Which one of these is "{word.word}"?
+        </h2>
+      )}
+      <div className="mt-10 flex flex-row">
+        {pictures &&
+          pictures.map((value) => (
+            <div className="w-64 m-auto">
+              <Word
+                key={value.id}
+                word={value.word}
+                id={value.id}
+                isSelected={value.isSelected}
+                handleClick={handleClick}
+                isSolved={isSolved}
+                image={value.image}
+                answer={answer ?? 0}
+                isGood={isGood}
+              />
+            </div>
+          ))}
       </div>
-    )}
-    {!isSolved && answer != null && (
-      <button onClick={() => handleCheck()}>Check</button>
-    )}
-  </div>
-);
-
+      {isSolved && (
+        <div
+          className={
+            isGood
+              ? FormatLessons.pictureGameGoodAnswer
+              : FormatLessons.pictureGameWrongAnswer
+          }
+        >
+          {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
+          {isGood ? null : <h4>Correct Answer:</h4>}
+          {isGood
+            ? null
+            : pictures.find((picture) => picture.id === word?.id)?.word}
+          <br />
+          {isSolved && (
+            <div className="flex justify-center m-10">
+              <button
+                className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+                onClick={() => handleSolved()}
+              >
+                Continue
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      {!isSolved && answer != null && (
+        <div className="flex justify-center m-10">
+          <button
+            className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+            onClick={() => handleCheck()}
+          >
+            Continue
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
-;

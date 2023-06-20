@@ -38,7 +38,7 @@ export default function Home({userSettings}: SettingsProps) {
 
   useEffect(() => {
     if (session) {
-      update({id: session.user!.id, type: "updatePoints"});
+      update({ id: session.user!.id, type: "updatePoints" });
     }
   }, [isPlayToday]);
 
@@ -47,9 +47,9 @@ export default function Home({userSettings}: SettingsProps) {
   if (session) {
     console.log(session);
     if (
-        session?.user?.interfaceLanguage === undefined &&
-        session.user?.learningGoal === undefined &&
-        session.user?.targetLanguage === undefined
+      session?.user?.interfaceLanguage === undefined &&
+      session.user?.learningGoal === undefined &&
+      session.user?.targetLanguage === undefined
     ) {
       router.push("/settings");
     }
@@ -62,89 +62,89 @@ export default function Home({userSettings}: SettingsProps) {
     }
   }, [interfaceLanguage]);
 
-  return (
-      <>
-        {!session && (
-            <div className="text-gray-700 max-w-5xl px-20 py-28">
-              <h1 className="text-6xl font-semibold leading-normal">
-                Learning, <br/>
-                it was never so easy!
-              </h1>
-              <p className="text-s leading-8">
-                You can learn new languages while playing! This interactive
-                web-based application is designed to make learning easy, fun and
-                addictive. We are offering a range of features that are designed to
-                help users learn new vocabulary and phrases in a foreign language of
-                their choice.
-              </p>
+return (
+    <>
+      {!session && (
+        <div className="text-gray-700 max-w-5xl px-20 py-28">
+          <h1 className="text-6xl font-semibold leading-normal">
+            Learning, <br />
+            it was never so easy!
+          </h1>
+          <p className="text-s leading-8">
+            You can learn new languages while playing! This interactive
+            web-based application is designed to make learning easy, fun and
+            addictive. We are offering a range of features that are designed to
+            help users learn new vocabulary and phrases in a foreign language of
+            their choice.
+          </p>
 
-              <div className="max-w-6xl">
-                <SignUpButton/>
-              </div>
-            </div>
-        )}
-        {session && (
-            <div className="text-gray-700 max-w-5xl px-20 py-28">
-              <h1 className="text-6xl font-semibold leading-normal ">
-                {t('Welcome')},
-                <span className="font-light px-10">
+          <div className="max-w-6xl">
+            <SignUpButton />
+          </div>
+        </div>
+      )}
+      {session && (
+        <div className="text-gray-700 max-w-5xl px-20 py-28">
+          <h1 className="text-6xl font-semibold leading-normal ">
+            Welcome,
+            <span className="font-light px-10">
               {session.user?.name ? session.user?.name : session.user?.username}
-                  !
+              !
             </span>
-              </h1>
-              <div>
-                <p className="m-5 text-xl">
-                  {t('Your_points')}: {session.user!.totalPoints}
-                </p>
-                {session.user?.username} <br/>
-                <br/>
-                {session.user!.strike! > 0 && (
-                    <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
-                )}
-                {session.user!.strike! > 0 && !isPlayToday && (
-                    <h3>
-                      Duo sees a {session.user!.strike! + 1}-day streak in your
-                      future. Will there be that many?
-                    </h3>
-                )}
-                <h2>{t('Part_1_Basics')}</h2>
-                <Categories
-                    progress={session.user!.progress!}
-                    progressLimit={0}
-                    type={t("Greetings")}
-                />
-                <Categories
-                    progress={session.user!.progress!}
-                    progressLimit={5}
-                    type={t("Family")}
-                />
-                <Categories
-                    progress={session.user!.progress!}
-                    progressLimit={10}
-                    type={t("Animals")}
-                />
-                <Categories
-                    progress={session.user!.progress!}
-                    progressLimit={15}
-                    type={t("Friends")}
-                />
-                <Categories
-                    progress={session.user!.progress!}
-                    progressLimit={20}
-                    type={t("Hobby")}
-                />
-                <Categories
-                    progress={session.user!.progress!}
-                    progressLimit={25}
-                    type={t("Shopping")}
-                />
-                <h2>{t('Part_2_Advanced')}</h2>
-                <h4 className="font-style: italic">
-                  This part is under development. Check later!
-                </h4>
-              </div>
-            </div>
-        )}
-      </>
+          </h1>
+          <div>
+            <p className="m-5 text-xl">
+              {t('Your_points')}: {session.user!.totalPoints}
+            </p>
+            {session.user?.username} <br />
+            <br />
+            {session.user!.strike! > 0 && (
+              <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
+            )}
+            {session.user!.strike! > 0 && !isPlayToday && (
+              <h3>
+                Duo sees a {session.user!.strike! + 1}-day streak in your
+                future. Will there be that many?
+              </h3>
+            )}
+            <h2>Part 1: Basics</h2>
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={0}
+              type={t("Greetings")}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={5}
+              type={t("Family")}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={10}
+              type={t("Animals")}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={15}
+              type={t("Friends")}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={20}
+              type={t("Hobby")}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={25}
+              type={t("Shopping")}
+            />
+            <h2>Part 2: Advanced</h2>
+            <h4 className="font-style: italic">
+              This part is under development. Check later!
+            </h4>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

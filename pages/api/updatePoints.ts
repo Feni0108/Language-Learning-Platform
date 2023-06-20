@@ -2,7 +2,15 @@ import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {testDate} from "@/components/testDate";
 
-
+type LastGame = {
+    lastGame : Date | null,
+    leaderBoard: {
+        id: number,
+        userId: string,
+        totalPoints: number,
+        strike: number,
+    },
+    progress: number};
 
 export default async function handler(
     req: NextApiRequest,
@@ -27,7 +35,7 @@ export default async function handler(
                     progress: true
                 }
             }
-        );
+        ) as LastGame;
         let date: Date = new Date();
         if (lastGame.lastGame !== null){
             date = lastGame.lastGame;
@@ -52,7 +60,7 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                progress: lastGame.progress+1
+                                progress: lastGame.progress!+1
                             }
                         });
                 }

@@ -30,15 +30,15 @@ const Word = ({
 
   useEffect(() => {
     if (isSelected) {
-      setStyle(FormatLessons.choose);
+      setStyle(FormatLessons.pictureGameChoose);
     } else {
-      setStyle(FormatLessons.visible);
+      setStyle(FormatLessons.pictureGameVisible);
     }
     if (isSolved && isGood && answer === id) {
-      setStyle(FormatLessons.goodAnswer);
+      setStyle(FormatLessons.pictureGameGoodAnswer);
     }
     if (isSolved && !isGood && answer === id) {
-      setStyle(FormatLessons.wrongAnswer);
+      setStyle(FormatLessons.pictureGameWrongAnswer);
     }
   }, [isSolved, isSelected, isGood]);
 
@@ -48,10 +48,13 @@ const Word = ({
       onClick={!isSolved ? () => handleClick(id) : undefined}
       className={style}
     >
-      <section>
-        <img src={`data:image/jpeg;base64,${image}`} />
-      </section>
-      <section>{word}</section>
+      <div className={FormatLessons.pictureGameImage}>
+        <img
+          className="object-center"
+          src={`data:image/jpeg;base64,${image}`}
+        />
+      </div>
+      <div className="m-1 flex flex-inline justify-center">{word}</div>
     </div>
   );
 };

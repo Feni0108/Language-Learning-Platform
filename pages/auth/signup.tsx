@@ -6,7 +6,8 @@ const SignUp = () => {
   const [userInfo, setUserInfo] = useState({ username: "", password: "", passwordAgain: "", isFirstLogin: true });
   const [message, setMessage] = useState("");
   const router = useRouter();
-  const endpoint = "http://localhost:3000/api/createUser";
+  const endpoint = "../api/createUser";
+
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -55,7 +56,7 @@ const SignUp = () => {
           redirect: false,
         });
 
-        if (result.ok) {
+        if (result!.ok) {
           const updatedUserInfo = { ...userInfo, isFirstLogin: false }; // Update isFirstLogin to false
           setUserInfo(updatedUserInfo); // Update the state if needed (optional)
 
