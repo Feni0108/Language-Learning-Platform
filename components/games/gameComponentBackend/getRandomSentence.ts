@@ -11,31 +11,20 @@ export type Sentence = [
         sentence: string
     }
 ]
-export const getRandomSentence = (original_sentence: Sentence, translated_sentence: Sentence) => {
+export const getRandomSentence = (original_sentence: Sentence, translated_sentence: Sentence, original_words: Dictionary, translated_words: Dictionary) => {
     const MAX_ID = original_sentence.length;
-    createData(original_sentence, translated_sentence, MAX_ID);
+    createData(original_sentence, translated_sentence, MAX_ID, original_words, translated_words);
     return {words:getRandom(words), original:sentence, solution:solution};
 }
-const createData = (original_sentence: Sentence, translated_sentence: Sentence, MAX_ID:number) => {
+const createData = (original_sentence: Sentence, translated_sentence: Sentence, MAX_ID:number, original_words: Dictionary, translated_words: Dictionary) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
-    const randomTranslate = (Math.floor(Math.random() * 2));
-    if (randomTranslate === 0){
         const preWords:string[] = original_sentence[randomId].sentence.split(" ");
         const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
         splitSentence(preWords);
-        //getRandomWord(randomWords, dictionary, "german"); - original sentence!!!
+        getRandomWord(randomWords, original_words);
         fillHover(translated_sentence[randomId].sentence);
         // - parallel sencence, dictionary neeeded!
         solution = original_sentence[randomId].sentence;
-    } else {
-        const preWords:string[] = translated_sentence[randomId].sentence.split(" ");
-        const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
-        splitSentence(preWords);
-        //getRandomWord(randomWords, dictionary, "english");
-        fillHover(original_sentence[randomId].sentence);
-        //fillHover(sentences[randomId].german_sentence, "german", dictionary);
-        solution = translated_sentence[randomId].sentence;
-    }
 }
 
 const splitSentence = (preWords:string[]) => {
@@ -44,29 +33,24 @@ const splitSentence = (preWords:string[]) => {
         words.push({id:(i+1), word: preWords[i], isVisible:true});
     }
 }
-const getRandomWord = (length: number, dictionary:Dictionary, type:string) => {
+const getRandomWord = (length: number, dictionary:Dictionary) => {
 
     while (words.length < length) {
         const randomId = (Math.floor(Math.random() * (dictionary.length))+1)
         let newId = true;
         for(let i:number = 0; i<words.length; i++) {
-            if (words[i].id === randomId
-                // ||
-            //words[i].word === dictionary[randomId - 1].translated_word ||
-            //words[i].word === dictionary[randomId - 1].original_word
-                ){
+            if (words[i].id === randomId ||
+            words[i].word === dictionary[randomId - 1].word){
                 newId = false;
             }
         }
         if (newId){
-            if (type === "german") {
-                //words.push({id: words.length + 1, word: dictionary[randomId - 1].translated_word, isVisible: true})
-            } else {
-                //words.push({id: words.length + 1, word: dictionary[randomId - 1].original_word, isVisible: true})
+
+                words.push({id: words.length + 1, word: dictionary[randomId - 1].word, isVisible: true})
             }
         }
     }
-}
+
 
 const fillHover = (originalSentence: string) => {
     sentence = [];
