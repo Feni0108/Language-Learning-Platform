@@ -130,3 +130,12 @@ enum Language {
   cz
   is
 }
+model Contribution {
+  id Int @id @default(autoincrement())
+  word String
+  language Language
+  description String
+  category Category
+
+  @@unique([id, language])
+}
