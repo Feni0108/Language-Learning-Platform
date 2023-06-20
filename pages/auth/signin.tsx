@@ -1,16 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { signIn, useSession } from "next-auth/react";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
 import { AiFillGithub } from "react-icons/ai";
-
-
+import i18n from '@/i18n/i18n';
+import {getLanguageCode} from "@/components/getLanguageCode";
 
 function SignIn() {
   const [userInfo, setUserInfo] = useState({ username: "", password: "" });
   const [message, setMessage] = useState("");
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      const interfaceLanguage = session?.user?.interfaceLanguage;
+      if (interfaceLanguage) {
+        const languageCode = getLanguageCode(interfaceLanguage);
+        i18n.changeLanguage(languageCode);
+      }
+    }
+  }, [session]);
 
   if (session) {
     router.push("/");
