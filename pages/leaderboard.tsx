@@ -92,44 +92,47 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
         </div>;
     }
 
-
-    return (
-
-        <div>
-            {!isLoading && session && (
-                <>{t('Signed_in_as')} {session.user?.email ? session.user.email : session.user!.username} <br/>
-                    <div>
-                        <button
-                            onClick={isPoint? undefined : () => {setIsPoint(true), setIsLoading(true)}}
-                        >Points</button>
-                        <button
-                            onClick={!isPoint? undefined : () => {setIsPoint(false), setIsLoading(true)}}
-                        >Strike</button>
-                        {sortLeaderBoard !== undefined && sortLeaderBoard.map((value:LeaderBoardUser, index:number) => (
-                            <div key={"or"+index}>
-                            <section>
-                                {index+1+" "}
-                            </section>
-                            <section>
-                                {value.user.image && <img
-                                 alt="Sorry, we couldn't load this picture"
-                                 src={value.user.image}
-                                />}
-                                {!value.user.image && <FaUserGraduate />}
-                            </section>
-                            <section>
-                                {value.user.username ? value.user.username : value.user.name}
-                            </section>
-                            <section>
-                                {isPoint &&" "+value.totalPoints}
-                                {!isPoint &&" "+value.strike}
-                            </section>
-                            </div>
-                        ))}
+  return (
+      <div>
+        Hello
+        {!session && (
+            <>
+              <AccessDenied/>
+              <SignUpButton/>
+            </>
+        )}
+        {!isLoading && session && (
+            <>{t('Signed_in_as')} {session.user?.email ? session.user.email : session.user!.username} <br/>
+              <div>
+                <button
+                    onClick={isPoint? undefined : () => {setIsPoint(true), setIsLoading(true)}}
+                >Points</button>
+                <button
+                    onClick={!isPoint? undefined : () => {setIsPoint(false), setIsLoading(true)}}
+                >Strike</button>
+                {sortLeaderBoard !== undefined && sortLeaderBoard.map((value:LeaderBoardUser, index:number) => (
+                    <div key={"or"+index}>
+                      <section>
+                        {index+1+" "}
+                      </section>
+                      <section>
+                        {value.user.image && <img
+                            alt="Sorry, we couldn't load this picture"
+                            src={value.user.image}
+                        />}
+                        {!value.user.image && <FaUserGraduate />}
+                      </section>
+                      <section>
+                        {value.user.username ? value.user.username : value.user.name}
+                      </section>
+                      <section>
+                        {isPoint &&" "+value.totalPoints}
+                        {!isPoint &&" "+value.strike}
+                      </section>
                     </div>
                 ))}
               </div>
-              <SignOutButton/>
+              <SignOutButton />
             </>
         )}
       </div>
