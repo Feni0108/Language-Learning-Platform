@@ -1,16 +1,16 @@
-import {Dictionary, Sentence} from "@/components/games/gameComponentBackend/typeExports";
+import {DictionaryForHover, Sentence} from "@/components/games/gameComponentBackend/typeExports";
 
 let words: {id: number, word: string, isVisible: boolean}[] = [];
 let sentence: { word:string, hover: string[] }[] = [];
 let solution: string = "";
 
 
-export const getRandomSentence = (original_sentence: Sentence, translated_sentence: Sentence, original_words: Dictionary, translated_words: Dictionary) => {
+export const getRandomSentence = (original_sentence: Sentence, translated_sentence: Sentence, original_words: DictionaryForHover, translated_words: DictionaryForHover) => {
     const MAX_ID = original_sentence.length;
     createData(original_sentence, translated_sentence, MAX_ID, original_words, translated_words);
     return {words:getRandom(words), original:sentence, solution:solution};
 }
-const createData = (original_sentence: Sentence, translated_sentence: Sentence, MAX_ID:number, original_words: Dictionary, translated_words: Dictionary) => {
+const createData = (original_sentence: Sentence, translated_sentence: Sentence, MAX_ID:number, original_words: DictionaryForHover, translated_words: DictionaryForHover) => {
     const randomId = (Math.floor(Math.random() * (MAX_ID)));
         const preWords:string[] = original_sentence[randomId].sentence.split(" ");
         const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
@@ -26,7 +26,7 @@ const splitSentence = (preWords:string[]) => {
         words.push({id:(i+1), word: preWords[i], isVisible:true});
     }
 }
-const getRandomWord = (length: number, dictionary:Dictionary) => {
+const getRandomWord = (length: number, dictionary:DictionaryForHover) => {
 
     while (words.length < length) {
         const randomId = (Math.floor(Math.random() * (dictionary.length))+1)
@@ -44,22 +44,19 @@ const getRandomWord = (length: number, dictionary:Dictionary) => {
     }
 
 
-const fillHover = (originalSentence: string, dictionary:Dictionary) => {
+const fillHover = (originalSentence: string, dictionary:DictionaryForHover) => {
     sentence = [];
     const originalWords = originalSentence.split(" ");
     originalWords.map((word) => {
             let hover:string[] = []
             dictionary.map((dicWord) => {
                 if (dicWord.word === word){
-                    hover.push(dicWord.word);
+                    hover.push(dicWord.description);
                 }
             })
             sentence.push({word,hover});
     }
     );
-    /*originalWords.map((word) => {
-        sentence.push({word});
-    });*/
     }
 const getRandom = (wordArray: { id: number; word: string; isVisible: boolean }[]) => {
     for(let i = wordArray.length-1; i>0; i--) {

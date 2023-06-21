@@ -6,7 +6,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {Prisma} from ".prisma/client";
 import EnumCategoryFilter = Prisma.EnumCategoryFilter;
 import * as stream from "stream";
-import { Dictionary, Sentence } from "@/components/games/gameComponentBackend/typeExports";
+import { Dictionary, DictionaryForHover, Sentence } from "@/components/games/gameComponentBackend/typeExports";
 
 export default async function handler(req: NextApiRequest,
                                       res: NextApiResponse) {
@@ -23,7 +23,6 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
                     image: true
                 }
                 }) as Dictionary;
@@ -35,7 +34,6 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
                     image: true
                 }
             }) as Dictionary;
@@ -51,7 +49,6 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
                     image: true
                 }
             }) as Dictionary;
@@ -63,7 +60,6 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
                     image: true
                 }
             }) as Dictionary;
@@ -101,10 +97,9 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
-                    image: true
+                    description: true
                 }
-            }) as Dictionary;
+            }) as DictionaryForHover;
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
@@ -113,10 +108,9 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
-                    image: true
+                    description: true
                 }
-            }) as Dictionary;
+            }) as DictionaryForHover;
             const result = getRandomSentence(original_sentence, translated_sentence, original_words, translated_words);
             return res.status(200).json({result});
         }
@@ -129,7 +123,6 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
                     image: true
                 }
             }) as Dictionary;
@@ -141,7 +134,6 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    category: true,
                     image: true
                 }
             }) as Dictionary;
