@@ -1,15 +1,10 @@
-import {Dictionary} from "@/components/games/gameComponentBackend/getRandomPictures";
+import {Dictionary, Sentence} from "@/components/games/gameComponentBackend/typeExports";
 
 let words: {id: number, word: string, isVisible: boolean}[] = [];
 let sentence: { word:string, hover: string[] }[] = [];
 let solution: string = "";
 
-export type Sentence = [
-    {
-        id: number,
-        sentence: string
-    }
-]
+
 export const getRandomSentence = (original_sentence: Sentence, translated_sentence: Sentence, original_words: Dictionary, translated_words: Dictionary) => {
     const MAX_ID = original_sentence.length;
     createData(original_sentence, translated_sentence, MAX_ID, original_words, translated_words);

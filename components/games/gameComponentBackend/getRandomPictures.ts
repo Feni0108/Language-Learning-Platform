@@ -1,15 +1,8 @@
+import { Dictionary } from "./typeExports";
+
 let originalWord: {id: number, word: string} | undefined
 let wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
 
-
-export type Dictionary = [
-    {
-        id: number,
-        word: string,
-        image: object,
-        category: string;
-    }
-]
 
 
 const getRandomWord = (original_words: Dictionary, translated_words: Dictionary, maxId: number) => {

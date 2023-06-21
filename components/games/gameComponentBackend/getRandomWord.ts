@@ -1,4 +1,4 @@
-import { Dictionary } from "@/components/games/gameComponentBackend/getRandomPictures";
+import { Dictionary } from "@/components/games/gameComponentBackend/typeExports";
 
 let originalWord: {
   id: number;

@@ -1,11 +1,12 @@
 import {getOptions} from "@/components/games/gameComponentBackend/getRandomWord";
-import {Dictionary, getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
+import { getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
 import prisma from "@/lib/prisma";
-import {getRandomSentence, Sentence} from "@/components/games/gameComponentBackend/getRandomSentence";
+import {getRandomSentence} from "@/components/games/gameComponentBackend/getRandomSentence";
 import {NextApiRequest, NextApiResponse} from "next";
 import {Prisma} from ".prisma/client";
 import EnumCategoryFilter = Prisma.EnumCategoryFilter;
 import * as stream from "stream";
+import { Dictionary, Sentence } from "@/components/games/gameComponentBackend/typeExports";
 
 export default async function handler(req: NextApiRequest,
                                       res: NextApiResponse) {
