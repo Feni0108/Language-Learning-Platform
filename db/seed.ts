@@ -4,6 +4,7 @@ import {
   Dictionary,
   Category,
   Sentence,
+    Storyline
 } from ".prisma/client";
 import {Blob} from "./blob";
 
@@ -4793,11 +4794,127 @@ async function seed() {
           category: sentence.category
         },
       });
-      console.log(`Word created with id: ${sentenceCreate.id}`);
+      console.log(`Sentence created with id: ${sentenceCreate.id}`);
     }
 
     /*--------------------------------------------------------------------------*/
-  } catch (error) {
+
+
+    /*--------- Seeding the Storyline table ---------*/
+
+    const storylineList: {
+      id: number
+      sentences: string[]
+      options: string[][]
+      solutions: string[]
+      language: Language
+      category: Category;
+    }[] = [
+      {
+        id: 2,
+        sentences: ["Hi!", "Hi!", "How's it going?", "I'm __", "That's awesome!", "__?"],
+        options: [["doing well", "pretty tired", "feeling bored"], ["How about you?", "Are you busy?", "What's up?"]],
+        solutions: ["doing well", "How about you?"],
+        language: Language.eng,
+        category: Category.GREETINGS
+      },
+      {
+        id: 3,
+        sentences: ["Hey there!", "Hey there!", "What's new?", "I'm __", "Not much.", "__?"],
+        options: [["just chilling", "ready for the weekend", "looking for a new job"], ["How are you doing?", "Any exciting plans?", "What are you up to?"]],
+        solutions: ["just chilling", "How are you doing?"],
+        language: Language.eng,
+        category: Category.GREETINGS
+      },
+      {
+        id: 4,
+        sentences: ["Hello!", "Hello!", "How have you been?", "I've been __", "That's good to hear!", "__?"],
+        options: [["quite busy", "enjoying my vacation", "working on a project"], ["What's up?", "Are you free?", "How's life?"]],
+        solutions: ["quite busy", "What's up?"],
+        language: Language.eng,
+        category: Category.GREETINGS
+      },
+      {
+        id: 5,
+        sentences: ["Greetings!", "Greetings!", "How's your day?", "My day is __", "That's nice!", "__?"],
+        options: [["going well", "a bit stressful", "just getting started"], ["How's everything?", "Are you enjoying the day?", "What's happening?"]],
+        solutions: ["going well", "How's everything?"],
+        language: Language.eng,
+        category: Category.GREETINGS
+      },
+      {
+        id: 6,
+        sentences: ["Hey!", "Hey!", "How's life treating you?", "I'm __", "Good to hear!", "__?"],
+        options: [["doing great", "feeling a bit down", "searching for new opportunities"], ["How's your day going?", "Any exciting news?", "Tell me about yourself."]],
+        solutions: ["doing great", "How's your day going?"],
+        language: Language.eng,
+        category: Category.GREETINGS
+      },
+      {
+        id: 2,
+        sentences: ["Szia!", "Szia!", "Mi újság?", "Jól vagyok, __", "Nincs nagyobb hír.", "__?"],
+        options: [["csak lazulok", "készülök a hétvégére", "új munkát keresek"], ["Hogy vagy?", "Van valami izgalmas terved?", "Mi a helyzet?"]],
+        solutions: ["csak lazulok", "Hogy vagy?"],
+        language: Language.hu,
+        category: Category.GREETINGS
+      },
+      {
+        id: 3,
+        sentences: ["Helló!", "Helló!", "Hogy vagy mostanában?", "Jól vagyok, __", "Jó hallani!", "__?"],
+        options: [["elég elfoglalt", "jó nyaralást", "projekten dolgozom"], ["Mi újság?", "Szabad vagy?", "Hogyan megy az élet?"]],
+        solutions: ["elég elfoglalt", "Mi újság?"],
+        language: Language.hu,
+        category: Category.GREETINGS
+      },
+      {
+        id: 4,
+        sentences: ["Üdvözlet!", "Üdvözlet!", "Hogy telik a napod?", "A napom __", "Az jó!", "__?"],
+        options: [["jól halad", "kicsit stresszes", "épp csak elkezdődött"], ["Hogy mennek a dolgok?", "Élvezed a napot?", "Mi történik?"]],
+        solutions: ["jól halad", "Hogy mennek a dolgok?"],
+        language: Language.hu,
+        category: Category.GREETINGS
+      },
+      {
+        id: 5,
+        sentences: ["Szia!", "Szia!", "Hogy vagy?", "Nagyon jól vagyok, __", "Az szép!", "__?"],
+        options: [["jól megy", "kicsit lehangolt", "új lehetőségeket keresek"], ["Hogy telik a napod?", "Van valami izgalmas hír?", "Mesélj magadról."]],
+        solutions: ["jól megy", "Hogy telik a napod?"],
+        language: Language.hu,
+        category: Category.GREETINGS
+      },
+      {
+        id: 6,
+        sentences: ["Hé!", "Hé!", "Hogy megy az élet?", "Én __ vagyok", "Jó hallani!", "__?"],
+        options: [["nagyon jól vagyok", "kicsit levert vagyok", "új lehetőségeket keresek"], ["Hogy megy a napod?", "Van izgalmas hír?", "Mesélj magadról."]],
+        solutions: ["nagyon jól vagyok", "Hogy megy a napod?"],
+        language: Language.hu,
+        category: Category.GREETINGS
+      }
+      ];
+
+
+    for (const storyline of storylineList) {
+      const storylineCreate = await prisma.storyline.create({
+        data: {
+          id: storyline.id,
+          sentences: storyline.sentences,
+          options: storyline.options,
+          solutions: storyline.solutions,
+          language: storyline.language,
+          category: storyline.category
+        },
+      });
+      console.log(`Storyline created with id: ${storylineCreate.id}`);
+    }
+
+/*model Storyline {
+    id        Int    @id @default(autoincrement())
+    sentences String
+    options   String
+    solutions String
+  }*/
+
+} catch (error) {
     console.error("Error seeding the database:", error);
   } finally {
     await prisma.$disconnect();
