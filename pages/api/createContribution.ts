@@ -12,8 +12,10 @@ export default async function saveNewWord(
     const language = req.body.language;
     const description = req.body.description;
     const category = req.body.category;
+    const vote = 0;
+    const userId = req.body.userId;
 
-    console.log(word, language, description, category);
+    console.log(word, language, description, category, userId);
 
     try {
       const newWord = await prisma.contribution.create({
@@ -22,6 +24,18 @@ export default async function saveNewWord(
           language,
           description,
           category,
+          vote,
+          votes: {
+            create: [
+              {
+                user: {
+                  connect: {
+                    id: userId,
+                  },
+                },
+              },
+            ],
+          },
         },
       });
       return res.status(200).send(newWord);
