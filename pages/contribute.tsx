@@ -3,9 +3,9 @@ import { FormEventHandler, use, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { HiOutlineStar } from "react-icons/hi";
-import ContributionList from "../components/contribution/contributionList";
+import internal from "stream";
 
 export const LanguageToLabelMapping: Record<Language, string> = {
   [Language.cz]: "cz",
@@ -33,6 +33,7 @@ interface Contributions {
     language: string;
     description: string;
     category: string;
+    vote: number;
   }[];
 }
 
@@ -48,8 +49,20 @@ const contributionIndex = ({ contributions }: Contributions) => {
   const endpointPost = "http://localhost:3000/api/createContribution";
   const [voted, setVoted] = useState<Boolean>();
 
-  const vote = async () => {
+  const vote = async (contribtionId: number) => {
     try {
+      fetch("http://localhost:3000/api/voteUp", {
+        body: JSON.stringify({
+          contributionId: contribtionId,
+          userId: session?.user!.id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      }).then(() => {
+        refreshData();
+      });
     } catch (error) {
       console.log(error);
     }
@@ -69,6 +82,7 @@ const contributionIndex = ({ contributions }: Contributions) => {
           language: newWord.language,
           description: newWord.description,
           category: newWord.category,
+          userId: session?.user!.id,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -81,8 +95,8 @@ const contributionIndex = ({ contributions }: Contributions) => {
           description: "",
           category: "ANIMALS",
         });
+        refreshData();
       });
-      refreshData();
     } catch (error) {
       console.log(error);
     }
@@ -214,7 +228,7 @@ const contributionIndex = ({ contributions }: Contributions) => {
                       </p>
                     </div>
                     <div className="pl-2 pt-2 text-xl">
-                      <HiOutlineStar />
+                      <HiOutlineStar onClick={() => vote(contribution.id)} />
                     </div>
                   </div>
                 </li>
@@ -229,7 +243,8 @@ const contributionIndex = ({ contributions }: Contributions) => {
 
 export default contributionIndex;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let session = await getSession(context);
   const contributions = await prisma.contribution.findMany({
     select: {
       id: true,
@@ -237,6 +252,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       language: true,
       description: true,
       category: true,
+      vote: true,
+      votes: true,
     },
   });
 
