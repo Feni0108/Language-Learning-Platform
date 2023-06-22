@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
 import { getSession, useSession } from "next-auth/react";
 import { HiOutlineStar } from "react-icons/hi";
-import internal from "stream";
+import { HiStar } from "react-icons/hi";
 
 export const LanguageToLabelMapping: Record<Language, string> = {
   [Language.cz]: "cz",
@@ -27,17 +27,18 @@ export const CategoryToLabelMapping: Record<Category, string> = {
 };
 
 interface Contributions {
-  contributions: {
+  finalContributions: {
     id: number;
     word: string;
     language: string;
     description: string;
     category: string;
     vote: number;
+    isVoted: boolean;
   }[];
 }
 
-const contributionIndex = ({ contributions }: Contributions) => {
+const contributionIndex = ({ finalContributions }: Contributions) => {
   const { data: session, status, update } = useSession();
   const [newWord, setNewWord] = useState({
     word: "",
@@ -47,7 +48,25 @@ const contributionIndex = ({ contributions }: Contributions) => {
   });
   const router = useRouter();
   const endpointPost = "http://localhost:3000/api/createContribution";
-  const [voted, setVoted] = useState<Boolean>();
+
+  const deleteVote = async (contributionId: number) => {
+    try {
+      fetch("http://localhost:3000/api/deleteVote", {
+        body: JSON.stringify({
+          contributionId: contributionId,
+          userId: session?.user!.id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      }).then(() => {
+        refreshData();
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const vote = async (contribtionId: number) => {
     try {
@@ -171,7 +190,7 @@ const contributionIndex = ({ contributions }: Contributions) => {
                       }
                     >
                       {Object.keys(CategoryToLabelMapping).map((category) => (
-                        <option>{category}</option>
+                        <option>{category.toLowerCase()}</option>
                       ))}
                     </select>
                   </div>
@@ -212,7 +231,7 @@ const contributionIndex = ({ contributions }: Contributions) => {
           </div>
           <div className="w-auto min-w-[75%] max-w-min mt-20 mx-auto space-y-6 flex flex-col items-stretch">
             <ul>
-              {contributions.map((contribution) => (
+              {finalContributions.map((contribution) => (
                 <li
                   key={contribution.id}
                   className="border-b border-gray-600 p-2"
@@ -224,12 +243,20 @@ const contributionIndex = ({ contributions }: Contributions) => {
                     </div>
                     <div>
                       <p className="text-xs pt-2">
-                        {contribution.language} / {contribution.category}
+                        {contribution.language} /{" "}
+                        {contribution.category.toLowerCase()}
                       </p>
                     </div>
-                    <div className="pl-2 pt-2 text-xl">
-                      <HiOutlineStar onClick={() => vote(contribution.id)} />
-                    </div>
+                    {!contribution.isVoted && (
+                      <div className="pl-2 pt-2 text-xl">
+                        <HiOutlineStar onClick={() => vote(contribution.id)} />
+                      </div>
+                    )}
+                    {contribution.isVoted && (
+                      <div className="pl-2 pt-2 text-xl">
+                        <HiStar onClick={() => deleteVote(contribution.id)} />
+                      </div>
+                    )}
                   </div>
                 </li>
               ))}
@@ -257,9 +284,35 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   });
 
+  const finalContributions = contributions.map((contribute) => {
+    if (
+      contribute.votes.find((Element) => Element.userId === session?.user!.id)
+    ) {
+      return {
+        id: contribute.id,
+        word: contribute.word,
+        language: contribute.language,
+        description: contribute.description,
+        category: contribute.category,
+        vote: contribute.vote,
+        isVoted: true,
+      };
+    } else {
+      return {
+        id: contribute.id,
+        word: contribute.word,
+        language: contribute.language,
+        description: contribute.description,
+        category: contribute.category,
+        vote: contribute.vote,
+        isVoted: false,
+      };
+    }
+  });
+
   return {
     props: {
-      contributions,
+      finalContributions,
     },
   };
 };
