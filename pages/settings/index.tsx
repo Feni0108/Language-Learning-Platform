@@ -15,6 +15,14 @@ interface SettingsProps {
   userSettings: UserSettings;
 }
 
+export const LanguageToLabelMapping: Record<Language, string> = {
+  [Language.hu]: "hungary",
+  [Language.eng]: "english",
+  sk: 'slovak',
+  cz: 'czech',
+  is: 'icelandic'
+};
+
 const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   const router = useRouter();
   const {data: session, update} = useSession();

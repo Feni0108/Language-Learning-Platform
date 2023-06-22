@@ -4889,8 +4889,345 @@ async function seed() {
         solutions: ["nagyon jól vagyok", "Hogy megy a napod?"],
         language: Language.hu,
         category: Category.GREETINGS
+      },
+      {
+        id: 17,
+        sentences: ["Hello!", "Hello!", "I need to buy a new calendar.", "What kind of calendar are you looking for?", "I want a wall calendar with beautiful pictures.", "You should check out __."],
+        options: [["the bookstore", "the grocery store", "the pharmacy"]],
+        solutions: ["the bookstore"],
+        language: Language.eng,
+        category: Category.CALENDAR
+      },
+      {id: 17,
+        sentences: ["Helló!", "Helló!", "Új naptárat kell vennem.", "Milyen naptárat keresel?", "Egy fali naptárat szeretnék szép képekkel.", "Nézd meg a __."],
+        options: [["könyvesboltot", "élelmiszerboltot", "gyógyszertárat"]],
+        solutions: ["könyvesboltot"],
+        language: Language.hu,
+        category: Category.CALENDAR
+      },
+      {
+        id: 18,
+        sentences: ["Hi!", "Hi!", "I can't remember when we scheduled our meeting, Wednesday or Tuesday?", "Let me check my calendar.", "Our meeting is on __.", "Great, see you then!"],
+        options: [["Monday at 2pm", "Wednesday at 10am", "Friday at 4pm"]],
+        solutions: ["Monday at 2pm"],
+        language: Language.eng,
+        category: Category.CALENDAR
+      },
+      {id: 18,
+        sentences: ["Szia!", "Szia!", "Nem emlékszem, mikor terveztük a találkozónkat, szerda vagy kedd?", "Hadd nézzem meg a naptáram.", "A találkozónk __-kor lesz.", "Szuper, akkor találkozunk!"],
+        options: [["hétfőn 14:00-kor", "szerdán 10:00-kor", "pénteken 16:00-kor"]],
+        solutions: ["hétfőn 14:00-kor"],
+        language: Language.hu,
+        category: Category.CALENDAR
+      },
+      {
+        id: 25,
+        sentences: ["What kind of living space do you prefer?", "I like __", "That sounds nice!", "__?"],
+        options: [["a bungalo", "a spacious house", "an iglu"], ["Do you have any favorite home decor styles?", "How important is location for you?", "What amenities do you look for in a living space?"]],
+        solutions: ["a cozy apartment", "Do you have any favorite home decor styles?"],
+        language: Language.eng,
+        category: Category.LIVING
+      },
+      {id: 25,
+        sentences: ["Milyen lakóteret részesítesz előnyben?", "Én __ szeretem", "Ez jól hangzik!", "__?"],
+        options: [["a kényelmes lakás", "az iglut", "a bungalot"], ["Van kedvenc lakberendezési stílusod?", "Mennyire fontos számodra az elhelyezkedés?", "Milyen kényelmi szolgáltatásokat keresel egy lakóhelyen?"]],
+        solutions: ["egy kényelmes lakást", "Van kedvenc lakberendezési stílusod?"],
+        language: Language.hu,
+        category: Category.LIVING
+      },
+      {
+        id: 26,
+        sentences: ["Do you enjoy living in the city or the countryside?", "I prefer __", "Interesting choice!", "__?"],
+        options: [["life on the go", "country life", "a mix of both"], ["What do you like most about your choice?", "How does your choice affect your daily life?", "What are the challenges of living in your preferred environment?"]],
+        solutions: ["country life", "What do you like most about your choice?"],
+        language: Language.eng,
+        category: Category.LIVING
+      },
+      {id: 26,
+        sentences: ["A városban vagy a vidéken szeretsz élni?", "Én __ részesítem előnyben.", "Érdekes választás!", "__?"],
+        options: [["a pörgős életet", "a vidéki életet", "egy keverékét mindkettőnek"], ["Mi tetszik a legjobban a választásodban?", "Hogyan befolyásolja a választásod a mindennapi életed?", "Mik a kihívások az általad preferált környezetben való életben?"]],
+        solutions: ["a városi életet", "Mi tetszik a legjobban a választásodban?"],
+        language: Language.hu,
+        category: Category.LIVING
+      },
+      {
+        id: 7,
+        sentences: ["How's your family doing?", "We're all _", "That's great to hear!", "How about your family?", "_"],
+        options: [["doing well", "going through a tough time", "celebrating a special occasion"], ["They're doing fine", "We're facing some challenges", "We just had a family gathering"]],
+        solutions: ["doing well", "They're doing fine"],
+        language: Language.eng,
+        category: Category.FAMILY
+      },
+      {id: 7,
+        sentences: ["Hogy van a családod?", "Mindannyian _ vagyunk", "Ez jó hír!", "Hogy van a te családod?", "_"],
+        options: [["jól vagyunk", "nehéz időszakon megyünk keresztül", "egy különleges alkalomra készülünk"], ["Jól vannak", "Néhány kihívással szembesülünk", "Éppen családi összejövetelen voltunk"]],
+        solutions: ["jól vagyunk", "Jól vannak"],
+        language: Language.hu,
+        category: Category.FAMILY
+      },
+      {
+        id: 8,
+        sentences: ["Do you have any siblings?", "Yes, I have _", "That's nice!", "What about you?", "_"],
+        options: [["a brother and a sister", "two brothers", "an older sister"], ["I'm an only child", "I have a younger brother", "I have three siblings"]],
+        solutions: ["a brother and a sister", "I'm an only child"],
+        language: Language.eng,
+        category: Category.FAMILY
+      },
+      {id: 8,
+        sentences: ["Van testvéred?", "Igen, van _", "Ez szép!", "És neked?", "_"],
+        options: [["egy bátyám és egy húgom", "két bátyám", "egy idősebb nővérem"], ["Egyke vagyok", "Van egy öcsém", "Három testvérem van"]],
+        solutions: ["egy bátyám és egy húgom", "Egyke vagyok"],
+        language: Language.hu,
+        category: Category.FAMILY
+      },
+      {
+        id: 9,
+        sentences: ["What do your parents do for a living?", "My dad is a _ and my mom is a _", "That's interesting!", "What about your parents?", "_"],
+        options: [["doctor", "teacher", "lawyer"], ["engineer", "nurse", "artist"], ["My dad is a chef", "My mom is a businesswoman", "They both work in finance"]],
+        solutions: ["doctor", "teacher", "My dad is a chef"],
+        language: Language.eng,
+        category: Category.FAMILY
+      },
+      {id: 9,
+        sentences: ["Mit csinálnak a szüleid?", "Az apukám _ és az anyukám _", "Ez érdekes!", "És a te szüleid?", "_"],
+        options: [["orvos", "tanár", "ügyvéd"], ["mérnök", "ápoló", "művész"], ["Az apukám szakács", "Az anyukám üzletasszony", "Mindketten a pénzügyi szektorban dolgoznak"]],
+        solutions: ["orvos", "tanár", "Az apukám szakács"],
+        language: Language.hu,
+        category: Category.FAMILY
+      },
+      {
+        id: 19,
+        sentences: ["Hey, long time no see!", "Yeah, it's been a while!", "How have you been?", "I've been __", "That's great!", "__?"],
+        options: [["pretty good", "busy with work", "dealing with some challenges"], ["What have you been up to?", "How's your family?", "Have you been on any trips lately?"]],
+        solutions: ["pretty good", "What have you been up to?"],
+        language: Language.eng,
+        category: Category.FRIENDS
+      },
+      {
+        id: 19,
+        sentences: ["Hé, rég láttalak!", "Igen, eltelt egy kis idő!", "Hogy vagy?", "Én __ vagyok", "Ez nagyszerű!", "__?"],
+        options: [["egész jól", "elfoglalt a munkával", "néhány kihívással küzdök"], ["Mit csináltál mostanában?", "Hogy van a családod?", "Voltál utazni mostanában?"]],
+        solutions: ["egész jól", "Mit csináltál mostanában?"],
+        language: Language.hu,
+        category: Category.FRIENDS
+      },
+      {
+        id: 20,
+        sentences: ["Hey, have you met our new friend?", "No, not yet!", "You should, they're _", "Sounds interesting!", "_?"],
+        options: [["really nice", "quite funny", "super talented"], ["What's their name?", "Where did you meet them?", "What do they do for a living?"]],
+        solutions: ["really nice", "What's their name?"],
+        language: Language.eng,
+        category: Category.FRIENDS
+      },
+      {
+        id: 20,
+        sentences: ["Hé, találkoztál már az új barátunkkal?", "Még nem!", "Meg kellene, ő __", "Érdekesnek hangzik!", "__?"],
+        options: [["nagyon kedves", "elég vicces", "szuper tehetséges"], ["Mi a neve?", "Hol találkoztál vele?", "Mivel foglalkozik?"]],
+        solutions: ["nagyon kedves", "Mi a neve?"],
+        language: Language.hu,
+        category: Category.FRIENDS
+      },
+      {
+        id: 21,
+        sentences: ["Do you remember our friend from high school?", "Which one?", "The one who was always __, he was so funny", "Oh, yes! How are they doing?", "They're doing great, just __"],
+        options: [["making us laugh", "helping others", "winning competitions"], ["Got a new job.", "Moved to a new city.", "Started a family."]],
+        solutions: ["making us laugh", "Moved to a new city."],
+        language: Language.eng,
+        category: Category.FRIENDS
+      },
+      {
+        id: 21,
+        sentences: ["Emlékszel a középiskolai barátunkra?", "Melyikre?", "Arra, aki mindig __, nagyon vicces volt", "Ó, igen! Hogy van?", "Nagyon jól van, csak éppen __"],
+        options: [["nevettetett minket", "segített másoknak", "versenyeket nyert"], ["Új munkahelyet talált.", "Új városba költözött.", "Családot alapított."]],
+        solutions: ["nevettetett minket", "Új munkahelyet talált."],
+        language: Language.hu,
+        category: Category.FRIENDS
+      },
+      {
+        id: 10,
+        sentences: ["I saw a __ at the zoo.", "It was really __!", "I also saw a group of __ on the tree."],
+        options: [["giraffe", "lion", "penguin"], ["cute", "long", "playful"], ["monkeys", "zebras", "flamingos"]],
+        solutions: ["giraffe", "long", "monkeys"],
+        language: Language.eng,
+        category: Category.ANIMALS
+      },
+      {
+        id: 10,
+        sentences: ["Láttam egy __ az állatkertben.", "Nagyon __ volt!", "Egy csoport __ is láttam fenn a fán"],
+        options: [["zsiráfot", "oroszlánt", "pingvint"], ["aranyos", "nagy", "játékos"], ["majmot", "zebrát", "flamingót"]],
+        solutions: ["zsiráfot", "nagy", "majmot"],
+        language: Language.hu,
+        category: Category.ANIMALS
+      },
+      {
+        id: 11,
+        sentences: ["My favorite marine animal is the __.", "I think they are very __", "They can be found in the __"],
+        options: [["elephant", "tiger", "dolphin"], ["intelligent", "strong", "graceful"], ["savannah", "jungle", "ocean"]],
+        solutions: ["dolphin", "intelligent", "ocean"],
+        language: Language.eng,
+        category: Category.ANIMALS
+      },
+      {
+        id: 11,
+        sentences: ["A kedvenc tengeri állatom a __", "Szerintem nagyon __,", "Az __ találhatók."],
+        options: [["elefánt", "tigris", "delfin"], ["intelligens", "erős", "kecses"], ["szavannán", "dzsungelben", "óceánban"]],
+        solutions: ["delfin", "intelligens", "óceánban"],
+        language: Language.hu,
+        category: Category.ANIMALS
+      },
+      {
+        id: 12,
+        sentences: ["The __ is known for its beautiful wings", "It is a very __ creature.", "You can often see them in the __."],
+          options: [["peacock", "butterfly", "hummingbird"], ["elegant", "colorful", "swift"], ["forest", "garden", "meadow"]],
+        solutions: ["butterfly", "colorful", "garden"],
+        language: Language.eng,
+        category: Category.ANIMALS
+  },
+    {
+      id: 12,
+          sentences: ["A __ ismert gyönyörű tollazatáról.", "Ez egy nagyon __ lény.", "Gyakran láthatók a _-ban."],
+        options: [["páva", "pillangó", "kolibri"], ["elegáns", "színes", "gyors"], ["erdőben", "kertben", "réten"]],
+        solutions: ["páva", "elegáns", "kertben"],
+        language: Language.hu,
+        category: Category.ANIMALS
+    },
+      {
+        id: 22,
+        sentences: ["Hey!", "Hey!", "What's your favorite hobby?", "I love music, and I __", "That's awesome!", "__?"],
+        options: [["painting", "playing guitar", "reading books"], ["How long have you been doing it?", "What got you into it?", "Do you have any other hobbies?"]],
+        solutions: ["painting", "How long have you been doing it?"],
+        language: Language.eng,
+        category: Category.HOBBY
+      },
+      {id: 22,
+        sentences: ["Hé!", "Hé!", "Mi a kedvenc hobbid?", "Imádom a zenét, ezért szeretek __", "Ez nagyszerű!", "_?"],
+        options: [["festeni", "gitározni", "könyveket olvasásni"], ["Mióta foglalkozol vele?", "Miért kezdtél el foglalkozni vele?", "Van más hobbid is?"]],
+        solutions: ["festést", "Mióta foglalkozol vele?"],
+        language: Language.hu,
+        category: Category.HOBBY
+      },
+      {
+        id: 23,
+        sentences: ["Hi!", "Hi!", "Do you have any hobbies?", "Yes, I like pictures and I enjoy __", "That sounds fun!", "__?"],
+        options: [["cooking", "photography", "dancing"], ["How often do you do it?", "What's your favorite thing about it?", "Have you ever considered teaching it?"]],
+        solutions: ["photography", "What's your favorite thing about it?"],
+        language: Language.eng,
+        category: Category.HOBBY
+      },
+      {id: 23,
+        sentences: ["Szia!", "Szia!", "Van valamilyen hobbid?", "Igen, szeretem a képeket és élvezem a __", "Ez jól hangzik!", "__?"],
+        options: [["főzést", "fényképezést", "táncolást"], ["Milyen gyakran csinálod?", "Mi a kedvenc dolog benne?", "Gondoltál már arra, hogy tanítsd?"]],
+        solutions: ["főzést", "Mi a kedvenc dolog benne?"],
+        language: Language.hu,
+        category: Category.HOBBY
+      },
+      {
+        id: 24,
+        sentences: ["Hello!", "Hello!", "What do you like to do in your free time?", "I usually __ at home", "That's interesting!", "__?"],
+        options: [["go for a walk", "play video games", "write poetry"], ["What's your favorite place to walk?", "What games do you play?", "What inspires your poetry?"]],
+        solutions: ["play video games", "What games do you play?"],
+        language: Language.eng,
+        category: Category.HOBBY
+      },
+      {id: 24,
+        sentences: ["Helló!", "Helló!", "Mit szeretsz csinálni a szabadidődben?", "Általában __ otthon", "Ez érdekes!", "__?"],
+        options: [["sétálni megyek", "videojátékokat játszom", "verseket írok"], ["Mi a kedvenc helyed?", "Milyen játékokat játszol?", "Mi inspirálja a verseidet?"]],
+        solutions: ["videojátékokat játszom", "Milyen játékokat játszol?"],
+        language: Language.hu,
+        category: Category.HOBBY
+      },
+      {
+        id: 13,
+        sentences: ["What's your favorite prime number?", "Mine favourite prime number is __", "Interesting choice!", "__?"],
+        options: [["7", "33", "22"], ["Why do you like that number?", "Do you believe in lucky numbers?", "What's the story behind your favorite number?"]],
+        solutions: ["7", "Why do you like that number?"],
+        language: Language.eng,
+        category: Category.NUMBER
+      },
+      {id: 13,
+        sentences: ["Mi a kedvenc prímszámod?", "Az enyém __", "Érdekes választás!", "__?"],
+        options: [["7", "33", "22"], ["Miért szereted ezt a számot?", "Hiszel a szerencse számokban?", "Mi a történet a kedvenc számod mögött?"]],
+        solutions: ["7", "Miért szereted ezt a számot?"],
+        language: Language.hu,
+        category: Category.NUMBER
+      },
+      {
+        id: 14,
+        sentences: ["My siblings are called Nora and Junior.", "Can you guess how many siblings I have?", "You have __ siblings", "That's correct!", "__?"],
+        options: [["1", "3", "2"], ["Do you enjoy having siblings?", "Do you like playing games on the computer?", "Did you want your own room?"]],
+        solutions: ["2", "Do you enjoy having siblings?"],
+        language: Language.eng,
+        category: Category.NUMBER
+      },
+      {id: 14,
+        sentences: ["A testvéreimet Nórának és Juniornak hívják.", "Kitalálod, hány testvérem van?", "Neked __ testvéred van", "Ez helyes!", "__?"],
+        options: [["2", "3", "4"], ["Szereted a testvéreidet?", "Szeretsz játszani a számítógépen?", "Saját szobát akartál?"]],
+        solutions: ["2", "Szereted a testvéreidet?"],
+        language: Language.hu,
+        category: Category.NUMBER
+      },
+      {
+        id: 15,
+        sentences: ["How many countries have you visited?", "I've been to __ countries", "Wow, that's impressive!", "__?"],
+        options: [["1", "2", "I have never been abroad"], ["Which one was your favorite?", "Do you like to travel?", "Do you have any travel tips?"]],
+        solutions: ["2", "Which one was your favorite?"],
+        language: Language.eng,
+        category: Category.NUMBER
+      },
+      {id: 15,
+        sentences: ["Hány országban jártál?", "Én már legalább __ országban jártam", "Hűha, az lenyűgöző!", "__?"],
+        options: [["1", "2", "Soha nem jártam még külföldön"], ["Melyik volt a kedvenced?", "Szeretsz utazni?", "Van valami utazási tipped?"]],
+        solutions: ["2", "Melyik volt a kedvenced?"],
+        language: Language.hu,
+        category: Category.NUMBER
+      },
+      {
+        id: 28,
+        sentences: ["I'm looking for a new pair of shoes.", "What type of shoes are you looking for?", "I want something comfortable and stylish.", "How about these sneakers?", "They look great!", "Would you like to try them on?", "__?"],
+        options: [["Yes, please.", "No, I'll keep looking.", "Maybe later."]],
+        solutions: ["Yes, please."],
+        language: Language.eng,
+        category: Category.SHOPPING
+      },
+      {id: 28,
+        sentences: ["Új cipőt keresek.", "Milyen típusú cipőt keresel?", "Valami kényelmes és stílusosat szeretnék.", "Mit szólsz ehhez a sportcipőhöz?", "Nagyon jól néz ki!", "Szeretnéd felpróbálni?", "__?"],
+        options: [["Igen, kérem.", "Nem, még nézelődöm.", "Talán később."]],
+        solutions: ["Igen, kérem."],
+        language: Language.hu,
+        category: Category.SHOPPING
+      },
+      {
+        id: 29,
+        sentences: ["Do you have this shirt in a different size?", "Yes, we have it in small, medium, and large.", "I'll take the medium one.", "Great choice!", "How much does it cost?", "It's $25.", "Oh no, __."],
+        options: [["I'll take it.", "That's too expensive.", "Do you have a sale section?"]],
+        solutions: ["That's too expensive."],
+        language: Language.eng,
+        category: Category.SHOPPING
+      },
+      {id: 29,
+        sentences: ["Van más méretben is ebből a pólóból?", "Igen, van kis, közepes és nagy méretben.", "A közepeset kérem.", "Jó választás!", "Mennyibe kerül?", "7500 forint.", "Oh ne, __"],
+        options: [["Megveszem.", "Ez túl drága.", "Van leértékelt részleg?"]],
+        solutions: ["Megveszem."],
+        language: Language.hu,
+        category: Category.SHOPPING
+      },
+      {
+        id: 30,
+        sentences: ["Can you help me find a gift for my friend?", "Sure, what's the occasion?", "It's her birthday.", "How about a nice __?", "That's a great idea!", "We have a wide selection to choose from.", "__"],
+        options: [["blanket", "plush", "parfume"], ["Show me the options.", "I'll think about it.", "I have another idea."]],
+        solutions: ["parfume","Show me the options."],
+        language: Language.eng,
+        category: Category.SHOPPING
+      },
+      {id: 30,
+        sentences: ["Tudsz segíteni ajándékot találni a barátomnak?", "Persze, mi az alkalom?", "A születésnapja.", "Mit szólsz egy jó __?", "Nagyszerű ötlet!", "Széles választékunk van.","__"],
+        options: [["takaróhoz", "plüsshöz", "parfümhöz"],["Mutasd meg a lehetőségeket.", "Még gondolkodom rajta.", "Van egy másik ötletem."]],
+        solutions: ["parfümhöz","Mutasd meg a lehetőségeket."],
+        language: Language.hu,
+        category: Category.SHOPPING
       }
-      ];
+
+    ];
 
 
     for (const storyline of storylineList) {
@@ -4906,13 +5243,6 @@ async function seed() {
       });
       console.log(`Storyline created with id: ${storylineCreate.id}`);
     }
-
-/*model Storyline {
-    id        Int    @id @default(autoincrement())
-    sentences String
-    options   String
-    solutions String
-  }*/
 
 } catch (error) {
     console.error("Error seeding the database:", error);
