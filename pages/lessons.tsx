@@ -44,7 +44,7 @@ export default function Lessons() {
   }, [isProgressUpdate]);
 
   const getRandomGames = () => {
-    const randomId = Math.floor(Math.random() * 5);
+    const randomId = Math.floor(Math.random() * 4);
     if (randomId !== id) {
       setId(randomId);
     } else getRandomGames();
