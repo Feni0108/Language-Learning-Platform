@@ -140,17 +140,22 @@ export default async function handler(req: NextApiRequest,
             const result = getOptions(original_words, translated_words);
             return res.status(200).json({result});
         }
-        /*case "storyline" : {
-            const storyline = await prisma.storyline.findMany();
+        case "storyline" : {
+            const storyline = await prisma.storyline.findMany({
+                where: {
+                    category: newType,
+                    language: "hu"
+                }
+            });
             const randomId = Math.floor(Math.random() * storyline.length);
             const story = storyline[randomId];
 
-            const options = story.options.split(";");
-            const sentences = story.sentences.split(";");
-            const solutions = story.solutions.split(";");
+            const options = story.options;
+            const sentences = story.sentences;
+            const solutions = story.solutions;
             const result = { sentences, options, solutions };
             return res.status(200).json({result});
-        }*/
+        }
         default : return null
     }
 
