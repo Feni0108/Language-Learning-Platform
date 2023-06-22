@@ -47,11 +47,15 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
     category: "ANIMALS",
   });
   const router = useRouter();
-  const endpointPost = "http://localhost:3000/api/createContribution";
+  const endpointForCreatingNewContribution =
+    "http://localhost:3000/api/contribution/createContribution";
+  const endpointForVoting = "http://localhost:3000/api/contribution/voteUp";
+  const endpointForDeletingVoting =
+    "http://localhost:3000/api/contribution/deleteVote";
 
   const deleteVote = async (contributionId: number) => {
     try {
-      fetch("http://localhost:3000/api/deleteVote", {
+      fetch(endpointForDeletingVoting, {
         body: JSON.stringify({
           contributionId: contributionId,
           userId: session?.user!.id,
@@ -70,7 +74,7 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
 
   const vote = async (contribtionId: number) => {
     try {
-      fetch("http://localhost:3000/api/voteUp", {
+      fetch(endpointForVoting, {
         body: JSON.stringify({
           contributionId: contribtionId,
           userId: session?.user!.id,
@@ -95,7 +99,7 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
     e.preventDefault();
 
     try {
-      fetch(endpointPost, {
+      fetch(endpointForCreatingNewContribution, {
         body: JSON.stringify({
           word: newWord.word,
           language: newWord.language,
