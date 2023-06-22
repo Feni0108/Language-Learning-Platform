@@ -315,13 +315,15 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
                             </div>
                           )}
                         </div>
-                        <div className="p-3 text-xs">{contribution.vote}</div>
+                        <div className="p-3 text-xs m-auto">
+                          {contribution.vote}
+                        </div>
                       </div>
                     </div>
                   </li>
                 ))}
             </ul>
-            <div className="flex flex-inline justify-center">
+            <div className="flex flex-inline justify-center p-10">
               <RiArrowLeftSLine onClick={() => loadBefore()} />
               <RiArrowRightSLine onClick={() => loadAfter()} />
               <MdKeyboardDoubleArrowUp onClick={() => loadFirst()} />
