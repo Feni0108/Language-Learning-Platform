@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {useSession} from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
+import { Language } from '@prisma/client';
 
 interface UserSettings {
-  interfaceLanguage: string;
-  targetLanguage: string;
+  interfaceLanguage: Language | string;
+  targetLanguage: Language | string;
   learningGoal: string;
   userId: string;
 }
@@ -17,8 +18,8 @@ interface SettingsProps {
 const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   const router = useRouter();
   const {data: session, update} = useSession();
-  const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
-  const [targetLanguage, setTargetLanguage] = useState<string>(userSettings?.targetLanguage || '');
+  const [interfaceLanguage, setInterfaceLanguage] = useState<Language | string>(userSettings?.interfaceLanguage || '');
+  const [targetLanguage, setTargetLanguage] = useState<Language | string>(userSettings?.targetLanguage || '');
   const [learningGoal, setLearningGoal] = useState<string>(userSettings?.learningGoal || '');
 
   useEffect(() => {
@@ -108,8 +109,8 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 className="p-2 border border-gray-300 rounded ml-2"
             >
               <option value="">Choose an interface language...</option>
-              <option value="english">English</option>
-              <option value="hungarian">Hungarian</option>
+              <option value={Language.eng}>English</option>
+              <option value={Language.hu}>Hungarian</option>
             </select>
           </div>
         </div>
@@ -126,8 +127,8 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 className="p-2 border border-gray-300 rounded ml-2"
             >
               <option value="">Choose a language to learn...</option>
-              <option value="english">English</option>
-              <option value="hungarian">Hungarian</option>
+              <option value={Language.eng}>English</option>
+              <option value={Language.hu}>Hungarian</option>
             </select>
           </div>
         </div>

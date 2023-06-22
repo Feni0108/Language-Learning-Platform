@@ -5,20 +5,27 @@ import {getRandomSentence} from "@/components/games/gameComponentBackend/getRand
 import {NextApiRequest, NextApiResponse} from "next";
 import {Prisma} from ".prisma/client";
 import EnumCategoryFilter = Prisma.EnumCategoryFilter;
+import EnumLanguageFilter = Prisma.EnumLanguageFilter;
 import * as stream from "stream";
 import { Dictionary, DictionaryForHover, Sentence } from "@/components/games/gameComponentBackend/typeExports";
+import { getToken } from "next-auth/jwt";
+
 
 export default async function handler(req: NextApiRequest,
                                       res: NextApiResponse) {
 
     const {gameName, type} = req.query;
     const newType = type!.toString().toUpperCase() as EnumCategoryFilter;
+    const token = await getToken({ req });
+    const newInt = token!.interfaceLanguage as EnumLanguageFilter;
+    const newTarget = token!.targetLanguage as EnumLanguageFilter;
+
     switch (gameName) {
         case "dictionary" : {
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "eng"
+                    language: newInt
                     },
                 select: {
                     id: true,
@@ -29,7 +36,7 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "hu"
+                    language: newTarget
                 },
                 select: {
                     id: true,
@@ -44,7 +51,7 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "eng"
+                    language: newInt
                 },
                 select: {
                     id: true,
@@ -55,7 +62,7 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "hu"
+                    language: newTarget
                 },
                 select: {
                     id: true,
@@ -70,7 +77,7 @@ export default async function handler(req: NextApiRequest,
             const original_sentence = await prisma.sentence.findMany({
                 where: {
                     category: newType,
-                    language: "eng"
+                    language: newInt
                 },
                 select: {
                     id: true,
@@ -81,7 +88,7 @@ export default async function handler(req: NextApiRequest,
             const translated_sentence = await prisma.sentence.findMany({
                     where: {
                         category: newType,
-                        language: "hu"
+                        language: newTarget
                     },
                     select: {
                         id: true,
@@ -92,7 +99,7 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "eng"
+                    language: newInt
                 },
                 select: {
                     id: true,
@@ -103,7 +110,7 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "hu"
+                    language: newTarget
                 },
                 select: {
                     id: true,
@@ -118,7 +125,7 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "eng"
+                    language: newInt
                 },
                 select: {
                     id: true,
@@ -129,7 +136,7 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: "hu"
+                    language: newTarget
                 },
                 select: {
                     id: true,
@@ -144,7 +151,7 @@ export default async function handler(req: NextApiRequest,
             const storyline = await prisma.storyline.findMany({
                 where: {
                     category: newType,
-                    language: "hu"
+                    language: newTarget
                 }
             });
             const randomId = Math.floor(Math.random() * storyline.length);
