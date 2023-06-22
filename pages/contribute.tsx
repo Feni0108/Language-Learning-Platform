@@ -6,6 +6,9 @@ import prisma from "@/lib/prisma";
 import { getSession, useSession } from "next-auth/react";
 import { HiOutlineStar } from "react-icons/hi";
 import { HiStar } from "react-icons/hi";
+import { RiArrowLeftSLine } from "react-icons/ri";
+import { RiArrowRightSLine } from "react-icons/ri";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 export const LanguageToLabelMapping: Record<Language, string> = {
   [Language.cz]: "cz",
@@ -54,6 +57,31 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
     "http://localhost:3000/api/contribution/voteDown";
   const endpointForDeletingRelation =
     "http://localhost:3000/api/contribution/deleteContributionUserConnection";
+
+  const [beforeIndex = 0, setBeforeIndex] = useState<number>();
+  const firstPage = 0;
+  const limit: number = 5;
+
+  const loadAfter = () => {
+    if (beforeIndex + limit < finalContributions.length) {
+      setBeforeIndex(beforeIndex + limit);
+    }
+    console.log(beforeIndex);
+    refreshData();
+  };
+
+  const loadBefore = () => {
+    if (beforeIndex - limit >= 0) {
+      setBeforeIndex(beforeIndex - limit);
+    }
+    console.log(beforeIndex);
+    refreshData();
+  };
+
+  const loadFirst = () => {
+    setBeforeIndex(0);
+    refreshData();
+  };
 
   const deleteVote = async (contributionId: number) => {
     try {
@@ -250,36 +278,54 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
           </div>
           <div className="w-auto min-w-[75%] max-w-min mt-20 mx-auto space-y-6 flex flex-col items-stretch">
             <ul>
-              {finalContributions.map((contribution) => (
-                <li
-                  key={contribution.id}
-                  className="border-b border-gray-600 p-2"
-                >
-                  <div className="flex justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-bold">{contribution.word}</h3>
-                      <p className="text-xs pt-2">{contribution.description}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs pt-2">
-                        {contribution.language} /{" "}
-                        {contribution.category.toLowerCase()}
-                      </p>
-                    </div>
-                    {!contribution.isVoted && (
-                      <div className="pl-2 pt-2 text-xl">
-                        <HiOutlineStar onClick={() => vote(contribution.id)} />
+              {finalContributions
+                .slice(beforeIndex, beforeIndex + limit)
+                .map((contribution) => (
+                  <li
+                    key={contribution.id}
+                    className="border-b border-gray-600 p-2"
+                  >
+                    <div className="flex justify-between">
+                      <div className="flex-1">
+                        <h3 className="font-bold">{contribution.word}</h3>
+                        <p className="text-xs pt-2">
+                          {contribution.description}
+                        </p>
                       </div>
-                    )}
-                    {contribution.isVoted && (
-                      <div className="pl-2 pt-2 text-xl">
-                        <HiStar onClick={() => deleteVote(contribution.id)} />
+                      <div>
+                        <p className="text-xs pt-2">
+                          {contribution.language} /{" "}
+                          {contribution.category.toLowerCase()}
+                        </p>
                       </div>
-                    )}
-                  </div>
-                </li>
-              ))}
+                      <div>
+                        <div>
+                          {!contribution.isVoted && (
+                            <div className="pl-2 pt-2 text-xl">
+                              <HiOutlineStar
+                                onClick={() => vote(contribution.id)}
+                              />
+                            </div>
+                          )}
+                          {contribution.isVoted && (
+                            <div className="pl-2 pt-2 text-xl">
+                              <HiStar
+                                onClick={() => deleteVote(contribution.id)}
+                              />
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-3 text-xs">{contribution.vote}</div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
             </ul>
+            <div className="flex flex-inline justify-center">
+              <RiArrowLeftSLine onClick={() => loadBefore()} />
+              <RiArrowRightSLine onClick={() => loadAfter()} />
+              <MdKeyboardDoubleArrowUp onClick={() => loadFirst()} />
+            </div>
           </div>
         </div>
       )}
