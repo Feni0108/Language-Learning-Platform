@@ -86,7 +86,7 @@ return (
       {session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
-            Welcome,
+            {t('Welcome')},
             <span className="font-light px-10">
               {session.user?.name ? session.user?.name : session.user?.username}
               !
@@ -107,7 +107,7 @@ return (
                 future. Will there be that many?
               </h3>
             )}
-            <h2>Part 1: Basics</h2>
+            <h2>{t('Part_1_Basics')}</h2>
             <Categories
               progress={session.user!.progress!}
               progressLimit={0}
@@ -138,7 +138,7 @@ return (
               progressLimit={25}
               type={t("Shopping")}
             />
-            <h2>Part 2: Advanced</h2>
+            <h2>{t('Part_2_Advanced')}</h2>
             <h4 className="font-style: italic">
               This part is under development. Check later!
             </h4>
