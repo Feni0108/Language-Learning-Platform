@@ -1,10 +1,7 @@
 import { prisma } from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function saveNewWord(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function vote(req: NextApiRequest, res: NextApiResponse) {
   let message;
 
   const contributionId: number = req.body.contributionId;
