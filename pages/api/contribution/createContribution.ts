@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function saveNewWord(
@@ -12,7 +12,7 @@ export default async function saveNewWord(
     const language = req.body.language;
     const description = req.body.description;
     const category = req.body.category;
-    const vote = 0;
+    const vote = 1;
     const userId = req.body.userId;
 
     console.log(word, language, description, category, userId);
