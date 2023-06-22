@@ -50,12 +50,14 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
   const endpointForCreatingNewContribution =
     "http://localhost:3000/api/contribution/createContribution";
   const endpointForVoting = "http://localhost:3000/api/contribution/voteUp";
-  const endpointForDeletingVoting =
-    "http://localhost:3000/api/contribution/deleteVote";
+  const endpointForVotingDown =
+    "http://localhost:3000/api/contribution/voteDown";
+  const endpointForDeletingRelation =
+    "http://localhost:3000/api/contribution/deleteContributionUserConnection";
 
   const deleteVote = async (contributionId: number) => {
     try {
-      fetch(endpointForDeletingVoting, {
+      fetch(endpointForVotingDown, {
         body: JSON.stringify({
           contributionId: contributionId,
           userId: session?.user!.id,
@@ -64,9 +66,22 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
           "Content-Type": "application/json",
         },
         method: "POST",
-      }).then(() => {
-        refreshData();
-      });
+      })
+        .then(() => {
+          fetch(endpointForDeletingRelation, {
+            body: JSON.stringify({
+              contributionId: contributionId,
+              userId: session?.user!.id,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+          });
+        })
+        .then(() => {
+          refreshData();
+        });
     } catch (error) {
       console.log(error);
     }
