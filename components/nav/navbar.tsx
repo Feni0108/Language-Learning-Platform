@@ -10,12 +10,12 @@ const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Leaderboard", href: "/leaderboard", current: false },
   { name: "Friends", href: "#", current: false },
+  { name: "Contribution", href: "/contribute", current: false },
 ];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
-
 
 export default function NavBar() {
   const { data: session, status } = useSession();
