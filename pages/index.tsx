@@ -141,7 +141,7 @@ return (
             <Categories
               progress={session.user!.progress!}
               progressLimit={30}
-              type={"Hobby"}
+              type={"Hobby"} />
 
             <Categories
                 progress={session.user!.progress!}
