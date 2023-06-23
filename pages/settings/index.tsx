@@ -5,10 +5,11 @@ import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import i18n from '../../i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
 import SignUpButton from "@/components/SignUpButton";
+import { Language } from '@prisma/client';
 
 interface UserSettings {
-  interfaceLanguage: string;
-  targetLanguage: string;
+  interfaceLanguage: Language | string;
+  targetLanguage: Language | string;
   learningGoal: string;
   userId: string;
 }
@@ -17,11 +18,19 @@ interface SettingsProps {
   userSettings: UserSettings | null;
 }
 
+export const LanguageToLabelMapping: Record<Language, string> = {
+  [Language.hu]: "hungary",
+  [Language.eng]: "english",
+  sk: 'slovak',
+  cz: 'czech',
+  is: 'icelandic'
+};
+
 const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   const router = useRouter();
   const {data: session, update} = useSession();
-  const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
-  const [targetLanguage, setTargetLanguage] = useState<string>(userSettings?.targetLanguage || '');
+  const [interfaceLanguage, setInterfaceLanguage] = useState<Language | string>(userSettings?.interfaceLanguage || '');
+  const [targetLanguage, setTargetLanguage] = useState<Language | string>(userSettings?.targetLanguage || '');
   const [learningGoal, setLearningGoal] = useState<string>(userSettings?.learningGoal || '');
   const t = (key: string) => i18n.t(key);
 
@@ -120,11 +129,11 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 className="p-2 border border-gray-300 rounded ml-2"
             >
               <option value="">{t('chooseInterfaceLanguage')}</option>
-              <option value="english">{t('english')}</option>
-              <option value="hungarian">{t('hungarian')}</option>
-              <option value="czech">{t('czech')}</option>
-              <option value="slovak">{t('slovak')}</option>
-              <option value="icelandic">{t('icelandic')}</option>
+              <option value={Language.eng}">{t('english')}</option>
+              <option value={Language.hu}>{t('hungarian')}</option>
+              <option value={Language.cz}>{t('czech')}</option>
+              <option value={Language.sk}>{t('slovak')}</option>
+              <option value={Language.is}>{t('icelandic')}</option>
             </select>
           </div>
         </div>
@@ -140,12 +149,14 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 onChange={(e) => setTargetLanguage(e.target.value)}
                 className="p-2 border border-gray-300 rounded ml-2"
             >
+
               <option value="">{t('chooseTargetLanguage')}</option>
-              <option value="english">{t('english')}</option>
-              <option value="hungarian">{t('hungarian')}</option>
-              <option value="czech">{t('czech')}</option>
-              <option value="slovak">{t('slovak')}</option>
-              <option value="icelandic">{t('icelandic')}</option>
+              <option value={Language.eng}>{t('english')}</option>
+              <option value={Language.hu}>{t('hungarian')}</option>
+              <option value={Language.cz}>{t('czech')}</option>
+              <option value={Language.sk}>{t('slovak')}</option>
+              <option value={Language.is}>{t('icelandic')}</option>
+
             </select>
           </div>
         </div>

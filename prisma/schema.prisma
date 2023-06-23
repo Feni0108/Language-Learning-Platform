@@ -16,9 +16,12 @@ model Dictionary {
 }
 
 model Sentence {
-  id               Int    @id @default(autoincrement())
-  english_sentence String
-  german_sentence  String
+  id                Int
+  sentence          String
+  language          Language
+  category          Category
+
+  @@unique([id, language])
 }
 
 model User {
@@ -35,18 +38,18 @@ model User {
   lastGame DateTime?
   leaderBoard   Leaderboard?
   isFirstLogin Boolean @default(true)
-  //leaderId Int @unique
   userSettings  UserSettings?
+  votes VotesOnContribution[]
 }
 
 model UserSettings {
   id                Int      @id @default(autoincrement())
-  interfaceLanguage String?
-  targetLanguage    String?
+  interfaceLanguage Language?
+  targetLanguage    Language?
   learningGoal      String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
-  user              User     @relation(fields: [userId], references: [id])
+  user              User?     @relation(fields: [userId], references: [id])
   userId            String   @unique
 }
 
@@ -97,16 +100,22 @@ model Leaderboard {
 }
 
 model Storyline {
-  id        Int    @id @default(autoincrement())
-  sentences String
-  options   String
-  solutions String
+  id        Int
+  sentences Json
+  options   Json
+  solutions Json
+  language Language
+  category Category
+
+  @@unique([id, language])
 }
+
 
 enum Category {
   GREETINGS
   FAMILY
   ANIMALS
+  NUMBER
   CALENDAR
   FRIENDS
   HOBBY
@@ -119,6 +128,8 @@ model Words {
   word        String
   language    Language
   description String
+  category Category
+  image    Bytes?
 
   @@unique([id, language])
 }
@@ -129,4 +140,19 @@ enum Language {
   sk
   cz
   is
+}
+
+model Contribution {
+  id       Int @id @default(autoincrement())
+  votesCount   Int
+  votes VotesOnContribution[]
+}
+
+model VotesOnContribution {
+  contribution Contribution @relation(fields: [contributionId], references: [id])
+  contributionId Int
+  user User @relation(fields: [userId], references: [id])
+  userId String
+
+  @@id([contributionId,userId])
 }

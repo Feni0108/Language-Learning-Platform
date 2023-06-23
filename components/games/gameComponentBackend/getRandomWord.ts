@@ -1,4 +1,4 @@
-import { Dictionary } from "@/components/games/gameComponentBackend/getRandomPictures";
+import { Dictionary } from "@/components/games/gameComponentBackend/typeExports";
 
 let originalWord: {
   id: number;
@@ -13,28 +13,28 @@ let translatedWord: {
   isSelected: boolean;
 }[] = [];
 
-const getRandomWord = (allWords: Dictionary, maxId: number) => {
+const getRandomWord = (original_word: Dictionary, translated_word: Dictionary, maxId: number) => {
   const randomId = Math.floor(Math.random() * maxId) + 1;
   let newId = true;
   for (let i: number = 0; i < originalWord.length; i++) {
     if (
-      originalWord[i].id === allWords[randomId - 1].id ||
-      originalWord[i].original_word === allWords[randomId - 1].original_word ||
+      originalWord[i].id === original_word[randomId - 1].id ||
+      originalWord[i].original_word === original_word[randomId - 1].word ||
       translatedWord[i].translated_word ===
-        allWords[randomId - 1].translated_word
+        translated_word[randomId - 1].word
     )
       newId = false;
   }
   if (newId) {
     originalWord.push({
-      id: allWords[randomId - 1].id,
-      original_word: allWords[randomId - 1].original_word,
+      id: original_word[randomId - 1].id,
+      original_word: original_word[randomId - 1].word,
       isVisible: true,
       isSelected: false,
     });
     translatedWord.push({
-      id: allWords[randomId - 1].id,
-      translated_word: allWords[randomId - 1].translated_word,
+      id: translated_word[randomId - 1].id,
+      translated_word: translated_word[randomId - 1].word,
       isVisible: true,
       isSelected: false,
     });
@@ -42,12 +42,12 @@ const getRandomWord = (allWords: Dictionary, maxId: number) => {
 };
 
 //Main function for retrieving the necessary variables
-export const getOptions = (allWords: Dictionary) => {
+export const getOptions = (original_word: Dictionary, translated_word: Dictionary) => {
   originalWord = [];
   translatedWord = [];
-  const maxId = allWords.length;
+  const maxId = original_word.length;
   do {
-    getRandomWord(allWords, maxId);
+    getRandomWord(original_word, translated_word, maxId);
   } while (originalWord.length !== 4);
   return [originalWord, getRandom(translatedWord)];
 };
