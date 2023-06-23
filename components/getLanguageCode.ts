@@ -1,14 +1,14 @@
 export const getLanguageCode = (language: string): string => {
   switch (language) {
-    case 'english':
+    case 'eng':
       return 'en';
-    case 'hungarian':
+    case 'hu':
       return 'hu';
-    case 'czech':
+    case 'cz':
       return 'cz';
-    case 'slovak':
+    case 'sk':
       return 'sk';
-    case 'icelandic':
+    case 'is':
       return 'is';
     default:
       return 'en';

@@ -21,9 +21,9 @@ interface SettingsProps {
 export const LanguageToLabelMapping: Record<Language, string> = {
   [Language.hu]: "hungary",
   [Language.eng]: "english",
-  sk: 'slovak',
-  cz: 'czech',
-  is: 'icelandic'
+  [Language.sk]: 'slovak',
+  [Language.cz]: 'czech',
+  [Language.is]: 'icelandic'
 };
 
 const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
@@ -82,7 +82,6 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
       if (response.ok) {
         update({id: session!.user!.id, type: "settings"}).then((response) => {
               if (response) {
-                session?.user && (session.user.interfaceLanguage = interfaceLanguage);
                 router.push("/settings");
               }
             }
@@ -129,7 +128,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 className="p-2 border border-gray-300 rounded ml-2"
             >
               <option value="">{t('chooseInterfaceLanguage')}</option>
-              <option value={Language.eng}">{t('english')}</option>
+              <option value={Language.eng}>{t('english')}</option>
               <option value={Language.hu}>{t('hungarian')}</option>
               <option value={Language.cz}>{t('czech')}</option>
               <option value={Language.sk}>{t('slovak')}</option>
