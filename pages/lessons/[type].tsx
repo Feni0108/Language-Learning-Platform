@@ -16,10 +16,13 @@ import { useRouter } from "next/router";
 import Story, {
     SentenceStoryLine,
 } from "@/components/games/storyline/storyline";
+import {
+    EventHandler
+} from "../../../../../../../../Program Files/JetBrains/IntelliJ IDEA 2022.3.1/plugins/javascript-impl/jsLanguageServicesImpl/external/react";
 
 export default function Lessons() {
     const router = useRouter();
-    const {type, isProgressUpdate} = router.query;
+    let {type, isProgressUpdate} = router.query;
 
     const [isProgressUpdateBoolean, setIsProgressUpdateBoolean] = useState<
         boolean | undefined
@@ -50,13 +53,27 @@ export default function Lessons() {
         } else getRandomGames();
     };
 
+    useEffect(() => {
+        const unloadCallback = (event: any) => {
+            event.preventDefault();
+            sessionStorage.setItem("type", type!.toString());
+            event.returnValue = window.location.reload();
+            return "You have unsaved changes!";
+        };
+
+        window.addEventListener("beforeunload", unloadCallback);
+        return () => window.removeEventListener("beforeunload", unloadCallback);
+    }, []);
 
     useEffect(() => {
         getRandomGames();
     }, [gameCount]);
 
     useEffect(() => {
-        console.log(type);
+        if (type === undefined){
+            type = sessionStorage!.getItem("type")!.toString();
+        }
+
         switch (id) {
             case 0: {
                 setEndpoint("../api/getGamesData/" + type + "/dictionary");
