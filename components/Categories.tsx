@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
+import i18n from "@/i18n/i18n";
 
 type CategoriesProps = {
     progress: number;
@@ -12,6 +13,7 @@ const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
     const [isShown, setIsShown] = useState(false);
     const [isProgressUpdate, setIsProgressUpdate] = useState(false);
     const router = useRouter();
+    const t = (key: string) => i18n.t(key);
 
     useEffect(() => {
         if (progress >= progressLimit){
@@ -39,7 +41,7 @@ const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
                 onClick={isVisible? () => handleClick() : undefined}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
-            >{type}-icon</button>
+            >{t(type)}-icon</button>
         </div>
     );
 };

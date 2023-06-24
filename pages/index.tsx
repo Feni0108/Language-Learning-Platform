@@ -86,7 +86,7 @@ return (
       {session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
-            Welcome,
+            {t('Welcome')}
             <span className="font-light px-10">
               {session.user?.name ? session.user?.name : session.user?.username}
               !
@@ -96,7 +96,6 @@ return (
             <p className="m-5 text-xl">
               {t('Your_points')}: {session.user!.totalPoints}
             </p>
-            {session.user?.username} <br />
             <br />
             {session.user!.strike! > 0 && (
               <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
@@ -107,21 +106,21 @@ return (
                 future. Will there be that many?
               </h3>
             )}
-            <h2>Part 1: Basics</h2>
+            <h2>{t('Part 1: Basics')}</h2>
             <Categories
               progress={session.user!.progress!}
               progressLimit={0}
-              type={t("Greetings")}
+              type={"Greetings"}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={5}
-              type={t("Family")}
+              type={"Family"}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={10}
-              type={t("Animals")}
+              type={"Animals"}
             />
             <Categories
                 progress={session.user!.progress!}
@@ -154,9 +153,9 @@ return (
               type={"Shopping"}
 
             />
-            <h2>Part 2: Advanced</h2>
+            <h2>{t('Part 2: Advanced')}</h2>
             <h4 className="font-style: italic">
-              This part is under development. Check later!
+              {t('This part is under development. Check later!')}
             </h4>
           </div>
         </div>
