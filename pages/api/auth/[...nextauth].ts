@@ -35,7 +35,8 @@ const authOptions: NextAuthOptions = {
             id: true,
             username: true,
             password: true,
-            progress: true,
+            actualProgress: true,
+
           },
         });
 
@@ -90,10 +91,10 @@ const authOptions: NextAuthOptions = {
             id: session.id,
           },
           select: {
-            progress: true,
+            actualProgress: true,
           },
         });
-        token.progress = findProgress!.progress;
+        token.progress = findProgress!.actualProgress;
       }
 
       // Settings
@@ -113,6 +114,7 @@ const authOptions: NextAuthOptions = {
       }
 
       if (user) {
+        console.log(user);
         //Usernames
         if (user.username) {
           token.username = user.username;
@@ -151,7 +153,7 @@ const authOptions: NextAuthOptions = {
         token.strike = totalPoints!.strike;
         token.id = user.id;
         //Progress
-        token.progress = user.progress;
+        token.progress = user.actualProgress;
         //Settings
         const findSettings = await prisma.user.findUnique({
           where: {
@@ -189,7 +191,7 @@ const authOptions: NextAuthOptions = {
           session.user.learningGoal = token.learningGoal;
         }
         session.user.id = token.id;
-        session.user.progress = token.progress;
+        session.user.actualProgress = token.progress;
       }
 
       return session;

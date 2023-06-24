@@ -198,10 +198,3 @@ export const getServerSideProps = async ({locale = 'en'}: { locale: string }) =>
 
 export default SettingsPage;
 
-/*
-<option value={Language.eng}>{t('english')}</option>
-              <option value={Language.hu}>{t('hungarian')}</option>
-              <option value={Language.cz}>{t('czech')}</option>
-              <option value={Language.sk}>{t('slovak')}</option>
-              <option value={Language.is}>{t('icelandic')}</option>
- */

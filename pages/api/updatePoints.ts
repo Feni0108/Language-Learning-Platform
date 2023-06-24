@@ -10,7 +10,7 @@ type LastGame = {
         totalPoints: number,
         strike: number,
     },
-    progress: number};
+    actualProgress: number};
 
 export default async function handler(
     req: NextApiRequest,
@@ -32,7 +32,7 @@ export default async function handler(
                 select: {
                     lastGame: true,
                     leaderBoard: true,
-                    progress: true
+                    actualProgress: true
                 }
             }
         ) as LastGame;
@@ -60,7 +60,7 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                progress: lastGame.progress!+1
+                                actualProgress: lastGame.actualProgress!+1
                             }
                         });
                 }
@@ -97,7 +97,7 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                progress: lastGame.progress+1
+                                actualProgress: lastGame.actualProgress!+1
                             }
                         });
                 }
