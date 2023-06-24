@@ -15,7 +15,9 @@ export default async function handler(req: NextApiRequest,
                                       res: NextApiResponse) {
 
     const {gameName, type} = req.query;
+    console.log(req.query);
     const newType = type!.toString().toUpperCase() as EnumCategoryFilter;
+    console.log(newType);
     const token = await getToken({ req });
     const newInt = token!.interfaceLanguage as EnumLanguageFilter;
     const newTarget = token!.targetLanguage as EnumLanguageFilter;

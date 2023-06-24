@@ -25,7 +25,7 @@ const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
     }, [progress])
 
     const handleClick = () => {
-        router.push({pathname:"/lessons", query: {type: type, isProgressUpdate: isProgressUpdate}}, '/lessons')
+        router.push({pathname:"/lessons/"+type.toLowerCase(), query: {type: type, isProgressUpdate: isProgressUpdate}}, '/lessons/'+type.toLowerCase())
     }
 
 
