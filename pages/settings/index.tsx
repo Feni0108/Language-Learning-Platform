@@ -18,13 +18,7 @@ interface SettingsProps {
   userSettings: UserSettings | null;
 }
 
-export const LanguageToLabelMapping: Record<Language, string> = {
-  [Language.hu]: "hungary",
-  [Language.eng]: "english",
-  [Language.sk]: 'slovak',
-  [Language.cz]: 'czech',
-  [Language.is]: 'icelandic'
-};
+
 
 const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   const router = useRouter();
@@ -128,11 +122,12 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 className="p-2 border border-gray-300 rounded ml-2"
             >
               <option value="">{t('chooseInterfaceLanguage')}</option>
-              <option value={Language.eng}>{t('english')}</option>
-              <option value={Language.hu}>{t('hungarian')}</option>
-              <option value={Language.cz}>{t('czech')}</option>
-              <option value={Language.sk}>{t('slovak')}</option>
-              <option value={Language.is}>{t('icelandic')}</option>
+              {targetLanguage != Language.eng && <option value={Language.eng}>{t('english')}</option>}
+              {targetLanguage != Language.hu && <option value={Language.hu}>{t('hungarian')}</option>}
+              {targetLanguage != Language.cz && <option value={Language.cz}>{t('czech')}</option>}
+              {targetLanguage != Language.sk && <option value={Language.sk}>{t('slovak')}</option>}
+              {targetLanguage != Language.is && <option value={Language.is}>{t('icelandic')}</option>}
+
             </select>
           </div>
         </div>
@@ -150,11 +145,11 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
             >
 
               <option value="">{t('chooseTargetLanguage')}</option>
-              <option value={Language.eng}>{t('english')}</option>
-              <option value={Language.hu}>{t('hungarian')}</option>
-              <option value={Language.cz}>{t('czech')}</option>
-              <option value={Language.sk}>{t('slovak')}</option>
-              <option value={Language.is}>{t('icelandic')}</option>
+              {interfaceLanguage != Language.eng && <option value={Language.eng}>{t('english')}</option>}
+              {interfaceLanguage != Language.hu && <option value={Language.hu}>{t('hungarian')}</option>}
+              {interfaceLanguage != Language.cz && <option value={Language.cz}>{t('czech')}</option>}
+              {interfaceLanguage != Language.sk && <option value={Language.sk}>{t('slovak')}</option>}
+              {interfaceLanguage != Language.is && <option value={Language.is}>{t('icelandic')}</option>}
 
             </select>
           </div>
@@ -202,3 +197,11 @@ export const getServerSideProps = async ({locale = 'en'}: { locale: string }) =>
 };
 
 export default SettingsPage;
+
+/*
+<option value={Language.eng}>{t('english')}</option>
+              <option value={Language.hu}>{t('hungarian')}</option>
+              <option value={Language.cz}>{t('czech')}</option>
+              <option value={Language.sk}>{t('slovak')}</option>
+              <option value={Language.is}>{t('icelandic')}</option>
+ */
