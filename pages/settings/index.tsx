@@ -1,26 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
-import {useSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import i18n from '../../i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
 import SignUpButton from "@/components/SignUpButton";
 import { Language } from '@prisma/client';
+import authOptions  from '@/pages/api/auth/[...nextauth]'
+import { GetServerSideProps } from 'next';
+import prisma from '@/lib/prisma';
 
 interface UserSettings {
   interfaceLanguage: Language | string;
   targetLanguage: Language | string;
   learningGoal: string;
   userId: string;
+};
+
+interface userProgress {
+  userProgress: {
+    interfaceLanguage: Language,
+    targetLanguage: Language,
+    proress: number
+  }[];
 }
 
 interface SettingsProps {
   userSettings: UserSettings | null;
+  userProgress: userProgress | null;
+
 }
 
 
 
-const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
+const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => {
+  console.log(userProgress);
   const router = useRouter();
   const {data: session, update} = useSession();
   const [interfaceLanguage, setInterfaceLanguage] = useState<Language | string>(userSettings?.interfaceLanguage || '');
@@ -107,6 +121,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   };
 
   return (
+      <div className="p-4 bg-gray-100 flex inline-block">
       <div className="p-4 bg-gray-100">
         <h1 className="text-2xl font-bold mb-4">{session && `${session.user?.username} ${t('s_settings')}`}</h1>
         <div className="mb-4">
@@ -183,18 +198,49 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
               {t('Save')}
             </button>
         )}
+
+      </div>
+        <div className="text-2xl font-bold m-4 pl-20">
+          <h1>Your progress so far:</h1>
+
+        </div>
       </div>
   );
 }
 
-export const getServerSideProps = async ({locale = 'en'}: { locale: string }) => {
+/*export const getServerSideProps = async ({locale = 'en'}: { locale: string }) => {
   const translations = await serverSideTranslations(locale, ['common']);
+
   return {
     props: {
       ...translations,
     },
   };
-};
+};*/
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let session = await getSession(context);
+  if (session){
+    const userProgress = await prisma.userProgress.findMany({
+      where: {
+        userId: session.user!.id
+      },
+      select: {
+        interfaceLanguage: true,
+        targetLanguage: true,
+        progress: true
+      },
+    });
+    return {
+      props: {
+        userProgress
+      },
+    }
+  }
 
+  return {
+    props: {  }
+  }
+
+}
 export default SettingsPage;
 
