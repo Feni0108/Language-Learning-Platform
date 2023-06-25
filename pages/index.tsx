@@ -1,17 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { Inter } from "next/font/google";
-import { useSession } from "next-auth/react";
+import React, {useEffect, useState} from "react";
+import {Inter} from "next/font/google";
+import {useSession} from "next-auth/react";
 import SignUpButton from "@/components/SignUpButton";
 import Link from "next/link";
 import Categories from "@/components/Categories";
-import { lastGame } from "@/components/lastGame";
-import { useRouter } from "next/router";
+import {lastGame} from "@/components/lastGame";
+import {useRouter} from "next/router";
+import i18n from '@/i18n/i18n';
+import {getLanguageCode} from "@/components/getLanguageCode";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
-export default function Home() {
-  const { data: session, status, update } = useSession();
+interface UserSettings {
+  interfaceLanguage: string;
+  targetLanguage: string;
+  learningGoal: string;
+  userId: string;
+}
+
+interface SettingsProps {
+  userSettings: UserSettings | null;
+}
+
+export default function Home({userSettings}: SettingsProps) {
+  const {data: session, status, update} = useSession();
   const [isPlayToday, setIsPlayToday] = useState<boolean>();
+  const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
+  const t = (key: string) => i18n.t(key);
 
   useEffect(() => {
     if (session) {
@@ -36,10 +51,18 @@ export default function Home() {
       session.user?.learningGoal === undefined &&
       session.user?.targetLanguage === undefined
     ) {
-      router.push("http://localhost:3000/settings");
+      router.push("/settings");
     }
   }
-  return (
+
+  useEffect(() => {
+    if (interfaceLanguage) {
+      const languageCode = getLanguageCode(interfaceLanguage);
+      i18n.changeLanguage(languageCode);
+    }
+  }, [interfaceLanguage]);
+
+return (
     <>
       {!session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
@@ -63,7 +86,7 @@ export default function Home() {
       {session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
-            Welcome,
+            {t('Welcome')},
             <span className="font-light px-10">
               {session.user?.name ? session.user?.name : session.user?.username}
               !
@@ -71,7 +94,7 @@ export default function Home() {
           </h1>
           <div>
             <p className="m-5 text-xl">
-              Your points: {session.user!.totalPoints}
+              {t('Your_points')}: {session.user!.totalPoints}
             </p>
             {session.user?.username} <br />
             <br />
@@ -84,38 +107,54 @@ export default function Home() {
                 future. Will there be that many?
               </h3>
             )}
-            <h2>Part 1: Basics</h2>
+            <h2>{t('Part_1_Basics')}</h2>
             <Categories
               progress={session.user!.progress!}
               progressLimit={0}
-              type={"Greetings"}
+              type={t("Greetings")}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={5}
-              type={"Family"}
+              type={t("Family")}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={10}
-              type={"Animals"}
+              type={t("Animals")}
             />
             <Categories
-              progress={session.user!.progress!}
-              progressLimit={15}
-              type={"Friends"}
+                progress={session.user!.progress!}
+                progressLimit={15}
+                type={"Numbers"}
             />
             <Categories
-              progress={session.user!.progress!}
-              progressLimit={20}
-              type={"Hobby"}
+                progress={session.user!.progress!}
+                progressLimit={20}
+                type={"Calendar"}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={25}
-              type={"Shopping"}
+              type={"Friends"}
             />
-            <h2>Part 2: Advanced</h2>
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={30}
+              type={"Hobby"} />
+
+            <Categories
+                progress={session.user!.progress!}
+                progressLimit={35}
+                type={"Living"}
+            />
+            <Categories
+              progress={session.user!.progress!}
+              progressLimit={40}
+              type={"Shopping"}
+
+            />
+            <h2>{t('Part_2_Advanced')}</h2>
             <h4 className="font-style: italic">
               This part is under development. Check later!
             </h4>

@@ -23,7 +23,7 @@ const Categories = ({progress, progressLimit, type} : CategoriesProps) => {
     }, [progress])
 
     const handleClick = () => {
-        router.push({pathname:"http://localhost:3000/lessons", query: {type: type, isProgressUpdate: isProgressUpdate}}, 'http://localhost:3000/lessons')
+        router.push({pathname:"/lessons", query: {type: type, isProgressUpdate: isProgressUpdate}}, '/lessons')
     }
 
 

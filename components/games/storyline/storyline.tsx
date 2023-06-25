@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 
 export type SentenceStoryLine = {
-  options: string[],
+  options: string[][],
   sentences: string[],
   solutions: string[]
 }
@@ -35,7 +35,7 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
   const [successMessage, setSuccessMessage] = useState("");
 
   const sentences = data.sentences;
-  const options: string[] = data.options;
+  const options: string[][] = data.options;
   const solutions = data.solutions;
 
 
@@ -46,9 +46,9 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
           ...prevSentence,
           sentences[currentSentenceIndex],
         ]);
-        if (sentences[currentSentenceIndex].includes("__________")) {
+        if (sentences[currentSentenceIndex].includes("__")) {
           setShowOptions(true);
-          const getOptions = options[currentOptionsIndex].split("_");
+          const getOptions = options[currentOptionsIndex];
           setCurrenOptions(getOptions);
           setCurrenOptionsIndex((prevIndex) => prevIndex + 1);
         } else {
@@ -77,7 +77,7 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
       }
 
       const updatedSentence = sentences[currentSentenceIndex].replace(
-        "___________",
+        "__",
         solution
       );
       setDisplayedSentences((prevSentences) => {

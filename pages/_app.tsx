@@ -3,8 +3,9 @@ import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import Navbar from "@/components/nav/navbar";
+import {appWithTranslation} from "next-i18next";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <Navbar />
@@ -12,3 +13,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </SessionProvider>
   );
 }
+
+export default appWithTranslation(App);

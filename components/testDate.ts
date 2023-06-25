@@ -9,8 +9,6 @@ export const testDate = (prevDate: Date | null, id: string): boolean => {
   const prevDay: any = moment(prevDate).startOf("day");
   const day: any = moment().startOf("day");
 
-  console.log(prevDay);
-
   if (day - prevDay == 0) {
     return true;
   } else {

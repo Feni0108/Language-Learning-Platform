@@ -1,30 +1,22 @@
+import { Dictionary } from "./typeExports";
+
 let originalWord: {id: number, word: string} | undefined
 let wordsWithPictures: { id: number; word: string, image: string, isSelected: boolean}[] = [];
 
 
-export type Dictionary = [
-    {
-        id: number,
-        original_word: string,
-        translated_word: string,
-        image: object,
-        category: string;
-    }
-]
 
-
-const getRandomWord = (allWords: Dictionary, maxId: number) => {
+const getRandomWord = (original_words: Dictionary, translated_words: Dictionary, maxId: number) => {
     const randomId = (Math.floor(Math.random() * (maxId))+1)
     let newId = true;
-    if (allWords[randomId-1].image === null) newId = false;
+    if (original_words[randomId-1].image === null) newId = false;
     for(let i:number = 0; i<wordsWithPictures.length; i++) {
-        if (wordsWithPictures[i].id === allWords[randomId-1].id)
+        if (wordsWithPictures[i].id === original_words[randomId-1].id)
             newId = false;
     }
     if (newId){
-        wordsWithPictures.push({id:allWords[randomId-1].id, word:allWords[randomId-1].translated_word, image:allWords[randomId-1].image.toString(), isSelected:false})
+        wordsWithPictures.push({id:original_words[randomId-1].id, word:original_words[randomId-1].word, image:original_words[randomId-1].image.toString(), isSelected:false})
         if (originalWord === undefined){
-            originalWord = {id: allWords[randomId-1].id, word:allWords[randomId-1].original_word};
+            originalWord = {id: translated_words[randomId-1].id, word:translated_words[randomId-1].word};
         }
     }
 
@@ -32,12 +24,12 @@ const getRandomWord = (allWords: Dictionary, maxId: number) => {
 }
 
 //Main function for retrieving the necessary variables
-export const getWordWithPictures = (allWords:Dictionary) => {
-    const maxId = allWords.length;
+export const getWordWithPictures = (original_words: Dictionary, translated_words: Dictionary) => {
+    const maxId = original_words.length;
     wordsWithPictures = [];
     originalWord = undefined;
     do {
-        getRandomWord(allWords, maxId);
+        getRandomWord(original_words, translated_words, maxId);
     } while (wordsWithPictures.length !== 4)
     return [originalWord, getRandom(wordsWithPictures)];
 

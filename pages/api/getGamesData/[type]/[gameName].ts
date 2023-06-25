@@ -1,61 +1,165 @@
 import {getOptions} from "@/components/games/gameComponentBackend/getRandomWord";
-import {Dictionary, getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
+import { getWordWithPictures} from "@/components/games/gameComponentBackend/getRandomPictures";
 import prisma from "@/lib/prisma";
-import {getRandomSentence, Sentence} from "@/components/games/gameComponentBackend/getRandomSentence";
+import {getRandomSentence} from "@/components/games/gameComponentBackend/getRandomSentence";
 import {NextApiRequest, NextApiResponse} from "next";
 import {Prisma} from ".prisma/client";
 import EnumCategoryFilter = Prisma.EnumCategoryFilter;
+import EnumLanguageFilter = Prisma.EnumLanguageFilter;
+import * as stream from "stream";
+import { Dictionary, DictionaryForHover, Sentence } from "@/components/games/gameComponentBackend/typeExports";
+import { getToken } from "next-auth/jwt";
+
 
 export default async function handler(req: NextApiRequest,
                                       res: NextApiResponse) {
 
     const {gameName, type} = req.query;
     const newType = type!.toString().toUpperCase() as EnumCategoryFilter;
+    const token = await getToken({ req });
+    const newInt = token!.interfaceLanguage as EnumLanguageFilter;
+    const newTarget = token!.targetLanguage as EnumLanguageFilter;
+
     switch (gameName) {
         case "dictionary" : {
-            const words = await prisma.dictionary.findMany({
+            const original_words = await prisma.words.findMany({
                 where: {
-                    category: newType
+                    category: newType,
+                    language: newInt
+                    },
+                select: {
+                    id: true,
+                    word: true,
+                    image: true
                 }
+                }) as Dictionary;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newTarget
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    image: true
                 }
-            ) as Dictionary;
-            const result = getOptions(words);
+            }) as Dictionary;
+            const result = getOptions(original_words, translated_words);
             return res.status(200).json({result});
         }
         case "picture" : {
-            const words = await prisma.dictionary.findMany({
-                    where: {
-                        category: newType
-                    }
+            const original_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newInt
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    image: true
                 }
-            ) as Dictionary;
-            const result = getWordWithPictures(words);
+            }) as Dictionary;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newTarget
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    image: true
+                }
+            }) as Dictionary;
+            const result = getWordWithPictures(original_words, translated_words);
             return res.status(200).json({result});
         }
         case "sentence" : {
-            const sentences = await prisma.sentence.findMany() as Sentence;
-            const dictionary = await prisma.dictionary.findMany() as Dictionary;
-            const result = getRandomSentence(sentences, dictionary);
+            const original_sentence = await prisma.sentence.findMany({
+                where: {
+                    category: newType,
+                    language: newInt
+                },
+                select: {
+                    id: true,
+                    sentence: true
+                }
+                }
+            ) as Sentence;
+            const translated_sentence = await prisma.sentence.findMany({
+                    where: {
+                        category: newType,
+                        language: newTarget
+                    },
+                    select: {
+                        id: true,
+                        sentence: true
+                    }
+                }
+            ) as Sentence;
+            const original_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newInt
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    description: true
+                }
+            }) as DictionaryForHover;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newTarget
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    description: true
+                }
+            }) as DictionaryForHover;
+            const result = getRandomSentence(original_sentence, translated_sentence, original_words, translated_words);
             return res.status(200).json({result});
         }
         case "pelmanism" : {
-            const words = await prisma.dictionary.findMany({
-                    where: {
-                        category: newType
-                    }
+            const original_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newInt
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    image: true
                 }
-            ) as Dictionary;
-            const result = getOptions(words);
+            }) as Dictionary;
+            const translated_words = await prisma.words.findMany({
+                where: {
+                    category: newType,
+                    language: newTarget
+                },
+                select: {
+                    id: true,
+                    word: true,
+                    image: true
+                }
+            }) as Dictionary;
+            const result = getOptions(original_words, translated_words);
             return res.status(200).json({result});
         }
         case "storyline" : {
-            const storyline = await prisma.storyline.findMany();
+            const storyline = await prisma.storyline.findMany({
+                where: {
+                    category: newType,
+                    language: newTarget
+                }
+            });
             const randomId = Math.floor(Math.random() * storyline.length);
             const story = storyline[randomId];
 
-            const options = story.options.split(";");
-            const sentences = story.sentences.split(";");
-            const solutions = story.solutions.split(";");
+            const options = story.options;
+            const sentences = story.sentences;
+            const solutions = story.solutions;
             const result = { sentences, options, solutions };
             return res.status(200).json({result});
         }
