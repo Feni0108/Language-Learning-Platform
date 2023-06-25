@@ -5,30 +5,29 @@ type Props = {
     id:number
     word: string
     hover: string[]
+    setHover: React.Dispatch<React.SetStateAction<string>>
 
 }
 
 const Hover = ({
     word,
-    hover
+    hover,
+    setHover
 
               }: Props) => {
     const [isShown, setIsShown] = useState(false);
 
     return (
         <>
-        <p style={{display: "inline-block", margin:5}}
-            onMouseEnter={() => setIsShown(true)}
-            onMouseLeave={() => setIsShown(false)}>
+            <div className="inline-block">
+        <p className="pl-2 pr-2 hover:text-xl"
+            onMouseEnter={() => setHover(hover[0])}
+            onMouseLeave={() => setHover("")}>
             {word}
         </p>
-    {isShown && <div>
-        {hover.map((value) => (
-            <p>
-                {value}
-            </p>
-        ))}
-    </div>}
+
+            </div>
+
         </>
     )
 

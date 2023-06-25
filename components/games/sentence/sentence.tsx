@@ -39,6 +39,7 @@ export default function Sentence({
 }: SentenceProps) {
   const [task, setTask] = useState<SentenceTask>(sentence);
   const [answer, setAnswer] = useState<Words[]>([]);
+  const [hover, setHover] = useState<string>("");
 
   const handleCheck = () => {
     let finalAnswer: string = "";
@@ -85,11 +86,13 @@ export default function Sentence({
       </h3>
       <div className="mt-10 grid justify-items-center">
         <div>
+          <div className="justify-items-center text-xs italic min-h-full h-0">{hover}</div>
           {task.original.map((value, number) => (
-            <Hover word={value.word} id={number} hover={value.hover} />
+            <Hover word={value.word} id={number} hover={value.hover} setHover={setHover} />
           ))}
         </div>
       </div>
+      <div className="mt-10 grid justify-items-center">
       <div className={FormatLessons.sentenceAnswer}>
         {answer.map((value, index) => (
           <div
@@ -101,7 +104,7 @@ export default function Sentence({
           </div>
         ))}
       </div>
-      <div>
+      <div className="mt-10">
         {task.words.map((value) => (
           <Word
             word={value.word}
@@ -111,6 +114,7 @@ export default function Sentence({
             isSolved={isSolved}
           />
         ))}
+      </div>
       </div>
       {isSolved && (
         <div>
@@ -128,9 +132,9 @@ export default function Sentence({
           </div>
           <div>
             {isSolved && (
-              <div className="flex justify-center m-10">
+              <div className="flex justify-center pt-10">
                 <button
-                  className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+                  className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4 mt-10"
                   onClick={() => handleSolved()}
                 >
                   Continue
@@ -140,10 +144,10 @@ export default function Sentence({
           </div>
         </div>
       )}
-      {!isSolved && (
+      {!isSolved && answer.length >0 && (
         <div className="flex justify-center m-10">
           <button
-            className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
+            className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4 mt-10"
             onClick={() => handleCheck()}
           >
             Continue
