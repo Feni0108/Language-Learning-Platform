@@ -25,7 +25,7 @@ export default function Lessons() {
       boolean | undefined
   >(undefined);
   const [isSolved, setIsSolved] = useState(false);
-  const [gameCount, setGameCount] = useState(9);
+  const [gameCount, setGameCount] = useState(1);
   const [isGood, setIsGood] = useState(false);
   const [point, setPoint] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -46,8 +46,7 @@ export default function Lessons() {
   const getRandomGames = () => {
     const randomId = Math.floor(Math.random() * 5);
     if (randomId !== id) {
-      setId(randomId)
-      setId(2);
+      setId(randomId);
     } else getRandomGames();
   };
 
@@ -193,8 +192,8 @@ export default function Lessons() {
               <div>
                 <p className="flex justify-center">
                   This is your process: {gameCount}/10
-                  {isInRow && row > 1 && <p>{row} in a row!</p>}
                 </p>
+                {isInRow && row > 1 && <p className="flex justify-center">{row} in a row!</p>}
                 <br/>
                 {game}
               </div>
