@@ -108,47 +108,47 @@ return (
             )}
             <h2>{t('Part 1: Basics')}</h2>
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={0}
               type={"Greetings"}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={5}
               type={"Family"}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={10}
               type={"Animals"}
             />
             <Categories
-                progress={session.user!.progress!}
+                progress={session.user!.actualProgress!}
                 progressLimit={15}
                 type={"Numbers"}
             />
             <Categories
-                progress={session.user!.progress!}
+                progress={session.user!.actualProgress!}
                 progressLimit={20}
                 type={"Calendar"}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={25}
               type={"Friends"}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={30}
               type={"Hobby"} />
 
             <Categories
-                progress={session.user!.progress!}
+                progress={session.user!.actualProgress!}
                 progressLimit={35}
                 type={"Living"}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={40}
               type={"Shopping"}
 
