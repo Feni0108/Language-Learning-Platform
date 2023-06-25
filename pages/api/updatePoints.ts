@@ -57,7 +57,6 @@ export default async function handler(
                         }
                     });
                 if (isProgressUpdate) {
-                    console.log(isProgressUpdate);
                     const updateLastGame =
                         await prisma.user.update({
                             where : {

@@ -35,8 +35,8 @@ async function handleSaveSettings(req: NextApiRequest, res: NextApiResponse) {
           }
         }
       }
-    }).then((res) => {
-      const userUpdate = prisma.user.update({
+    }).then(async (res) => {
+      const userUpdate = await prisma.user.update({
         where: {
           id: userId
 

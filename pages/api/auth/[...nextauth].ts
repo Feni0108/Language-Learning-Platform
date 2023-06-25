@@ -94,7 +94,7 @@ const authOptions: NextAuthOptions = {
             actualProgress: true,
           },
         });
-        token.progress = findProgress!.actualProgress;
+        token.actualProgress = findProgress!.actualProgress;
       }
 
       // Settings
