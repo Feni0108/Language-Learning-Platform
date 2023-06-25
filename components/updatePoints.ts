@@ -1,5 +1,6 @@
+import { Language } from "@prisma/client";
 
-export const updatePoints = async (totalPoints: number, userId: string, isProgressUpdate: boolean) => {
+export const updatePoints = async (totalPoints: number, userId: string, isProgressUpdate: boolean, interfaceLanguage: string, targetLanguage: string) => {
     const endpoint = "/api/updatePoints";
 
 
@@ -11,7 +12,9 @@ export const updatePoints = async (totalPoints: number, userId: string, isProgre
             body: JSON.stringify({
                 userId: userId,
                 points: totalPoints,
-                isProgressUpdate: isProgressUpdate
+                isProgressUpdate: isProgressUpdate,
+                interfaceLanguage: interfaceLanguage,
+                targetLanguage: targetLanguage
             })
         }
         const res = await fetch(endpoint, postData);
