@@ -9,6 +9,7 @@ import { Language } from '@prisma/client';
 import authOptions  from '@/pages/api/auth/[...nextauth]'
 import { GetServerSideProps } from 'next';
 import prisma from '@/lib/prisma';
+import Hover from './Hover';
 
 interface UserSettings {
   interfaceLanguage: Language | string;
@@ -21,7 +22,7 @@ interface userProgress {
   userProgress: {
     interfaceLanguage: Language,
     targetLanguage: Language,
-    proress: number
+    progress: number
   }[];
 }
 
@@ -34,7 +35,6 @@ interface SettingsProps {
 
 
 const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => {
-  console.log(userProgress);
   const router = useRouter();
   const {data: session, update} = useSession();
   const [interfaceLanguage, setInterfaceLanguage] = useState<Language | string>(userSettings?.interfaceLanguage || '');
@@ -200,9 +200,12 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
         )}
 
       </div>
-        <div className="text-2xl font-bold m-4 pl-20">
-          <h1>Your progress so far:</h1>
+        <div className="m-4 pl-20" >
+          <h1 className="text-2xl font-bold">Your progress so far:</h1>
 
+          {userProgress!.map((progress) => (
+              <Hover hover={progress}/>
+          ))}
         </div>
       </div>
   );
