@@ -1,13 +1,11 @@
 import { Category, Contribution, Language } from ".prisma/client";
-import { FormEventHandler, use, useEffect, useState } from "react";
+import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
 import { getSession, useSession } from "next-auth/react";
-import { HiOutlineStar } from "react-icons/hi";
-import { HiStar } from "react-icons/hi";
-import { RiArrowLeftSLine } from "react-icons/ri";
-import { RiArrowRightSLine } from "react-icons/ri";
+import { HiOutlineStar, HiStar } from "react-icons/hi";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 export const LanguageToLabelMapping: Record<Language, string> = {
@@ -27,6 +25,7 @@ export const CategoryToLabelMapping: Record<Category, string> = {
   [Category.HOBBY]: "hobby",
   [Category.LIVING]: "living",
   [Category.SHOPPING]: "shopping",
+  [Category.NUMBER]: "number",
 };
 
 interface Contributions {
@@ -42,7 +41,7 @@ interface Contributions {
 }
 
 const contributionIndex = ({ finalContributions }: Contributions) => {
-  const { data: session, status, update } = useSession();
+  const { data: session } = useSession();
   const [newWord, setNewWord] = useState({
     word: "",
     language: "cz",
@@ -51,12 +50,11 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
   });
   const router = useRouter();
   const endpointForCreatingNewContribution =
-    "http://localhost:3000/api/contribution/createContribution";
-  const endpointForVoting = "http://localhost:3000/api/contribution/voteUp";
-  const endpointForVotingDown =
-    "http://localhost:3000/api/contribution/voteDown";
+    "/api/contribution/createContribution";
+  const endpointForVoting = "/api/contribution/voteUp";
+  const endpointForVotingDown = "/api/contribution/voteDown";
   const endpointForDeletingRelation =
-    "http://localhost:3000/api/contribution/deleteContributionUserConnection";
+    "/api/contribution/deleteContributionUserConnection";
 
   const [beforeIndex = 0, setBeforeIndex] = useState<number>();
   const firstPage = 0;
@@ -237,7 +235,9 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
                       }
                     >
                       {Object.keys(CategoryToLabelMapping).map((category) => (
-                        <option>{category.toLowerCase()}</option>
+                        <option value={category}>
+                          {category.toLowerCase()}
+                        </option>
                       ))}
                     </select>
                   </div>
