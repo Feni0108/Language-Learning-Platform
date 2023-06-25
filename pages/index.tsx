@@ -27,6 +27,17 @@ export default function Home({userSettings}: SettingsProps) {
   const [isPlayToday, setIsPlayToday] = useState<boolean>();
   const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
   const t = (key: string) => i18n.t(key);
+  const categoryTranslations = {
+    Greetings: t("Greetings"),
+    Family: t("Family"),
+    Animals: t("Animals"),
+    Numbers: t("Numbers"),
+    Calendar: t("Calendar"),
+    Friends: t("Friends"),
+    Hobby: t("Hobby"),
+    Living: t("Living"),
+    Shopping: t("Shopping"),
+  };
 
   useEffect(() => {
     if (session) {
@@ -111,48 +122,56 @@ return (
             <Categories
               progress={session.user!.progress!}
               progressLimit={0}
-              type={t("Greetings")}
+              type={"Greetings"}
+              displayType={categoryTranslations.Greetings}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={5}
-              type={t("Family")}
+              type={"Family"}
+              displayType={categoryTranslations.Family}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={10}
-              type={t("Animals")}
+              type={"Animals"}
+              displayType={categoryTranslations.Animals}
             />
             <Categories
                 progress={session.user!.progress!}
                 progressLimit={15}
                 type={"Numbers"}
+                displayType={categoryTranslations.Numbers}
             />
             <Categories
                 progress={session.user!.progress!}
                 progressLimit={20}
                 type={"Calendar"}
+                displayType={categoryTranslations.Calendar}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={25}
               type={"Friends"}
+              displayType={categoryTranslations.Friends}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={30}
-              type={"Hobby"} />
-
+              type={"Hobby"}
+              displayType={categoryTranslations.Hobby}
+            />
             <Categories
                 progress={session.user!.progress!}
                 progressLimit={35}
                 type={"Living"}
+                displayType={categoryTranslations.Living}
             />
             <Categories
               progress={session.user!.progress!}
               progressLimit={40}
               type={"Shopping"}
-
+              displayType={categoryTranslations.Shopping}
             />
             <h2>{t('Part_2_Advanced')}</h2>
             <h4 className="font-style: italic">
