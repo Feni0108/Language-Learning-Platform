@@ -11,8 +11,7 @@ type LastGame = {
         userId: string,
         totalPoints: number,
         strike: number,
-    },
-    actualProgress: number
+    }
     };
 
 export default async function handler(
@@ -37,7 +36,6 @@ export default async function handler(
                 select: {
                     lastGame: true,
                     leaderBoard: true,
-                    actualProgress: true,
                 }
             }
         ) as LastGame;
@@ -66,7 +64,7 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                actualProgress: lastGame.actualProgress!+1
+                                actualProgress: {increment: 1}
                             }
                         });
                     const updateProgressTable = await prisma.userProgress.update({
@@ -74,7 +72,7 @@ export default async function handler(
                             userId_interfaceLanguage_targetLanguage: {userId, interfaceLanguage, targetLanguage}
                         },
                         data: {
-                            progress: lastGame.actualProgress+1
+                            progress: {increment: 1}
                         }
                     })
                     console.log(updateProgressTable);
@@ -86,7 +84,7 @@ export default async function handler(
                         },
                         data: {
                             totalPoints: points,
-                            strike: lastGame.leaderBoard.strike+1
+                            strike: {increment: 1}
                         }
                     }
                 );
@@ -112,7 +110,7 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                actualProgress: lastGame.actualProgress!+1
+                                actualProgress: {increment: 1}
                             }
                         });
                     const updateProgressTable = await prisma.userProgress.update({
@@ -120,7 +118,7 @@ export default async function handler(
                             userId_interfaceLanguage_targetLanguage: {userId, interfaceLanguage, targetLanguage}
                         },
                         data: {
-                            progress: lastGame.actualProgress+1
+                            progress: {increment: 1}
                         }
                     })
                     console.log(updateProgressTable);
