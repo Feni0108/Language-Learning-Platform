@@ -1,5 +1,6 @@
 import { prisma } from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Category, Language } from ".prisma/client";
 
 export default async function saveNewWord(
   req: NextApiRequest,
@@ -9,9 +10,9 @@ export default async function saveNewWord(
 
   if (req.method === "POST") {
     const word = req.body.word;
-    const language = req.body.language;
+    const language: Language = req.body.language;
     const description = req.body.description;
-    const category = req.body.category;
+    const category: Category = req.body.category;
     const vote = 1;
     const userId = req.body.userId;
 
@@ -41,7 +42,8 @@ export default async function saveNewWord(
       return res.status(200).send(newWord);
     } catch (e) {
       message = "Word already exists";
-      return res.status(404).json({ response: { message: message } });
+      console.log(e);
+      return res.status(404).json(e);
     }
   }
 }
