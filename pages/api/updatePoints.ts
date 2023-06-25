@@ -75,7 +75,6 @@ export default async function handler(
                             progress: {increment: 1}
                         }
                     })
-                    console.log(updateProgressTable);
                 }
                 const updatePoints = await prisma.leaderboard.update(
                     {
@@ -121,7 +120,6 @@ export default async function handler(
                             progress: {increment: 1}
                         }
                     })
-                    console.log(updateProgressTable);
                 }
                 const updatePoints = await prisma.leaderboard.update(
                     {
