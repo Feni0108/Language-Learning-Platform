@@ -4,8 +4,15 @@ import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import {SiDuolingo} from "react-icons/si";
 import {FaUserCircle} from "react-icons/fa";
 import SignOutButton from "../SignOutButton";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 import i18n from '@/i18n/i18n';
+
+const navigation = [
+  { name: "Home", href: "/", current: true },
+  { name: "Leaderboard", href: "/leaderboard", current: false },
+  { name: "Friends", href: "#", current: false },
+  { name: "Contribution", href: "/contribute", current: false },
+];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
