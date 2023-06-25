@@ -35,8 +35,20 @@ async function handleSaveSettings(req: NextApiRequest, res: NextApiResponse) {
           }
         }
       }
+    }).then((res) => {
+      const userUpdate = prisma.user.update({
+        where: {
+          id: userId
+
+        },
+        data: {
+          actualProgress: res.progress
+        }
+      });
     });
-    res.status(200).json({userSettings});
+
+
+    res.status(200).json({userSettings, userProgress});
   } catch (error) {
     res.status(500).json({error: 'Failed to save settings'});
   }

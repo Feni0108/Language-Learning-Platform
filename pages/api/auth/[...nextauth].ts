@@ -105,9 +105,11 @@ const authOptions: NextAuthOptions = {
           },
           select: {
             userSettings: true,
+            actualProgress: true
           },
         });
         console.log(findSettings);
+        token.actualProgress = findSettings!.actualProgress
         token.interfaceLanguage = findSettings!.userSettings!.interfaceLanguage;
         token.targetLanguage = findSettings!.userSettings!.targetLanguage;
         token.learningGoal = findSettings!.userSettings!.learningGoal;
@@ -153,7 +155,7 @@ const authOptions: NextAuthOptions = {
         token.strike = totalPoints!.strike;
         token.id = user.id;
         //Progress
-        token.progress = user.actualProgress;
+        token.actualProgress = user.actualProgress;
         //Settings
         const findSettings = await prisma.user.findUnique({
           where: {
@@ -191,7 +193,7 @@ const authOptions: NextAuthOptions = {
           session.user.learningGoal = token.learningGoal;
         }
         session.user.id = token.id;
-        session.user.actualProgress = token.progress;
+        session.user.actualProgress = token.actualProgress;
       }
 
       return session;
