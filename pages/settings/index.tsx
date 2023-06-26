@@ -70,16 +70,41 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
   }, [interfaceLanguage]);
 
   const handleSaveSettingsFromShortcut = async (interfaceLanguage: Language, targetLanguage: Language, progress: number) => {
-    const setAllData = async () => {
+
       setInterfaceLanguage(interfaceLanguage)
-    setTargetLanguage(targetLanguage)
+      setTargetLanguage(targetLanguage)
+
+    const settings: UserSettings = {
+      interfaceLanguage,
+      targetLanguage,
+      learningGoal,
+      userId: session!.user!.id
+    };
+
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          //'Authorization': `Bearer ${session?.token}`,
+        },
+        body: JSON.stringify(settings),
+      });
+      if (response.ok) {
+        update({id: session!.user!.id, type: "settings"}).then((response) => {
+              if (response) {
+                router.push("/settings");
+              }
+            }
+        );
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    setAllData().then((res) => {
-      console.log(interfaceLanguage);
-
-    });
-  }
 
   const handleSaveSettings = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -217,6 +242,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
 
           {userProgress!.map((progress) => (
               <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut}/>
+
           ))}
         </div>
       </div>
