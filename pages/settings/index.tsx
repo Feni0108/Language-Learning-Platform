@@ -159,7 +159,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
 
   return (
       <div className="p-4 bg-gray-100 flex inline-block">
-      <div className="p-4 bg-gray-100">
+      <div className="p-4 bg-gray-100 w-2/5">
         <h1 className="text-2xl font-bold mb-4">{session && `${session.user?.username} ${t('s_settings')}`}</h1>
         <div className="mb-4">
           <label htmlFor="interface-language" className="mr-2">
@@ -237,13 +237,14 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
         )}
 
       </div>
-        <div className="m-4 pl-20" >
+        <div className="m-4 pl-20 h-96 w-2/5" >
           <h1 className="text-2xl font-bold">Your progress so far:</h1>
-
+          <div className="flex flex-row flex-wrap">
           {userProgress!.map((progress) => (
               <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut}/>
 
           ))}
+          </div>
         </div>
       </div>
   );

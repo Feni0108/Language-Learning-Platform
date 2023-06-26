@@ -23,23 +23,24 @@ const Hover = ({
     const [isShown, setIsShown] = useState(false);
 
     return (
-        <>
+        <div>
             {isShown && <div>
-                <p>{"Interface language: "+hover.interfaceLanguage+" Target Language: "+hover.targetLanguage+" Progress: "+hover.progress}</p>
+                <p className="italic text-xs w-24"
+                >{"Language: "+hover.interfaceLanguage+"-"+hover.targetLanguage+" Progress: "+hover.progress}</p>
 
             </div>}
-            {isShown ? (<div
+            {isShown ? (<div className="pt-2 pr-8 w-24"
                 onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage)}
                              onMouseLeave={() => setIsShown(false)}>
-                <img className="h-12 w-12 rounded-full" src={"https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"}/>
-            </div>) : (<div className="pt-6"
+                <img className="h-18 w-18 rounded-full" src={"https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"}/>
+            </div>) : (<div className="pt-10 pr-8 w-24"
                onMouseEnter={() => setIsShown(true)}
                             onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage)}
                >
-                <img className="h-12 w-12 rounded-full" src={"https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"}/>
+                <img className="h-18 w-18 rounded-full" src={"https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"}/>
             </div>)}
 
-        </>
+        </div>
     )
 
 }
