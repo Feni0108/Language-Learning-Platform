@@ -69,7 +69,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
     }
   }, [interfaceLanguage]);
 
-  const handleSaveSettingsFromShortcut = async (interfaceLanguage: Language, targetLanguage: Language, progress: number) => {
+  const handleSaveSettingsFromShortcut = async (interfaceLanguage: Language, targetLanguage: Language) => {
 
       setInterfaceLanguage(interfaceLanguage)
       setTargetLanguage(targetLanguage)

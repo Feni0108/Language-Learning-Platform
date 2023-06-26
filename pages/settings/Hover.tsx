@@ -11,7 +11,7 @@ type Props = {
         targetLanguage: Language,
         progress: number
     },
-    handleSaveSettingsFromShortcut: (interfaceLanguage: Language, targetLanguage: Language, progress: number) => void;
+    handleSaveSettingsFromShortcut: (interfaceLanguage: Language, targetLanguage: Language) => void;
 
 }
 
@@ -29,12 +29,12 @@ const Hover = ({
 
             </div>}
             {isShown ? (<div
-                onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage, hover.progress)}
+                onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage)}
                              onMouseLeave={() => setIsShown(false)}>
                 {hover.interfaceLanguage+"-"+hover.targetLanguage+"-icons"}
             </div>) : (<div className="pt-6"
                onMouseEnter={() => setIsShown(true)}
-                            onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage, hover.progress)}
+                            onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage)}
                >
                 {hover.interfaceLanguage+"-"+hover.targetLanguage+"-icons"}
             </div>)}
