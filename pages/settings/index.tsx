@@ -69,6 +69,18 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
     }
   }, [interfaceLanguage]);
 
+  const handleSaveSettingsFromShortcut = async (interfaceLanguage: Language, targetLanguage: Language, progress: number) => {
+    const setAllData = async () => {
+      setInterfaceLanguage(interfaceLanguage)
+    setTargetLanguage(targetLanguage)
+    }
+
+    setAllData().then((res) => {
+      console.log(interfaceLanguage);
+
+    });
+  }
+
   const handleSaveSettings = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const settings: UserSettings = {
@@ -204,7 +216,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
           <h1 className="text-2xl font-bold">Your progress so far:</h1>
 
           {userProgress!.map((progress) => (
-              <Hover hover={progress}/>
+              <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut}/>
           ))}
         </div>
       </div>
