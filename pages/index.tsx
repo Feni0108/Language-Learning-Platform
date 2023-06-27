@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Inter} from "next/font/google";
 import {useSession} from "next-auth/react";
-import SignUpButton from "@/components/SignUpButton";
+import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import Link from "next/link";
-import Categories from "@/components/Categories";
+import Categories from "@/components/ChildComponent/Categories";
 import {lastGame} from "@/components/lastGame";
 import {useRouter} from "next/router";
 import i18n from '@/i18n/i18n';
@@ -27,6 +27,17 @@ export default function Home({userSettings}: SettingsProps) {
   const [isPlayToday, setIsPlayToday] = useState<boolean>();
   const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
   const t = (key: string) => i18n.t(key);
+  const categoryTranslations = {
+    Greetings: t("Greetings"),
+    Family: t("Family"),
+    Animals: t("Animals"),
+    Numbers: t("Numbers"),
+    Calendar: t("Calendar"),
+    Friends: t("Friends"),
+    Hobby: t("Hobby"),
+    Living: t("Living"),
+    Shopping: t("Shopping"),
+  };
 
   useEffect(() => {
     if (session) {
@@ -45,7 +56,7 @@ export default function Home({userSettings}: SettingsProps) {
   const router = useRouter();
 
   if (session) {
-    console.log(session);
+
     if (
       session?.user?.interfaceLanguage === undefined &&
       session.user?.learningGoal === undefined &&
@@ -87,6 +98,7 @@ return (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
             {t('Welcome')},
+
             <span className="font-light px-10">
               {session.user?.name ? session.user?.name : session.user?.username}
               !
@@ -96,7 +108,6 @@ return (
             <p className="m-5 text-xl">
               {t('Your_points')}: {session.user!.totalPoints}
             </p>
-            {session.user?.username} <br />
             <br />
             {session.user!.strike! > 0 && (
               <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
@@ -106,61 +117,71 @@ return (
                 Duo sees a {session.user!.strike! + 1}-day streak in your
                 future. Will there be that many?
               </h3>
-            )}
-            <h2>{t('Part_1_Basics')}</h2>
+            )} <h2>{t('Part_1_Basics')}</h2>
+
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={0}
-              type={t("Greetings")}
+              type={"Greetings"}
+              displayType={categoryTranslations.Greetings}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={5}
-              type={t("Family")}
+              type={"Family"}
+              displayType={categoryTranslations.Family}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={10}
-              type={t("Animals")}
+              type={"Animals"}
+              displayType={categoryTranslations.Animals}
             />
             <Categories
-                progress={session.user!.progress!}
+                progress={session.user!.actualProgress!}
                 progressLimit={15}
                 type={"Numbers"}
+                displayType={categoryTranslations.Numbers}
             />
             <Categories
-                progress={session.user!.progress!}
+                progress={session.user!.actualProgress!}
                 progressLimit={20}
                 type={"Calendar"}
+                displayType={categoryTranslations.Calendar}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={25}
               type={"Friends"}
+              displayType={categoryTranslations.Friends}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={30}
-              type={"Hobby"} />
-
+              type={"Hobby"}
+              displayType={categoryTranslations.Hobby}
+            />
             <Categories
-                progress={session.user!.progress!}
+                progress={session.user!.actualProgress!}
                 progressLimit={35}
                 type={"Living"}
+                displayType={categoryTranslations.Living}
             />
             <Categories
-              progress={session.user!.progress!}
+              progress={session.user!.actualProgress!}
               progressLimit={40}
               type={"Shopping"}
-
+              displayType={categoryTranslations.Shopping}
             />
+
             <h2>{t('Part_2_Advanced')}</h2>
+
             <h4 className="font-style: italic">
-              This part is under development. Check later!
+              {t('This part is under development. Check later!')}
             </h4>
           </div>
         </div>
       )}
     </>
   );
-}
+};

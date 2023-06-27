@@ -1,6 +1,8 @@
 import {prisma} from "../../lib/prisma"
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {testDate} from "@/components/testDate";
+import { getSession } from "next-auth/react";
+import { Language } from "@prisma/client";
 
 type LastGame = {
     lastGame : Date | null,
@@ -9,12 +11,12 @@ type LastGame = {
         userId: string,
         totalPoints: number,
         strike: number,
-    },
-    progress: number};
+    }
+    };
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse
+    res: NextApiResponse,
 ) {
     let message;
 
@@ -23,6 +25,8 @@ export default async function handler(
         const userId = req.body.userId;
         const points = req.body.points;
         const isProgressUpdate = req.body.isProgressUpdate;
+        const targetLanguage = req.body.targetLanguage;
+        const interfaceLanguage = req.body.interfaceLanguage;
 
         const lastGame = await prisma.user.findUnique(
             {
@@ -32,7 +36,6 @@ export default async function handler(
                 select: {
                     lastGame: true,
                     leaderBoard: true,
-                    progress: true
                 }
             }
         ) as LastGame;
@@ -60,9 +63,17 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                progress: lastGame.progress!+1
+                                actualProgress: {increment: 1}
                             }
                         });
+                    const updateProgressTable = await prisma.userProgress.update({
+                        where: {
+                            userId_interfaceLanguage_targetLanguage: {userId, interfaceLanguage, targetLanguage}
+                        },
+                        data: {
+                            progress: {increment: 1}
+                        }
+                    })
                 }
                 const updatePoints = await prisma.leaderboard.update(
                     {
@@ -71,7 +82,7 @@ export default async function handler(
                         },
                         data: {
                             totalPoints: points,
-                            strike: lastGame.leaderBoard.strike+1
+                            strike: {increment: 1}
                         }
                     }
                 );
@@ -97,9 +108,17 @@ export default async function handler(
                                 id: userId,
                             },
                             data: {
-                                progress: lastGame.progress+1
+                                actualProgress: {increment: 1}
                             }
                         });
+                    const updateProgressTable = await prisma.userProgress.update({
+                        where: {
+                            userId_interfaceLanguage_targetLanguage: {userId, interfaceLanguage, targetLanguage}
+                        },
+                        data: {
+                            progress: {increment: 1}
+                        }
+                    })
                 }
                 const updatePoints = await prisma.leaderboard.update(
                     {

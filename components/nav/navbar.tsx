@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { SiDuolingo } from "react-icons/si";
-import { FaUserCircle } from "react-icons/fa";
-import SignOutButton from "../SignOutButton";
-import { useSession } from "next-auth/react";
-import i18n from "@/i18n/i18n";
+import React, {Fragment, useEffect, useState} from "react";
+import {Disclosure, Menu, Transition} from "@headlessui/react";
+import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
+import {SiDuolingo} from "react-icons/si";
+import {FaUserCircle} from "react-icons/fa";
+import SignOutButton from "../ChildComponent/SignOutButton";
+import {useSession} from "next-auth/react";
+import i18n from '@/i18n/i18n';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");

@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9cf04d85-6479-441f-86f8-f363292ee7b5" name="Changes" comment="Solve TS error" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="LLP-many-Add_CSS_to_the_new_file" />
+                <branch-info repo="$PROJECT_DIR$" source="llp-37.1-Correct_migration-error" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="llp-38-Add_saving_method_to_User_progress_on_every_languages" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="7f0168ef-1f3f-4abc-82bc-9a5eab2d7a38" />
+        <option name="url" value="https://github.com/green-fox-academy/Language-Learning-Platform.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2Op2DsPvKNq6BFp6Zve6OdpnIhV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP PAVILION/Desktop/greenfox/gabesz1111/Language-Learning-Platform&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\components\games" />
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\pages\api" />
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\pages" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\components\ChildComponent" />
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\components\games\gameComponentBackend" />
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\components\games\pelmanism" />
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\pages\api\getGamesData\[type]" />
+      <recent name="C:\Users\HP PAVILION\Desktop\greenfox\gabesz1111\Language-Learning-Platform\components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Language-Learning-Platform" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Language-Learning-Platform" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9cf04d85-6479-441f-86f8-f363292ee7b5" name="Changes" comment="" />
+      <created>1682243094318</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682243094318</updated>
+      <workItem from="1682243097171" duration="663000" />
+      <workItem from="1682243805989" duration="3909000" />
+      <workItem from="1682249979897" duration="11919000" />
+      <workItem from="1682276708431" duration="3639000" />
+      <workItem from="1682359346012" duration="326000" />
+      <workItem from="1682524815875" duration="1400000" />
+      <workItem from="1682569016103" duration="10726000" />
+      <workItem from="1682611103883" duration="470000" />
+      <workItem from="1682611716685" duration="12479000" />
+      <workItem from="1682625844186" duration="146000" />
+      <workItem from="1682666312643" duration="3742000" />
+      <workItem from="1682670735878" duration="2269000" />
+      <workItem from="1682760025832" duration="1527000" />
+      <workItem from="1682840092508" duration="8425000" />
+      <workItem from="1682926324269" duration="5065000" />
+      <workItem from="1682958525301" duration="407000" />
+      <workItem from="1683043966460" duration="9401000" />
+      <workItem from="1683216257630" duration="12396000" />
+      <workItem from="1683231253139" duration="12000" />
+      <workItem from="1683365405703" duration="19223000" />
+      <workItem from="1683443142331" duration="248000" />
+      <workItem from="1683444958809" duration="89000" />
+      <workItem from="1683445818161" duration="11114000" />
+      <workItem from="1683467860170" duration="596000" />
+      <workItem from="1683539160109" duration="1871000" />
+      <workItem from="1683648560834" duration="3747000" />
+      <workItem from="1683821586505" duration="1819000" />
+      <workItem from="1683823419943" duration="5479000" />
+      <workItem from="1683831888285" duration="2996000" />
+      <workItem from="1683911145485" duration="7169000" />
+      <workItem from="1683923274731" duration="2503000" />
+      <workItem from="1683925832768" duration="2171000" />
+      <workItem from="1683976349663" duration="11399000" />
+      <workItem from="1684005332187" duration="2633000" />
+      <workItem from="1684048103275" duration="2471000" />
+      <workItem from="1684054913695" duration="4538000" />
+      <workItem from="1684068766006" duration="5588000" />
+      <workItem from="1684176528122" duration="3368000" />
+      <workItem from="1684255692479" duration="7843000" />
+      <workItem from="1684571474905" duration="8213000" />
+      <workItem from="1684661681017" duration="13657000" />
+      <workItem from="1684859398602" duration="10866000" />
+      <workItem from="1684871524367" duration="472000" />
+      <workItem from="1684924820090" duration="7032000" />
+      <workItem from="1685002113488" duration="10578000" />
+      <workItem from="1685090965860" duration="3066000" />
+      <workItem from="1685264449703" duration="9484000" />
+      <workItem from="1685356692758" duration="334000" />
+      <workItem from="1685387569469" duration="881000" />
+      <workItem from="1685462352149" duration="5177000" />
+      <workItem from="1685470355427" duration="3573000" />
+      <workItem from="1685474365940" duration="24000" />
+      <workItem from="1685558882221" duration="578000" />
+      <workItem from="1685559489093" duration="4587000" />
+      <workItem from="1685599405111" duration="314000" />
+      <workItem from="1685617834710" duration="941000" />
+      <workItem from="1685635526115" duration="6453000" />
+      <workItem from="1685646712605" duration="1021000" />
+      <workItem from="1685720939182" duration="12864000" />
+      <workItem from="1685783638864" duration="19331000" />
+      <workItem from="1685862808879" duration="14277000" />
+      <workItem from="1685898162710" duration="6268000" />
+      <workItem from="1685988520819" duration="7262000" />
+      <workItem from="1686066734876" duration="3213000" />
+      <workItem from="1686075302192" duration="5012000" />
+      <workItem from="1686158946265" duration="7431000" />
+      <workItem from="1686248473562" duration="2272000" />
+      <workItem from="1686302526103" duration="5424000" />
+      <workItem from="1686313868585" duration="2548000" />
+      <workItem from="1686469113900" duration="8501000" />
+      <workItem from="1686484474576" duration="12212000" />
+      <workItem from="1686589268334" duration="11752000" />
+      <workItem from="1686646428028" duration="4391000" />
+      <workItem from="1686757882363" duration="4434000" />
+      <workItem from="1686775398391" duration="414000" />
+      <workItem from="1686844953900" duration="6420000" />
+      <workItem from="1686860696101" duration="501000" />
+      <workItem from="1686899929757" duration="313000" />
+      <workItem from="1686992714681" duration="411000" />
+      <workItem from="1686993185852" duration="44000" />
+      <workItem from="1686993250009" duration="2709000" />
+      <workItem from="1687001493154" duration="13810000" />
+      <workItem from="1687073361882" duration="15255000" />
+      <workItem from="1687090833443" duration="19331000" />
+      <workItem from="1687111089281" duration="1497000" />
+      <workItem from="1687282295033" duration="8932000" />
+      <workItem from="1687362115505" duration="9462000" />
+      <workItem from="1687451204313" duration="9078000" />
+      <workItem from="1687501764858" duration="3517000" />
+      <workItem from="1687605567502" duration="10818000" />
+      <workItem from="1687626221895" duration="1595000" />
+      <workItem from="1687635192062" duration="1402000" />
+      <workItem from="1687676104237" duration="11619000" />
+      <workItem from="1687693616391" duration="4765000" />
+      <workItem from="1687698492275" duration="2786000" />
+      <workItem from="1687701450056" duration="8103000" />
+      <workItem from="1687800503789" duration="2114000" />
+      <workItem from="1687802669032" duration="7145000" />
+      <workItem from="1687857957484" duration="8546000" />
+      <workItem from="1687886093946" duration="4332000" />
+      <workItem from="1687890835645" duration="2540000" />
+    </task>
+    <task id="LOCAL-00165" summary="Correct import problem">
+      <created>1687108023512</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1687108023512</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Refactor the dictionary lesson, based on the new database">
+      <created>1687110072616</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1687110072616</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Refactor the picture lesson, based on the new database">
+      <created>1687110465849</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1687110465849</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Refactor the pelmanism lesson, based on the new database">
+      <created>1687110589616</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1687110589617</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Add sentences to seed">
+      <created>1687111446153</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1687111446154</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Correct sentence games, based on the new sentence table">
+      <created>1687112582383</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1687112582383</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Add randomWord method to sentence again">
+      <created>1687291607016</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1687291607017</updated>
+    </task>
+    <task id="LOCAL-00172" summary="Add hover function again.">
+      <created>1687291974447</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1687291974447</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Export the type definiton to a new file.">
+      <created>1687364749629</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1687364749629</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Add word definiton to hover.">
+      <created>1687372180932</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1687372180932</updated>
+    </task>
+    <task id="LOCAL-00175" summary="Change storyline modell and add some examples to database">
+      <created>1687373041296</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1687373041296</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Connect storyline to the new database">
+      <created>1687452225164</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1687452225164</updated>
+    </task>
+    <task id="LOCAL-00177" summary="Set back the lesson..">
+      <created>1687452296267</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1687452296267</updated>
+    </task>
+    <task id="LOCAL-00178" summary="Set back the lesson..(2.)">
+      <created>1687452318096</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1687452318096</updated>
+    </task>
+    <task id="LOCAL-00179" summary="Add dependencies to the lesson from the usersettings">
+      <created>1687457368185</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1687457368185</updated>
+    </task>
+    <task id="LOCAL-00180" summary="Add more storyline to seed">
+      <created>1687469658183</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1687469658183</updated>
+    </task>
+    <task id="LOCAL-00181" summary="Correct migration error">
+      <created>1687504299092</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1687504299093</updated>
+    </task>
+    <task id="LOCAL-00182" summary="Correct translations">
+      <created>1687606902991</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1687606902992</updated>
+    </task>
+    <task id="LOCAL-00183" summary="Change lessons datafetching">
+      <created>1687608163948</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1687608163948</updated>
+    </task>
+    <task id="LOCAL-00184" summary="Fix the bug: refresh in lesson">
+      <created>1687614725470</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1687614725470</updated>
+    </task>
+    <task id="LOCAL-00185" summary="Fix the bug: Can choose same interface and targetlanguage">
+      <created>1687624563700</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1687624563700</updated>
+    </task>
+    <task id="LOCAL-00186" summary="Add new table to prisma: userProgress.&#10;Add rows-createing function in the API.&#10;Correct problem with renaming.">
+      <created>1687636464749</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1687636464750</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Fixing bug: The prisma-call only work with new data, now it can update.">
+      <created>1687676850586</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1687676850587</updated>
+    </task>
+    <task id="LOCAL-00188" summary="Fixing renaming bug.">
+      <created>1687676985599</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1687676985599</updated>
+    </task>
+    <task id="LOCAL-00189" summary="Add actualProgress to update in the settings">
+      <created>1687681346585</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1687681346585</updated>
+    </task>
+    <task id="LOCAL-00190" summary="Fixing sentences CSS">
+      <created>1687685846153</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1687685846153</updated>
+    </task>
+    <task id="LOCAL-00191" summary="Correct some html tag">
+      <created>1687686903505</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1687686903505</updated>
+    </task>
+    <task id="LOCAL-00192" summary="Add progress update to updatePoints method">
+      <created>1687696140360</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1687696140361</updated>
+    </task>
+    <task id="LOCAL-00193" summary="Add CSS to storyline">
+      <created>1687701172126</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1687701172127</updated>
+    </task>
+    <task id="LOCAL-00194" summary="Correct updatePoints API">
+      <created>1687701801253</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1687701801254</updated>
+    </task>
+    <task id="LOCAL-00195" summary="Correct updatePoints API">
+      <created>1687702670185</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1687702670185</updated>
+    </task>
+    <task id="LOCAL-00196" summary="Connect the userProgress to the sessionUpdate">
+      <created>1687704199560</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1687704199560</updated>
+    </task>
+    <task id="LOCAL-00197" summary="Add prisma query to serversideProps">
+      <created>1687707511327</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1687707511327</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Add hover function">
+      <created>1687709070382</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1687709070382</updated>
+    </task>
+    <task id="LOCAL-00199" summary="Add onClick-shortcut to the hover.">
+      <created>1687802397443</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1687802397444</updated>
+    </task>
+    <task id="LOCAL-00200" summary="Connect onClick to the settings">
+      <created>1687803531170</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1687803531171</updated>
+    </task>
+    <task id="LOCAL-00201" summary="Delete progress from function properties">
+      <created>1687803642639</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1687803642639</updated>
+    </task>
+    <task id="LOCAL-00202" summary="Add image to Hoverpage">
+      <created>1687804289094</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1687804289094</updated>
+    </task>
+    <task id="LOCAL-00203" summary="Add CSS to the page">
+      <created>1687806157745</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1687806157745</updated>
+    </task>
+    <task id="LOCAL-00204" summary="Add all of language-pair pictures">
+      <created>1687868661364</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1687868661365</updated>
+    </task>
+    <task id="LOCAL-00205" summary="Add CSS and more UX about update">
+      <created>1687868705070</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1687868705070</updated>
+    </task>
+    <task id="LOCAL-00206" summary="Add CSS formatting">
+      <created>1687869797753</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1687869797753</updated>
+    </task>
+    <task id="LOCAL-00207" summary="Set back the default">
+      <created>1687875835100</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1687875835100</updated>
+    </task>
+    <task id="LOCAL-00208" summary="Refactor structure tree">
+      <created>1687886558603</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1687886558604</updated>
+    </task>
+    <task id="LOCAL-00209" summary="Correct some import problems">
+      <created>1687888365951</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1687888365951</updated>
+    </task>
+    <task id="LOCAL-00210" summary="Add progress line to lesson">
+      <created>1687889190435</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1687889190435</updated>
+    </task>
+    <task id="LOCAL-00211" summary="Add progress line to lesson">
+      <created>1687889195047</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1687889195047</updated>
+    </task>
+    <task id="LOCAL-00212" summary="Add Some CSS">
+      <created>1687890646886</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1687890646887</updated>
+    </task>
+    <task id="LOCAL-00213" summary="Solve TS error">
+      <created>1687892451513</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1687892451515</updated>
+    </task>
+    <option name="localTasksCounter" value="214" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:next" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixing bug: The prisma-call only work with new data, now it can update." />
+    <MESSAGE value="Fixing renaming bug." />
+    <MESSAGE value="Add actualProgress to update in the settings" />
+    <MESSAGE value="Fixing sentences CSS" />
+    <MESSAGE value="Correct some html tag" />
+    <MESSAGE value="Add progress update to updatePoints method" />
+    <MESSAGE value="Add CSS to storyline" />
+    <MESSAGE value="Correct updatePoints API" />
+    <MESSAGE value="Connect the userProgress to the sessionUpdate" />
+    <MESSAGE value="Add prisma query to serversideProps" />
+    <MESSAGE value="Add hover function" />
+    <MESSAGE value="Add onClick-shortcut to the hover." />
+    <MESSAGE value="Connect onClick to the settings" />
+    <MESSAGE value="Delete progress from function properties" />
+    <MESSAGE value="Add image to Hoverpage" />
+    <MESSAGE value="Add CSS to the page" />
+    <MESSAGE value="Add all of language-pair pictures" />
+    <MESSAGE value="Add CSS and more UX about update" />
+    <MESSAGE value="Add CSS formatting" />
+    <MESSAGE value="Set back the default" />
+    <MESSAGE value="Refactor structure tree" />
+    <MESSAGE value="Correct some import problems" />
+    <MESSAGE value="Add progress line to lesson" />
+    <MESSAGE value="Add Some CSS" />
+    <MESSAGE value="Solve TS error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solve TS error" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/pages/lessons/[type].tsx</url>
+          <line>90</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

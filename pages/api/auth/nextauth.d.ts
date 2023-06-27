@@ -8,7 +8,7 @@ interface IUser extends DefaultUser {
     username?: string | null;
     totalPoints?: number;
 
-    progress?: number;
+    actualProgress?: number;
     interfaceLanguage?: string | null;
     targetLanguage?: string | null;
     learningGoal?: string | null;
