@@ -20,8 +20,11 @@ import {
     EventHandler
 } from "../../../../../../../../Program Files/JetBrains/IntelliJ IDEA 2022.3.1/plugins/javascript-impl/jsLanguageServicesImpl/external/react";
 import LinearWithValueLabel from "@/components/ChildComponent/ProgressLine";
+import { AiTwotoneFire } from "react-icons/ai";
 
 export default function Lessons() {
+
+
     const router = useRouter();
     let {type, isProgressUpdate} = router.query;
 
@@ -213,8 +216,8 @@ export default function Lessons() {
                     <div className="flex justify-center">
                         {LinearWithValueLabel(gameCount)}
                     </div>
-                    <div>
-                        {isInRow && row > 1 && <p>{row} in a row!</p>}
+                    <div className="text-red-600 inline grid justify-center  text-lg h-2">
+                         {isInRow && row > 1 && <p className="inline-block pt-1 align-end"><AiTwotoneFire className="inline-block"/> {row} in a row!</p>}
                     </div>
                     <br/>
                     {game}
