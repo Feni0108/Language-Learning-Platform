@@ -28,7 +28,7 @@ export default function Lessons() {
         boolean | undefined
     >(undefined);
     const [isSolved, setIsSolved] = useState(false);
-    const [gameCount, setGameCount] = useState(9);
+    const [gameCount, setGameCount] = useState(1);
     const [isGood, setIsGood] = useState(false);
     const [point, setPoint] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
@@ -188,8 +188,8 @@ export default function Lessons() {
             session!.user!.totalPoints! + point,
             session!.user!.id!,
             isProgressUpdateBoolean!,
-            session!.user!.targetLanguage!,
             session!.user!.interfaceLanguage!,
+            session!.user!.targetLanguage!,
         ).then((response) => {
             if (response) {
                 update({id: session!.user!.id, type: "updatePoints"}).then(
