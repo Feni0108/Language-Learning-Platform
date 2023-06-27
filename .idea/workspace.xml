@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cf04d85-6479-441f-86f8-f363292ee7b5" name="Changes" comment="Solve TS error">
-      <change afterPath="$PROJECT_DIR$/pages/api/contribution/createContribution.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/contribution/deleteContributionUserConnection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/contribution/voteDown.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/contribution/voteUp.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/contribute.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prisma/migrations/migration_lock.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-i18next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next-i18next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-    </list>
+    <list default="true" id="9cf04d85-6479-441f-86f8-f363292ee7b5" name="Changes" comment="Solve TS error" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -239,7 +228,7 @@
       <workItem from="1687802669032" duration="7145000" />
       <workItem from="1687857957484" duration="8546000" />
       <workItem from="1687886093946" duration="4332000" />
-      <workItem from="1687890835645" duration="2074000" />
+      <workItem from="1687890835645" duration="2540000" />
     </task>
     <task id="LOCAL-00165" summary="Correct import problem">
       <created>1687108023512</created>

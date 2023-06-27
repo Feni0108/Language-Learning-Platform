@@ -27,6 +27,17 @@ export default function Home({userSettings}: SettingsProps) {
   const [isPlayToday, setIsPlayToday] = useState<boolean>();
   const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
   const t = (key: string) => i18n.t(key);
+  const categoryTranslations = {
+    Greetings: t("Greetings"),
+    Family: t("Family"),
+    Animals: t("Animals"),
+    Numbers: t("Numbers"),
+    Calendar: t("Calendar"),
+    Friends: t("Friends"),
+    Hobby: t("Hobby"),
+    Living: t("Living"),
+    Shopping: t("Shopping"),
+  };
 
   useEffect(() => {
     if (session) {
@@ -112,47 +123,64 @@ return (
               progress={session.user!.actualProgress!}
               progressLimit={0}
               type={"Greetings"}
+<<<<<<< HEAD
+=======
+              displayType={categoryTranslations.Greetings}
+>>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={5}
               type={"Family"}
+<<<<<<< HEAD
+=======
+              displayType={categoryTranslations.Family}
+>>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={10}
               type={"Animals"}
+<<<<<<< HEAD
+=======
+              displayType={categoryTranslations.Animals}
+>>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865
             />
             <Categories
                 progress={session.user!.actualProgress!}
                 progressLimit={15}
                 type={"Numbers"}
+                displayType={categoryTranslations.Numbers}
             />
             <Categories
                 progress={session.user!.actualProgress!}
                 progressLimit={20}
                 type={"Calendar"}
+                displayType={categoryTranslations.Calendar}
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={25}
               type={"Friends"}
+              displayType={categoryTranslations.Friends}
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={30}
-              type={"Hobby"} />
-
+              type={"Hobby"}
+              displayType={categoryTranslations.Hobby}
+            />
             <Categories
                 progress={session.user!.actualProgress!}
                 progressLimit={35}
                 type={"Living"}
+                displayType={categoryTranslations.Living}
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={40}
               type={"Shopping"}
-
+              displayType={categoryTranslations.Shopping}
             />
 
             <h2>{t('Part_2_Advanced')}</h2>
