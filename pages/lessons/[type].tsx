@@ -16,9 +16,7 @@ import { useRouter } from "next/router";
 import Story, {
     SentenceStoryLine,
 } from "@/components/games/storyline/storyline";
-import {
-    EventHandler
-} from "../../../../../../../../Program Files/JetBrains/IntelliJ IDEA 2022.3.1/plugins/javascript-impl/jsLanguageServicesImpl/external/react";
+
 import LinearWithValueLabel from "@/components/ChildComponent/ProgressLine";
 import { AiTwotoneFire } from "react-icons/ai";
 
