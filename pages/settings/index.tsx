@@ -252,7 +252,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
           <h1 className="text-2xl font-bold">Your progress so far:</h1>
           <div className="flex flex-row flex-wrap">
           {userProgress!.map((progress) => (
-              <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut}/>
+              <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut} interfaceLanguage={interfaceLanguage} targetLanguage={targetLanguage}/>
 
           ))}
           </div>
