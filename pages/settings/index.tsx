@@ -19,16 +19,16 @@ interface UserSettings {
 };
 
 interface userProgress {
-  userProgress: {
+
     interfaceLanguage: Language,
     targetLanguage: Language,
     progress: number
-  }[];
+
 }
 
 interface SettingsProps {
   userSettings: UserSettings | null;
-  userProgress: userProgress | null;
+  userProgress: userProgress[] | null;
 
 }
 
@@ -253,7 +253,6 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
           <div className="flex flex-row flex-wrap">
           {userProgress!.map((progress) => (
               <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut} interfaceLanguage={interfaceLanguage} targetLanguage={targetLanguage}/>
-
           ))}
           </div>
         </div>
