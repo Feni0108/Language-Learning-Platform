@@ -40,6 +40,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
   const [interfaceLanguage, setInterfaceLanguage] = useState<Language | string>(userSettings?.interfaceLanguage || '');
   const [targetLanguage, setTargetLanguage] = useState<Language | string>(userSettings?.targetLanguage || '');
   const [learningGoal, setLearningGoal] = useState<string>(userSettings?.learningGoal || '');
+  const [isUpdated, setIsUpdated] = useState<boolean>(false);
   const t = (key: string) => i18n.t(key);
 
   useEffect(() => {
@@ -91,6 +92,10 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
         body: JSON.stringify(settings),
       });
       if (response.ok) {
+        setIsUpdated(true);
+        const interval = setInterval(() => {
+          setIsUpdated(false);
+        }, 5000);
         update({id: session!.user!.id, type: "settings"}).then((response) => {
               if (response) {
                 router.push("/settings");
@@ -125,6 +130,11 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
         body: JSON.stringify(settings),
       });
       if (response.ok) {
+        setIsUpdated(true);
+        const interval = setInterval(() => {
+          setIsUpdated(false);
+        }, 5000);
+
         update({id: session!.user!.id, type: "settings"}).then((response) => {
               if (response) {
                 router.push("/settings");
@@ -235,6 +245,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
               {t('Save')}
             </button>
         )}
+        {isUpdated && <p className="italic bold pt-4 text-green-500">Your settings succesfully updated!</p>}
 
       </div>
         <div className="m-4 pl-20 h-96 w-2/5" >

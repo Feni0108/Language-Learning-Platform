@@ -1,8 +1,6 @@
 import { Language } from "@prisma/client";
 import React, {useState} from "react";
-import {
-    MouseEventHandler
-} from "../../../../../../../../Program Files/JetBrains/IntelliJ IDEA 2022.3.1/plugins/javascript-impl/jsLanguageServicesImpl/external/react";
+import {Flag} from "../../db/blob";
 
 
 type Props = {
@@ -22,22 +20,30 @@ const Hover = ({
                }: Props) => {
     const [isShown, setIsShown] = useState(false);
 
+    const flagFinder = () => {
+        const flag = Flag.find(flag => flag.id === hover.interfaceLanguage+"-"+hover.targetLanguage)
+        if (flag){
+            return `data:image/jpeg;base64,${flag.image}`
+        }
+        return "https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"
+    }
+
     return (
         <div>
             {isShown && <div>
-                <p className="italic text-xs w-24"
-                >{"Language: "+hover.interfaceLanguage+"-"+hover.targetLanguage+" Progress: "+hover.progress}</p>
+                <p className="italic text-xs w-24 pt-2"
+                >{"Progress: "+hover.progress}</p>
 
             </div>}
             {isShown ? (<div className="pt-2 pr-8 w-24"
                 onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage)}
                              onMouseLeave={() => setIsShown(false)}>
-                <img className="h-18 w-18 rounded-full" src={"https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"}/>
-            </div>) : (<div className="pt-10 pr-8 w-24"
+                <img className="h-18 w-18 rounded-full" src={flagFinder()}/>
+            </div>) : (<div className="pt-8 pr-8 w-24"
                onMouseEnter={() => setIsShown(true)}
                             onClick={() => handleSaveSettingsFromShortcut(hover.interfaceLanguage, hover.targetLanguage)}
                >
-                <img className="h-18 w-18 rounded-full" src={"https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png"}/>
+                <img className="h-18 w-18 rounded-full" src={flagFinder()}/>
             </div>)}
 
         </div>
