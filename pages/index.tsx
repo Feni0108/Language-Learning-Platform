@@ -86,7 +86,8 @@ return (
       {session && (
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
-            {t('Welcome')}
+            {t('Welcome')},
+
             <span className="font-light px-10">
               {session.user?.name ? session.user?.name : session.user?.username}
               !
@@ -105,8 +106,8 @@ return (
                 Duo sees a {session.user!.strike! + 1}-day streak in your
                 future. Will there be that many?
               </h3>
-            )}
-            <h2>{t('Part 1: Basics')}</h2>
+            )} <h2>{t('Part_1_Basics')}</h2>
+
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={0}
@@ -153,7 +154,9 @@ return (
               type={"Shopping"}
 
             />
-            <h2>{t('Part 2: Advanced')}</h2>
+
+            <h2>{t('Part_2_Advanced')}</h2>
+
             <h4 className="font-style: italic">
               {t('This part is under development. Check later!')}
             </h4>
