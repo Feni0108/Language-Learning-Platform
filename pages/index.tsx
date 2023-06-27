@@ -56,7 +56,7 @@ export default function Home({userSettings}: SettingsProps) {
   const router = useRouter();
 
   if (session) {
-    console.log(session);
+
     if (
       session?.user?.interfaceLanguage === undefined &&
       session.user?.learningGoal === undefined &&
@@ -123,28 +123,19 @@ return (
               progress={session.user!.actualProgress!}
               progressLimit={0}
               type={"Greetings"}
-<<<<<<< HEAD
-=======
               displayType={categoryTranslations.Greetings}
->>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={5}
               type={"Family"}
-<<<<<<< HEAD
-=======
               displayType={categoryTranslations.Family}
->>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865
             />
             <Categories
               progress={session.user!.actualProgress!}
               progressLimit={10}
               type={"Animals"}
-<<<<<<< HEAD
-=======
               displayType={categoryTranslations.Animals}
->>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865
             />
             <Categories
                 progress={session.user!.actualProgress!}
@@ -193,4 +184,4 @@ return (
       )}
     </>
   );
-}
+};
