@@ -1,11 +1,11 @@
 import {useSession} from "next-auth/react";
-import AccessDenied from "@/components/AccessDenied";
-import SignUpButton from "@/components/SignUpButton";
+import AccessDenied from "@/components/ChildComponent/AccessDenied";
+import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import React, {useEffect, useState} from "react";
 import prisma from "@/lib/prisma";
 import {GetServerSideProps} from "next";
 import {FaUserGraduate} from "react-icons/fa";
-import SignOutButton from "@/components/SignOutButton";
+import SignOutButton from "@/components/ChildComponent/SignOutButton";
 import {number} from "prop-types";
 import i18n from "@/i18n/i18n";
 import {getLanguageCode} from "@/components/getLanguageCode";

@@ -1,37 +1,46 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
-import {useSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import i18n from '../../i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
-import SignUpButton from "@/components/SignUpButton";
+import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import { Language } from '@prisma/client';
+import authOptions  from '@/pages/api/auth/[...nextauth]'
+import { GetServerSideProps } from 'next';
+import prisma from '@/lib/prisma';
+import Hover from '@/components/ChildComponent/Hover';
 
 interface UserSettings {
   interfaceLanguage: Language | string;
   targetLanguage: Language | string;
   learningGoal: string;
   userId: string;
+};
+
+interface userProgress {
+
+    interfaceLanguage: Language,
+    targetLanguage: Language,
+    progress: number
+
 }
 
 interface SettingsProps {
   userSettings: UserSettings | null;
+  userProgress: userProgress[] | null;
+
 }
 
-export const LanguageToLabelMapping: Record<Language, string> = {
-  [Language.hu]: "hungary",
-  [Language.eng]: "english",
-  [Language.sk]: 'slovak',
-  [Language.cz]: 'czech',
-  [Language.is]: 'icelandic'
-};
 
-const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
+
+const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => {
   const router = useRouter();
   const {data: session, update} = useSession();
   const [interfaceLanguage, setInterfaceLanguage] = useState<Language | string>(userSettings?.interfaceLanguage || '');
   const [targetLanguage, setTargetLanguage] = useState<Language | string>(userSettings?.targetLanguage || '');
   const [learningGoal, setLearningGoal] = useState<string>(userSettings?.learningGoal || '');
+  const [isUpdated, setIsUpdated] = useState<boolean>(false);
   const t = (key: string) => i18n.t(key);
 
   useEffect(() => {
@@ -61,6 +70,47 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
     }
   }, [interfaceLanguage]);
 
+  const handleSaveSettingsFromShortcut = async (interfaceLanguage: Language, targetLanguage: Language) => {
+
+      setInterfaceLanguage(interfaceLanguage)
+      setTargetLanguage(targetLanguage)
+
+    const settings: UserSettings = {
+      interfaceLanguage,
+      targetLanguage,
+      learningGoal,
+      userId: session!.user!.id
+    };
+
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          //'Authorization': `Bearer ${session?.token}`,
+        },
+        body: JSON.stringify(settings),
+      });
+      if (response.ok) {
+        setIsUpdated(true);
+        const interval = setInterval(() => {
+          setIsUpdated(false);
+        }, 5000);
+        update({id: session!.user!.id, type: "settings"}).then((response) => {
+              if (response) {
+                router.push("/settings");
+              }
+            }
+        );
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   const handleSaveSettings = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const settings: UserSettings = {
@@ -80,6 +130,11 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
         body: JSON.stringify(settings),
       });
       if (response.ok) {
+        setIsUpdated(true);
+        const interval = setInterval(() => {
+          setIsUpdated(false);
+        }, 5000);
+
         update({id: session!.user!.id, type: "settings"}).then((response) => {
               if (response) {
                 router.push("/settings");
@@ -113,7 +168,8 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
   };
 
   return (
-      <div className="p-4 bg-gray-100">
+      <div className="p-4 bg-gray-100 flex inline-block">
+      <div className="p-4 bg-gray-100 w-2/5">
         <h1 className="text-2xl font-bold mb-4">{session && `${session.user?.username} ${t('s_settings')}`}</h1>
         <div className="mb-4">
           <label htmlFor="interface-language" className="mr-2">
@@ -128,11 +184,12 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
                 className="p-2 border border-gray-300 rounded ml-2"
             >
               <option value="">{t('chooseInterfaceLanguage')}</option>
-              <option value={Language.eng}>{t('english')}</option>
-              <option value={Language.hu}>{t('hungarian')}</option>
-              <option value={Language.cz}>{t('czech')}</option>
-              <option value={Language.sk}>{t('slovak')}</option>
-              <option value={Language.is}>{t('icelandic')}</option>
+              {targetLanguage != Language.eng && <option value={Language.eng}>{t('english')}</option>}
+              {targetLanguage != Language.hu && <option value={Language.hu}>{t('hungarian')}</option>}
+              {targetLanguage != Language.cz && <option value={Language.cz}>{t('czech')}</option>}
+              {targetLanguage != Language.sk && <option value={Language.sk}>{t('slovak')}</option>}
+              {targetLanguage != Language.is && <option value={Language.is}>{t('icelandic')}</option>}
+
             </select>
           </div>
         </div>
@@ -150,11 +207,11 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
             >
 
               <option value="">{t('chooseTargetLanguage')}</option>
-              <option value={Language.eng}>{t('english')}</option>
-              <option value={Language.hu}>{t('hungarian')}</option>
-              <option value={Language.cz}>{t('czech')}</option>
-              <option value={Language.sk}>{t('slovak')}</option>
-              <option value={Language.is}>{t('icelandic')}</option>
+              {interfaceLanguage != Language.eng && <option value={Language.eng}>{t('english')}</option>}
+              {interfaceLanguage != Language.hu && <option value={Language.hu}>{t('hungarian')}</option>}
+              {interfaceLanguage != Language.cz && <option value={Language.cz}>{t('czech')}</option>}
+              {interfaceLanguage != Language.sk && <option value={Language.sk}>{t('slovak')}</option>}
+              {interfaceLanguage != Language.is && <option value={Language.is}>{t('icelandic')}</option>}
 
             </select>
           </div>
@@ -188,17 +245,54 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings}) => {
               {t('Save')}
             </button>
         )}
+        {isUpdated && <p className="italic bold pt-4 text-green-500">Your settings succesfully updated!</p>}
+
+      </div>
+        <div className="m-4 pl-20 h-96 w-2/5" >
+          <h1 className="text-2xl font-bold">Your progress so far:</h1>
+          <div className="flex flex-row flex-wrap">
+          {userProgress!.map((progress) => (
+              <Hover hover={progress} handleSaveSettingsFromShortcut={handleSaveSettingsFromShortcut} interfaceLanguage={interfaceLanguage} targetLanguage={targetLanguage}/>
+          ))}
+          </div>
+        </div>
       </div>
   );
 }
 
-export const getServerSideProps = async ({locale = 'en'}: { locale: string }) => {
+/*export const getServerSideProps = async ({locale = 'en'}: { locale: string }) => {
   const translations = await serverSideTranslations(locale, ['common']);
+
   return {
     props: {
       ...translations,
     },
   };
-};
+};*/
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let session = await getSession(context);
+  if (session){
+    const userProgress = await prisma.userProgress.findMany({
+      where: {
+        userId: session.user!.id
+      },
+      select: {
+        interfaceLanguage: true,
+        targetLanguage: true,
+        progress: true
+      },
+    });
+    return {
+      props: {
+        userProgress
+      },
+    }
+  }
 
+  return {
+    props: {  }
+  }
+
+}
 export default SettingsPage;
+

@@ -33,13 +33,14 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
-  progress  Int @default(0)
+  actualProgress  Int @default(0)
   sessions      Session[]
   lastGame DateTime?
   leaderBoard   Leaderboard?
   isFirstLogin Boolean @default(true)
   userSettings  UserSettings?
   votes VotesOnContribution[]
+  progress UserProgress[]
 }
 
 model UserSettings {
@@ -161,4 +162,14 @@ model VotesOnContribution {
   userId String
 
   @@id([contributionId,userId])
+}
+
+model UserProgress {
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  interfaceLanguage Language
+  targetLanguage Language
+  progress Int @default(0)
+
+  @@id([userId,interfaceLanguage,targetLanguage])
 }

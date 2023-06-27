@@ -20,7 +20,35 @@ async function handleSaveSettings(req: NextApiRequest, res: NextApiResponse) {
       update: {interfaceLanguage, targetLanguage, learningGoal},
       create: {userId, interfaceLanguage, targetLanguage, learningGoal, updatedAt: new Date(),},
     });
-    res.status(200).json({userSettings});
+    const userProgress = await prisma.userProgress.upsert({
+      where: {
+        userId_interfaceLanguage_targetLanguage: {userId,interfaceLanguage,targetLanguage}
+
+      },
+      update: {},
+      create: {
+        interfaceLanguage: interfaceLanguage,
+        targetLanguage: targetLanguage,
+        user: {
+          connect: {
+            id: userId
+          }
+        }
+      }
+    }).then(async (res) => {
+      const userUpdate = await prisma.user.update({
+        where: {
+          id: userId
+
+        },
+        data: {
+          actualProgress: res.progress
+        }
+      });
+    });
+
+
+    res.status(200).json({userSettings, userProgress});
   } catch (error) {
     res.status(500).json({error: 'Failed to save settings'});
   }
