@@ -3,7 +3,7 @@ import {Disclosure, Menu, Transition} from "@headlessui/react";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import {SiDuolingo} from "react-icons/si";
 import {FaUserCircle} from "react-icons/fa";
-import SignOutButton from "../SignOutButton";
+import SignOutButton from "../ChildComponent/SignOutButton";
 import {useSession} from "next-auth/react";
 import i18n from '@/i18n/i18n';
 

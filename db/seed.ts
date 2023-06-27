@@ -4137,7 +4137,7 @@ async function seed() {
       },
       {
         id: 6,
-        sentence: "Csak négy nagyszülőm van",
+        sentence: "Csak kettő nagyszülőm van",
         language: Language.hu,
         category: Category.FAMILY
       },
@@ -4952,14 +4952,14 @@ async function seed() {
       },
       {
         id: 7,
-        sentences: ["How's your family doing?", "We're all _", "That's great to hear!", "How about your family?", "_"],
+        sentences: ["How's your family doing?", "We're all __", "That's great to hear!", "How about your family?", "__"],
         options: [["doing well", "going through a tough time", "celebrating a special occasion"], ["They're doing fine", "We're facing some challenges", "We just had a family gathering"]],
         solutions: ["doing well", "They're doing fine"],
         language: Language.eng,
         category: Category.FAMILY
       },
       {id: 7,
-        sentences: ["Hogy van a családod?", "Mindannyian _ vagyunk", "Ez jó hír!", "Hogy van a te családod?", "_"],
+        sentences: ["Hogy van a családod?", "Mindannyian __ vagyunk", "Ez jó hír!", "Hogy van a te családod?", "__"],
         options: [["jól vagyunk", "nehéz időszakon megyünk keresztül", "egy különleges alkalomra készülünk"], ["Jól vannak", "Néhány kihívással szembesülünk", "Éppen családi összejövetelen voltunk"]],
         solutions: ["jól vagyunk", "Jól vannak"],
         language: Language.hu,
@@ -4967,14 +4967,14 @@ async function seed() {
       },
       {
         id: 8,
-        sentences: ["Do you have any siblings?", "Yes, I have _", "That's nice!", "What about you?", "_"],
+        sentences: ["Do you have any siblings?", "Yes, I have __", "That's nice!", "What about you?", "__"],
         options: [["a brother and a sister", "two brothers", "an older sister"], ["I'm an only child", "I have a younger brother", "I have three siblings"]],
         solutions: ["a brother and a sister", "I'm an only child"],
         language: Language.eng,
         category: Category.FAMILY
       },
       {id: 8,
-        sentences: ["Van testvéred?", "Igen, van _", "Ez szép!", "És neked?", "_"],
+        sentences: ["Van testvéred?", "Igen, van __", "Ez szép!", "És neked?", "__"],
         options: [["egy bátyám és egy húgom", "két bátyám", "egy idősebb nővérem"], ["Egyke vagyok", "Van egy öcsém", "Három testvérem van"]],
         solutions: ["egy bátyám és egy húgom", "Egyke vagyok"],
         language: Language.hu,
@@ -4982,14 +4982,14 @@ async function seed() {
       },
       {
         id: 9,
-        sentences: ["What do your parents do for a living?", "My dad is a _ and my mom is a _", "That's interesting!", "What about your parents?", "_"],
+        sentences: ["What do your parents do for a living?", "My dad is a __ and my mom is a __", "That's interesting!", "What about your parents?", "__"],
         options: [["doctor", "teacher", "lawyer"], ["engineer", "nurse", "artist"], ["My dad is a chef", "My mom is a businesswoman", "They both work in finance"]],
         solutions: ["doctor", "teacher", "My dad is a chef"],
         language: Language.eng,
         category: Category.FAMILY
       },
       {id: 9,
-        sentences: ["Mit csinálnak a szüleid?", "Az apukám _ és az anyukám _", "Ez érdekes!", "És a te szüleid?", "_"],
+        sentences: ["Mit csinálnak a szüleid?", "Az apukám __ és az anyukám __", "Ez érdekes!", "És a te szüleid?", "__"],
         options: [["orvos", "tanár", "ügyvéd"], ["mérnök", "ápoló", "művész"], ["Az apukám szakács", "Az anyukám üzletasszony", "Mindketten a pénzügyi szektorban dolgoznak"]],
         solutions: ["orvos", "tanár", "Az apukám szakács"],
         language: Language.hu,
@@ -5013,7 +5013,7 @@ async function seed() {
       },
       {
         id: 20,
-        sentences: ["Hey, have you met our new friend?", "No, not yet!", "You should, they're _", "Sounds interesting!", "_?"],
+        sentences: ["Hey, have you met our new friend?", "No, not yet!", "You should, they're __", "Sounds interesting!", "__?"],
         options: [["really nice", "quite funny", "super talented"], ["What's their name?", "Where did you meet them?", "What do they do for a living?"]],
         solutions: ["really nice", "What's their name?"],
         language: Language.eng,
