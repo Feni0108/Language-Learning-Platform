@@ -42,11 +42,8 @@ const Categories = ({progress, progressLimit, type, displayType} : CategoriesPro
                 onClick={isVisible? () => handleClick() : undefined}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
-<<<<<<< HEAD:components/ChildComponent/Categories.tsx
             >{t(type)}-icon</button>
-=======
-            >{displayType}-icon</button>
->>>>>>> 0a8c0b8f5995e4af6d91336faf0d48b53c2f7865:components/Categories.tsx
+
         </div>
     );
 };
