@@ -10,8 +10,8 @@ import Sentence, {
 import Pelmanism from "@/components/games/pelmanism/pelmanism";
 import { updatePoints } from "@/components/updatePoints";
 import { useSession } from "next-auth/react";
-import AccessDenied from "@/components/AccessDenied";
-import SignUpButton from "@/components/SignUpButton";
+import AccessDenied from "@/components/ChildComponent/AccessDenied";
+import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import { useRouter } from "next/router";
 import Story, {
     SentenceStoryLine,

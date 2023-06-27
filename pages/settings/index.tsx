@@ -4,12 +4,12 @@ import {getSession, useSession} from "next-auth/react";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import i18n from '../../i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
-import SignUpButton from "@/components/SignUpButton";
+import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import { Language } from '@prisma/client';
 import authOptions  from '@/pages/api/auth/[...nextauth]'
 import { GetServerSideProps } from 'next';
 import prisma from '@/lib/prisma';
-import Hover from './Hover';
+import Hover from '@/components/ChildComponent/Hover';
 
 interface UserSettings {
   interfaceLanguage: Language | string;

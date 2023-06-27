@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Inter} from "next/font/google";
 import {useSession} from "next-auth/react";
-import SignUpButton from "@/components/SignUpButton";
+import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import Link from "next/link";
-import Categories from "@/components/Categories";
+import Categories from "@/components/ChildComponent/Categories";
 import {lastGame} from "@/components/lastGame";
 import {useRouter} from "next/router";
 import i18n from '@/i18n/i18n';
