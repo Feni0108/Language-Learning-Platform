@@ -101,16 +101,29 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
   };
 
   return (
-    <div>
+    <div className="grid justify-items-center">
+      <div className="w-96">
       {displayedSentences.map((sentence, index) => (
-        <div key={index}>{sentence}</div>
-      ))}
+          <div>
+            {index%2==0 ? (
+                <div>
+                  <div className="p-5 mt-5 w-64 mr-40 flex justify-start rounded rounded-full border-2" key={index}>
+                    {sentence}
+                  </div>
+                </div>) :
+                (<div>
+                  <div className="p-5 mt-5 ml-40 w-64 m-2 italic flex justify-end rounded rounded-full border-2" key={index}>{sentence}</div></div>)}
+          </div>)
+          )
+          }
+      </div>
       {showOptions && (
         <form onSubmit={handleOptionSubmit}>
+          <div className="mt-10 p-5">
           {currentOptions.map((option, index) => (
             <div key={index}>
               <label>
-                <input
+                <input className="m-4"
                   type="checkbox"
                   value={option}
                   checked={selectedOption === option}
@@ -120,6 +133,7 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
               </label>
             </div>
           ))}
+          </div>
         </form>
       )}
       <div className="mt-10">
@@ -127,8 +141,10 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
         <p className="text-red-800 font-bold">{errorMessage}</p>
       </div>
 
-      {isSolved && <div>
-        <button
+      {isSolved && <div
+          className="m-10 grid justify-items-center"
+      >
+        <button className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
             onClick={() => handleSolved()}
         >Continue</button>
       </div>}

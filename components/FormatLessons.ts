@@ -29,10 +29,10 @@ export const FormatLessons: {
   sentenceWordBeforeUsing:
     "display: inline p-5 m-5 rounded rounded-full border-2 hover:border-4",
   sentenceAnswer:
-    "flex flex-inline justify-center mt-10 mb-10 border-dotted border-b-[3px] w-2/4",
+    "flex flex-inline justify-items-center min-h-full h-2 mb-10 border-dotted border-b-[3px] w-2/4",
   sentenceInvisible:
-    "display: inline p-5 m-5 rounded rounded-full border-2 text-white",
-  sentenceWordAfterUsing: "p-5",
+    "display: inline p-5 mt-32 ml-5 mr-5 justify-items-center rounded rounded-full border-2 text-white",
+  sentenceWordAfterUsing: "p-5 justify-items-center ",
   sentenceGoodAnswer: "mt-12 text-center text-teal-600",
   sentenceWrongAnswer: "mt-12 text-center text-red-600",
   pictureGameImage: "m-8",
