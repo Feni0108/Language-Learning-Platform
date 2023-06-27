@@ -19,6 +19,7 @@ import Story, {
 import {
     EventHandler
 } from "../../../../../../../../Program Files/JetBrains/IntelliJ IDEA 2022.3.1/plugins/javascript-impl/jsLanguageServicesImpl/external/react";
+import LinearWithValueLabel from "@/components/ChildComponent/ProgressLine";
 
 export default function Lessons() {
     const router = useRouter();
@@ -99,7 +100,6 @@ export default function Lessons() {
 
     useEffect(() => {
         if (task.length !== 0) {
-            console.log(task);
             switch (id) {
                 case 0:
                     setGame(
@@ -210,10 +210,12 @@ export default function Lessons() {
             )}
             {session && !isFinished && (
                 <div>
-                    <p className="flex justify-center">
-                        This is your process: {gameCount}/10
+                    <div className="flex justify-center">
+                        {LinearWithValueLabel(gameCount)}
+                    </div>
+                    <div>
                         {isInRow && row > 1 && <p>{row} in a row!</p>}
-                    </p>
+                    </div>
                     <br/>
                     {game}
                 </div>
