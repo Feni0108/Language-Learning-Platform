@@ -8,6 +8,10 @@ import {lastGame} from "@/components/lastGame";
 import {useRouter} from "next/router";
 import i18n from '@/i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
+import { SiMediafire } from "react-icons/si";
+import { DuolingoSees } from "@/db/blob";
+import { FaFlagCheckered } from "react-icons/fa";
+import { BiBarChart } from "react-icons/bi"
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -95,92 +99,64 @@ return (
         </div>
       )}
       {session && (
+          <div className=" flex justify-center">
         <div className="text-gray-700 max-w-5xl px-20 py-28">
           <h1 className="text-6xl font-semibold leading-normal ">
-            {t('Welcome')},
+            {t('Welcome')+", "}
 
-            <span className="font-light px-10">
+            <span className="text-6xl font-semibold leading-normal">
               {session.user?.name ? session.user?.name : session.user?.username}
               !
             </span>
           </h1>
           <div>
-            <p className="m-5 text-xl">
+            <p className="m-5 text-xl font-semibold flex justify-center">
               {t('Your_points')}: {session.user!.totalPoints}
             </p>
-            <br />
+
+            <div className="flex inline-block justify-center text-red-600 mt-5 mb-5">
+            <SiMediafire className="text-6xl"/>
             {session.user!.strike! > 0 && (
-              <h2>Ohh, yes! You are in {session.user!.strike!} strike!</h2>
+              <h2 className="flex items-center text-3xl">Ohh, yes! You are in {session.user!.strike!} streak!</h2>
             )}
+              <SiMediafire className="text-6xl transform: rotate-180"/>
+            </div>
+            <div className="w-148 grid justify-center">
+            <img src={`data:image/jpeg;base64,${DuolingoSees}`} />
             {session.user!.strike! > 0 && !isPlayToday && (
-              <h3>
+
+              <h3 className="mt-4 mb-4 flex justify-center text-center text-l font-semibold text-green-600">
                 Duo sees a {session.user!.strike! + 1}-day streak in your
                 future. Will there be that many?
               </h3>
-            )} <h2>{t('Part_1_Basics')}</h2>
-
-            <Categories
-              progress={session.user!.actualProgress!}
-              progressLimit={0}
-              type={"Greetings"}
-              displayType={categoryTranslations.Greetings}
-            />
-            <Categories
-              progress={session.user!.actualProgress!}
-              progressLimit={5}
-              type={"Family"}
-              displayType={categoryTranslations.Family}
-            />
-            <Categories
-              progress={session.user!.actualProgress!}
-              progressLimit={10}
-              type={"Animals"}
-              displayType={categoryTranslations.Animals}
-            />
-            <Categories
-                progress={session.user!.actualProgress!}
-                progressLimit={15}
-                type={"Numbers"}
-                displayType={categoryTranslations.Numbers}
-            />
-            <Categories
-                progress={session.user!.actualProgress!}
-                progressLimit={20}
-                type={"Calendar"}
-                displayType={categoryTranslations.Calendar}
-            />
-            <Categories
-              progress={session.user!.actualProgress!}
-              progressLimit={25}
-              type={"Friends"}
-              displayType={categoryTranslations.Friends}
-            />
-            <Categories
-              progress={session.user!.actualProgress!}
-              progressLimit={30}
-              type={"Hobby"}
-              displayType={categoryTranslations.Hobby}
-            />
-            <Categories
-                progress={session.user!.actualProgress!}
-                progressLimit={35}
-                type={"Living"}
-                displayType={categoryTranslations.Living}
-            />
-            <Categories
-              progress={session.user!.actualProgress!}
-              progressLimit={40}
-              type={"Shopping"}
-              displayType={categoryTranslations.Shopping}
-            />
-
+            )}
+            </div>
+            <div className="flex inline-block justify-between bg-lime-400 mt-5 mb-5 text-4xl p-2 rounded-xl shadow-lg shadow-lime-400/40">
+              <FaFlagCheckered />
+            <h2>{t('Part_1_Basics')}</h2>
+              <FaFlagCheckered />
+            </div>
+            {Object.entries(categoryTranslations).map((category, index) => (
+                <div>
+                  <Categories
+                      progress={session.user!.actualProgress!}
+                      progressLimit={5*index}
+                      type={category[0]}
+                      displayType={category[1]}
+                  />
+                </div>
+            ))}
+            <div className="flex inline-block justify-between bg-cyan-400 mt-5 mb-5 text-4xl p-2 rounded-xl shadow-lg shadow-cyan-400/40">
+              <BiBarChart />
             <h2>{t('Part_2_Advanced')}</h2>
-
+              <BiBarChart />
+            </div>
             <h4 className="font-style: italic">
               {t('This part is under development. Check later!')}
             </h4>
           </div>
         </div>
+          </div>
       )}
     </>
   );
