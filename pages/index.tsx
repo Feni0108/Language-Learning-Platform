@@ -119,23 +119,20 @@ return (
               {t('Your_points')}: {session.user!.totalPoints}
             </p>
 
-            <div className="flex inline-block justify-center text-red-600 mt-5 mb-5">
+            {session.user!.strike! > 0 && (<div className="flex inline-block justify-center text-red-600 mt-5 mb-5">
             <SiMediafire className="text-6xl"/>
-            {session.user!.strike! > 0 && (
               <h2 className="flex items-center text-3xl">Ohh, yes! You are in {session.user!.strike!} streak!</h2>
-            )}
               <SiMediafire className="text-6xl transform: rotate-180"/>
-            </div>
-            <div className="w-148 grid justify-center">
+            </div>)}
+            {session.user!.strike! > 0 && !isPlayToday && (<div className="w-148 grid justify-center">
             <img src={`data:image/jpeg;base64,${DuolingoSees}`} />
-            {session.user!.strike! > 0 && !isPlayToday && (
+
 
               <h3 className="mt-4 mb-4 flex justify-center text-center text-l font-semibold text-green-600">
                 Duo sees a {session.user!.strike! + 1}-day streak in your
                 future. Will there be that many?
               </h3>
-            )}
-            </div>
+            </div>)}
             <div className="flex inline-block justify-between bg-lime-400 mt-5 mb-5 text-4xl p-2 rounded-xl shadow-lg shadow-lime-400/40">
               <FaFlagCheckered />
             <h2>{t('Part_1_Basics')}</h2>
