@@ -9,7 +9,7 @@ type CategoriesArrangamentProps = {
     displayType: string;
 
     order: number
-    icon: object
+    icon: JSX.Element
 }
 
 const CategoryArrangement = ({progress, progressLimit, type, displayType, order, icon} : CategoriesArrangamentProps) => {
@@ -38,7 +38,9 @@ const CategoryArrangement = ({progress, progressLimit, type, displayType, order,
                 displayType={displayType}
                 icon={icon}
             /></div>);
+        default: return (<div></div>)
     }
+    return (<div></div>)
 
 }
 

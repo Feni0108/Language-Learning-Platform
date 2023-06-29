@@ -138,18 +138,18 @@ return (
             <h2>{t('Part_1_Basics')}</h2>
               <FaFlagCheckered />
             </div>
-            <div>
+            <React.Fragment>
             {Object.entries(categoryTranslations).map((category, index) => (
-                <div key={index}>
-                  <CategoryArrangament progress={session.user!.actualProgress!}
-                                       progressLimit={5*index}
-                                       type={category[0]}
-                                       displayType={category[1].name}
-                                       icon={category[1].icon}
-                                        order={index}/>
-                </div>
+              <div key={index}>
+                <CategoryArrangament progress={session.user!.actualProgress!}
+                                     progressLimit={5 * index}
+                                     type={category[0]}
+                                     displayType={category[1].name}
+                                     icon={category[1].icon}
+                                     order={index}/>
+              </div>
             ))}
-            </div>
+            </React.Fragment>
             <div className="flex inline-block justify-between bg-cyan-400 mt-5 mb-5 text-4xl p-2 rounded-xl shadow-lg shadow-cyan-400/40">
               <BiBarChart />
             <h2>{t('Part_2_Advanced')}</h2>

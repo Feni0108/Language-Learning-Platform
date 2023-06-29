@@ -8,7 +8,7 @@ type CategoriesProps = {
     progressLimit: number;
     type: string;
     displayType: string;
-    icon: object;
+    icon: JSX.Element;
 }
 
 const Categories = ({progress, progressLimit, type, displayType, icon} : CategoriesProps) => {
