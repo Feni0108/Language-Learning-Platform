@@ -1,5 +1,5 @@
 import { Category, Contribution, Language } from ".prisma/client";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
@@ -7,6 +7,7 @@ import { getSession, useSession } from "next-auth/react";
 import { HiOutlineStar, HiStar } from "react-icons/hi";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+
 
 export const LanguageToLabelMapping: Record<Language, string> = {
   [Language.cz]: "cz",
@@ -57,6 +58,7 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
     "/api/contribution/deleteContributionUserConnection";
 
   const [beforeIndex = 0, setBeforeIndex] = useState<number>();
+  const [isDisabled, setIsDisabled] = useState(false);
   const firstPage = 0;
   const limit: number = 5;
 
@@ -82,6 +84,7 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
   };
 
   const deleteVote = async (contributionId: number) => {
+
     try {
       fetch(endpointForVotingDown, {
         body: JSON.stringify({
@@ -114,6 +117,7 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
   };
 
   const vote = async (contribtionId: number) => {
+
     try {
       fetch(endpointForVoting, {
         body: JSON.stringify({
@@ -125,14 +129,15 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
         },
         method: "POST",
       }).then(() => {
+        console.log(isDisabled)
         refreshData();
       });
     } catch (error) {
       console.log(error);
     }
   };
-
   const refreshData = () => {
+    setIsDisabled(false)
     router.replace(router.asPath);
   };
 
@@ -346,9 +351,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       language: true,
       description: true,
       category: true,
-      vote: true,
       votes: true,
     },
+
   });
 
   const finalContributions = contributions.map((contribute) => {
@@ -361,7 +366,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         language: contribute.language,
         description: contribute.description,
         category: contribute.category,
-        vote: contribute.vote,
+        vote: contribute.votes.length,
         isVoted: true,
       };
     } else {
@@ -371,7 +376,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         language: contribute.language,
         description: contribute.description,
         category: contribute.category,
-        vote: contribute.vote,
+        vote: contribute.votes.length,
         isVoted: false,
       };
     }
