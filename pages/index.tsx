@@ -11,8 +11,12 @@ import i18n from '@/i18n/i18n';
 import {getLanguageCode} from "@/components/getLanguageCode";
 import { SiMediafire } from "react-icons/si";
 import { DuolingoSees } from "@/db/blob";
-import { FaFlagCheckered } from "react-icons/fa";
+import {FaBasketballBall, FaCat, FaFlagCheckered, FaShoppingCart, FaUserFriends } from "react-icons/fa";
 import { BiBarChart } from "react-icons/bi"
+import { GiNothingToSay, GiWashingMachine } from "react-icons/gi"
+import { MdFamilyRestroom } from "react-icons/md";
+import { BsFillCalendarDayFill } from "react-icons/bs";
+import { ImSortNumbericDesc } from "react-icons/im";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -33,15 +37,15 @@ export default function Home({userSettings}: SettingsProps) {
   const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
   const t = (key: string) => i18n.t(key);
   const categoryTranslations = {
-    Greetings: t("Greetings"),
-    Family: t("Family"),
-    Animals: t("Animals"),
-    Numbers: t("Numbers"),
-    Calendar: t("Calendar"),
-    Friends: t("Friends"),
-    Hobby: t("Hobby"),
-    Living: t("Living"),
-    Shopping: t("Shopping"),
+    Greetings: {name: t("Greetings"), icon: <GiNothingToSay />},
+    Family: {name: t("Family"), icon: <MdFamilyRestroom />},
+    Animals: {name: t("Animals"), icon: <FaCat />},
+    Numbers: {name: t("Numbers"), icon: <ImSortNumbericDesc />},
+    Calendar: {name: t("Calendar"), icon: <BsFillCalendarDayFill />},
+    Friends: {name: t("Friends"), icon: <FaUserFriends />},
+    Hobby: {name: t("Hobby"), icon: <FaBasketballBall />},
+    Living: {name: t("Living"), icon: <GiWashingMachine />},
+    Shopping: {name: t("Shopping"), icon: <FaShoppingCart />}
   };
 
   useEffect(() => {
@@ -143,7 +147,8 @@ return (
                   <CategoryArrangament progress={session.user!.actualProgress!}
                                        progressLimit={5*index}
                                        type={category[0]}
-                                       displayType={category[1]}
+                                       displayType={category[1].name}
+                                       icon={category[1].icon}
                                         order={index}/>
                 </div>
             ))}

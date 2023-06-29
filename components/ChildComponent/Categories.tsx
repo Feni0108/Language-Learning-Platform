@@ -7,9 +7,10 @@ type CategoriesProps = {
     progressLimit: number;
     type: string;
     displayType: string;
+    icon: object;
 }
 
-const Categories = ({progress, progressLimit, type, displayType} : CategoriesProps) => {
+const Categories = ({progress, progressLimit, type, displayType, icon} : CategoriesProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isShown, setIsShown] = useState(false);
     const [isProgressUpdate, setIsProgressUpdate] = useState(false);
@@ -42,7 +43,9 @@ const Categories = ({progress, progressLimit, type, displayType} : CategoriesPro
                 onClick={isVisible? () => handleClick() : undefined}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
-            >{t(type)}-icon</button>
+            >
+                {icon}
+            </button>
 
         </div>
     );
