@@ -4,6 +4,7 @@ import {useSession} from "next-auth/react";
 import SignUpButton from "@/components/ChildComponent/SignUpButton";
 import Link from "next/link";
 import Categories from "@/components/ChildComponent/Categories";
+import CategoryArrangament from "@/components/ChildComponent/CategoryArrangement";
 import {lastGame} from "@/components/lastGame";
 import {useRouter} from "next/router";
 import i18n from '@/i18n/i18n';
@@ -136,16 +137,17 @@ return (
             <h2>{t('Part_1_Basics')}</h2>
               <FaFlagCheckered />
             </div>
+            <div className="p-5">
             {Object.entries(categoryTranslations).map((category, index) => (
-                <div>
-                  <Categories
-                      progress={session.user!.actualProgress!}
-                      progressLimit={5*index}
-                      type={category[0]}
-                      displayType={category[1]}
-                  />
+                <div key={index}>
+                  <CategoryArrangament progress={session.user!.actualProgress!}
+                                       progressLimit={5*index}
+                                       type={category[0]}
+                                       displayType={category[1]}
+                                        order={index}/>
                 </div>
             ))}
+            </div>
             <div className="flex inline-block justify-between bg-cyan-400 mt-5 mb-5 text-4xl p-2 rounded-xl shadow-lg shadow-cyan-400/40">
               <BiBarChart />
             <h2>{t('Part_2_Advanced')}</h2>
@@ -161,3 +163,25 @@ return (
     </>
   );
 };
+
+/*
+* <div>
+                  {index%2==0 ?
+                      <div className="p-5   mr-60 rounded rounded-full border-2">
+                      <Categories
+                          progress={session.user!.actualProgress!}
+                          progressLimit={5*index}
+                          type={category[0]}
+                          displayType={category[1]}
+                      /></div> :
+                      <div className="p-5  ml-40 flex justify-end  rounded rounded-full border-2">
+                      <Categories
+                          progress={session.user!.actualProgress!}
+                          progressLimit={5*index}
+                          type={category[0]}
+                          displayType={category[1]}
+                      />
+                      </div>
+                }
+                </div>
+* */
