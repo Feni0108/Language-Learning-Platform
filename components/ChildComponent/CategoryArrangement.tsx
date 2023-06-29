@@ -13,8 +13,8 @@ type CategoriesArrangamentProps = {
 }
 
 const CategoryArrangement = ({progress, progressLimit, type, displayType, order, icon} : CategoriesArrangamentProps) => {
-    switch(order%3){
-        case 0: return (<div className="p-5 flex justify-start">
+    switch(order%4){
+        case 0: return (<div className="pl-28 flex justify-start">
             <Categories
                 progress={progress!}
                 progressLimit={progressLimit}
@@ -22,7 +22,7 @@ const CategoryArrangement = ({progress, progressLimit, type, displayType, order,
                 displayType={displayType}
                 icon={icon}
             /></div>);
-        case 1: return (<div className="p-5  flex justify-center">
+        case 1: case 3: return (<div className="  flex justify-center">
             <Categories
                 progress={progress!}
                 progressLimit={progressLimit}
@@ -30,7 +30,7 @@ const CategoryArrangement = ({progress, progressLimit, type, displayType, order,
                 displayType={displayType}
                 icon={icon}
             /></div>);
-        case 2: return (<div className="p-5  flex justify-end">
+        case 2: return (<div className="pr-28  flex justify-end">
             <Categories
                 progress={progress!}
                 progressLimit={progressLimit}

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import i18n from "@/i18n/i18n";
 
+
 type CategoriesProps = {
     progress: number;
     progressLimit: number;
@@ -34,12 +35,12 @@ const Categories = ({progress, progressLimit, type, displayType, icon} : Categor
 
     return (
         <div >
-            {isShown && <div>
+            {isShown && <div className="italic text-center">
                 {displayType}
             </div>}
             {!isShown && <br/>}
             <button
-                className={isVisible ? "text-green-600" : "line-through text-grey-200"}
+                className={isVisible? "text-5xl text-white h-18 bg-green-400 w-18 rounded-full border-2 p-3 shadow-md shadow-green-400/40" : "text-white text-5xl bg-green-400 grayscale line-through text-grey-200 h-18 w-18 rounded-full border-2 p-3 shadow-md shadow-green-400/40"}
                 onClick={isVisible? () => handleClick() : undefined}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}

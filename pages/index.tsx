@@ -133,12 +133,12 @@ return (
                 future. Will there be that many?
               </h3>
             </div>)}
-            <div className="flex inline-block justify-between bg-lime-400 mt-5 mb-5 text-4xl p-2 rounded-xl shadow-lg shadow-lime-400/40">
+            <div className="flex inline-block justify-between bg-lime-400 mt-5  text-4xl p-2 rounded-xl shadow-lg shadow-lime-400/40">
               <FaFlagCheckered />
             <h2>{t('Part_1_Basics')}</h2>
               <FaFlagCheckered />
             </div>
-            <div className="p-5">
+            <div>
             {Object.entries(categoryTranslations).map((category, index) => (
                 <div key={index}>
                   <CategoryArrangament progress={session.user!.actualProgress!}
@@ -155,7 +155,7 @@ return (
             <h2>{t('Part_2_Advanced')}</h2>
               <BiBarChart />
             </div>
-            <h4 className="font-style: italic">
+            <h4 className="font-style: italic text-center">
               {t('This part is under development. Check later!')}
             </h4>
           </div>
