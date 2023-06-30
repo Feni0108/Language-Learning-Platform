@@ -9,6 +9,7 @@ import SignOutButton from "@/components/ChildComponent/SignOutButton";
 import {number} from "prop-types";
 import i18n from "@/i18n/i18n";
 import {getLanguageCode} from "@/components/getLanguageCode";
+import { AiTwotoneFire } from "react-icons/ai";
 
 interface UserSettings {
   interfaceLanguage: string;
@@ -94,7 +95,6 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
 
   return (
       <div>
-        Hello
         {!session && (
             <>
               <AccessDenied/>
@@ -102,37 +102,45 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
             </>
         )}
         {!isLoading && session && (
-            <>{t('Signed_in_as')} {session.user?.email ? session.user.email : session.user!.username} <br/>
-              <div>
+            <>
+              <div className=" grid justify-center text-gray-700 p-8">
+                  <div className="p-8 flex justify-around">
                 <button
+                    className={isPoint? "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40" : "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40 grayscale"}
                     onClick={isPoint? undefined : () => {setIsPoint(true), setIsLoading(true)}}
                 >Points</button>
                 <button
+                    className={!isPoint? "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40" : "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40 grayscale"}
                     onClick={!isPoint? undefined : () => {setIsPoint(false), setIsLoading(true)}}
                 >Strike</button>
+                  </div>
+                  <div className="pl-4 pr-4 pt-4 pb-4 border-2 rounded-3xl">
                 {sortLeaderBoard !== undefined && sortLeaderBoard.map((value:LeaderBoardUser, index:number) => (
-                    <div key={"or"+index}>
-                      <section>
-                        {index+1+" "}
+                    <div className={value.userId === session.user!.id? "bg-cyan-200 drop-shadow-lg rounded-3xl flex inline-block items-center" : "flex inline-block items-center"} key={"or"+index}>
+                      <section className="pl-4 pr-8 w-6 font-semibold">
+                        {index+1+"."}
                       </section>
-                      <section>
+                      <section className="w-12">
                         {value.user.image && <img
+                            className="rounded-full"
                             alt="Sorry, we couldn't load this picture"
                             src={value.user.image}
                         />}
-                        {!value.user.image && <FaUserGraduate />}
+                        {!value.user.image && <FaUserGraduate className="text-2xl text-white h-12 bg-green-400 w-12 rounded-full border-2 p-2"/>}
                       </section>
-                      <section>
-                        {value.user.username ? value.user.username : value.user.name}
+                      <section className="p-6 w-64">
+                          <div className="font-semibold">{value.user.username ? value.user.username : value.user.name}</div>
+                            <div className="text-sm text-red-600"><AiTwotoneFire className="inline-block"/>{value.strike}+ strike</div>
                       </section>
-                      <section>
+                      <section className="p-6">
                         {isPoint &&" "+value.totalPoints}
                         {!isPoint &&" "+value.strike}
                       </section>
                     </div>
                 ))}
+                  </div>
               </div>
-              <SignOutButton />
+
             </>
         )}
       </div>
