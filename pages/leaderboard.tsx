@@ -85,8 +85,10 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
                     return a.strike - b.strike
                 }).reverse());
             }
-            const position = sortLeaderBoard!.indexOf(sortLeaderBoard!.find(element => element.userId === session!.user!.id)!)+1;
-            setBeforeIndex(Math.trunc(position/5)*5);
+            if(sortLeaderBoard && session) {
+                const position = sortLeaderBoard.indexOf(sortLeaderBoard.find(element => element.userId === session!.user!.id)!) + 1;
+                setBeforeIndex(Math.trunc(position / 5) * 5);
+            }
         }
         setNewLeaderBoard().then(
             (res) => {
@@ -94,6 +96,32 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
             }
         )
     }, [isPoint])
+    useEffect(() => {
+        async function setNewLeaderBoard() {
+            if (isPoint) {
+                setSortLeaderBoard(leaderBoard.sort(function (a:LeaderBoardUser, b:LeaderBoardUser) {
+                    return a.totalPoints - b.totalPoints
+                }).reverse());
+            } else {
+                setSortLeaderBoard(leaderBoard.sort(function (a:LeaderBoardUser, b: LeaderBoardUser) {
+                    return a.strike - b.strike
+                }).reverse());
+            }
+        }
+        setNewLeaderBoard().then(
+            (res) => {
+                setIsLoading(false);
+            }
+        )
+    },[leaderBoard])
+
+    useEffect(() => {
+            if(sortLeaderBoard && session) {
+                const position = sortLeaderBoard.indexOf(sortLeaderBoard.find(element => element.userId === session!.user!.id)!) + 1;
+                setBeforeIndex(Math.trunc(position / 5) * 5);
+            }
+    },[sortLeaderBoard,session]);
+
 
 
     const loadAfter = () => {
