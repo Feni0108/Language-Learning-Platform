@@ -85,6 +85,8 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
                     return a.strike - b.strike
                 }).reverse());
             }
+            const position = sortLeaderBoard!.indexOf(sortLeaderBoard!.find(element => element.userId === session!.user!.id)!)+1;
+            setBeforeIndex(Math.trunc(position/5)*5);
         }
         setNewLeaderBoard().then(
             (res) => {
