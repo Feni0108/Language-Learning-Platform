@@ -10,6 +10,8 @@ import {number} from "prop-types";
 import i18n from "@/i18n/i18n";
 import {getLanguageCode} from "@/components/getLanguageCode";
 import { AiTwotoneFire } from "react-icons/ai";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 interface UserSettings {
   interfaceLanguage: string;
@@ -58,6 +60,10 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
     const [isPoint, setIsPoint] = useState<boolean>(true);
     const [sortLeaderBoard, setSortLeaderBoard] = useState<LeaderBoardUser[] | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(false);
+    const firstPage = 0;
+    const limit: number = 5;
+    const [beforeIndex = 0, setBeforeIndex] = useState<number>();
+
     const t = (key: string) => i18n.t(key);
     const [interfaceLanguage, setInterfaceLanguage] = useState<string>(userSettings?.interfaceLanguage || '');
 
@@ -87,6 +93,23 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
         )
     }, [isPoint])
 
+
+    const loadAfter = () => {
+        if (beforeIndex + limit < leaderBoard.length) {
+            setBeforeIndex(beforeIndex + limit);
+        }
+    };
+
+    const loadBefore = () => {
+        if (beforeIndex - limit >= 0) {
+            setBeforeIndex(beforeIndex - limit);
+        }
+    };
+
+    const loadFirst = () => {
+        setBeforeIndex(0);
+    };
+
     if (!session) {
         return <div>Please log in to access this page.
             <SignUpButton/>
@@ -115,10 +138,10 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
                 >Strike</button>
                   </div>
                   <div className="pl-4 pr-4 pt-4 pb-4 border-2 rounded-3xl">
-                {sortLeaderBoard !== undefined && sortLeaderBoard.map((value:LeaderBoardUser, index:number) => (
+                {sortLeaderBoard !== undefined && sortLeaderBoard.slice(beforeIndex, beforeIndex + limit).map((value:LeaderBoardUser, index:number) => (
                     <div className={value.userId === session.user!.id? "bg-cyan-200 drop-shadow-lg rounded-3xl flex inline-block items-center" : "flex inline-block items-center"} key={"or"+index}>
                       <section className="pl-4 pr-8 w-6 font-semibold">
-                        {index+1+"."}
+                        {(1+index+beforeIndex)+"."}
                       </section>
                       <section className="w-12">
                         {value.user.image && <img
@@ -138,6 +161,11 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
                       </section>
                     </div>
                 ))}
+                  </div>
+                  <div className="flex flex-inline justify-center p-10">
+                      <RiArrowLeftSLine onClick={() => loadBefore()} />
+                      <RiArrowRightSLine onClick={() => loadAfter()} />
+                      <MdKeyboardDoubleArrowUp onClick={() => loadFirst()} />
                   </div>
               </div>
 

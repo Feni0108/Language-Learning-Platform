@@ -58,7 +58,6 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
     "/api/contribution/deleteContributionUserConnection";
 
   const [beforeIndex = 0, setBeforeIndex] = useState<number>();
-  const [isDisabled, setIsDisabled] = useState(false);
   const firstPage = 0;
   const limit: number = 5;
 
@@ -129,7 +128,6 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
         },
         method: "POST",
       }).then(() => {
-        console.log(isDisabled)
         refreshData();
       });
     } catch (error) {
@@ -137,7 +135,6 @@ const contributionIndex = ({ finalContributions }: Contributions) => {
     }
   };
   const refreshData = () => {
-    setIsDisabled(false)
     router.replace(router.asPath);
   };
 
