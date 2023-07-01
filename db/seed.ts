@@ -1,7 +1,6 @@
 import {
   Words,
   Language,
-  Dictionary,
   Category,
   Sentence,
     Storyline
@@ -32,7 +31,7 @@ async function seed() {
             language: Language.eng,
             description: "the number zero",
             category: Category.NUMBER,
-            image: Blob.find(element => element.id === 1)
+            image: Blob.find(element => element.id === 1),
         },
       {
         id: 1,
@@ -3948,6 +3947,86 @@ async function seed() {
             description: "",
             category: Category.SHOPPING,
         },
+      {
+        id: 107,
+        word: "my",
+        language: Language.eng,
+        description: "possessive pronoun, E/1",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 107,
+        word: "enyém",
+        language: Language.hu,
+        description: "Birtokos névmás, E/1",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 107,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 107,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 107,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 108,
+        word: "name",
+        language: Language.eng,
+        description: "possessive pronoun, E/1",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 108,
+        word: "nevem",
+        language: Language.hu,
+        description: "Birtokos névmás, E/1",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 108,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 108,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 108,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
 
     ];
 
@@ -3970,8 +4049,8 @@ async function seed() {
           language: word.language,
           description: word.description,
           category: word.category,
-            image: word.image?.image
-
+            image: word.image?.image,
+          isIndividual: word.isIndividual === undefined ? true : false,
         },
       });
       console.log(`Word created with id: ${createdWord.id}`);

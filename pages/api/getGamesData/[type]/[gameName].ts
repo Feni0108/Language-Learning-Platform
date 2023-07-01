@@ -27,7 +27,8 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newInt
+                    language: newInt,
+                    isIndividual: true
                     },
                 select: {
                     id: true,
@@ -38,7 +39,8 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newTarget
+                    language: newTarget,
+                    isIndividual: true
                 },
                 select: {
                     id: true,
@@ -127,7 +129,8 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newInt
+                    language: newInt,
+                    isIndividual: true
                 },
                 select: {
                     id: true,
@@ -138,7 +141,8 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newTarget
+                    language: newTarget,
+                    isIndividual: true
                 },
                 select: {
                     id: true,
