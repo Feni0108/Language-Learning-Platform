@@ -4027,6 +4027,2996 @@ async function seed() {
         category: Category.SHOPPING,
         isIndividual: false
       },
+      {
+        id: 109,
+        word: "How",
+        language: Language.eng,
+        description: "Conjunctive word responsible for linking sentences",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 109,
+        word: "Hogy",
+        language: Language.hu,
+        description: "Mondatok összekapcsolásáért felelős kötőszó",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 109,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 109,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 109,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 110,
+        word: "are",
+        language: Language.eng,
+        description: "auxiliary of the to be",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 110,
+        word: "",
+        language: Language.hu,
+        description: "nincs magyar megfelelője",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 110,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 110,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 110,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 111,
+        word: "am",
+        language: Language.eng,
+        description: "the first-person singular pronoun",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 111,
+        word: "én",
+        language: Language.hu,
+        description: "az egyes személy egyes számú névmás",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 111,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 111,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 111,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 112,
+        word: "to be",
+        language: Language.eng,
+        description: "to be, to exist",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 112,
+        word: "vagy",
+        language: Language.hu,
+        description: "létezni, lenni",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 112,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 112,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 112,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 113,
+        word: "is",
+        language: Language.eng,
+        description: "auxiliary of the to be E/3",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 113,
+        word: "",
+        language: Language.hu,
+        description: "nincs magyar megfelelője",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 113,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 113,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 113,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 114,
+        word: "That",
+        language: Language.eng,
+        description: "distant pronoun",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 114,
+        word: "Az",
+        language: Language.hu,
+        description: "távolra mutató névmás",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 114,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 114,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 114,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 115,
+        word: "from",
+        language: Language.eng,
+        description: "Indicates origin from somewhere",
+        category: Category.GREETINGS,
+      },
+      {
+        id: 115,
+        word: "jövök",
+        language: Language.hu,
+        description: "Valahonnan való származást jelöl",
+        category: Category.GREETINGS,
+      },
+      {
+        id: 115,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 115,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 115,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 116,
+        word: "Ukraine",
+        language: Language.eng,
+        description: "Russia's neighbour where war is raging",
+        category: Category.GREETINGS,
+      },
+      {
+        id: 116,
+        word: "Ukrajna",
+        language: Language.hu,
+        description: "Oroszország szomszédja, ahol háború dúl",
+        category: Category.GREETINGS,
+      },
+      {
+        id: 116,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 116,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.GREETINGS,
+
+      },
+      {
+        id: 116,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.GREETINGS,
+      },
+      {
+        id: 117,
+        word: "Ukraine",
+        language: Language.eng,
+        description: "Russia's neighbour where war is raging",
+        category: Category.GREETINGS,
+        isIndividual: false
+      },
+      {
+        id: 117,
+        word: "Ukrajnából",
+        language: Language.hu,
+        description: "Oroszország szomszédja, ahol háború dúl",
+        category: Category.GREETINGS,
+        isIndividual: false
+      },
+      {
+        id: 117,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.GREETINGS,
+        isIndividual: false
+
+      },
+      {
+        id: 117,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.GREETINGS,
+        isIndividual: false
+
+      },
+      {
+        id: 117,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.GREETINGS,
+        isIndividual: false
+      },
+      {
+        id: 118,
+        word: "have",
+        language: Language.eng,
+        description: "possessive pronoun",
+        category: Category.FAMILY,
+      },
+      {
+        id: 118,
+        word: "van",
+        language: Language.hu,
+        description: "birtokos névmás",
+        category: Category.FAMILY,
+      },
+      {
+        id: 118,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 118,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 118,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+      },
+      {
+        id: 119,
+        word: "sisters",
+        language: Language.eng,
+        description: "more woman siblings",
+        category: Category.FAMILY,
+      },
+      {
+        id: 119,
+        word: "lánytestvérek",
+        language: Language.hu,
+        description: "női nemű testvérek",
+        category: Category.FAMILY,
+      },
+      {
+        id: 119,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 119,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 119,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+      },
+      {
+        id: 120,
+        word: "two",
+        language: Language.eng,
+        description: "the number two",
+        category: Category.FAMILY,
+      },
+      {
+        id: 120,
+        word: "két",
+        language: Language.hu,
+        description: "a kettes szám",
+        category: Category.FAMILY,
+      },
+      {
+        id: 120,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 120,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 120,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+      },
+      {
+        id: 121,
+        word: "uncles",
+        language: Language.eng,
+        description: "male siblings of either parent",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 121,
+        word: "nagybátyám",
+        language: Language.hu,
+        description: "valamelyik szülő férfi testvérei",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 121,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+        isIndividual: false
+
+      },
+      {
+        id: 121,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+        isIndividual: false
+
+      },
+      {
+        id: 121,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 122,
+        word: "only",
+        language: Language.eng,
+        description: "there is nothing other than the above",
+        category: Category.FAMILY,
+      },
+      {
+        id: 122,
+        word: "csak",
+        language: Language.hu,
+        description: "az említett dolgon kívül nincs semmi más",
+        category: Category.FAMILY,
+      },
+      {
+        id: 122,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 122,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 122,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+      },
+      {
+        id: 123,
+        word: "grandparents",
+        language: Language.eng,
+        description: "parents of the parents",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 123,
+        word: "nagyszülőm",
+        language: Language.hu,
+        description: "a szülők szülei",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 123,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+    isIndividual: false
+      },
+      {
+        id: 123,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 123,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+        isIndividual: false
+      },
+      {
+        id: 124,
+        word: "a",
+        language: Language.eng,
+        description: "indefinite article",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 124,
+        word: "egy",
+        language: Language.hu,
+        description: "határozatlan névelő",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 124,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FAMILY,
+      },
+      {
+        id: 124,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 124,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FAMILY,
+
+      },
+      {
+        id: 125,
+        word: "dog",
+        language: Language.eng,
+        description: "a domesticated carnivorous mammal",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 125,
+        word: "kutyám",
+        language: Language.hu,
+        description: "háziasított ragadozó emlős",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 125,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 125,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 125,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 126,
+        word: "cats",
+        language: Language.eng,
+        description: "small domesticated carnivorous mammals",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 126,
+        word: "macskákat",
+        language: Language.hu,
+        description: "kistestű háziasított ragadozó emlősök",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 126,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 126,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 126,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 127,
+        word: "Giraffes",
+        language: Language.eng,
+        description: "The tallest and longest-necked land creatures",
+        category: Category.ANIMALS,
+
+      },
+      {
+        id: 127,
+        word: "zsiráfok",
+        language: Language.hu,
+        description: "A legmagasabb és leghosszabb nyakú szárazföldi élőlény.",
+        category: Category.ANIMALS,
+
+      },
+      {
+        id: 127,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+      },
+      {
+        id: 127,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+
+      },
+      {
+        id: 127,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+      },
+      {
+        id: 128,
+        word: "tall",
+        language: Language.eng,
+        description: "Vertical length",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 128,
+        word: "magasak",
+        language: Language.hu,
+        description: "függőleges hosszúság",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 128,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 128,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 128,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 129,
+        word: "Twelve",
+        language: Language.eng,
+        description: "The number twelve",
+        category: Category.NUMBER,
+
+      },
+      {
+        id: 129,
+        word: "Tizenkét",
+        language: Language.hu,
+        description: "A tizenkettes szám",
+        category: Category.NUMBER,
+      },
+      {
+        id: 129,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.NUMBER,
+      },
+      {
+        id: 129,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.NUMBER,
+
+      },
+      {
+        id: 129,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.NUMBER,
+      },
+      {
+        id: 130,
+        word: "want",
+        language: Language.eng,
+        description: "auxiliary verb, to express desire, purpose",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 130,
+        word: "akarok",
+        language: Language.hu,
+        description: "segédige, vágy, cél kifejezése",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 130,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 130,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 130,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 131,
+        word: "lots",
+        language: Language.eng,
+        description: "an expression for a quantity of which there is more",
+        category: Category.ANIMALS,
+
+      },
+      {
+        id: 131,
+        word: "sok",
+        language: Language.hu,
+        description: "mennyiség kifejezése, amiből több van",
+        category: Category.ANIMALS,
+      },
+      {
+        id: 131,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+
+      },
+      {
+        id: 131,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+
+
+      },
+      {
+        id: 131,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+
+      },
+      {
+        id: 132,
+        word: "of",
+        language: Language.eng,
+        description: "the something of something",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 132,
+        word: "-nak/-nek",
+        language: Language.hu,
+        description: "valaminek a valamije",
+        category: Category.ANIMALS,
+        isIndividual: false
+      },
+      {
+        id: 132,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 132,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+
+      },
+      {
+        id: 132,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.ANIMALS,
+        isIndividual: false
+
+      },
+      {
+        id: 133,
+        word: "number",
+        language: Language.eng,
+        description: "Used to express the quantity",
+        category: Category.NUMBER,
+        isIndividual: false
+
+      },
+      {
+        id: 133,
+        word: "számom",
+        language: Language.hu,
+        description: "A mennyiség kifejezésére szolgál",
+        category: Category.NUMBER,
+        isIndividual: false
+      },
+      {
+        id: 133,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.NUMBER,
+        isIndividual: false
+
+      },
+      {
+        id: 133,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.NUMBER,
+        isIndividual: false
+
+
+      },
+      {
+        id: 133,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.NUMBER,
+        isIndividual: false
+
+      },
+      {
+        id: 134,
+        word: "lucky",
+        language: Language.eng,
+        description: "If someone is Fortuna's minion",
+        category: Category.NUMBER,
+
+      },
+      {
+        id: 134,
+        word: "szerencse",
+        language: Language.hu,
+        description: "Ha valaki Fortuna kegyeltje",
+        category: Category.NUMBER,
+      },
+      {
+        id: 134,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.NUMBER,
+
+      },
+      {
+        id: 134,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.NUMBER,
+
+
+      },
+      {
+        id: 134,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.NUMBER,
+
+      },
+      {
+        id: 135,
+        word: "Saturday",
+        language: Language.eng,
+        description: "Day six of the week",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 135,
+        word: "szombat",
+        language: Language.hu,
+        description: "A hét hatodik napja",
+        category: Category.CALENDAR,
+      },
+      {
+        id: 135,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 135,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+
+
+      },
+      {
+        id: 135,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 136,
+        word: "favourite",
+        language: Language.eng,
+        description: "Something to like best",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 136,
+        word: "kedvenc",
+        language: Language.hu,
+        description: "valamit a legjobban kedvelni",
+        category: Category.CALENDAR,
+      },
+      {
+        id: 136,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 136,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+
+
+      },
+      {
+        id: 136,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 137,
+        word: "winter",
+        language: Language.eng,
+        description: "Coldest season of the year",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 137,
+        word: "tél",
+        language: Language.hu,
+        description: "Leghidegebb évszak",
+        category: Category.CALENDAR,
+      },
+      {
+        id: 137,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 137,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+
+
+      },
+      {
+        id: 137,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+
+      },
+      {
+        id: 138,
+        word: "season",
+        language: Language.eng,
+        description: "Three consecutive months in the year",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 138,
+        word: "évszakom",
+        language: Language.hu,
+        description: "Egymást követő három hónapos periódus az évben",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 138,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 138,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+
+      },
+      {
+        id: 138,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 139,
+        word: "was",
+        language: Language.eng,
+        description: "past tense verb",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 139,
+        word: "-t",
+        language: Language.hu,
+        description: "múlt idejű létige",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 139,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 139,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+
+      },
+      {
+        id: 139,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 140,
+        word: "born",
+        language: Language.eng,
+        description: "Coming into the world as a baby",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 140,
+        word: "születtem",
+        language: Language.hu,
+        description: "Kisbabaként világra jönni",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 140,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 140,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+
+      },
+      {
+        id: 140,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 141,
+        word: "in",
+        language: Language.eng,
+        description: "Positional word",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 141,
+        word: "-ban/-ben",
+        language: Language.hu,
+        description: "Helyhatározó szó",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 141,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 141,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+
+      },
+      {
+        id: 141,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 142,
+        word: "August",
+        language: Language.eng,
+        description: "The eighth month of the year",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 142,
+        word: "Augusztusban",
+        language: Language.hu,
+        description: "Az év nyolcadik hónapja",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 142,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 142,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+
+      },
+      {
+        id: 142,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 143,
+        word: "friend",
+        language: Language.eng,
+        description: "a person with whom one has a bond of mutual affection",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 143,
+        word: "barátom",
+        language: Language.hu,
+        description: "olyan személy, akivel kölcsönös szeretetszál köti össze",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 143,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 143,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+
+      },
+      {
+        id: 143,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 144,
+        word: "best",
+        language: Language.eng,
+        description: "In some ways the first",
+        category: Category.FRIENDS,
+
+
+      },
+      {
+        id: 144,
+        word: "legjobb",
+        language: Language.hu,
+        description: "Valamiben az első",
+        category: Category.FRIENDS,
+      },
+      {
+        id: 144,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 144,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+
+
+      },
+      {
+        id: 144,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 145,
+        word: "This",
+        language: Language.eng,
+        description: "Nearby word",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 145,
+        word: "Ez",
+        language: Language.hu,
+        description: "Közelre mutató szó",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 145,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 145,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+
+      },
+      {
+        id: 145,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 146,
+        word: "evening",
+        language: Language.eng,
+        description: "After the time of the setting sun",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 146,
+        word: "este",
+        language: Language.hu,
+        description: "A nyugvó napot követő időszak",
+        category: Category.FRIENDS,
+      },
+      {
+        id: 146,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 146,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+
+
+      },
+      {
+        id: 146,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 147,
+        word: "going",
+        language: Language.eng,
+        description: "from A to B",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 147,
+        word: "menni",
+        language: Language.hu,
+        description: "A-ból B-be menni",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 147,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 147,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 147,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 148,
+        word: "go",
+        language: Language.eng,
+        description: "from A to B",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 148,
+        word: "menni",
+        language: Language.hu,
+        description: "A-ból B-be menni",
+        category: Category.FRIENDS,
+      },
+      {
+        id: 148,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 148,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+
+
+      },
+      {
+        id: 148,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 149,
+        word: "fishing",
+        language: Language.eng,
+        description: "removing fish from the lake",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 149,
+        word: "horgászni",
+        language: Language.hu,
+        description: "halak kiszedése a tóból",
+        category: Category.FRIENDS,
+      },
+      {
+        id: 149,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 149,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 149,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 150,
+        word: "friends",
+        language: Language.eng,
+        description: "Plural of not related but close relationship",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 150,
+        word: "barátaimmal",
+        language: Language.hu,
+        description: "Nem rokoni, de közeli kapcsolat többesszáma",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 150,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 150,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 150,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 151,
+        word: "with",
+        language: Language.eng,
+        description: "Together",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 151,
+        word: "-val/vel",
+        language: Language.hu,
+        description: "Együtt, közösen",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 151,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 151,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 151,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 152,
+        word: "will",
+        language: Language.eng,
+        description: "expression of will for the future",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 152,
+        word: "fogok",
+        language: Language.hu,
+        description: "jövőre mutató akarat kifejezése",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 152,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 152,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 152,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 153,
+        word: "the",
+        language: Language.eng,
+        description: "Definite article",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 153,
+        word: "a",
+        language: Language.hu,
+        description: "Határozott névelő",
+        category: Category.FRIENDS,
+      },
+      {
+        id: 153,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 153,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 153,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+
+      },
+      {
+        id: 154,
+        word: "cinema",
+        language: Language.eng,
+        description: "a venue for public screenings of films in front of large audiences",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 154,
+        word: "moziba",
+        language: Language.hu,
+        description: "filmek nyilvános, nagyobb közönség előtti vetítésére alkalmas helyszín",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 154,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 154,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 154,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 155,
+        word: "going",
+        language: Language.eng,
+        description: "from A to B",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 155,
+        word: "megyek",
+        language: Language.hu,
+        description: "A-ból B-be menni",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 155,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 155,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 155,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 156,
+        word: "like",
+        language: Language.eng,
+        description: "Something to do with pleasure",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 156,
+        word: "Szeretek",
+        language: Language.hu,
+        description: "Valamit örömmel csinálni",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 156,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 156,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 156,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 157,
+        word: "reading",
+        language: Language.eng,
+        description: "Interpreting consecutive letters",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 157,
+        word: "olvasni",
+        language: Language.hu,
+        description: "Egymást követő betük értelmezése",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 157,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.HOBBY,
+
+
+      },
+      {
+        id: 157,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 157,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 158,
+        word: "books",
+        language: Language.eng,
+        description: "A combination of thick pages",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 158,
+        word: "könyveket",
+        language: Language.hu,
+        description: "Vastag lapok együttese",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 158,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 158,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 158,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 159,
+        word: "football",
+        language: Language.eng,
+        description: "The most famous ball game",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 159,
+        word: "focizok",
+        language: Language.hu,
+        description: "A leghíresebb labdajáték",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 159,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 159,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 159,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.HOBBY,
+        isIndividual: false
+
+      },
+      {
+        id: 160,
+        word: "every",
+        language: Language.eng,
+        description: "In real terms, all",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 160,
+        word: "Minden",
+        language: Language.hu,
+        description: "Valamiből az összes",
+        category: Category.HOBBY,
+      },
+      {
+        id: 160,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 160,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 160,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.HOBBY,
+      },
+      {
+        id: 161,
+        word: "Tuesday",
+        language: Language.eng,
+        description: "Second day of the week",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 161,
+        word: "kedden",
+        language: Language.hu,
+        description: "A hét második napja",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 161,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 161,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 161,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 162,
+        word: "Thursday",
+        language: Language.eng,
+        description: "Fourth day of the week",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 162,
+        word: "csütörtökön",
+        language: Language.hu,
+        description: "A hét negyedik napja",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 162,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 162,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 162,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 163,
+        word: "and",
+        language: Language.eng,
+        description: "Word that connects sentences",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 163,
+        word: "és",
+        language: Language.hu,
+        description: "Mondatokat összekötő szós",
+        category: Category.HOBBY,
+      },
+      {
+        id: 163,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 163,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.HOBBY,
+
+      },
+      {
+        id: 163,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.HOBBY,
+      },
+      {
+        id: 164,
+        word: "evening",
+        language: Language.eng,
+        description: "After the time of the setting sun",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 164,
+        word: "Esténként",
+        language: Language.hu,
+        description: "A nyugvó napot követő időszak",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 164,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 164,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+
+      },
+      {
+        id: 164,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.FRIENDS,
+        isIndividual: false
+      },
+      {
+        id: 165,
+        word: "run",
+        language: Language.eng,
+        description: "to move swiftly on foot",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 165,
+        word: "futok",
+        language: Language.hu,
+        description: "gyorsan mozogni gyalog",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 165,
+        word: "bežať",
+        language: Language.sk,
+        description: "rýchlo sa pohybovať pešo",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 165,
+        word: "běhat",
+        language: Language.cz,
+        description: "rychle se pohybovat pěšky",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 165,
+        word: "hlaupa",
+        language: Language.is,
+        description: "að hreyfa sig fljótt á fótunum",
+        category: Category.HOBBY,
+        isIndividual: false
+      },
+      {
+        id: 166,
+        word: "live",
+        language: Language.eng,
+        description: "Settle down somewhere",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 166,
+        word: "élek",
+        language: Language.hu,
+        description: "Valahol letelepedni",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 166,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 166,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 166,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 167,
+        word: "live",
+        language: Language.eng,
+        description: "Settle down somewhere",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 167,
+        word: "élek",
+        language: Language.hu,
+        description: "Valahol letelepedni",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 167,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 167,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 167,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 168,
+        word: "by",
+        language: Language.eng,
+        description: "Positional word",
+        category: Category.LIVING,
+      },
+      {
+        id: 168,
+        word: "mellett",
+        language: Language.hu,
+        description: "Helyhatározó szó",
+        category: Category.LIVING,
+      },
+      {
+        id: 168,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.LIVING,
+
+      },
+      {
+        id: 168,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.LIVING,
+
+      },
+      {
+        id: 168,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.LIVING,
+
+      },
+      {
+        id: 169,
+        word: "work",
+        language: Language.eng,
+        description: "activity involving mental or physical effort",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 169,
+        word: "dolgozom",
+        language: Language.hu,
+        description: "szellemi vagy fizikai erőfeszítést igénylő tevékenység",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 169,
+        word: "práca",
+        language: Language.sk,
+        description: "činnosť vyžadujúca mentálnu alebo fyzickú námahu",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 169,
+        word: "práce",
+        language: Language.cz,
+        description: "činnost vyžadující duševní nebo fyzické úsilí",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 169,
+        word: "vinna",
+        language: Language.is,
+        description: "starfsemi sem felur í sér andlega eða líkamlega áreynslu",
+        category: Category.LIVING,
+        isIndividual: false
+      },
+      {
+        id: 170,
+        word: "Monday",
+        language: Language.eng,
+        description: "First day of the week",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 170,
+        word: "Hétfőtől",
+        language: Language.hu,
+        description: "A hét első napja",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 170,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 170,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 170,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 171,
+        word: "Friday",
+        language: Language.eng,
+        description: "Fifth day of the week",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 171,
+        word: "péntekig",
+        language: Language.hu,
+        description: "A hét ötödik napja",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 171,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 171,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 171,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 172,
+        word: "to",
+        language: Language.eng,
+        description: "to indicate time or distance in space",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 172,
+        word: "-ig",
+        language: Language.hu,
+        description: "idő vagy térbeli távolság jelölése",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 172,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 172,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+      },
+      {
+        id: 172,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.CALENDAR,
+        isIndividual: false
+
+      },
+      {
+        id: 173,
+        word: "shops",
+        language: Language.eng,
+        description: "Names of several vendors",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 173,
+        word: "boltokba",
+        language: Language.hu,
+        description: "Több árusító neve",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 173,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 173,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 173,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 174,
+        word: "love",
+        language: Language.eng,
+        description: "Something to like very much",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 174,
+        word: "Imádok",
+        language: Language.hu,
+        description: "Valamit nagyon kedvelni",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 174,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 174,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 174,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 175,
+        word: "buy",
+        language: Language.eng,
+        description: "Get it for money",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 175,
+        word: "Venni",
+        language: Language.hu,
+        description: "Pénzért megszerezni",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 175,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 175,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 175,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 176,
+        word: "new",
+        language: Language.eng,
+        description: "Never used before",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 176,
+        word: "új",
+        language: Language.hu,
+        description: "Sosem használták még",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 176,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 176,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 176,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 177,
+        word: "computer",
+        language: Language.eng,
+        description: "Electronic device used on the desktop",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 177,
+        word: "számítógépet",
+        language: Language.hu,
+        description: "Asztalon használt elektronikai eszköz",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 177,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 177,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 177,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 178,
+        word: "order",
+        language: Language.eng,
+        description: "A contractual claim to acquire a product or asset",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 178,
+        word: "rendelek",
+        language: Language.hu,
+        description: "Egy termék vagy eszköz megszerzésére irányúló szerződött igény",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 178,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 178,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 178,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 179,
+        word: "coffee",
+        language: Language.eng,
+        description: "Black drink obtained by grinding and boiling beans",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 179,
+        word: "kávé",
+        language: Language.hu,
+        description: "Babok darálásából és lefőzéséből előállított fekete ital",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 179,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 179,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 179,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 180,
+        word: "machine",
+        language: Language.eng,
+        description: "Electronic device",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 180,
+        word: "gép",
+        language: Language.hu,
+        description: "Elektronikai eszköz",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 180,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 180,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 180,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 181,
+        word: "coffee machine",
+        language: Language.eng,
+        description: "Electronic device for making coffee",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 181,
+        word: "kávéfőzőt",
+        language: Language.hu,
+        description: "Kávé lefőzésére alkalmas elektronikai eszköz",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 181,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+
+      },
+      {
+        id: 181,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+      },
+      {
+        id: 181,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+      },
+
+
 
     ];
 
@@ -4388,7 +7378,7 @@ async function seed() {
       },
       {
         id: 12,
-        sentence: "Az én szerencseszámom a nyolc",
+        sentence: "Az én szerencse számom a nyolc",
         language: Language.hu,
         category: Category.NUMBER
       },
@@ -4538,7 +7528,7 @@ async function seed() {
       },
       {
         id: 17,
-        sentence: "Ma este horgásni fogok a barátaimmal",
+        sentence: "Ma este horgászni fogok a barátaimmal",
         language: Language.hu,
         category: Category.FRIENDS
       },
@@ -4778,7 +7768,7 @@ async function seed() {
       },
       {
         id: 25,
-        sentence: "Imádok boltokba járni",
+        sentence: "Imádok boltokba menni",
         language: Language.hu,
         category: Category.SHOPPING
       },

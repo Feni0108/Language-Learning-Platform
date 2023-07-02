@@ -102,7 +102,6 @@ export default async function handler(req: NextApiRequest,
             ) as Sentence;
             const original_words = await prisma.words.findMany({
                 where: {
-                    category: newType,
                     language: newInt
                 },
                 select: {
@@ -113,7 +112,6 @@ export default async function handler(req: NextApiRequest,
             }) as DictionaryForHover;
             const translated_words = await prisma.words.findMany({
                 where: {
-                    category: newType,
                     language: newTarget
                 },
                 select: {
