@@ -86,7 +86,7 @@ export default function Sentence({
       </h3>
       <div className="mt-10 grid justify-items-center">
         <div>
-          <div className="justify-items-center text-xs italic min-h-full h-0">{hover}</div>
+          <div className="flex  justify-center text-xs italic min-h-full h-0">{hover}</div>
           {task.original.map((value, number) => (
             <Hover word={value.word} id={number} hover={value.hover} setHover={setHover} />
           ))}

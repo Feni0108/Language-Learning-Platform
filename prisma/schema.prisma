@@ -7,14 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Dictionary {
-  id              Int      @id @default(autoincrement())
-  original_word   String
-  translated_word String
-  image           Bytes?
-  category        Category
-}
-
 model Sentence {
   id       Int
   sentence String
@@ -127,8 +119,10 @@ model Words {
   word        String
   language    Language
   description String
-  category    Category
-  image       Bytes?
+  category Category
+  image    Bytes?
+  isIndividual    Boolean @default(true)
+
 
   @@unique([id, language])
 }

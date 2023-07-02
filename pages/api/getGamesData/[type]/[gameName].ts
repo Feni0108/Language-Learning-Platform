@@ -27,7 +27,8 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newInt
+                    language: newInt,
+                    isIndividual: true
                     },
                 select: {
                     id: true,
@@ -38,7 +39,8 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newTarget
+                    language: newTarget,
+                    isIndividual: true
                 },
                 select: {
                     id: true,
@@ -100,7 +102,6 @@ export default async function handler(req: NextApiRequest,
             ) as Sentence;
             const original_words = await prisma.words.findMany({
                 where: {
-                    category: newType,
                     language: newInt
                 },
                 select: {
@@ -111,7 +112,6 @@ export default async function handler(req: NextApiRequest,
             }) as DictionaryForHover;
             const translated_words = await prisma.words.findMany({
                 where: {
-                    category: newType,
                     language: newTarget
                 },
                 select: {
@@ -127,7 +127,8 @@ export default async function handler(req: NextApiRequest,
             const original_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newInt
+                    language: newInt,
+                    isIndividual: true
                 },
                 select: {
                     id: true,
@@ -138,7 +139,8 @@ export default async function handler(req: NextApiRequest,
             const translated_words = await prisma.words.findMany({
                 where: {
                     category: newType,
-                    language: newTarget
+                    language: newTarget,
+                    isIndividual: true
                 },
                 select: {
                     id: true,
