@@ -7015,6 +7015,49 @@ async function seed() {
         description: "",
         category: Category.SHOPPING,
       },
+      {
+        id: 182,
+        word: "my",
+        language: Language.eng,
+        description: "Owner E/1 pronoun",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 182,
+        word: "enyém",
+        language: Language.hu,
+        description: "Birtokos E/1 névmás",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 182,
+        word: "",
+        language: Language.sk,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
+      {
+        id: 182,
+        word: "",
+        language: Language.cz,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+      },
+      {
+        id: 182,
+        word: "",
+        language: Language.is,
+        description: "",
+        category: Category.SHOPPING,
+        isIndividual: false
+
+      },
 
 
 

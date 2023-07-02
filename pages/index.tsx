@@ -40,7 +40,7 @@ export default function Home({userSettings}: SettingsProps) {
     Greetings: {name: t("Greetings"), icon: <GiNothingToSay />},
     Family: {name: t("Family"), icon: <MdFamilyRestroom />},
     Animals: {name: t("Animals"), icon: <FaCat />},
-    Numbers: {name: t("Numbers"), icon: <ImSortNumbericDesc />},
+    Number: {name: t("Number"), icon: <ImSortNumbericDesc />},
     Calendar: {name: t("Calendar"), icon: <BsFillCalendarDayFill />},
     Friends: {name: t("Friends"), icon: <FaUserFriends />},
     Hobby: {name: t("Hobby"), icon: <FaBasketballBall />},
