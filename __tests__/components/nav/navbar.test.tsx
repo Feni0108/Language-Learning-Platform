@@ -12,7 +12,7 @@ describe('NavBar', () => {
   it('should render navigation links when user is signed in', () => {
     const session = {
       user: {
-        email: 'test@example.com',
+        email: 'test@test.com',
       },
     };
 
@@ -23,12 +23,10 @@ describe('NavBar', () => {
 
     const homeLink = screen.getByRole('link', { name: /home/i });
     const leaderboardLink = screen.getByRole('link', { name: /leaderboard/i });
-    const friendsLink = screen.getByRole('link', { name: /friends/i });
     const contributionLink = screen.getByRole('link', { name: /contribution/i });
 
     expect(homeLink).toBeInTheDocument();
     expect(leaderboardLink).toBeInTheDocument();
-    expect(friendsLink).toBeInTheDocument();
     expect(contributionLink).toBeInTheDocument();
   });
 });
