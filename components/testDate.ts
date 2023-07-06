@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prisma from "../lib/prisma";
 //npm install moment --save
 import moment from "moment";
 
