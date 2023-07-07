@@ -19,12 +19,14 @@ import Story, {
 
 import LinearWithValueLabel from "@/components/ChildComponent/ProgressLine";
 import { AiTwotoneFire } from "react-icons/ai";
+import i18n from "@/i18n/i18n";
 
 export default function Lessons() {
 
 
     const router = useRouter();
     let {type, isProgressUpdate} = router.query;
+    const t = (key: string) => i18n.t(key);
 
     const [isProgressUpdateBoolean, setIsProgressUpdateBoolean] = useState<
         boolean | undefined
@@ -215,7 +217,7 @@ export default function Lessons() {
                         {LinearWithValueLabel(gameCount)}
                     </div>
                     <div className="text-red-600 inline grid justify-center  text-lg h-2">
-                         {isInRow && row > 1 && <p className="inline-block pt-1 align-end"><AiTwotoneFire className="inline-block"/> {row} in a row!</p>}
+                         {isInRow && row > 1 && <p className="inline-block pt-1 align-end"><AiTwotoneFire className="inline-block"/> {row} {t('in_a_row')}!</p>}
                     </div>
                     <br/>
                     {game}
@@ -223,9 +225,9 @@ export default function Lessons() {
             )}
             {isFinished && (
                 <div className="drop-shadow-2xl">
-                    <div className="text-center m-10">Congratulations!</div>
+                    <div className="text-center m-10">{t('Congratulations')}!</div>
                     <div className="text-center">
-                        You finished the lesson! Your points:
+                        {t('You_finished_the_lesson!_Your_points')}:
                     </div>
                     <div className="text-2xl text-center m-5">{point}</div>
                     <div className="flex justify-center m-10">
@@ -233,7 +235,7 @@ export default function Lessons() {
                             className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
                             onClick={handleFinished}
                         >
-                            Continue
+                            {t('Continue')}
                         </button>
                     </div>
                 </div>

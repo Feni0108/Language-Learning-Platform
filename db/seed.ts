@@ -8094,9 +8094,9 @@ async function seed() {
       },
       {
         id: 9,
-        sentences: ["What do your parents do for a living?", "My dad is a __ and my mom is a __", "That's interesting!", "What about your parents?", "__"],
-        options: [["doctor", "teacher", "lawyer"], ["engineer", "nurse", "artist"], ["My dad is a chef", "My mom is a businesswoman", "They both work in finance"]],
-        solutions: ["doctor", "teacher", "My dad is a chef"],
+        sentences: ["What do your parents do for a living?", "My dad is a __ and my mom is a teacher", "That's interesting!", "What about your parents?", "__"],
+        options: [["doctor", "teacher", "lawyer"], ["My dad is a chef", "My mom is a businesswoman", "They both work in finance"]],
+        solutions: ["doctor", "My dad is a chef"],
         language: Language.eng,
         category: Category.FAMILY
       },

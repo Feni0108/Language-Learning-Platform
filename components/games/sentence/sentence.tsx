@@ -3,6 +3,7 @@ import styles from "@/styles/Senctence.module.css";
 import Word from "@/components/games/sentence/Word";
 import Hover from "@/components/games/sentence/Hover";
 import { FormatLessons } from "@/components/FormatLessons";
+import i18n from "@/i18n/i18n";
 
 export type Original = {
   word: string;
@@ -37,6 +38,7 @@ export default function Sentence({
   setIsGood,
   handleSolved,
 }: SentenceProps) {
+  const t = (key: string) => i18n.t(key);
   const [task, setTask] = useState<SentenceTask>(sentence);
   const [answer, setAnswer] = useState<Words[]>([]);
   const [hover, setHover] = useState<string>("");
@@ -82,7 +84,7 @@ export default function Sentence({
   return (
     <>
       <h3 className="mt-10 text-l font-medium grid justify-items-center">
-        Translate this sentence
+        {t('Translate_this_sentence')}
       </h3>
       <div className="mt-10 grid justify-items-center">
         <div>
@@ -125,8 +127,8 @@ export default function Sentence({
                 : FormatLessons.sentenceWrongAnswer
             }
           >
-            {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
-            {isGood ? null : <h4>Correct Answer:</h4>}
+            {isGood ? <h3>{t('Correct_answer')}</h3> : <h3>{t('Incorrect_answer')}</h3>}
+            {isGood ? null : <h4>{t('Correct_answer')}:</h4>}
             {isGood ? null : task.solution}
             <br />
           </div>
@@ -137,7 +139,7 @@ export default function Sentence({
                   className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4 mt-10"
                   onClick={() => handleSolved()}
                 >
-                  Continue
+                  {t('Continue')}
                 </button>
               </div>
             )}
@@ -150,7 +152,7 @@ export default function Sentence({
             className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4 mt-10"
             onClick={() => handleCheck()}
           >
-            Continue
+            {t('Continue')}
           </button>
         </div>
       )}

@@ -240,7 +240,7 @@ const contributionIndex = ({finalContributions}: Contributions, {userSettings}: 
                           }
                       >
                         {Object.keys(LanguageToLabelMapping).map((language) => (
-                            <option>{language}</option>
+                            <option>{t(language)}</option>
                         ))}
                       </select>
                     </div>

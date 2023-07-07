@@ -1,3 +1,4 @@
+import i18n from "@/i18n/i18n";
 import React from "react";
 import { useState, useEffect } from "react";
 
@@ -19,6 +20,7 @@ type StoryProps = {
 
 
 export default function Story({data, isSolved, setIsSolved, setIsGood, handleSolved}: StoryProps) {
+  const t = (key: string) => i18n.t(key);
 
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
@@ -70,9 +72,9 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
 
     if (selectedOption) {
       if (solution === selectedOption) {
-        setSuccessMessage("That is correct!");
+        setSuccessMessage(t("That_is_correct!"));
       } else {
-        setErrorMessage("That is not right the right answer is: " + solution);
+        setErrorMessage(t("That_is_not_right!_The_right_answer_is")+": " + solution);
         setIsGood(false);
       }
 
@@ -102,6 +104,10 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
 
   return (
     <div className="grid justify-items-center">
+      <h2 className="mt-10 text-l font-medium grid justify-center w-96">
+        {" "}
+        {t('Fill_in_the_gaps_in_the_conversation')}!
+      </h2>
       <div className="w-96">
       {displayedSentences.map((sentence, index) => (
           <div>
@@ -146,7 +152,7 @@ export default function Story({data, isSolved, setIsSolved, setIsGood, handleSol
       >
         <button className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
             onClick={() => handleSolved()}
-        >Continue</button>
+            >{t('Continue')}</button>
       </div>}
     </div>
   );

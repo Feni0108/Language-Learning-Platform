@@ -21,7 +21,6 @@ export default function NavBar() {
   const navigation = [
     { name: t("Home"), href: "/", current: true },
     { name: t("Leaderboard"), href: "/leaderboard", current: false },
-    { name: t("Friends"), href: "#", current: false },
     { name: t("Contribution"), href: "/contribute", current: false },
   ];
   const [isLoading, setIsLoading] = useState(true);
