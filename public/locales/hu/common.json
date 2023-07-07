@@ -77,6 +77,12 @@
   "streak": "egymást követő nap játszottál",
   "This part is under development. Check later!" : "Ez a rész még fejlesztés alatt. Nézz vissza később!",
   "Duo sees a" : "Duo lát a jövődben egy",
-  "day streak in your future. Will there be that many": "napos sorozatot. Lesz annyi"
+  "day streak in your future. Will there be that many": "napos sorozatot. Lesz annyi",
+  "Your settings succesfully updated": "A beállítások sikeresen elmentésre kerültek",
+  "hu": "magyar",
+  "sk": "szlovák",
+  "cz": "cseh",
+  "is": "izlandi",
+  "eng": "angol"
 
 }

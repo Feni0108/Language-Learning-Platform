@@ -77,5 +77,11 @@
   "streak": "streak",
   "This part is under development. Check later!" : "This part is under development. Check later!",
   "Duo sees a" : "Duo sees a",
-  "day streak in your future. Will there be that many": "day streak in your future. Will there be that many"
+  "day streak in your future. Will there be that many": "day streak in your future. Will there be that many",
+  "Your settings succesfully updated": "Your settings succesfully updated",
+  "hu": "hungarian",
+  "sk": "slovak",
+  "cz": "czech",
+  "is": "icelandic",
+  "eng": "english"
 }
