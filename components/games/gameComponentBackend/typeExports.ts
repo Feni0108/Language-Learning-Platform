@@ -17,7 +17,8 @@ export type DictionaryForHover = [
     {
         id: number,
         word: string,
-        description: string
+        description: string,
+        isIndividual: boolean
     }
 ];
 
