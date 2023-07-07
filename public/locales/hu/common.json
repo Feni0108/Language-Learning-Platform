@@ -63,6 +63,20 @@
   "Translate_this_sentence": "Fordítsd le az alábbi mondatot",
   "Continue" : "Folytatás",
   "Correct_answer" : "Jó válasz",
-  "Incorrect_answer" : "Rossz válasz"
+  "Incorrect_answer" : "Rossz válasz",
+  "Pair_the_right_words": "Párosítsd össze a megfelelő szavakat",
+  "Which_one_of_these_is": "Melyik ezek közül",
+  "Find_the_mathcing_pairs": "Találd meg a megfelelő párokat",
+  "You_finished_the_lesson!_Your_points": "Befejezted a leckét! A pontjaid",
+  "Congratulations": "Gratulálok",
+  "in_a_row" : "egy huzamban",
+  "Fill_in_the_gaps_in_the_conversation" : "Egészítsd ki a mondatokat a párbeszédben",
+  "That_is_correct!": "Ez a helyes válasz!",
+  "That_is_not_right!_The_right_answer_is": "Ez nem a helyes válasz! A jó válasz",
+  "Ohh, yes! You are in": "Ez igen! Már",
+  "streak": "egymást követő nap játszottál",
+  "This part is under development. Check later!" : "Ez a rész még fejlesztés alatt. Nézz vissza később!",
+  "Duo sees a" : "Duo lát a jövődben egy",
+  "day streak in your future. Will there be that many": "napos sorozatot. Lesz annyi"
 
 }

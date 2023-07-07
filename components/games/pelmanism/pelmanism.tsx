@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "@/components/games/pelmanism/Card";
 import { FormatLessons } from "@/components/FormatLessons";
+import i18n from "@/i18n/i18n";
 
 type WordData = {
   original_word: string;
@@ -27,6 +28,7 @@ const Pelmanism = ({
   setIsGood,
   handleSolved,
 }: PelmanismProps) => {
+  const t = (key: string) => i18n.t(key);
   const [originalWords, setOriginalWords] = useState<WordData[]>(task[0]);
   const [translatedWords, setTranslatedWords] = useState<WordData[]>(task[1]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
@@ -101,7 +103,7 @@ const Pelmanism = ({
   return (
     <div>
       <p className="mt-10 text-l font-medium grid justify-items-center">
-        Find the mathcing pairs!
+        {t('Find_the_mathcing_pairs')!}
       </p>
       <div className="flex justify-center m-10">
         <div className="grid grid-cols-4 gap-5">
@@ -122,7 +124,7 @@ const Pelmanism = ({
             className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
             onClick={() => handleSolved()}
           >
-            Continue
+            {t('Continue')}
           </button>
         </div>
       )}
