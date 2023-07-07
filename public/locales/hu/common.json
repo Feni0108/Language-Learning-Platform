@@ -46,8 +46,7 @@
   "Part_2_Advanced": "2. rész: Haladó",
   "Greetings": "Köszönések",
   "greetings": "köszönések",
-  "Numbers": "Számok",
-  "numbers": "számok",
+  "Number": "Szám",
   "number": "szám",
   "Calendar": "Naptár",
   "calendar": "naptár",
@@ -60,5 +59,10 @@
   "Hobby": "Hobbi",
   "hobby": "hobbi",
   "Shopping": "Bevásárlás",
-  "shopping": "bevásárlás"
+  "shopping": "bevásárlás",
+  "Translate_this_sentence": "Fordítsd le az alábbi mondatot",
+  "Continue" : "Folytatás",
+  "Correct_answer" : "Jó válasz",
+  "Incorrect_answer" : "Rossz válasz"
+
 }

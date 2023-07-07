@@ -60,5 +60,9 @@
   "Hobby": "Hobby",
   "hobby": "hobby",
   "Shopping": "Shopping",
-  "shopping": "shopping"
+  "shopping": "shopping",
+  "Translate_this_sentence": "Translate this sentence",
+  "Continue" : "Continue",
+  "Correct_answer" : "Correct answer",
+  "Incorrect_answer" : "Incorrect answer"
 }
