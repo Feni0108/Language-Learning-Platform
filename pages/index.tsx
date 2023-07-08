@@ -17,6 +17,7 @@ import { GiNothingToSay, GiWashingMachine } from "react-icons/gi"
 import { MdFamilyRestroom } from "react-icons/md";
 import { BsFillCalendarDayFill } from "react-icons/bs";
 import { ImSortNumbericDesc } from "react-icons/im";
+import { Language } from "@prisma/client";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -106,7 +107,7 @@ return (
       {session && (
           <div className=" flex justify-center">
         <div className="text-gray-700 max-w-5xl px-20 py-28">
-          <h1 className="text-6xl font-semibold leading-normal ">
+          <h1 className="text-6xl font-semibold leading-normal flex justify-center ">
             {t('Welcome')+", "}
 
             <span className="text-6xl font-semibold leading-normal">
@@ -121,16 +122,15 @@ return (
 
             {session.user!.strike! > 0 && (<div className="flex inline-block justify-center text-red-600 mt-5 mb-5">
             <SiMediafire className="text-6xl"/>
-              <h2 className="flex items-center text-3xl">Ohh, yes! You are in {session.user!.strike!} streak!</h2>
+              <h2 className={session.user!.interfaceLanguage === Language.hu? "flex items-center text-2xl" :"flex items-center text-3xl"}>{t('Ohh, yes! You are in')} {session.user!.strike!} {t('streak')}!</h2>
               <SiMediafire className="text-6xl transform: rotate-180"/>
             </div>)}
-            {session.user!.strike! > 0 && !isPlayToday && (<div className="w-148 grid justify-center">
+            {session.user!.strike! > 0 && !isPlayToday && (<div className="w-148 justify-center">
             <img src={`data:image/jpeg;base64,${DuolingoSees}`} />
 
 
               <h3 className="mt-4 mb-4 flex justify-center text-center text-l font-semibold text-green-600">
-                Duo sees a {session.user!.strike! + 1}-day streak in your
-                future. Will there be that many?
+                {t("Duo sees a")} {session.user!.strike! + 1}-{t('day streak in your future. Will there be that many')}?
               </h3>
             </div>)}
             <div className="flex inline-block justify-between bg-lime-400 mt-5  text-4xl p-2 rounded-xl shadow-lg shadow-lime-400/40">

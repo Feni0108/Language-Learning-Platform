@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FormatLessons } from "@/components/FormatLessons";
 import { number, string } from "prop-types";
 import Word from "@/components/games/picturegame/Word";
+import i18n from "@/i18n/i18n";
 
 type Solution = {
   id: number;
@@ -32,13 +33,13 @@ export default function Picture({
   setIsGood,
   handleSolved,
 }: PictureProps) {
+  const t = (key: string) => i18n.t(key);
   const [task, setTask] = useState<[Solution, Picture[]]>(allWords);
   const [word, setWord] = useState<Solution | undefined>();
   const [pictures, setPictures] = useState<Picture[]>([]);
   const [answer, setAnswer] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    console.log(task);
     setWord(task[0] as { id: number; word: string });
     setPictures(task[1]);
   }, [task]);
@@ -70,7 +71,7 @@ export default function Picture({
       {word && (
         <h2 className="mt-10 text-l font-medium grid justify-items-center">
           {" "}
-          Which one of these is "{word.word}"?
+          {t('Which_one_of_these_is')} "{word.word}"?
         </h2>
       )}
       <div className="mt-10 flex flex-row">
@@ -99,8 +100,8 @@ export default function Picture({
               : FormatLessons.pictureGameWrongAnswer
           }
         >
-          {isGood ? <h3>Correct Answer</h3> : <h3>Incorrect Answer</h3>}
-          {isGood ? null : <h4>Correct Answer:</h4>}
+          {isGood ? <h3>{t('Correct_answer')}</h3> : <h3>{t('Incorrect_answer')}</h3>}
+          {isGood ? null : <h4>{t('Correct_answer')}:</h4>}
           {isGood
             ? null
             : pictures.find((picture) => picture.id === word?.id)?.word}
@@ -111,7 +112,7 @@ export default function Picture({
                 className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
                 onClick={() => handleSolved()}
               >
-                Continue
+                {t('Continue')}
               </button>
             </div>
           )}
@@ -123,7 +124,7 @@ export default function Picture({
             className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
             onClick={() => handleCheck()}
           >
-            Continue
+            {t('Continue')}
           </button>
         </div>
       )}

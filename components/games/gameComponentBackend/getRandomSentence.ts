@@ -16,7 +16,7 @@ const createData = (original_sentence: Sentence, translated_sentence: Sentence, 
         const randomWords = (Math.floor(Math.random() * (10 - preWords.length) + preWords.length));
         splitSentence(preWords);
         getRandomWord(randomWords, original_words);
-        fillHover(translated_sentence[randomId].sentence, translated_words);
+        fillHover(translated_sentence[randomId].sentence, translated_words, original_words);
         solution = original_sentence[randomId].sentence;
 }
 
@@ -32,8 +32,9 @@ const getRandomWord = (length: number, dictionary:DictionaryForHover) => {
         const randomId = (Math.floor(Math.random() * (dictionary.length))+1)
         let newId = true;
         for(let i:number = 0; i<words.length; i++) {
-            if (words[i].id === randomId ||
-            words[i].word === dictionary[randomId - 1].word){
+            if ((words[i].id === randomId ||
+            words[i].word === dictionary[randomId - 1].word) &&
+            !dictionary[randomId - 1].isIndividual){
                 newId = false;
             }
         }
@@ -44,14 +45,19 @@ const getRandomWord = (length: number, dictionary:DictionaryForHover) => {
     }
 
 
-const fillHover = (originalSentence: string, dictionary:DictionaryForHover) => {
+const fillHover = (originalSentence: string, dictionary:DictionaryForHover, translatedDictionary:DictionaryForHover) => {
     sentence = [];
     const originalWords = originalSentence.split(" ");
     originalWords.map((word) => {
             let hover:string[] = []
             dictionary.map((dicWord) => {
                 if (dicWord.word === word){
-                    hover.push(dicWord.description);
+                    console.log(dicWord.id);
+                    translatedDictionary.map((trans) => {
+                        if (trans.id === dicWord.id){
+                            hover.push(trans.description);
+                        }
+                    })
                 }
             })
             sentence.push({word,hover});

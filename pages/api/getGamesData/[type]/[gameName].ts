@@ -107,7 +107,8 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    description: true
+                    description: true,
+                    isIndividual: true
                 }
             }) as DictionaryForHover;
             const translated_words = await prisma.words.findMany({
@@ -117,7 +118,8 @@ export default async function handler(req: NextApiRequest,
                 select: {
                     id: true,
                     word: true,
-                    description: true
+                    description: true,
+                    isIndividual: true
                 }
             }) as DictionaryForHover;
             const result = getRandomSentence(original_sentence, translated_sentence, original_words, translated_words);

@@ -245,7 +245,7 @@ const SettingsPage: React.FC<SettingsProps> = ({userSettings, userProgress}) => 
               {t('Save')}
             </button>
         )}
-        {isUpdated && <p className="italic bold pt-4 text-green-500">Your settings succesfully updated!</p>}
+        {isUpdated && <p className="italic bold pt-4 text-green-500">{t('Your settings succesfully updated')}!</p>}
 
       </div>
         <div className="m-4 pl-20 h-96 w-2/5" >

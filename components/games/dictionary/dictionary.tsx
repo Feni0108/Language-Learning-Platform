@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Word from "./Word";
 import { FormatLessons } from "@/components/FormatLessons";
+import i18n from "@/i18n/i18n";
 
 type WordData = {
   original_word: string;
@@ -32,6 +33,7 @@ const Dictionary = ({
   setIsGood,
   handleSolved,
 }: DictionaryProps) => {
+  const t = (key: string) => i18n.t(key);
   const [words, setWords] = useState(task);
   const [choose, setChoose] = useState<ChooseType>({
     or_id: null,
@@ -155,7 +157,7 @@ const Dictionary = ({
     <>
       <div />
       <h3 className="mt-10 text-xl font-medium grid justify-items-center">
-        Pair the right words!
+        {t('Pair_the_right_words')}!
       </h3>
       <div className="mt-10 flex flex-row">
         <div className="w-64 m-auto">
@@ -202,7 +204,7 @@ const Dictionary = ({
               className="p-5 text-center w-56 rounded md:rounded-full border-2 hover:border-4"
               onClick={() => handleSolved()}
             >
-              Continue
+              {t('Continue')}
             </button>
           </div>
         )}
