@@ -10,6 +10,7 @@ import {MdKeyboardDoubleArrowUp} from "react-icons/md";
 import {getLanguageCode} from "@/components/getLanguageCode";
 import i18n from "@/i18n/i18n";
 import {getCategoryLabel} from "@/components/getCategoryLabel";
+import { getLanguageLabel } from "@/components/getLanguageLabel";
 
 
 export const LanguageToLabelMapping: Record<Language, string> = {
@@ -240,7 +241,8 @@ const contributionIndex = ({finalContributions}: Contributions, {userSettings}: 
                           }
                       >
                         {Object.keys(LanguageToLabelMapping).map((language) => (
-                            <option>{t(language)}</option>
+                            <option value={language}
+                            >{getLanguageLabel(language)}</option>
                         ))}
                       </select>
                     </div>
