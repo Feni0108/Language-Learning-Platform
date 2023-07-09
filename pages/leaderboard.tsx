@@ -161,11 +161,11 @@ export default function Leaderboard({leaderBoard} : LeaderBoardType, {userSettin
                 <button
                     className={isPoint? "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40" : "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40 grayscale"}
                     onClick={isPoint? undefined : () => {setIsPoint(true), setIsLoading(true)}}
-                >Points</button>
+                >{t('Points')}</button>
                 <button
                     className={!isPoint? "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40" : "text-3xl text-white h-18 bg-cyan-400 w-18 rounded-full border-2 p-4 shadow-lg shadow-cyan-400/40 grayscale"}
                     onClick={!isPoint? undefined : () => {setIsPoint(false), setIsLoading(true)}}
-                >Strike</button>
+                >{t('Streak')}</button>
                   </div>
                   <div className="pl-4 pr-4 pt-4 pb-4 border-2 rounded-3xl">
                 {sortLeaderBoard !== undefined && sortLeaderBoard.slice(beforeIndex, beforeIndex + limit).map((value:LeaderBoardUser, index:number) => (
