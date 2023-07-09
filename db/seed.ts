@@ -7115,17 +7115,17 @@ async function seed() {
       },
       {
         id: 1,
-        sentence: "",
+        sentence: "Ako sa máš?",
         language: Language.sk,
         category: Category.GREETINGS
       },{
         id: 1,
-        sentence: "",
+        sentence: "Hvernig hefurðu það?",
         language: Language.is,
         category: Category.GREETINGS
       },{
         id: 1,
-        sentence: "",
+        sentence: "Jak se máte?",
         language: Language.cz,
         category: Category.GREETINGS
       },
@@ -7143,17 +7143,17 @@ async function seed() {
       },
       {
         id: 2,
-        sentence: "",
+        sentence: "Volám sa Andras",
         language: Language.sk,
         category: Category.GREETINGS
       },{
         id: 2,
-        sentence: "",
+        sentence: "Ég heiti Andras",
         language: Language.is,
         category: Category.GREETINGS
       },{
         id: 2,
-        sentence: "",
+        sentence: "Jmenuji se Andras",
         language: Language.cz,
         category: Category.GREETINGS
       },
@@ -7171,17 +7171,17 @@ async function seed() {
       },
       {
         id: 3,
-        sentence: "",
+        sentence: "Som z Ukrajiny",
         language: Language.sk,
         category: Category.GREETINGS
       },{
         id: 3,
-        sentence: "",
+        sentence: "Ég er frá Úkraínu",
         language: Language.is,
         category: Category.GREETINGS
       },{
         id: 3,
-        sentence: "",
+        sentence: "Jsem z Ukrajiny",
         language: Language.cz,
         category: Category.GREETINGS
       },
@@ -7199,17 +7199,17 @@ async function seed() {
       },
       {
         id: 4,
-        sentence: "",
+        sentence: "Mám dve sestry",
         language: Language.sk,
         category: Category.FAMILY
       },{
         id: 4,
-        sentence: "",
+        sentence: "Ég á tvær systur",
         language: Language.is,
         category: Category.FAMILY
       },{
         id: 4,
-        sentence: "",
+        sentence: "Já mám dvě sestry",
         language: Language.cz,
         category: Category.FAMILY
       },
@@ -7227,17 +7227,17 @@ async function seed() {
       },
       {
         id: 5,
-        sentence: "",
+        sentence: "Mám štyroch strýkov",
         language: Language.sk,
         category: Category.FAMILY
       },{
         id: 5,
-        sentence: "",
+        sentence: "Ég á fjóra frændur",
         language: Language.is,
         category: Category.FAMILY
       },{
         id: 5,
-        sentence: "",
+        sentence: "Mám čtyři strýce",
         language: Language.cz,
         category: Category.FAMILY
       },
@@ -7255,17 +7255,17 @@ async function seed() {
       },
       {
         id: 6,
-        sentence: "",
+        sentence: "Mám len dvoch starých rodičov",
         language: Language.sk,
         category: Category.FAMILY
       },{
         id: 6,
-        sentence: "",
+        sentence: "Ég á bara tvo afa og ömmu",
         language: Language.is,
         category: Category.FAMILY
       },{
         id: 6,
-        sentence: "",
+        sentence: "Mám jen dva prarodiče",
         language: Language.cz,
         category: Category.FAMILY
       },
@@ -7283,17 +7283,17 @@ async function seed() {
       },
       {
         id: 7,
-        sentence: "",
+        sentence: "Mám psa",
         language: Language.sk,
         category: Category.ANIMALS
       },{
         id: 7,
-        sentence: "",
+        sentence: "Ég á hund",
         language: Language.is,
         category: Category.ANIMALS
       },{
         id: 7,
-        sentence: "",
+        sentence: "Mám psa",
         language: Language.cz,
         category: Category.ANIMALS
       },
@@ -7311,17 +7311,17 @@ async function seed() {
       },
       {
         id: 8,
-        sentence: "",
+        sentence: "Milujem mačky",
         language: Language.sk,
         category: Category.ANIMALS
       },{
         id: 8,
-        sentence: "",
+        sentence: "Ég elska ketti",
         language: Language.is,
         category: Category.ANIMALS
       },{
         id: 8,
-        sentence: "",
+        sentence: "Miluji kočky",
         language: Language.cz,
         category: Category.ANIMALS
       },
@@ -7339,17 +7339,17 @@ async function seed() {
       },
       {
         id: 9,
-        sentence: "",
+        sentence: "Žirafy sú vysoké",
         language: Language.sk,
         category: Category.ANIMALS
       },{
         id: 9,
-        sentence: "",
+        sentence: "Gíraffar eru háir",
         language: Language.is,
         category: Category.ANIMALS
       },{
         id: 9,
-        sentence: "",
+        sentence: "Žirafy jsou vysoké",
         language: Language.cz,
         category: Category.ANIMALS
       },
@@ -7367,19 +7367,19 @@ async function seed() {
       },
       {
         id: 10,
-        sentence: "",
+        sentence: "Dvanáct koček",
         language: Language.cz,
         category: Category.NUMBER
       },
       {
         id: 10,
-        sentence: "",
+        sentence: "Dvanásť mačiek",
         language: Language.sk,
         category: Category.NUMBER
       },
       {
         id: 10,
-        sentence: "",
+        sentence: "Tólf kettir",
         language: Language.is,
         category: Category.NUMBER
       },
@@ -7397,19 +7397,19 @@ async function seed() {
       },
       {
         id: 11,
-        sentence: "",
+        sentence: "Chci hodně psů",
         language: Language.cz,
         category: Category.NUMBER
       },
       {
         id: 11,
-        sentence: "",
+        sentence: "Chcem veľa psov",
         language: Language.sk,
         category: Category.NUMBER
       },
       {
         id: 11,
-        sentence: "",
+        sentence: "Mig langar í marga hunda",
         language: Language.is,
         category: Category.NUMBER
       },
@@ -7427,19 +7427,19 @@ async function seed() {
       },
       {
         id: 12,
-        sentence: "",
+        sentence: "Moje šťastné číslo je osm",
         language: Language.cz,
         category: Category.NUMBER
       },
       {
         id: 12,
-        sentence: "",
+        sentence: "Moje šťastné číslo je osem",
         language: Language.sk,
         category: Category.NUMBER
       },
       {
         id: 12,
-        sentence: "",
+        sentence: "happatalan mín er átta",
         language: Language.is,
         category: Category.NUMBER
       },
@@ -7457,19 +7457,19 @@ async function seed() {
       },
       {
         id: 13,
-        sentence: "",
+        sentence: "Dnes je sobota",
         language: Language.cz,
         category: Category.CALENDAR
       },
       {
         id: 13,
-        sentence: "",
+        sentence: "Dnes je Sobota",
         language: Language.sk,
         category: Category.CALENDAR
       },
       {
         id: 13,
-        sentence: "",
+        sentence: "Í dag er laugardagur",
         language: Language.is,
         category: Category.CALENDAR
       },
@@ -7487,19 +7487,19 @@ async function seed() {
       },
       {
         id: 14,
-        sentence: "",
+        sentence: "Moje oblíbené roční období je zima",
         language: Language.cz,
         category: Category.CALENDAR
       },
       {
         id: 14,
-        sentence: "",
+        sentence: "Moje obľúbené ročné obdobie je zima",
         language: Language.sk,
         category: Category.CALENDAR
       },
       {
         id: 14,
-        sentence: "",
+        sentence: "Uppáhalds árstíðin mín er veturinn",
         language: Language.is,
         category: Category.CALENDAR
       },
@@ -7517,19 +7517,19 @@ async function seed() {
       },
       {
         id: 15,
-        sentence: "",
+        sentence: "Narodil jsem se v srpnu",
         language: Language.cz,
         category: Category.CALENDAR
       },
       {
         id: 15,
-        sentence: "",
+        sentence: "Narodil som sa v auguste",
         language: Language.sk,
         category: Category.CALENDAR
       },
       {
         id: 15,
-        sentence: "",
+        sentence: "Ég fæddist í ágúst",
         language: Language.is,
         category: Category.CALENDAR
       },
@@ -7547,19 +7547,19 @@ async function seed() {
       },
       {
         id: 16,
-        sentence: "",
+        sentence: "Nora je moje nejlepší kamarádka",
         language: Language.cz,
         category: Category.FRIENDS
       },
       {
         id: 16,
-        sentence: "",
+        sentence: "Nora je moja najlepšia kamarátka",
         language: Language.sk,
         category: Category.FRIENDS
       },
       {
         id: 16,
-        sentence: "",
+        sentence: "Nora er besta vinkona mín",
         language: Language.is,
         category: Category.FRIENDS
       },
@@ -7577,19 +7577,19 @@ async function seed() {
       },
       {
         id: 17,
-        sentence: "",
+        sentence: "Dnes večer půjdu s přáteli na ryby",
         language: Language.cz,
         category: Category.FRIENDS
       },
       {
         id: 17,
-        sentence: "",
+        sentence: "Dnes večer pôjdem s priateľmi na ryby",
         language: Language.sk,
         category: Category.FRIENDS
       },
       {
         id: 17,
-        sentence: "",
+        sentence: "Í kvöld ætla ég að fara að veiða með vinum mínum",
         language: Language.is,
         category: Category.FRIENDS
       },
@@ -7607,19 +7607,19 @@ async function seed() {
       },
       {
         id: 18,
-        sentence: "",
+        sentence: "Jedeme do kina s Norou",
         language: Language.cz,
         category: Category.FRIENDS
       },
       {
         id: 18,
-        sentence: "",
+        sentence: "Ideme do kina s Norou",
         language: Language.sk,
         category: Category.FRIENDS
       },
       {
         id: 18,
-        sentence: "",
+        sentence: "Fara í bíó með Noru",
         language: Language.is,
         category: Category.FRIENDS
       },
@@ -7637,19 +7637,19 @@ async function seed() {
       },
       {
         id: 19,
-        sentence: "",
+        sentence: "Rád čtu knihy",
         language: Language.cz,
         category: Category.FRIENDS
       },
       {
         id: 19,
-        sentence: "",
+        sentence: "Rád čítam knihy",
         language: Language.sk,
         category: Category.FRIENDS
       },
       {
         id: 19,
-        sentence: "",
+        sentence: "Mér finnst gaman að lesa bækur",
         language: Language.is,
         category: Category.FRIENDS
       },
@@ -7667,19 +7667,19 @@ async function seed() {
       },
       {
         id: 20,
-        sentence: "",
+        sentence: "Hraju fotbal každé úterý a čtvrtek",
         language: Language.cz,
         category: Category.HOBBY
       },
       {
         id: 20,
-        sentence: "",
+        sentence: "Hrám futbal každý utorok a štvrtok",
         language: Language.sk,
         category: Category.HOBBY
       },
       {
         id: 20,
-        sentence: "",
+        sentence: "Ég spila fótbolta alla þriðjudaga og fimmtudaga",
         language: Language.is,
         category: Category.HOBBY
       },
@@ -7697,19 +7697,19 @@ async function seed() {
       },
       {
         id: 21,
-        sentence: "",
+        sentence: "Běhám večer",
         language: Language.cz,
         category: Category.HOBBY
       },
       {
         id: 21,
-        sentence: "",
+        sentence: "Bežím večer",
         language: Language.sk,
         category: Category.HOBBY
       },
       {
         id: 21,
-        sentence: "",
+        sentence: "Ég hleyp á kvöldin",
         language: Language.is,
         category: Category.HOBBY
       },
@@ -7727,19 +7727,19 @@ async function seed() {
       },
       {
         id: 22,
-        sentence: "",
+        sentence: "Bydlím v Praze",
         language: Language.cz,
         category: Category.LIVING
       },
       {
         id: 22,
-        sentence: "",
+        sentence: "Bývam v Prahe",
         language: Language.sk,
         category: Category.LIVING
       },
       {
         id: 22,
-        sentence: "",
+        sentence: "Ég bý í Prag",
         language: Language.is,
         category: Category.LIVING
       },
@@ -7757,19 +7757,19 @@ async function seed() {
       },
       {
         id: 23,
-        sentence: "",
+        sentence: "Žiju u řeky",
         language: Language.cz,
         category: Category.LIVING
       },
       {
         id: 23,
-        sentence: "",
+        sentence: "Bývam pri rieke",
         language: Language.sk,
         category: Category.LIVING
       },
       {
         id: 23,
-        sentence: "",
+        sentence: "Ég bý við á",
         language: Language.is,
         category: Category.LIVING
       },
@@ -7787,19 +7787,19 @@ async function seed() {
       },
       {
         id: 24,
-        sentence: "",
+        sentence: "Pracuji od pondělí do pátku",
         language: Language.cz,
         category: Category.LIVING
       },
       {
         id: 24,
-        sentence: "",
+        sentence: "Pracujem od pondelka do piatku",
         language: Language.sk,
         category: Category.LIVING
       },
       {
         id: 24,
-        sentence: "",
+        sentence: "Ég vinn frá mánudegi til föstudags",
         language: Language.is,
         category: Category.LIVING
       },
@@ -7817,19 +7817,19 @@ async function seed() {
       },
       {
         id: 25,
-        sentence: "",
+        sentence: "Rád chodím do obchodů",
         language: Language.cz,
         category: Category.SHOPPING
       },
       {
         id: 25,
-        sentence: "",
+        sentence: "Rád chodím do obchodov",
         language: Language.sk,
         category: Category.SHOPPING
       },
       {
         id: 25,
-        sentence: "",
+        sentence: "Ég elska að fara í búðir",
         language: Language.is,
         category: Category.SHOPPING
       },
@@ -7847,19 +7847,19 @@ async function seed() {
       },
       {
         id: 26,
-        sentence: "",
+        sentence: "Koupím si nový počítač",
         language: Language.cz,
         category: Category.SHOPPING
       },
       {
         id: 26,
-        sentence: "",
+        sentence: "Kúpim si nový počítač",
         language: Language.sk,
         category: Category.SHOPPING
       },
       {
         id: 26,
-        sentence: "",
+        sentence: "Ég mun kaupa nýja tölvu",
         language: Language.is,
         category: Category.SHOPPING
       },
@@ -7877,19 +7877,19 @@ async function seed() {
       },
       {
         id: 27,
-        sentence: "",
+        sentence: "Objednám si nový kávovar",
         language: Language.cz,
         category: Category.SHOPPING
       },
       {
         id: 27,
-        sentence: "",
+        sentence: "Objednám si nový kávovar",
         language: Language.sk,
         category: Category.SHOPPING
       },
       {
         id: 27,
-        sentence: "",
+        sentence: "Ég panta nýja kaffivél",
         language: Language.is,
         category: Category.SHOPPING
       },
