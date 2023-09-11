@@ -1,41 +1,50 @@
-## Language Learning Platform
+# FunLanguage - Learning Language Platform 🌎📚
 
-The Language Learning Platform is an interactive web-based application designed to make learning a new language easy, fun, and addictive. The platform offers a range of features that are designed to help users learn new vocabulary and phrases in a foreign language of their choosing.
+Welcome to FunLanguage, where learning a new language is as enjoyable as playing a game! 🎮
 
-### Features
+## 🚀 About Me
 
-#### Interactive Learning
+👋 Hi there! I'm [Your Name], a former physics student who embarked on a unique journey into the world of programming during my university days. It all began when we faced complex equations that couldn't be solved analytically, and that's when I discovered the incredible power of coding. 💻
 
-The platform offers a range of interactive learning features that make learning a new language fun and engaging. Users can learn new words and phrases through images, sounds, and example sentences. Each word is presented in context, so users can see how it is used in real-life situations.
+🎓 After my physics studies, I took a leap into the world of software development and recently graduated from Green Fox Academy in the summer. This project you're exploring is the culmination of our hard work and dedication during my time at the academy.
 
-#### Gamification
+I'm passionate about bringing science and technology together to create innovative solutions, and I hope you find our Learning Language Platform just as exciting as I do! 🌟
 
-To make learning even more addictive, the platform includes a range of gamification features. Users earn points for learning new words and completing activities, and can compete against friends and other learners on the platform.
+## 💡 About the project
 
-#### User-Generated Content
+FunLanguage is a project developed as part of the Project Phase at Green Fox Academy. Our goal is to make language learning fun and engaging by integrating gamified experiences, similar to platforms like Duolingo. This project was a collaborative effort by a team of 5 dedicated individuals, working together to create a dynamic and interactive language learning platform.
 
-One unique feature of the Language Learning Platform is that users can contribute their own words and phrases to the platform. This means that the platform is constantly growing and evolving, as new words and languages are added by users from all around the world.
+#### Features
 
-#### Progress Tracking
+🎮 Gamified language learning.
 
-Users can track their progress in each language they are learning, including the number of words they have learned and their overall proficiency in the language. This feature helps users to stay motivated and on track as they work towards their language learning goals.
+📈 Progress tracking.
 
-#### Customization
+📚 User-Generated Content
 
-The platform allows users to customize their learning experience to suit their individual needs. Users can set their own learning goals, choose the languages they want to learn, and even create their own custom word lists.
+🌟 Achievements and rewards.
 
-### Technologies Used
+## Tech Stack
 
-The Language Learning Platform is built using a range of modern web technologies, including HTML, CSS, JavaScript, and React. The platform also uses a number of third-party APIs to provide features such as speech recognition and translation.
+**Client:** React, TypeScript, TailwindCSS
 
-### Getting Started
+**Server:** NextJS, NextAuth, Prisma (MySQL)
 
-To get started with the Language Learning Platform, simply sign up for an account and choose the language you want to learn. From there, you can start learning new words and phrases, earn points, and track your progress.
+## Getting Started
 
-### Contributing
+To get started with FunLanguage, follow these simple steps:
 
-If you're interested in contributing to the Language Learning Platform, simply sign up for an account and start adding new words and phrases to the platform. You can also submit bug reports and feature requests through the platform's GitHub repository.
+1. Clone this repository.
 
-### License
+2. Set up your environment and dependencies.
 
-The Language Learning Platform is licensed under the MIT License.
+3. Launch the application.
+
+4. Start your language learning journey!
+
+## Authors
+
+- [Gábor Király-Gál](https://www.github.com/gabesz1111)
+- [Gudbjorg Vernhardsdottir](https://www.github.com/GudbjorgLara)
+- [Zsolt Gazda](https://www.github.com/zgazda1010)
+- [Dániel Szántó](https://www.github.com/doncidomper)
