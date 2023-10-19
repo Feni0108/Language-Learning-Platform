@@ -4,7 +4,7 @@ Welcome to FunLanguage, where learning a new language is as enjoyable as playing
 
 ## 🚀 About Me
 
-👋 Hi there! I'm [Your Name], a former physics student who embarked on a unique journey into the world of programming during my university days. It all began when we faced complex equations that couldn't be solved analytically, and that's when I discovered the incredible power of coding. 💻
+👋 Hi there! I'm Fanni, a former physics student who embarked on a unique journey into the world of programming during my university days. It all began when we faced complex equations that couldn't be solved analytically, and that's when I discovered the incredible power of coding. 💻
 
 🎓 After my physics studies, I took a leap into the world of software development and recently graduated from Green Fox Academy in the summer. This project you're exploring is the culmination of our hard work and dedication during my time at the academy.
 
